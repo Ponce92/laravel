@@ -1,0 +1,78 @@
+body{
+    background-color: rgb(240,240,240);
+}
+.riues-row{
+    background-color: rgba(250,250,250,0.5);
+    border-bottom: 1px solid rgb(220,220,220);
+}
+img.logo{
+    height: 100px;
+}
+
+.riues-banner{
+    color: rgb(105,105,105);
+    margin-top: 15px;
+}
+.login-riues{
+    color: rgba(2,2,2,0.5);
+    border: 1px solid rgb(200,200,200);
+    padding: 15px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255,0.5);
+    font-weight: bold;
+}
+.login-titulo{
+    font-size: 2em;
+    position: relative;
+    text-align: center;
+}
+.riues-btn{
+    border-radius: 2px;!important;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #aa0000;
+    color: white;
+    margin-right: 28px;!important;
+}
+.riues-btn:hover{
+    background-color: rgb(100,0,0);
+    color: #fff;
+}
+/*
+ *Css de la pagina de regisro.......................
+ */
+.sub-menu{
+    color: #fff;
+    padding-top:7px ;
+    padding-bottom: 7px;
+    text-align: center;
+    background-color: rgba(170,0,0,0.8);
+}
+.sub-menu:hover{
+    background-color: rgb(250,250,250);
+    color: rgb(170,0,0);
+}
+.active{
+    background-color: rgb(250,250,250);
+    color: rgb(170,0,0);
+}
+.secciones{
+    min-height: 500px;
+    background-color: rgb(250,250,250);
+}
+.form div{
+    padding: 10px;
+}
+radio{
+    font-weight: bold;
+}
+.img-form{
+    height: 175px;
+}
+
+#img_destino{
+    width: 150px;
+    height: 200px;
+    background-image: url("unser.jpg");
+
+}

@@ -11,7 +11,5 @@
 |
 */
 
-Route::get('/da','Login\logController@GetForm');
-Route::post('/register','Login\logController@PostRegisterUser');
-Route::post('/Log','Login\logController@PostLogUser');
-Route::get('/','admincontroller@getAdmin');
+Route::get('/','LoginController@getLogin');
+Route::get('/registro','RegistroController@getRegistro');

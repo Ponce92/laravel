@@ -1,105 +1,45 @@
-<!DOCTYPE html>
-<html lang="en" >
 
-<head>
-    <meta charset="UTF-8">
-    <title>RIUES :: Log</title>
+@extends('Common.appLayout')
+@section('title')
+    <title>RIUES : : Login</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+@stop
 
-    <link rel="stylesheet" href="{{asset("css/style.css")}}">
-</head>
+@section('cuerpo')
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col col-xs-12 col-sm-12 col-md-5 col-lg-4">
 
-<body>
-<div class="form">
-    <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
-    </ul>
-    <div class="tab-content">
-        <div id="signup">
-            <h1>Sign Up for Free</h1>
-
-            <form action="/" method="post">
-
-                <div class="top-row">
-                    <div class="field-wrap">
-                        <label>
-                            First Name<span class="req">*</span>
-                        </label>
-                        <input type="text" required autocomplete="off" />
+            <form class="login-riues">
+                <div class="login-titulo">Login </div>
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="clave">Contrasenia</label>
+                    <input type="password" class="form-control" id="clave" placeholder="****">
+                </div>
+                <br>
+                <div class="form-group justify-content-center">
+                    <div class="row justify-content-center">
+                        <button class="btn btn-default  riues-btn">Login</button>
                     </div>
 
-                    <div class="field-wrap">
-                        <label>
-                            Last Name<span class="req">*</span>
-                        </label>
-                        <input type="text"required autocomplete="off"/>
-                    </div>
                 </div>
-
-                <div class="field-wrap">
-                    <label>
-                        Email Address<span class="req">*</span>
-                    </label>
-                    <input type="email"required autocomplete="off"/>
+                <div class="row justify-content-end">
+                    <a href="registro" style="color: #3e4548;margin-right: 25px;">Crear Registro</a>
                 </div>
-
-                <div class="field-wrap">
-                    <label>
-                        Set A Password<span class="req">*</span>
-                    </label>
-                    <input type="password"required autocomplete="off"/>
-                </div>
-
-                <button type="submit" class="button button-block"/>Registrarse</button>
 
             </form>
-
         </div>
-
-        <div id="login">
-            <h1>Welcome Back!</h1>
-
-            <form action="/ " method="post">
-
-                <div class="field-wrap">
-                    <label>
-                        Email Address<span class="req">*</span>
-                    </label>
-                    <input type="email"required autocomplete="off"/>
-                </div>
-
-                <div class="field-wrap">
-                    <label>
-                        Password<span class="req">*</span>
-                    </label>
-                    <input type="password"required autocomplete="off"/>
-                </div>
-
-                <p class="forgot"><a href="#">Forgot Password?</a></p>
-
-                <button class="button button-block"/>Log In</button>
-
-            </form>
-
-        </div>
-
     </div>
 
-</div> <!-- fin del formulario form -->
+@stop
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+@section('js')
+    @parent
 
-
-
-<script  src="{{asset("js/index.js")}}"></script>
-
-
-
-
-</body>
-
-</html>
-
+@stop
