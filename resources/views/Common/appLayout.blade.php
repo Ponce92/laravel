@@ -19,8 +19,8 @@
 
             <div class="col visible-md col-sm-0 col-md-8 col-lg-9">
                 <div class="row justify-content-center">
-                    <div class="col-8" style="color:rgb(105,105,105); margin-top:25px;">
-                        <h1> Red de Investigadores UES </h1>
+                    <div class="col-8" style="color:rgb(105,105,105); margin-top:10px;">
+                        <h2> Red de Investigadores UES </h2>
                     </div>
                 </div>
             </div>

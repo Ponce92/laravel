@@ -1,12 +1,13 @@
 body{
-    background-color: rgb(240,240,240);
+
+     background-color: rgb(250,250,250);
 }
 .riues-row{
-    background-color: rgba(250,250,250,0.5);
+    background-color: rgba(255,255,255,0.5);
     border-bottom: 1px solid rgb(220,220,220);
 }
 img.logo{
-    height: 100px;
+    height: 75px;
 }
 
 .riues-banner{
@@ -58,21 +59,22 @@ img.logo{
 }
 .secciones{
     min-height: 500px;
-    background-color: rgb(250,250,250);
+    background-color: rgb(245,245,245);
 }
 .form div{
-    padding: 10px;
+    padding: 15px;
 }
+
 radio{
     font-weight: bold;
-}
-.img-form{
-    height: 175px;
 }
 
 #img_destino{
     width: 150px;
     height: 200px;
-    background-image: url("unser.jpg");
 
+}
+.div-registro{
+    border: 1px solid rgb(230,230,230);
+    border-radius: 2px;
 }
