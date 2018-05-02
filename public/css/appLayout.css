@@ -29,8 +29,8 @@ img.logo{
 }
 .riues-btn{
     border-radius: 2px;!important;
-    padding-left: 50px;
-    padding-right: 50px;
+    width: 175px;
+    height: 40px;
     background-color: #aa0000;
     color: white;
     margin-right: 28px;!important;
@@ -58,15 +58,7 @@ img.logo{
     color: rgb(170,0,0);
 }
 .secciones{
-    min-height: 500px;
     background-color: rgb(245,245,245);
-}
-.form div{
-    padding: 15px;
-}
-
-radio{
-    font-weight: bold;
 }
 
 #img_destino{
@@ -77,4 +69,17 @@ radio{
 .div-registro{
     border: 1px solid rgb(230,230,230);
     border-radius: 2px;
+}
+form{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+p{
+    color: rgb(100,100,100);
+    font-weight: bold;
+}
+label{
+    color: rgb(125,125,125);
+    font-weight: bold;
 }

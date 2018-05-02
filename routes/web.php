@@ -12,4 +12,5 @@
 */
 
 Route::get('/','LoginController@getLogin');
+Route::post('/registro','RegistroController@postRegistro');
 Route::get('/registro','RegistroController@getRegistro');
