@@ -3,37 +3,44 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest',['only'=>'ShowLoginForm']);
+
     }
+
+    public function showLoginForm()
+    {
+        return view('login');
+    }
+
+    public function login(Request $request)
+    {
+        $this -> validate(request(),[
+            'usuario'=> 'required|string|max:25|min:4',
+            'password' => 'required|string|min:6'
+        ]);
+
+        if (Auth::attempt(['nombre_usuario'=>$request->get('usuario'),'password'=>$request->get('password')])){
+            return redirect()->route('dashboard');
+        }
+        return back()->withErrors(['ss'=>'Credenciales incorrectas'])
+            ->withInput(request(['usuario']));
+
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function NombreUsuario(){
+        return 'nombre_usuario';
+    }
+
 }

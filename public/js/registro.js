@@ -12,15 +12,14 @@ $(document).ready(function () {
 $('#riues-reg-btn1').bind('click','a',function (e) {
     e.preventDefault();
 
-
-
     var nom=isTexto($('#nombre_txt').val(),$('#nombre_txt'));
     var ape=isTexto($('#apellido_txt').val(),$('#apellido_txt'));
     var email=isEmail($('#email_txt').val(),$('#email_txt'));
     var fecha=isFecha($('#datepicker').val(),$('#datepicker'));
     var sexo=isRadio($("input[name='sexo']"));
+    var direccion=isDireccion($('#direccion_txt'));
 
-    if(1 || nom && ape && email && fecha && sexo){
+    if(nom && ape && email && fecha && sexo && direccion ||1){
         $('div.form').hide();
         $('div.sub-menu:first').removeClass('active');
         $('div.sub-menu:nth-child(2)').addClass('active');
@@ -32,11 +31,12 @@ $('#riues-reg-btn1').bind('click','a',function (e) {
 $('#riues-reg-btn2').bind('click','a',function (e) {
     e.preventDefault();
 
-    //var s1=isSelect($('#pais'));
-    //var s2=isSelect($('#grado'));
-    //var s3=isHora($('input#horas'));
+    var sel1=isSelect($('#pais'));
+    var sel2=isSelect($('#grado'));
+    var foto=isFoto($('#inputFile'));
 
-    if(true){
+
+    if(sel1 && sel2 && foto && 0){
         $('div.form').hide();
         $('div.sub-menu:nth-child(2)').removeClass('active');
         $('div.sub-menu:nth-child(3)').addClass('active');
@@ -105,6 +105,21 @@ $( function() {
  *  Validaciones del formulario y consultas Ajax.
  *--------------------------------------------------------------------------------------------------------------------
  */
+function isDireccion(campo) {
+    var txt=campo.val();
+
+    if(txt==null ||txt.length==0){
+        campo.removeClass('is-valid');
+        campo.removeClass('is-invalid');
+        campo.addClass('is-invalid');
+        return false;
+    }else{
+        campo.removeClass('is-invalid');
+        campo.removeClass('is-valid');
+        campo.addClass('is-valid');
+        return true;
+    }
+}
 function isTexto(txt,campo) {
     var reg=/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/ ;
 
@@ -177,6 +192,21 @@ function isSelect(select) {
         return true;
     }
 
+}
+
+function isFoto(campo){
+    if (!campo.val()){
+        campo.removeClass('is-valid');
+        campo.removeClass('is-invalid');
+        campo.addClass('is-invalid');
+
+        return false;
+    }else {
+        campo.removeClass('is-invalid');
+        campo.removeClass('is-valid');
+        campo.addClass('is-valid');
+        return true;
+    }
 }
 function isHora(campo) {
 

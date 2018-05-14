@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/','LoginController@getLogin');
+Route::get('/','Auth\LoginController@showLoginForm');
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+
 Route::post('/registro','RegistroController@postRegistro');
 Route::get('/registro','RegistroController@getRegistro');
+Route::get('/dashboard','adminController@getAdmin')->name('dashboard');
+
+Route::get('/dashboard/perfil/personal','PerfilController@getFormPersonal')->name('perfil_personal_general');
+Route::get('/dashboard/perfil/contactos')->name('perfil_personal_contacts');

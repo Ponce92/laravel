@@ -92,9 +92,9 @@
                                         </div>
                                     </div>
                                     <div class="row mb-5">
-                                        <div class="custom-file">
+                                        <div class="custom-file ">
                                             <label for="file_url" class="custom-file-label">Foto...</label>
-                                            <input type="file" class="custom-file-input" accept=".png,.jpg,.jpeg">
+                                            <input type="file" id="inputFile" class="custom-file-input" accept=".png,.jpg,.jpeg">
                                         </div>
                                     </div>
                                 </div>

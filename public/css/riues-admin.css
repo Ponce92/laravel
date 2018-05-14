@@ -1,0 +1,57 @@
+.main-loadd{
+    background-color: #FFFFFF;
+    border-radius: 2px !important;
+    border: 1px solid rgb(220,220,220);
+    box-shadow: 0 0 3px 0 rgba(0,0,0,.08), 0 1px 3px 0 rgba(0,0,0,.12);
+
+}
+
+.riues-font-01{
+    color: #1f2836;
+    font-weight: bold;
+}
+
+.riues-encabezado{
+    padding-bottom: 10px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.riues-cuerpo{
+    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+hr{
+    margin-right: -30px;
+    margin-left: -30px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+label{
+    font-weight: bold;
+    color: #454545;
+}
+.riues-btn-ft{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #f7f7f7;
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+
+}
+.riues-btn{
+    border-radius: 2px;!important;
+    width: 175px;
+    height: 40px;
+    background-color: #aa0000;
+    color: white;
+    margin-right: 28px;!important;
+}
+.riues-btn:hover{
+    background-color: rgb(100,0,0);
+    color: #fff;
+}

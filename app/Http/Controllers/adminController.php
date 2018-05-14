@@ -9,8 +9,10 @@ class adminController extends Controller
 {
     public function getAdmin(){
         $menus=Menu::getMenus();
-        return $menus;
-        return view('indexAdmin',$menus);
+        $t=0;
+        return view('indexAdmin')
+            ->with('menus',$menus)
+            ->with('t',$t);
     }
 
 }

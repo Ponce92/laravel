@@ -20,7 +20,6 @@ img.logo{
     padding: 15px;
     border-radius: 2px;
     background-color: rgba(255,255,255,0.5);
-    font-weight: bold;
 }
 .login-titulo{
     font-size: 2em;
@@ -81,5 +80,4 @@ p{
 }
 label{
     color: rgb(125,125,125);
-    font-weight: bold;
 }
