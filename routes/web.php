@@ -20,4 +20,5 @@ Route::get('/registro','RegistroController@getRegistro');
 Route::get('/dashboard','adminController@getAdmin')->name('dashboard');
 
 Route::get('/dashboard/perfil/personal','PerfilController@getFormPersonal')->name('perfil_personal_general');
-Route::get('/dashboard/perfil/contactos')->name('perfil_personal_contacts');
+Route::get('/dashboard/perfil/contactos','PerfilController@getContatosAjax')->name('perfil_personal_contactos');
+

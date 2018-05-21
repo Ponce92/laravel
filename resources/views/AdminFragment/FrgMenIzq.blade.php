@@ -17,8 +17,10 @@
             </li>
             -->
             <li class="nav-item nav-dropdown">
+                <!-Opcion del menu Gestion de perfil -->
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Gestion De Perfil</a>
                 <ul class="nav-dropdown-items">
+
                     <li class="nav-item"   >
                         <a class="nav-link"
                            onclick="cargar(this)"
@@ -27,12 +29,24 @@
                             <i class="fas fa-address-card"></i> Datos Personales
                         </a>
                     </li>
-                    <li class="nav-item"   >
-                        <a class="nav-link"
-                           onclick="cargar(this)"
-                           href="#"
 
-                            <i class="fas fa-address-book"></i> Contactos</a>
+                    <li class="nav-item"   >
+                        <a  class="nav-link"
+                            href="#"
+                            onclick="cargar(this)"
+                            id="{{ route('perfil_personal_contactos') }}"
+                        >
+
+                            <i class="fas fa-address-book"></i> Contactos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="">
+                            <i class="fas fa-address-book"></i>Mis Proyectos
+                        </a>
+
                     </li>
 
                 </ul>

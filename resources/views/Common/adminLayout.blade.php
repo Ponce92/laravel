@@ -17,9 +17,9 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('framework/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('framework/jquery/jquery-ui.min.css')}}">
-
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/simple-line-icons.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/style.min.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('font-awesome/css/fontawesome-all.min.css')}}">
 
     @yield('css')
