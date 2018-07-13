@@ -3,9 +3,9 @@
         <form action="">
             <div class="row riues-encabezado">
                 <div class="col">
-                    <h1 class="riues-font-01">
+                    <h2 class="riues-font-01">
                         Detalle de Perfil
-                    </h1>
+                    </h2>
                 </div>
             </div>
             <hr>

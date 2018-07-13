@@ -420,7 +420,7 @@
 </body>
 
     <script  src="{{asset('framework/jquery/jquery.min.js')}}"></script>
-    <script  src="{{asset('framework/jquery/jquery/jquery-ui.min.js')}}"></script>
+    <script  src="{{asset('framework/jquery/jquery-ui.min.js')}}"></script>
     <script  src="{{asset('admin/js/admin.js')}}"></script>
     <script  src="{{asset('js/admin.js')}}"></script>
 </html>
