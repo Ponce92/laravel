@@ -8,11 +8,7 @@ use App\Models\Menu;
 class adminController extends Controller
 {
     public function getAdmin(){
-        $menus=Menu::getMenus();
-        $t=0;
-        return view('indexAdmin')
-            ->with('menus',$menus)
-            ->with('t',$t);
+        return view('indexAdmin');
     }
 
 }

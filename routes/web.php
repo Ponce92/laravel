@@ -19,6 +19,9 @@ Route::post('/registro','RegistroController@postRegistro');
 Route::get('/registro','RegistroController@getRegistro');
 Route::get('/dashboard','adminController@getAdmin')->name('dashboard');
 
-Route::get('/dashboard/perfil/personal','PerfilController@getFormPersonal')->name('perfil_personal_general');
-Route::get('/dashboard/perfil/contactos','PerfilController@getContatosAjax')->name('perfil_personal_contactos');
+
+Route::get('/perfil/datosPersonales','PerfilController@verDatosPersonales')->name('gestionDatosPersonales');
+Route::get('/perfil/proyectosRealizados','PerfilController@verProyectosRealizados')->name('gestionProyectosRealizados');
+Route::get('/perfil/publicaciones','PerfilController@verPublicaciones')->name('gestionPublicaciones');
+
 
