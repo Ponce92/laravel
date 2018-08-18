@@ -18,33 +18,30 @@
             -->
             <li class="nav-item nav-dropdown">
                 <!-Opcion del menu Gestion de perfil -->
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Gestion De Perfil</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Perfil</a>
                 <ul class="nav-dropdown-items">
 
                     <li class="nav-item"   >
                         <a class="nav-link"
-                           onclick="cargar(this)"
-                           href="#"
-                           id="{{ route('perfil_personal_general') }}">
+                           href="{{ route('gestionDatosPersonales') }}"
+                           >
                             <i class="fas fa-address-card"></i> Datos Personales
                         </a>
                     </li>
 
                     <li class="nav-item"   >
                         <a  class="nav-link"
-                            href="#"
-                            onclick="cargar(this)"
-                            id="{{ route('perfil_personal_contactos') }}"
+                            href="{{ route('gestionProyectosRealizados') }}"
                         >
 
-                            <i class="fas fa-address-book"></i> Contactos
+                            <i class="fas fa-address-book"></i> Proyectos Realizados
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="">
-                            <i class="fas fa-address-book"></i>Mis Proyectos
+                           href="{{ route('gestionPublicaciones') }}">
+                            <i class="fas fa-address-book"></i>Publicaciones
                         </a>
 
                     </li>
