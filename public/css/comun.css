@@ -1,0 +1,160 @@
+
+.area-trabajo {
+    border-radius: 2px;
+    background-color: rgb(250,250,250);
+    box-shadow: 2px 1px 2px 1px rgb(230,230,230);
+}
+.cabeza-seccion{
+
+}
+.cuerpo-seccion{
+
+}
+.pie-seccion{
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: rgb(240,240,240);
+
+    margin-right: -30px;
+    margin-left: -30px;
+
+    border-top: solid 1px rgb(210,210,210);
+    border-bottom: solid 1px rgb(210,210,210);
+}
+
+.titulo-seccion{
+    color: #505050;
+}
+
+.inactivo{
+    color: rgb(110,110,110);
+}
+
+.inactivo:hover{
+    color: rgb(80,80,80);
+}
+.activo{
+    color: #4cd964;
+}
+hr{
+    width: 100%;
+}
+
+.boton-rojo-riues{
+    background-color: #aa0000;
+    color: white;
+    padding-top: 5px;
+    padding-bottom:5px ;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    border: 1px #aa0000;
+
+
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: 5px !important;
+}
+.boton-rojo-riues:hover{
+    background-color: #cc0000;
+    border: 1px #cc0000;
+    color: white;
+    font-weight: bold;
+}
+
+label{
+    font-weight: bold;
+    color: rgb(110,110,110);
+}
+
+.editar-seccion{
+    padding-top: 3px;
+}
+/*
+    |Estilos de Presentacion de las cards--------------------------------------------------------|
+*/
+
+.tarjeta{
+    background-color:rgb(245,245,245) ;
+    border-radius: 2px;
+
+    box-shadow: 2px 2px rgb(220,220,220);
+    border: solid 1px rgb(220,220,220);
+
+}
+.img-p{
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+
+    border-right: 1px solid rgb(200,200,200);
+}
+.img-p > .row >i{
+    color: rgb(110,110,110);
+
+}
+
+i.fa-button{
+    color: rgb(150,150,150);
+}
+.fa-button:hover{
+    color: #aa0000;
+}
+.descripcion{
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+/*
+    | Clases comunes de formularios---------------------------------------------------------------|
+    |
+*/
+
+.DatePicker {
+    z-index: 100000;
+}
+.frm-comun{
+    padding: 0px;
+    border-radius: 0px;
+    border: 1px solid rgb(220,220,220);
+}
+
+.frm-title{
+    border-radius: 0px;
+}
+
+.frm-pie{
+    background-color: rgb(240,240,240);
+
+}
+
+.frm-modal-title{
+    margin-left:-4px;
+    margin-top: -4px;
+    margin-right: -4px;
+    border-radius: 0px;
+
+    color: white;
+    font-weight: bold;
+
+    background-color: #aa0000;
+}
+
+.div-image{
+    min-width: 250px;
+    max-width: 300px;
+    height: 270px;
+}
+
+.div-image >img{
+    width: 100%;
+    background-color: white;
+}
+
+input[disabled]{
+background-color: rgb(247,247,247) !important;
+}
+
+select[disabled]{
+    background-color: rgb(247,247,247) !important;
+}

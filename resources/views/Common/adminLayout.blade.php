@@ -423,4 +423,5 @@
     <script  src="{{asset('framework/jquery/jquery-ui.min.js')}}"></script>
     <script  src="{{asset('admin/js/admin.js')}}"></script>
     <script  src="{{asset('js/admin.js')}}"></script>
+    @yield('js')
 </html>

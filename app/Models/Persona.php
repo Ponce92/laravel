@@ -17,5 +17,5 @@ class Persona extends Model
     protected $primaryKey='id_persona';
     public $timestamps=false;
 
-
+    public $incrementing=false;
 }

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreasConocimiento;
+use App\Models\GradosAcademicos;
+use App\Models\Pais;
+use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PerfilController extends Controller
 {
@@ -10,12 +15,25 @@ class PerfilController extends Controller
     |   Funcionalidad de Gestion de datos personales del investigador
     |   Desarrollado por: Azael Ponce................................
      */
-    public function verDatosPersonales()
+    public function verDatosPersonales(Request $request)
     {
-        return view('gestionDatosPersonales');
+        $user=Auth::user();
+        $persona=Persona::find($user->id_persona);
+
+        $paises=Pais::all();
+        $grados=GradosAcademicos::all();
+        $areas=AreasConocimiento::all();
+
+        return view('gestionDatosPersonales')->with('user',$user)
+                                                    ->with('persona',$persona)
+                                                    ->with('paises',$paises)
+                                                    ->with('areas',$areas)
+                                                    ->with('grados',$grados);
     }
 
-    public function  editarDatosPersonales(){
+
+    public function  editarDatosPersonales(Request $request)
+    {
 
     }
 
