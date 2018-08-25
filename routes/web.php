@@ -23,6 +23,9 @@ Route::get('/dashboard','adminController@getAdmin')->name('dashboard');
 Route::get('/perfil/datosPersonales','PerfilController@verDatosPersonales')->name('gestionDatosPersonales');
 Route::post('/perfil/datosPersonales','PerfilController@editarDatosPersonales')->name('editarDatosPersonales');
 
+Route::get('/usuario','UsuarioController@verUsuario')->name('verUsuario');
+Route::post('/usuario/editar','UsuarioController@actualizarUsuario')->name('actualizarUsuario');
+
 Route::get('/perfil/proyectosRealizados','PerfilController@verProyectosRealizados')->name('gestionProyectosRealizados');
 Route::get('/perfil/publicaciones','PerfilController@verPublicaciones')->name('gestionPublicaciones');
 

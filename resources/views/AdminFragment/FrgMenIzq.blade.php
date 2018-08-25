@@ -28,6 +28,13 @@
                             <i class="fas fa-address-card"></i> Datos Personales
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ route('verUsuario') }}">
+                            <i class="fas fa-user-edit"></i> Usuario
+                        </a>
+
+                    </li>
 
                     <li class="nav-item"   >
                         <a  class="nav-link"

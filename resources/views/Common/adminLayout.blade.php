@@ -413,7 +413,7 @@
         -->
 <footer class="app-footer">
     <span><a href="#"> CoreUI </a> © 2018 creativeLabs.</span>
-    <span class="ml-auto">Editado Por Azael Ponce</span>
+    <span class="ml-auto">Editado G017</span>
 </footer>
 
 

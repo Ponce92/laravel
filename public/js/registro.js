@@ -220,7 +220,7 @@ function isHora(campo) {
     if(isNaN(parseInt(campo.value))){
 
     }else{
-        if(0 < parseInt(campo.value) <24){
+        if(0 < parseInt(campo.value) <16){
             campo.removeClass('is-invalid');
             campo.removeClass('is-valid');
             campo.addClass('is-valid');
