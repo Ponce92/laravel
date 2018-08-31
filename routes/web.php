@@ -29,4 +29,4 @@ Route::post('/usuario/editar','UsuarioController@actualizarUsuario')->name('actu
 Route::get('/perfil/proyectosRealizados','PerfilController@verProyectosRealizados')->name('gestionProyectosRealizados');
 Route::get('/perfil/publicaciones','PerfilController@verPublicaciones')->name('gestionPublicaciones');
 
-
+Route::resource('/registros','RegistroController');
