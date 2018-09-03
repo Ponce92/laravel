@@ -1,4 +1,41 @@
+.hide-close .ui-dialog-titlebar-close { display: none }
+/*
+    |estilos de tablas para presentacion de proyectos y publicaciones
+*/
+.table td.img{
+    width: 160px;
+    color: rgb(145,145,145);
+}
+.table td.im{
+    width: 100px;
+}
 
+/*
+    | Estilos para iconos con fonciones asociadas(Actualizar, eliminar , crear ,editars)
+*/
+.bttn{
+    color: rgb(140,140,140);
+}
+
+
+.bttn-del:hover{
+    color: #aa0000;
+    transition: color 0.4s;
+    cursor: pointer;
+    text-shadow: .025em .025em #cccccc;
+    transition: text-shadow 0.3s;
+
+}
+
+.bttn-ver:hover{
+    /*color: rgb(0,191,255);*/
+    color: #aa0000;
+    transition: 0.5s;
+    cursor: pointer;
+    text-shadow: .025em .025em #ccc;
+    transition: text-shadow 0.3s;
+}
+/*=============================================================================================================*/
 .area-trabajo {
     border-radius: 2px;
     background-color: rgb(250,250,250);
@@ -26,6 +63,14 @@
 .titulo-seccion{
     color: #505050;
 }
+.ui-datepicker {
+    z-index: 9999 !important;
+}
+
+input:read-only{
+    background-color: rgb(253,253,253) !important;
+
+}
 
 .inactivo{
     color: rgb(110,110,110);
@@ -40,6 +85,7 @@
 hr{
     width: 100%;
 }
+
 
 .boton-rojo-riues{
     background-color: #aa0000;
@@ -61,6 +107,8 @@ hr{
     border: 1px #cc0000;
     color: white;
     font-weight: bold;
+    box-shadow:.025em .025em rgb(150,150,150);
+    transition: box-shadow 0.4s;
 }
 
 label{
@@ -71,6 +119,8 @@ label{
 .editar-seccion{
     padding-top: 3px;
 }
+
+
 /*
     |Estilos de Presentacion de las cards--------------------------------------------------------|
 */
@@ -100,7 +150,11 @@ i.fa-button{
 }
 .fa-button:hover{
     color: #aa0000;
+    transition: color 0.4s;
+
 }
+
+
 .descripcion{
     padding-top: 10px;
     padding-bottom: 10px;

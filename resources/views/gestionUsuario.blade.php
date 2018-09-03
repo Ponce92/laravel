@@ -69,7 +69,7 @@
                                form="frm-usuario"
                                name="email"
                                id="email-e"
-                               value="{{$user->correo_usuario}}"
+                               value="{{$user->rt_correo_usuario}}"
                                class="form-control"
                                disabled
                         >

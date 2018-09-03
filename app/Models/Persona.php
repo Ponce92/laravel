@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
-    protected $table='personas';
-    protected $primaryKey='id_persona';
+    protected $table='tbl_personas';
+    protected $primaryKey='pk_id_persona';
     public $timestamps=false;
 
     public $incrementing=false;

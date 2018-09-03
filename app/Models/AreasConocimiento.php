@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AreasConocimiento extends Model
 {
-    protected $table='areas_conocimiento';
-    protected $primaryKey='id_area';
+    protected $table='tbl_areas_conocimiento';
+    protected $primaryKey='pk_id_area';
     public $timestamps=false;
 
 }

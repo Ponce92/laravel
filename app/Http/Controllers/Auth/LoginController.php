@@ -27,7 +27,7 @@ class LoginController extends Controller
             'password' => 'required|string|min:6'
         ]);
 
-        if (Auth::attempt(['correo_usuario'=>$request->get('usuario'),'password'=>$request->get('password')])){
+        if (Auth::attempt(['rt_correo_usuario'=>$request->get('usuario'),'password'=>$request->get('password')])){
 
             $user=Auth::User();
 
@@ -45,7 +45,7 @@ class LoginController extends Controller
     }
 
     public function NombreUsuario(){
-        return 'correo_usuario';
+        return 'rt_correo_usuario';
     }
 
 }

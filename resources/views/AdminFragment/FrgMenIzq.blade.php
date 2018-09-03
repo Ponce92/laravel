@@ -25,7 +25,7 @@
                         <a class="nav-link"
                            href="{{ route('gestionDatosPersonales') }}"
                            >
-                            <i class="fas fa-address-card"></i> Datos Personales
+                            <i class="cui-settings icons font-2xl"></i> Datos Personales
                         </a>
                     </li>
                     <li class="nav-item">
@@ -47,7 +47,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ route('gestionPublicaciones') }}">
+                           href="{{ route('verPublicaciones') }}">
                             <i class="fas fa-address-book"></i>Publicaciones
                         </a>
 

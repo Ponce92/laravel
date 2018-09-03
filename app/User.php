@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    protected $table='usuarios';
-    protected $primaryKey='id_usuario';
+    protected $table='tbl_usuarios';
+    protected $primaryKey='pk_id_usuario';
     public $timestamps=false;
     public $incrementing=false;
 
@@ -29,6 +29,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'rt_password', 'remember_token',
     ];
 }

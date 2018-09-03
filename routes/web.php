@@ -26,7 +26,18 @@ Route::post('/perfil/datosPersonales','PerfilController@editarDatosPersonales')-
 Route::get('/usuario','UsuarioController@verUsuario')->name('verUsuario');
 Route::post('/usuario/editar','UsuarioController@actualizarUsuario')->name('actualizarUsuario');
 
-Route::get('/perfil/proyectosRealizados','PerfilController@verProyectosRealizados')->name('gestionProyectosRealizados');
-Route::get('/perfil/publicaciones','PerfilController@verPublicaciones')->name('gestionPublicaciones');
+Route::get('/perfil/proyectosRealizados','ProyectosRealizadosController@verProyectos')->name('gestionProyectosRealizados');
+Route::post('/perfil/crear/proyectosRealizados','ProyectosRealizadosController@agregarProyecto')->name('agregarProyectosRealizado');
+Route::post('/perfil/editar/proyectosRealizados','ProyectosRealizadosController@editarProyecto')->name('editarProyectosRealizado');
+Route::post('/perfil/eliminar/proyectosRealizados','ProyectosRealizadosController@eliminarProyecto')->name('eliminarProyectosRealizado');
 
+Route::get('/perfil/proyectosRealizados/ajax','ProyectosRealizadosController@getProyectosAjax')->name('getProyectosRealizadosAjax');
+
+
+Route::get('/perfil/ver/publicaciones','PublicacionesController@verPublicaciones')->name('verPublicaciones');
+Route::post('/perfil/crear/publicacion','PublicacionesController@crearPublicacion')->name('agregarPublicacion');
+Route::post('/perfil/actualizar/publicacion','PublicacionesController@actualizarPublicacion')->name('actualizarPublicacion');
+Route::post('/perfil/eliminar/publicacion','PublicacionesController@eliminarPublicacion')->name('eliminarPublicacion');
+
+Route::get('/perfil/publicaciones/ajax','PublicacionesController@getPublicacionAjax')->name('getPublicacionAjax');
 

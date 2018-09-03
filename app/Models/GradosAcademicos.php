@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class GradosAcademicos extends Model
 {
-    protected $table='grados_academicos';
-    protected $primaryKey='id_grado';
+    protected $table='tbl_grados_academicos';
+    protected $primaryKey='pk_id_grado';
     public $timestamps=false;
 
-    public function getGrados(){
-        $grados=GradosAcademicos::all();
 
-        return $grados;
-    }
 }

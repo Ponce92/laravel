@@ -24,7 +24,7 @@ class RegistroRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_txt'=>'required',
+            'nombre_txt'=>'required|',
             //'apellido_txt',
             //'direccion_txt'=>'required',
             //'email_txt'=>'required',

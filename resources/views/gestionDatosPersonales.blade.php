@@ -27,9 +27,6 @@
                     </div>
 
                 </div>
-                <form action="{{route('editarDatosPersonales')}}" method="post" name="frm-persona" id="frm-persona" >
-                    {{ csrf_field()  }}
-                </form>
             </div>
             <hr>
             <br>
@@ -39,7 +36,7 @@
                         <div class="col-3 ">{{-- Foto del Usuario --}}
                             <div class="row">
                                 <div class="col-12 div-image">
-                                    <img src="{{asset('avatar/'.$persona->foto_persona)}}"
+                                    <img src="{{asset('avatar/'.$user->rt_foto_usuario)}}"
                                          alt="vista no disponible"
                                          class="img-thumbnail"
                                     >
@@ -69,7 +66,7 @@
                                            name="nombres"
                                            form="frm-persona"
                                            class="form-control mb-3"
-                                           value="{{$persona->nombre_persona}}"
+                                           value="{{$persona->rt_nombre_persona}}"
                                            disabled
                                     >
                                 </div>
@@ -80,7 +77,7 @@
                                            name="apellidos"
                                            id="apellidosPersona"
                                            class="form-control mb-3"
-                                           value="{{$persona->apellido_persona}}"
+                                           value="{{$persona->rt_apellido_persona}}"
                                            disabled
                                     >
                                 </div>
@@ -100,7 +97,7 @@
                                                id="datepicker"
                                                name="fechaN"
                                                form="frm-persona"
-                                               value="{{ $persona->fecha_nacimiento }}"
+                                               value="{{ $persona->rf_fecha_nacimiento }}"
                                                disabled
                                         >
 
@@ -147,7 +144,7 @@
                                                class="form-control"
                                                form="frm-persona"
                                                id="telefonoPersona"
-                                               value="{{$persona->telefono_persona}}"
+                                               value="{{$persona->rn_telefono_persona}}"
                                                name="telefono"
                                                disabled
                                         >
@@ -161,8 +158,8 @@
                                             disabled
                                     >
                                         @foreach($paises as $pais)
-                                            <option value="{{$pais->id_pais}}" @if($pais->id_pais == $persona->id_pais) selected  @endif>
-                                                {{$pais->nombre_pais}}
+                                            <option value="{{$pais->pk_id_pais}}" @if($pais->pk_id_pais == $persona->fk_id_pais) selected  @endif>
+                                                {{$pais->rt_nombre_pais}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -182,9 +179,9 @@
                                     disabled
                             >
                                 @foreach($grados as $grado)
-                                    <option value="{{$grado->id_grado}}"
-                                    @if($persona->id_grado == $grado->id_grado) selected @endif>
-                                        {{$grado->nombre_grado}}
+                                    <option value="{{$grado->pk_id_grado}}"
+                                    @if($persona->fk_id_grado == $grado->pk_id_grado) selected @endif>
+                                        {{$grado->rt_nombre_grado}}
                                     </option>
                                 @endforeach
                             </select>
@@ -199,8 +196,8 @@
                                     disabled
                             >
                                 @foreach($areas as $area)
-                                    <option value="{{$area->id_area}}" @if($area->id_area == $persona->id_area) selected @endif>
-                                        {{$area->nombre_area}}
+                                    <option value="{{$area->pk_id_area}}" @if($area->pk_id_area == $persona->fk_id_area) selected @endif>
+                                        {{$area->rt_nombre_area}}
                                     </option>
                                 @endforeach
                             </select>
@@ -212,7 +209,7 @@
                                    form="frm-persona"
                                    name="horas_investigacion"
                                    type="number"
-                                   value="{{$persona->horas_dedicadas_investigacion}}"
+                                   value="{{$persona->rn_horas_dedicadas_investigacion}}"
                                    disabled
                             >
                         </div>
@@ -232,7 +229,7 @@
                                        id="institucion"
                                        name="institucion"
                                        class="form-control"
-                                       value="{{$persona->institucion}}"
+                                       value="{{$persona->rt_institucion}}"
                                        disabled
                                 >
                             </div>
@@ -253,7 +250,7 @@
                                        form="frm-persona"
                                        id="direccion"
                                        class="form-control"
-                                       value="{{$persona->direccion}}"
+                                       value="{{$persona->rt_direccion}}"
                                        disabled
                                 >
                             </div>

@@ -62,20 +62,20 @@
                                 <div class="col">
 
                                     <b>
-                                        Titulo :  <i>{{$publicacion->titulo_publicacion}} </i>
+                                        Titulo :  <i>{{$publicacion->rt_titulo_publicacion}} </i>
                                     </b>
                                     <br>
                                     <b>Area Conocimiento :</b>
                                     @foreach($areas as $area)
-                                        @if($area->id_area == $publicacion->id_area)
-                                            {{$area->nombre_area}}
+                                        @if($area->pk_id_area == $publicacion->fk_id_area)
+                                            {{$area->rt_nombre_area}}
                                         @endif
                                     @endforeach
                                     <br>
-                                    <b>Tipo de publicacion : </b>{{$publicacion->tipo_publicacion}}<br>
-                                    <b>Fecha publicacion : </b>{{$publicacion->fecha_publicacion}}<br>
-                                    <b>Descripcion:</b>  {{$publicacion->descripcion_publicacion}}<br>
-                                    <b>Url:</b><a href="{{$publicacion->enlace_publicacion}}">{{$publicacion->enlace_publicacion}}</a>
+                                    <b>Tipo de publicacion : </b>{{$publicacion->rt_tipo_publicacion}}<br>
+                                    <b>Fecha publicacion : </b>{{$publicacion->rf_fecha_publicacion}}<br>
+                                    <b>Descripcion:</b>  {{$publicacion->rd_descripcion_publicacion}}<br>
+                                    <b>Url:</b><a href="{{$publicacion->rt_enlace_publicacion}}">{{$publicacion->rt_enlace_publicacion}}</a>
 
                                 </div>
                             </div>
@@ -83,12 +83,12 @@
                         <td class="align-middle">
                             <i class="fas fa-eye fa-2x bttn bttn-ver"
                                name="{{route('getPublicacionAjax')}}"
-                               id="{{$publicacion->id_publicacion}}"
+                               id="{{$publicacion->pk_id_publicacion}}"
                                onclick="verPublicacion(this)"></i>
                         </td>
                         <td class="align-middle">
                             <i class="fas fa-trash-alt fa-2x bttn bttn-del"
-                               id="{{$publicacion->id_publicacion}}"
+                               id="{{$publicacion->pk_id_publicacion}}"
                                onclick="eliminarPublicacion(this)"
                             ></i>
                         </td>
@@ -161,7 +161,7 @@
                 <label for="area">Area Conocimiento :</label>
                 <select name="area" id="area" class="form-control  mb-3">
                     @foreach($areas as $area)
-                        <option value="{{$area->id_area}}">{{$area->nombre_area}}</option>
+                        <option value="{{$area->pk_id_area}}">{{$area->rt_nombre_area}}</option>
                     @endforeach
                 </select>
             </div>
@@ -290,7 +290,7 @@
                     <label for="descripcion">Area Conocimiento :</label>
                     <select name="area-edt" id="area-edt" class="form-control mb-3 edt" disabled>
                         @foreach($areas as $area)
-                            <option value="{{$area->id_area}}">{{$area->nombre_area}}</option>
+                            <option value="{{$area->pk_id_area}}">{{$area->rt_nombre_area}}</option>
                         @endforeach
                     </select>
                 </div>

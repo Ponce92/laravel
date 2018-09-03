@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Publicacion extends Model
 {
-    protected $table='publicaciones';
-    protected $primaryKey='id_publicacion';
+    protected $table='tbl_publicaciones';
+    protected $primaryKey='pk_id_publicacion';
     public $timestamps=false;
 
 

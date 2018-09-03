@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProyectoRealizado extends Model
 {
-    protected $table='proyectos_realizados';
-    protected $primaryKey='id_proyecto_realizado';
+    protected $table='tbl_proyectos_realizados';
+    protected $primaryKey='pk_id_proyecto';
     public $timestamps=false;
 
 

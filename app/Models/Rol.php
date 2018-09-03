@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    protected $table='roles';
-    protected $primaryKey='id_rol';
+    protected $table='tbl_roles';
+    protected $primaryKey='pk_id_rol';
     public $timestamps=false;
 
 }
