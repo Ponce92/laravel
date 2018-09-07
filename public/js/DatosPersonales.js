@@ -12,58 +12,12 @@ $( function() {
     });
 } );
 
-$('#switch-persona').click(function () {
-    if ($('#switch-persona').hasClass('inactivo')){
-        $('#switch-persona').removeClass('inactivo');
-        $('#switch-persona').addClass('activo');
-        $('#switch-persona').removeClass('fa-toggle-off');
-        $('#switch-persona').addClass('fa-toggle-on');
-
-        /* ................  Se habilitan los campos correspondientes para su edicion................*/
-        $('#fotoPersona').removeAttr("disabled");
-        $('#nombrePersona').removeAttr("disabled");
-        $('#apellidosPersona').removeAttr("disabled");
-        $('#datepicker').removeAttr("disabled");
-        $('#telefonoPersona').removeAttr("disabled");
-        $('#nacionalidadPersona').removeAttr("disabled");
-        $('#grado').removeAttr("disabled");
-        $('#area').removeAttr("disabled");
-        $('#horas').removeAttr("disabled");
-        $('#institucion').removeAttr("disabled");
-        $('#direccion').removeAttr("disabled");
-
-        $('#btn-frm-persona').prop('disabled',false);
-
-    }else{
-
-        $('#switch-persona').removeClass('fa-toggle-on');
-        $('#switch-persona').removeClass('activo');
-        $('#switch-persona').addClass('inactivo');
-        $('#switch-persona').addClass('fa-toggle-off');
-
-        /* ................  Se deshabilitan los campos correspondientes para su edicion................*/
-        $('#fotoPersona').attr("disabled",true);
-        $('#nombrePersona').attr("disabled",true);
-        $('#apellidosPersona').attr("disabled",true);
-        $('#datepicker').attr("disabled",true);
-        $('#telefonoPersona').attr("disabled",true);
-        $('#nacionalidadPersona').attr("disabled",true);
-        $('#grado').attr("disabled",true);
-        $('#area').attr("disabled",true);
-        $('#horas').attr("disabled",true);
-        $('#institucion').prop("disabled",true);
-        $('#direccion').attr('disabled',true);
-
-        $('#btn-frm-persona').prop('disabled',true);
-
-    }
-});
 
 /*--------------------------------------------------------------------------------------------------------
 *   |Funciones de validacion de formularios ..............................................................
 *---------------------------------------------------------------------------------------------------------
 */
-$('#btn-frm-persona').bind("click",function () {
+$('#btn-frm-registro').bind("click",function () {
     event.preventDefault();
 
     var nombre=isTexto($('#nombrePersona'));

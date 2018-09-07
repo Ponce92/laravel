@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="row justify-content-end">
-                    <a href="registro" style="color: #3e4548;margin-right: 25px;">Crear Registro</a>
+                    <a href="registros/create" style="color: #3e4548;margin-right: 25px;">Crear Registro</a>
                 </div>
 
             </form>
