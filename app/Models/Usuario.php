@@ -15,7 +15,7 @@ class Usuario extends Model
 {
     protected $table='tbl_usuarios';
     protected $primaryKey='pk_id_usuario';
-    public $timestamps=fasle;
+    public $timestamps=false;
 
 
 }

@@ -41,3 +41,5 @@ Route::post('/perfil/eliminar/publicacion','PublicacionesController@eliminarPubl
 
 Route::get('/perfil/publicaciones/ajax','PublicacionesController@getPublicacionAjax')->name('getPublicacionAjax');
 
+Route::resource('/registros','RegistrosController');
+
