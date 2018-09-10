@@ -27,11 +27,18 @@ class LoginController extends Controller
             'password' => 'required|string|min:6'
         ]);
 
-        if (Auth::attempt(['rt_correo_usuario'=>$request->get('usuario'),'password'=>$request->get('password')])){
+        if (Auth::attempt(['email'=>$request->get('usuario'),'password'=>$request->get('password')])){
 
             $user=Auth::User();
 
-            return redirect()->route('dashboard');
+            if($user->fk_id_rol==0){
+                return redirect()->route('inicioAdministrador');
+
+            }else{
+
+                return redirect()->route('dashboard');
+            }
+
         }
 
         return back()->withErrors(['ss'=>'Credenciales incorrectas'])

@@ -3,7 +3,7 @@
  * Date: 3/25/2018
  * Time: 11:39 PM
  * Descripcion: Plantilla base que contiene las incluciones contiene todas los framework...|
- *              de css y js que requieren todas las plantillas de laadministracion de la
+ *              de css y js que requieren todas las plantillas de la administracion de la
  *              aplicacion............|
  */
 -->
@@ -42,33 +42,35 @@
             </button>
 
 
+
             <!-- Menu que se localiza a la par del boton izquierdo de la barra superior... -->
-            <ul class="nav navbar-nav d-md-down-none">
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Users</a>
-                </li>
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#">Settings</a>
-                </li>
-            </ul>
+
+            {{--<ul class="nav navbar-nav d-md-down-none">--}}
+                {{--<li class="nav-item px-3">--}}
+                    {{--<a class="nav-link" href="#">Dashboard</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item px-3">--}}
+                    {{--<a class="nav-link" href="#">Users</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item px-3">--}}
+                    {{--<a class="nav-link" href="#">Settings</a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
 
             <!-- -->
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item d-md-down-none">
-                    <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-                </li>
-                <li class="nav-item d-md-down-none">
-                    <a class="nav-link" href="#"><i class="icon-list"></i></a>
-                </li>
-                <li class="nav-item d-md-down-none">
-                    <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-                </li>
+                {{--<li class="nav-item d-md-down-none">--}}
+                    {{--<a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item d-md-down-none">--}}
+                    {{--<a class="nav-link" href="#"><i class="icon-list"></i></a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item d-md-down-none">--}}
+                    {{--<a class="nav-link" href="#"><i class="icon-location-pin"></i></a>--}}
+                {{--</li>--}}
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="{{asset('avatar/'.$user->rt_foto_usuario)}}" class="img-avatar" alt="{{$user->rt_correo_usuario}}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">
@@ -107,9 +109,10 @@
 
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    @yield('menu-sup-02')
+                    {{--<li class="breadcrumb-item">Home</li>--}}
+                    {{--<li class="breadcrumb-item"><a href="#">Admin</a></li>--}}
+                    {{--<li class="breadcrumb-item active">Dashboard</li>--}}
 
                     <!-- Breadcrumb Menu-->
                     <li class="breadcrumb-menu d-md-down-none">

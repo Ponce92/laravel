@@ -4,12 +4,16 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Translation\Tests\Writer\BackupDumper;
 
 class User extends Authenticatable
 {
     use Notifiable;
     protected $table='tbl_usuarios';
     protected $primaryKey='pk_id_usuario';
+
     public $timestamps=false;
     public $incrementing=false;
 
@@ -29,6 +33,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'rt_password', 'remember_token',
+        'password', 'remember_token',
     ];
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
 }

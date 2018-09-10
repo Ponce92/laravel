@@ -10,6 +10,11 @@ use App\Http\Requests\RegistroRequest;
 
 class RegistroController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function getRegistro(){
         $Paises=new Pais();
         $areasConocimiento=new AreasConocimiento();

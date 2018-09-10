@@ -18,4 +18,11 @@ class Persona extends Model
     public $timestamps=false;
 
     public $incrementing=false;
+
+
+    public function pais(){
+        return $this->belongsTo(Pais::class,'fk_id_pais','pk_id_pais');
+
+    }
+
 }

@@ -38,13 +38,29 @@
                 <br>
                 <div class="form-group justify-content-center">
                     <div class="row justify-content-center">
-                        <button class="btn btn-default  riues-btn">Login</button>
+                        <div class="col-6">
+                            <div class="row justify-content-center">
+                                <button class="btn btn-default  " style="background-color: #aa0000;color: white;">
+                                    &nbsp; Ingresar &nbsp;
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row justify-content-center">
+                                <a
+                                        class="btn btn-success"
+                                        href="registros/create"
+                                        style="margin-right: 25px;">Crear Registro</a>
+                            </div>
+                        </div>
+
+
                     </div>
 
-                </div>
-
-                <div class="row justify-content-end">
-                    <a href="registros/create" style="color: #3e4548;margin-right: 25px;">Crear Registro</a>
+                <div class="row justify-content-center">
+                    <a
+                        href="{{route('getResetForm')}}"
+                        style="color: #3e4548;margin-right: 25px;">Restablecer Credenciales</a>
                 </div>
 
             </form>

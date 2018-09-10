@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicacionesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function verPublicaciones(Request $request)
     {
+        $user=Auth::user();
         $id=Auth::id();
         $count=Publicacion::where('fk_id_usuario',$id)->count();
         $areas=AreasConocimiento::all();
@@ -27,10 +34,12 @@ class PublicacionesController extends Controller
             $publicaciones=Publicacion::where('fk_id_usuario',$id)->get();
 
             return view('gestionPublicaciones')->with('publicaciones',$publicaciones)
-                                                    ->with('areas',$areas);
+                                                    ->with('areas',$areas)
+                                                    ->with('user',$user);
         }else{
 
-            return view('gestionPublicaciones')->with('areas',$areas);
+            return view('gestionPublicaciones')->with('areas',$areas)
+                                                    ->with('user',$user);
         }
     }
 
@@ -65,7 +74,8 @@ class PublicacionesController extends Controller
 
         return view('gestionPublicaciones')->with('publicaciones',$publicaciones)
             ->with('areas',$areas)
-            ->with('status','El registro de su publicacion se almacenado correctamente');
+            ->with('status','El registro de su publicacion se almacenado correctamente')
+            ->with('user',$user);
     }
 
     public function actualizarPublicacion(Request $request)
@@ -100,7 +110,8 @@ class PublicacionesController extends Controller
 
         return view('gestionPublicaciones')  ->with('publicaciones',$publicaciones)
             ->with('areas',$areas)
-            ->with('status',$msj);
+            ->with('status',$msj)
+            ->with('user',$user);
     }
 
     public function eliminarPublicacion(Request $request)
@@ -121,14 +132,16 @@ class PublicacionesController extends Controller
 
             return view('gestionPublicaciones')  ->with('publicaciones',$publicaciones)
                 ->with('areas',$areas)
-                ->with('status',$msj);
+                ->with('status',$msj)
+                ->with('user',$user);
         }else{
 
             $publicaciones=Publicacion::where('fk_id_usuario',$user->pk_id_usuario)->get();
             $areas=AreasConocimiento::all();
 
 
-            return view('gestionPublicaciones')  ->with('publicaciones',$publicaciones)
+            return view('gestionPublicaciones')  ->with('user',$user)
+                ->with('publicaciones',$publicaciones)
                 ->with('areas',$areas)
                 ->withErrors(['id'=>'El recurso que hacia referencia este codigo ya no existe.']);
         }

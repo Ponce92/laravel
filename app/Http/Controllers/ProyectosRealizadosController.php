@@ -14,8 +14,14 @@ use DB;
 
 class ProyectosRealizadosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function verProyectos()
     {
+        $user=Auth::user();
         $areas=AreasConocimiento::all();
         $id=Auth::id();
         $count=ProyectoRealizado::where('fk_id_usuario',$id)->count();
@@ -25,10 +31,12 @@ class ProyectosRealizadosController extends Controller
             $proyectos=ProyectoRealizado::where('fk_id_usuario',$id)->get();
 
             return view('gestionProyectosRealizados')->with('proyectos',$proyectos)
-                                                            ->with('areas',$areas);
+                                                            ->with('areas',$areas)
+                                                            ->with('user',$user);
         }else{
 
-            return view('gestionProyectosRealizados')->with('areas',$areas);
+            return view('gestionProyectosRealizados')->with('areas',$areas)
+                                                            ->with('user',$user);;
         }
 
     }
@@ -62,7 +70,8 @@ class ProyectosRealizadosController extends Controller
 
         return view('gestionProyectosRealizados')  ->with('proyectos',$proyectos)
                                                         ->with('areas',$areas)
-                                                        ->with('status',$msj);
+                                                        ->with('status',$msj)
+                                                        ->with('user',$user);
 
     }
 
@@ -83,7 +92,8 @@ class ProyectosRealizadosController extends Controller
             $msj="El registro a sido eliminado correctamente.";
 
 
-            return view('gestionProyectosRealizados')  ->with('proyectos',$proyectos)
+            return view('gestionProyectosRealizados') ->with('user',$user)
+                ->with('proyectos',$proyectos)
                 ->with('areas',$areas)
                 ->with('status',$msj);
         }else{
@@ -94,7 +104,8 @@ class ProyectosRealizadosController extends Controller
 
             return view('gestionProyectosRealizados')  ->with('proyectos',$proyectos)
                 ->with('areas',$areas)
-                ->withErrors(['id'=>'El recurso que hacia referencia este codigo ya no existe.']);
+                ->withErrors(['id'=>'El recurso que hacia referencia este codigo ya no existe.'])
+                ->with('user',$user);
         }
 
     }
@@ -126,7 +137,8 @@ class ProyectosRealizadosController extends Controller
 
         return view('gestionProyectosRealizados')  ->with('proyectos',$proyectos)
                                                         ->with('areas',$areas)
-                                                        ->with('status',$msj);
+                                                        ->with('status',$msj)
+                                                        ->with('user',$user);
     }
     /*=================================================================================================================
      *  | Funciones ajax para de control de proyectos realizados..

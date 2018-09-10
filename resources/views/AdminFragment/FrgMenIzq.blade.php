@@ -7,6 +7,7 @@
 
             <li class="nav-title">RIUES </li>
             <li class="divider"></li>
+
             <!--
             <li class="nav-item">
                 <a href="colors.html" class="nav-link"><i class="icon-drop"></i> Colors</a>
@@ -17,7 +18,6 @@
             </li>
             -->
             <li class="nav-item nav-dropdown">
-                <!-Opcion del menu Gestion de perfil -->
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Perfil</a>
                 <ul class="nav-dropdown-items">
 
@@ -36,25 +36,50 @@
 
                     </li>
 
-                    <li class="nav-item"   >
-                        <a  class="nav-link"
-                            href="{{ route('gestionProyectosRealizados') }}"
-                        >
+                    @if($user->fk_id_rol != 0)
+                        <li class="nav-item"   >
+                            <a  class="nav-link"
+                                href="{{ route('gestionProyectosRealizados') }}"
+                            >
 
-                            <i class="fas fa-address-book"></i> Proyectos Realizados
-                        </a>
-                    </li>
+                                <i class="fas fa-address-book"></i> Proyectos Realizados
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('verPublicaciones') }}">
-                            <i class="fas fa-address-book"></i>Publicaciones
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ route('verPublicaciones') }}">
+                                <i class="fas fa-address-book"></i>Publicaciones
+                            </a>
 
-                    </li>
-
+                        </li>
+                    @endif
                 </ul>
             </li>
+            @if($user->fk_id_rol != 0)
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="{{route('getPerfilesInvestigadores')}}"><i class="icon-people"></i>Investigadores</a>
+
+                </li>
+            @endif
+
+
+            @if($user->fk_id_rol==0)
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i>Investigadores</a>
+                    <ul class="nav-dropdown-items">
+
+                        <li class="nav-item"   >
+                            <a class="nav-link" href="{{ route('gestionRegistrosInv') }}">
+
+                                <i class="nav icon icon-list"></i> Registros
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+        @endif
             <!--
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Buttons</a>

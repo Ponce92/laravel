@@ -3,6 +3,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/riues-admin.css')}}">
 @endsection
 
+@section('menu-sup-02')
+    <li class="breadcrumb-item active">Inicio</li>
+@endsection
+
 
 @section('menuIzq')
     @include('AdminFragment.FrgMenIzq')
