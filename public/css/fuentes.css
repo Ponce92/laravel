@@ -1,0 +1,119 @@
+@font-face {
+    font-family: "Enriqueta";
+    font-size: medium;
+    font-weight: normal;
+    src:url("/enriqueta/Enriqueta-Regular.otf");
+    src:url("/enriqueta/Enriqueta-Bold.otf");
+
+}
+
+@font-face {
+    font-family: "Monserrat";
+    font-size: medium;
+    font-weight: normal;
+    src:local("/Montserrat/Montserrat-Regular.ttf");
+    src:local("/Montserrat/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-size: medium;
+    font-weight: normal;
+    src:local("/Roboto/Roboto-Regular.ttf");
+    src:local("/Roboto/Roboto-Black.ttf");
+}
+
+
+        /*
+         * Declaracion de los estilos de css para las fuentes del sistema..........
+         */
+
+
+.txt-pie{
+    font-family: "Open Sans";
+    color: rgb(125,125,125);
+    font-weight: bold;
+    font-size: 14px;
+}
+.card,.card-header{
+    border-radius: 0px!important;
+}
+
+.titulo{
+    color: rgb(100,100,100);
+    font-family: Enriqueta;
+    font-weight: bold;
+    font-size: 34px;
+}
+
+label{
+    font-size: 16px;
+    font-weight: bolder;
+    font-family: "Open Sans";
+    color: rgb(90,90,90);
+}
+
+hr.all{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.esq{
+    border-radius: 0px!important;
+}
+
+.bttn-red{
+    border: solid 2px #aa0000 ;
+    background-color: #aa0000;
+    color: white;
+}
+.btn{
+    color: white;
+    font-weight: bold!important;
+    font-size: 16px!important;
+    font-family: "Open Sans";
+}
+
+.bttn-red:hover{
+    background-color: #880000;
+}
+
+.bttn-exit{
+    border: solid 2px #888888;
+    background-color: #888888;
+}
+.bttn-exit:hover{
+    background-color: #777777;
+}
+body,.body{
+    background-color: #eaecef; /*/#ed9ebee;*/
+}
+input,textarea,select{
+    font-family: "Open Sans";
+    font-size: 16px;
+    border-radius: 0px !important;
+}
+
+/*
+ *      Tablas ...
+ */
+
+td{
+font-family: "Open Sans";
+    font-size: 16px;
+}
+td.tdbtn{
+    width: 100px;
+}
+td.td{
+    font-size: 15px;
+    width:178px;
+    background-color: rgb(235,235,235);
+    font-weight: bold;
+    color: rgb(75,75,75);
+}
+
+/*
+
+        Zona de pruebas
+*/

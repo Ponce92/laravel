@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/ico" href="{{asset('favicon.ico')}}" />
     <title> Riues :: Admin</title>
-
+    <link rel="stylesheet" type="text/css" href="{{asset('css/fuentes.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('framework/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('framework/jquery/jquery-ui.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/simple-line-icons.css')}}" >
@@ -32,7 +32,7 @@
         *| Seccion Header de plantilla
         *|
         -->
-        <header class="app-header navbar">
+        <header class="app-header navbar addToJq">
             <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -102,13 +102,13 @@
         </header>
 
 
-        <div class="app-body">
+        <div class="app-body body">
             @yield('menuIzq')
 
             <main class="main">
 
                 <!-- Breadcrumb -->
-                <ol class="breadcrumb">
+                <ol class="breadcrumb addToJq">
                     @yield('menu-sup-02')
                     {{--<li class="breadcrumb-item">Home</li>--}}
                     {{--<li class="breadcrumb-item"><a href="#">Admin</a></li>--}}
@@ -424,6 +424,7 @@
 
     <script  src="{{asset('framework/jquery/jquery.min.js')}}"></script>
     <script  src="{{asset('framework/jquery/jquery-ui.min.js')}}"></script>
+    <script  src="{{asset('framework/bootstrap/js/bootstrap.min.js')}}"></script>
     <script  src="{{asset('admin/js/admin.js')}}"></script>
     <script  src="{{asset('js/admin.js')}}"></script>
     @yield('js')

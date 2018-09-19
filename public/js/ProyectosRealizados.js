@@ -1,109 +1,109 @@
-$( function() {
-    $ ("#frm-agregar").dialog({
-            autoOpen: false,
-            height: 700,
-            width: 675,
-            modal:true,
-            resizable:false,
-            draggable:false,
-            classes: {
-                "ui-dialog": "my",
-                "ui-dialog-titlebar":"frm-modal-title",
-                "dialogClass": 'hide-close',
-            },
-            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
-            buttons: [
-                {
-                    text: " Guardar ",
-                    click: function()
-                    {
-                        $('#errores').html('');
-                        $('.form-control').removeClass("is-invalid");
-                        $('.form-control').removeClass("is-valid");
-                        if(validarFrmAgregar()){
+// $( function() {
+//     $ ("#frm-agregar").dialog({
+//             autoOpen: false,
+//             height: 800,
+//             width: 675,
+//             modal:true,
+//             appendTo:'.addToJq',
+//             resizable:false,
+//             classes: {
+//                 "ui-dialog": "my",
+//                 "ui-dialog-titlebar":"frm-modal-title",
+//                 "dialogClass": 'hide-close',
+//             },
+//             open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
+//             buttons: [
+//                 {
+//                     text: " Guardar ",
+//                     click: function()
+//                     {
+//                         $('#errores').html('');
+//                         $('.form-control').removeClass("is-invalid");
+//                         $('.form-control').removeClass("is-valid");
+//                         if(validarFrmAgregar()){
+//
+//                             $('#'+this.id+' form').submit();
+//                         }else{
+//                             return false;
+//                         }
+//
+//
+//                     }
+//                 },
+//                 {
+//                     text: "Cancelar",
+//                     click: function()
+//                     {
+//                         $('#errores').html('');
+//                         $('.form-control').removeClass("is-invalid");
+//                         $('.form-control').removeClass("is-valid");
+//                         limpiar();
+//                         $(this).dialog('close');
+//                     }
+//                 }
+//             ]
+//         }
+//     );
+// } );
 
-                            $('#'+this.id+' form').submit();
-                        }else{
-                            return false;
-                        }
+// $( function() {
+//     $ ("#frm-act").dialog({
+//             autoOpen: false,
+//             height: 700,
+//             width: 675,
+//             modal:true,
+//             resizable:false,
+//             draggable:false,
+//             classes: {
+//                 "ui-dialog": "my",
+//                 "ui-dialog-titlebar":"frm-modal-title",
+//                 "dialogClass": 'hide-close',
+//             },
+//             open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
+//             buttons: [
+//                 {
+//                     text: " Actualizar ",
+//
+//                     click: function() {
+//                         if(validarFrmActualizar()){
+//                             if($('#nombre-edt').attr("disabled")){
+//                                 $('.form-control').removeClass('is-valid');
+//                                 return false;
+//                             }else {
+//                                 $('#'+this.id+' form').submit();
+//                             }
+//
+//                         }else{
+//                             $('#errores').html('');
+//                             $('.form-control').removeClass("is-invalid");
+//                             $('.form-control').removeClass("is-valid");
+//                             return false;
+//                         }
+//
+//                     }
+//                 },
+//                 {
+//                     text: "Cancelar",
+//                     click: function()
+//                     {
+//                         limpiar();
+//                         $(this).dialog('close');
+//                     }
+//                 }
+//             ]
+//         }
+//     );
+// } );
 
-
-                    }
-                },
-                {
-                    text: "Cancelar",
-                    click: function()
-                    {
-                        $('#errores').html('');
-                        $('.form-control').removeClass("is-invalid");
-                        $('.form-control').removeClass("is-valid");
-                        limpiar();
-                        $(this).dialog('close');
-                    }
-                }
-            ]
-        }
-    );
-} );
-
-$( function() {
-    $ ("#frm-act").dialog({
-            autoOpen: false,
-            height: 700,
-            width: 675,
-            modal:true,
-            resizable:false,
-            draggable:false,
-            classes: {
-                "ui-dialog": "my",
-                "ui-dialog-titlebar":"frm-modal-title",
-                "dialogClass": 'hide-close',
-            },
-            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
-            buttons: [
-                {
-                    text: " Actualizar ",
-
-                    click: function() {
-                        if(validarFrmActualizar()){
-                            if($('#nombre-edt').attr("disabled")){
-                                $('.form-control').removeClass('is-valid');
-                                return false;
-                            }else {
-                                $('#'+this.id+' form').submit();
-                            }
-
-                        }else{
-                            $('#errores').html('');
-                            $('.form-control').removeClass("is-invalid");
-                            $('.form-control').removeClass("is-valid");
-                            return false;
-                        }
-
-                    }
-                },
-                {
-                    text: "Cancelar",
-                    click: function()
-                    {
-                        limpiar();
-                        $(this).dialog('close');
-                    }
-                }
-            ]
-        }
-    );
-} );
-
-function verDialogFrm(){
-    $( "#frm-agregar" ).dialog("open");
-}
+// function verDialogFrm(){
+//     $( "#frm-agregar" ).dialog("open");
+// }
 
 
 
 $( function(){
     $("#fechaInicio-edt,#fechafin-edt").datepicker({
-        dateFormat:'yy-mm-dd',
+        dateFormat:'dd-mm-yy',
         maxDate:"+0d",
         minDate:new Date(200,1-1,1),
         changeMonth: true,
@@ -111,8 +111,8 @@ $( function(){
         language: 'es'
     });
 
-    $("#fechaInicio,#fechaFin").datepicker({
-        dateFormat:'yy-mm-dd',
+    $("#fechaI,#fechaF").datepicker({
+        dateFormat:'dd-mm-yy',
         maxDate:"+0d",
         minDate:new Date(200,1-1,1),
         changeMonth: true,
@@ -121,7 +121,17 @@ $( function(){
     });
 } );
 
+$('#area-personalizada').hide();
 
+function mostrarD(e){
+//    var op=e.options[select.selectedIndex];
+
+    if (e.value==-1){
+        $('#area-personalizada').show();
+    } else{
+        $('#area-personalizada').hide();
+    }
+}
 
 /*-------------------------------------------------------------------------------------------------------|
 *   | Eventos correspondientes a la actualizacion de los proyectos realizados............................|
@@ -312,7 +322,6 @@ function isTextoD(campo) {
         return true;
     }
 }
-
 
 function valFechas(f1,f2) {
     var vf2=validarFormatoFecha(f2);

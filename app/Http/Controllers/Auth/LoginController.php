@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -34,7 +35,14 @@ class LoginController extends Controller
             if($user->fk_id_rol==0){
                 return redirect()->route('inicioAdministrador');
 
+
             }else{
+                //Actualizamos la fecha de acceso de usuario
+                $fa=Carbon::now();
+                $user=Auth::user();
+                $fa=$fa->format('Y-m-d');
+                $user->rf_ultimo_acceso_usuario=$fa;
+                $user->save();
 
                 return redirect()->route('dashboard');
             }

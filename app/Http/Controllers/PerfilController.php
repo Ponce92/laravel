@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Faker\Provider\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,6 +32,11 @@ class PerfilController extends Controller
     {
         $user=Auth::user();
         $persona=Persona::find($user->fk_id_persona);
+
+        //Se manipula la fecha de nacimiento para que se muestra correctamente..........|
+        $fecha=Carbon::createFromFormat('Y-m-d',$persona->rf_fecha_nacimiento);
+        $fecha=$fecha->format('d-m-Y');
+        $persona->rf_fecha_nacimiento=$fecha;
 
         $paises=Pais::all();
         $grados=GradosAcademicos::all();
@@ -68,12 +74,21 @@ class PerfilController extends Controller
 
         $persona->rt_nombre_persona=$request->get('nombres');
         $persona->rt_apellido_persona=$request->get('apellidos');
-        $persona->rf_fecha_nacimiento=$request->get('fecha');
+
+        $fecha=$request->get('fecha');
+
+        $fecha=Carbon::createFromFormat('d-m-Y',$fecha);
+        $fecha=$fecha->format('Y-m-d');
+        $persona->rf_fecha_nacimiento=$fecha;
+
         $persona->fk_id_pais=$request->get('pais');
 
-        $persona->rn_telefono_persona=$request->get('telefono');
         $persona->fk_id_grado=$request->get('grado');
-        $persona->fk_id_area=$request->get('area');
+
+        $ar=AreasConocimiento::find($request->get('area'));
+        $persona->rt_nombre_area=$ar->rt_nombre_area;
+
+
         $persona->rn_horas_dedicadas_investigacion=$request->get('horas');
 
         $persona->rt_institucion=$request->input('institucion');
@@ -81,8 +96,15 @@ class PerfilController extends Controller
 
         $persona->save();
 
+        //Actualizacion de correo de usuario
+        $user->email=$request->get('correo');
+        $user->save();
 
         $persona=Persona::find($user->fk_id_persona);
+        $fecha=Carbon::createFromFormat('Y-m-d',$persona->rf_fecha_nacimiento);
+        $fecha=$fecha->format('d-m-Y');
+        $persona->rf_fecha_nacimiento=$fecha;
+
         $paises=Pais::all();
         $grados=GradosAcademicos::all();
         $areas=AreasConocimiento::all();

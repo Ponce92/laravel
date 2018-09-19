@@ -14,7 +14,7 @@
         <li class="breadcrumb-item active">Perfil</li>
     @else
         <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="">Perfiles de investigadores</a></li>
+        <li class="breadcrumb-item"><a href="{{route('getPerfilesInvestigadores')}}">Perfiles de investigadores</a></li>
         <li class="breadcrumb-item active">Perfi</li>
 
     @endif

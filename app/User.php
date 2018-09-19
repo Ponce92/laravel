@@ -48,4 +48,17 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    /*
+     * Experimental...
+     */
+    public function publicaciones()
+    {
+        return $this->hasMany('App\Models\Publicacion','fk_id_usuario');
+    }
+
+    public function librosPublicados()
+    {
+        return $this->hasMany('App\Models\LibrosPublicaciones','fk_id_usuario');
+    }
+
 }

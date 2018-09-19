@@ -13,7 +13,7 @@
         <br>
         <div class="row">
             <div class="col-10">
-                <h2 class="titulo-seccion">Usuario</h2>
+                <h2 class="titulo-seccion titulo">Usuario</h2>
             </div>
 
             <div class="col-2 align-middle" style="align-content: center;display: flex;align-items: center">

@@ -107,8 +107,8 @@
             -->
             <li class="nav-item mt-auto">
             </li>
-            <li class="nav-item">
-                <a class="nav-link nav-link-danger" href="{{ route('logout') }}" target="_top"><i class="fas fa-power-off fa-4x"></i> Cerrar Sesion</a>
+            <li class="nav-item" style="background-color: #aa0000;font-weight: bold;" >
+                <a class="nav-link" href="{{ route('logout') }}" target="_top"><i class="fas fa-power-off fa-4x" style="color: white"></i> Cerrar Sesion</a>
             </li>
 
         </ul>

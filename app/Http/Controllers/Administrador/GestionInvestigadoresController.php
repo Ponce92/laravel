@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Administrador;
 
 use DB;
 
-use App\Models\Usuario;
 use App\Models\Persona;
 use App\Http\Controllers\Controller;
 

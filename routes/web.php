@@ -42,12 +42,13 @@ Route::post('/usuario/editar','UsuarioController@actualizarUsuario')->name('actu
  * ======================================================================================================
  */
 
-Route::get('/perfil/proyectosRealizados','ProyectosRealizadosController@verProyectos')->name('gestionProyectosRealizados');
-Route::post('/perfil/crear/proyectosRealizados','ProyectosRealizadosController@agregarProyecto')->name('agregarProyectosRealizado');
-Route::post('/perfil/editar/proyectosRealizados','ProyectosRealizadosController@editarProyecto')->name('editarProyectosRealizado');
-Route::post('/perfil/eliminar/proyectosRealizados','ProyectosRealizadosController@eliminarProyecto')->name('eliminarProyectosRealizado');
+Route::get('/perfil/proyectosRealizados/','ProyectosRealizadosController@verProyectos')->name('gestionProyectosRealizados');
+Route::get('/perfil/proyectosRealizados/agregar/','ProyectosRealizadosController@agregarProyectoForm')->name('agregarProyectosRealizadoForm');
+Route::post('/perfil/crear/proyectosRealizados/','ProyectosRealizadosController@agregarProyecto')->name('agregarProyectosRealizado');
+Route::get('/perfil/proyectosRealizados/editar/{id}','ProyectosRealizadosController@editarProyectoForm')->name('getDetalleProyectoRealizado');
+Route::post('/perfil/proyectosRealizados/editar/{id}','ProyectosRealizadosController@editarProyecto')->name('EditarProyectosRealizado');
 
-Route::get('/perfil/proyectosRealizados/ajax','ProyectosRealizadosController@getProyectosAjax')->name('getProyectosRealizadosAjax');
+Route::post('/perfil/eliminar/proyectosRealizados','ProyectosRealizadosController@eliminarProyecto')->name('eliminarProyectosRealizado');
 
 
 /*======================================================================================================
@@ -55,12 +56,18 @@ Route::get('/perfil/proyectosRealizados/ajax','ProyectosRealizadosController@get
  * =====================================================================================================
  */
 
-Route::get('/perfil/ver/publicaciones','PublicacionesController@verPublicaciones')->name('verPublicaciones');
-Route::post('/perfil/crear/publicacion','PublicacionesController@crearPublicacion')->name('agregarPublicacion');
-Route::post('/perfil/actualizar/publicacion','PublicacionesController@actualizarPublicacion')->name('actualizarPublicacion');
-Route::post('/perfil/eliminar/publicacion','PublicacionesController@eliminarPublicacion')->name('eliminarPublicacion');
+Route::get('/perfil/publicaciones','Usuarios\PublicacionesController@verPublicaciones')->name('verPublicaciones');
 
-Route::get('/perfil/publicaciones/ajax','PublicacionesController@getPublicacionAjax')->name('getPublicacionAjax');
+Route::get('/perfil/publicacion/agregar','Usuarios\PublicacionesController@agregarPublicacionForm')->name('agregarPublicacionForm');
+Route::post('/perfil/publicacion/agregar','Usuarios\PublicacionesController@agregarPublicacion')->name('agregarPublicacion');
+Route::post('/perfil/eliminar/publicacion','Usuarios\PublicacionesController@eliminarPublicacion')->name('eliminarPublicacion');
+Route::post('/perfil/publicacion/elimina/libroPublicado','Usuarios\PublicacionesController@eliminarLibroPublicado')->name('eliminarLibroPublicado');
+
+Route::get('/perfil/publicaciones/editar/{id}','Usuarios\PublicacionesController@actualizarPublicacionForm');
+Route::get('/perfil/publicaciones/editar/libro/{id}','Usuarios\PublicacionesController@actualizarPublicacionLibroForm');
+
+Route::post('/perfil/publicaciones/editar/','Usuarios\PublicacionesController@actualizarPublicacion')->name('editarPublicacion');
+Route::post('/perfil/publicaciones/editar/libro/','Usuarios\PublicacionesController@actualizarPublicacionLibro')->name('editarPublicacionLibro');
 
 /*======================================================================================================
  *==============================  Busqueda de perfiles de investigadores ===============================

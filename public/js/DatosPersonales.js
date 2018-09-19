@@ -2,10 +2,14 @@
 *       |Formulario de actualizacion de usuario.....................................................................
 *-------------------------------------------------------------------------------------------------------------------
 */
+$('#actualizar').hide();
 
 $( function() {
     $( "#datepicker" ).datepicker({
-        dateFormat:"yy-mm-dd"
+        dateFormat:"dd-mm-yy",
+        yearRange:'-80 :-10',
+        changeMonth: true,
+        changeYear: true
     });
 } );
 
@@ -17,6 +21,7 @@ $('#switch-persona').click(function () {
         $('#switch-persona').removeClass('fa-toggle-off');
         $('#switch-persona').addClass('fa-toggle-on');
 
+        $('#actualizar').show();
         $('.edt').prop('disabled',false);
 
 
@@ -26,6 +31,7 @@ $('#switch-persona').click(function () {
         $('#switch-persona').addClass('inactivo');
         $('#switch-persona').addClass('fa-toggle-off');
 
+        $('#actualizar').hide();
         $('.edt').prop('disabled',true).removeClass("is-invalid").removeClass("is-valid");
         $('.alert-danger').remove();
     }
@@ -36,7 +42,7 @@ $('#switch-persona').click(function () {
 *---------------------------------------------------------------------------------------------------------
 */
 
-$('#btn-riues').click(function () {
+$('#actualizar').click(function () {
         event.preventDefault();
         $('#error').html('');
     $('#status').html('');
@@ -67,8 +73,9 @@ function validarForm() {
     var dir=isNoNull($('#direccion'));
     var inst=isNoNull($('#institucion'));
     var horas=isHoras($('#horas'));
+    var email=isCorreo($('#correo'));
 
-    if(nom && ape && fech && dir && inst ){
+    if(nom && ape && fech && dir && inst && horas && email ){
         return true;
     }else{
         return false;
@@ -105,6 +112,19 @@ function isHoras(campo) {
     var txt=campo.val();
 
     if(txt.length > 0 && parseInt(txt) > 0 && parseInt(txt) < 12){
+        campo.addClass('is-valid');
+        return true;
+    }else{
+        campo.addClass('is-invalid');
+        return false;
+    }
+}
+
+function isCorreo(campo) {
+    var patt=new RegExp(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i);
+    var txt=campo.val();
+
+    if(patt.test(txt) && txt.length> 0){
         campo.addClass('is-valid');
         return true;
     }else{

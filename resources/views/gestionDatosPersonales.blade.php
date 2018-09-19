@@ -18,7 +18,7 @@
             <br>
             <div class="row cabeza-seccion">
                 <div class="col-10">
-                    <h2 class="titulo-seccion">Datos Personales</h2>
+                    <h2 class="titulo-seccion titulo">Datos Personales</h2>
                 </div>
                 <div class="col-2 align-middle" style="align-content: center;display: flex;align-items: center">
                     <div class="row align-items-center" >
@@ -47,6 +47,9 @@
                                 <div class="col-12" id="status">
                                     <div class="alert alert-success">
                                         {{$status}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                 </div>
                             @endif
@@ -64,7 +67,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="">
-                                            <label for="foto">Imgagen : </label>
+                                            <label for="foto">Foto : </label>
                                             <input type="file"
                                                    class="edt"
                                                    id="foto"
@@ -112,7 +115,7 @@
 
                                 <div class="row">{{-- Fecha y sexo del invetigador--}}
                                     <div class="col">
-                                        <label for="fechaNacimiento">Fecha Nacimiento</label>
+                                        <label for="fechaNacimiento">Fecha Nacimiento :</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -166,21 +169,24 @@
 
                                 <div class="row">
                                     <div class="col">
-                                        <label for="telefono">Telefono</label>
+                                        <label for="telefono">Correo electronico</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="fas fa-phone"></i>
+                                                    <i class="fas fa-envelope"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
                                                    class="form-control edt"
                                                    form="form"
-                                                   id="telefono"
-                                                   value="{{$persona->rn_telefono_persona}}"
-                                                   name="telefono"
+                                                   id="correo"
+                                                   value="{{$user->email}}"
+                                                   name="correo"
                                                    disabled
                                             >
+                                            <div class="invalid-feedback">
+                                                El formato del correo es invalido.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -233,9 +239,12 @@
                                         disabled
                                 >
                                     @foreach($areas as $area)
-                                        <option value="{{$area->pk_id_area}}" @if($area->pk_id_area == $persona->fk_id_area) selected @endif>
-                                            {{$area->rt_nombre_area}}
-                                        </option>
+                                        @if($area->rt_nombre_area!='Otra area del concimiento')
+                                            <option value="{{$area->pk_id_area}}"{{$area->rt_nombre_area==$persona->rt_nombre_area? 'selected':''}}>
+                                                {{$area->rt_nombre_area}}
+                                            </option>
+                                        @endif
+
                                     @endforeach
                                 </select>
                             </div>
@@ -268,12 +277,13 @@
                                            form="form"
                                            id="institucion"
                                            name="institucion"
+                                           autocomplete="false"
                                            class="form-control edt"
                                            value="{{$persona->rt_institucion}}"
                                            disabled
                                     >
                                     <div class="invalid-feedback">
-                                        Debes especificar la institucion donde perteneces.
+                                        Un nombre valido contiene entre 6-100 caracteres
                                     </div>
                                 </div>
                             </div>
@@ -292,6 +302,7 @@
                                             name="direccion"
                                             form="form"
                                             id="direccion"
+                                            autocomplete="false"
                                             class="form-control edt"
                                             value="{{$persona->rt_direccion}}"
                                             disabled
@@ -309,10 +320,9 @@
             <div class="row pie-seccion">
                 <div class="col col-10"></div>
                 <div class="col col-1">
-                    <button class="boton-rojo-riues edt"
-                            id="btn-riues"
+                    <button class="btn bttn-red edt"
+                            id="actualizar"
                             form="form"
-                            disabled
                             >
                         Actualizar
                     </button>

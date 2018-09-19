@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Usuarios;
+use App\Http\Controllers\Controller;
 
 use App\Models\AreasConocimiento;
 use App\Models\GradosAcademicos;
 use App\Models\Pais;
 use App\Models\ProyectoRealizado;
 use App\Models\Publicacion;
+
 use Carbon\Carbon;
 use DB;
-
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

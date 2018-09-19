@@ -3,6 +3,8 @@ function verFormAgregar(){
 }
 
 //======================================================================================================================
+$('.msj').delay(4000).fadeOut(1000);
+//======================================================================================================================
 $('#switch-edit').click(function () {
 
     if($('#switch-edit').hasClass('inactivo')){
@@ -98,6 +100,34 @@ function eliminarPublicacion(e) {
     } );
 }
 
+function eliminarLibroP(e) {
+    $( function() {
+        $( "#conf" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+
+            classes: {
+                "ui-dialog": "my",
+                "ui-dialog-titlebar":"frm-modal-title",
+                "dialogClass": 'hide-close',
+            },
+            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
+            buttons: {
+                "Eliminar": function() {
+                    $('input#id_lp').val(e.id);
+                    $('form#deleteL').submit();
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    } );
+}
+
+
 //Validacion del formulario de ingreso de publicaciones ...............................................................
 function validarFrmEditar(){
 
@@ -123,29 +153,6 @@ function validarFrmEditar(){
     }
 }
 
-function validarFrmAgregar(){
-
-    $('#div-err-agregar').html('');
-    $('.form-control').removeClass("is-invalid");
-    $('.form-control').removeClass("is-valid");
-
-    var fecha=validarFormatoFecha($('#fecha'));
-    var titulo=isTextoT($('#titulo'));
-
-    var desc=isTextoD($('#descripcion'));
-    var url=validarFormatoUrl($('#enlace'));
-
-    if(fecha && titulo && desc && url){
-        return true;
-    }else{
-        $('#div-err-agregar').append(
-            '<div class=" alert alert-danger">'+
-            '<i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i>' + 'El formulario contiene errores !' +
-            '</div>'
-        );
-        return false;
-    }
-}
 
 function isTextoT(campo) {
     var txt = campo.val();
@@ -220,54 +227,6 @@ function limpiar(){
 }
 
 
-$( function() {
-    $ ("#agregar-frm").dialog({
-            autoOpen: false,
-            height: 775,
-            width: 675,
-            modal:true,
-            resizable:false,
-            draggable:false,
-            classes: {
-                "ui-dialog": "my",
-                "ui-dialog-titlebar":"frm-modal-title",
-                "dialogClass": 'hide-close',
-            },
-            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
-            buttons: [
-                {
-                    text: " Guardar ",
-                    click: function()
-                    {
-                        $('#div-err-agregar').html('');
-                        $('.form-control').removeClass("is-invalid");
-                        $('.form-control').removeClass("is-valid");
-                        if(validarFrmAgregar()){
-                            $('#'+this.id+' form').submit();
-                            return false;
-                        }else{
-
-                            return false;
-                        }
-
-
-                    }
-                },
-                {
-                    text: "Cancelar",
-                    click: function()
-                    {
-                        $('#div-err-agregar').html('');
-                        $('.form-control').removeClass("is-invalid");
-                        $('.form-control').removeClass("is-valid");
-                        limpiar();
-                        $(this).dialog('close');
-                    }
-                }
-            ]
-        }
-    );
-} );
 $( function() {
     $ ("#editar-frm").dialog({
             autoOpen: false,

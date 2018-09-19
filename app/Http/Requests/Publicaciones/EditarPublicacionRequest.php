@@ -4,7 +4,7 @@ namespace App\Http\Requests\Publicaciones;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CrearPublicacionRequest extends FormRequest
+class EditarPublicacionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class CrearPublicacionRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'=>'required',
             'titulo'=>'string',
             'fecha'=>'required',
             'issn'=>'string|required_if:tipo,"libro" ',
@@ -39,6 +40,7 @@ class CrearPublicacionRequest extends FormRequest
     public function messages()
     {
         return [
+            'id.required'=>'Regresa a la ventana anterior e intentalo de nuevo',
             'titulo.string'=>'Este campo es obligatorio',
             'titulo.max'=>'Este campo no puede contener mas de 50 caraceteres',
             'titulo.min'=>'Este campo debe tener almenos 6 caracteres',

@@ -7,14 +7,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/appLayout.css')}}">--}}
+    <link rel="stylesheet" type="text/css" href="{{asset('css/fuentes.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('framework/bootstrap/css/bootstrap.min.css')}}">
 </head>
 
-<body style="background-color: rgb(248,248,248)">
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color: rgb(255,255,255);border-bottom: solid 1px rgb(240,240,240);">
+<body class="body">
+<nav class="navbar navbar-expand navbar-light " style="height: 80px; background-color: rgba(254,254,254,.7);border-bottom: solid 1px rgb(210,210,210);">
     <a class="navbar-brand" href="/">
-        <img src="{{asset('img/app/sic.png')}}" alt="Logo de sic" class="logo" style=" height: 75px">
+        <img src="{{asset('img/app/sic.png')}}" alt="Logo de sic" class="logo" style="
+         height: 75px">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
