@@ -50,8 +50,16 @@ label{
     font-size: 16px;
     font-weight: bolder;
     font-family: "Open Sans";
-    color: rgb(90,90,90);
+    color: rgb(70,70,70);
 }
+h5.sub-titulo{
+    color: rgb(75,75,75);
+    font-size: 23px;
+    font-weight: bold;
+    font-family: "Fira Code";
+    margin-bottom: 0px;
+}
+
 
 hr.all{
     margin-right: -15px;
@@ -117,3 +125,27 @@ td.td{
 
         Zona de pruebas
 */
+
+.cb-tit-prj{
+    font-weight: bold;
+    color: rgba(50,50,50,.9);
+    font-size: 1.4rem;
+    font-family: "Open Sans";
+}
+
+
+.bttn-nav-r{
+    color: rgba(90,0,0,0.9);
+    font-size: 30px;
+}
+.bttn-nav-r:hover{
+    color: rgba(50,0,0,0.9);
+}
+
+.bttn-nav-w{
+    color: rgb(255,255,255);
+    font-size: 30px;
+}
+
+
+

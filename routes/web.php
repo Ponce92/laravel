@@ -74,9 +74,31 @@ Route::post('/perfil/publicaciones/editar/libro/','Usuarios\PublicacionesControl
  * =====================================================================================================
  */
 Route::get('/investigadores/perfiles','Usuarios\InvestigadorController@getRegistrosInvestigadores')->name('getPerfilesInvestigadores');
-Route::get('/investigadores/perfil/','Usuarios\InvestigadorController@getInvestigador')->name('verPerfilInvestigador');
+Route::get('/investigadores/perfiles/detalle/{id}','Usuarios\InvestigadorController@getInvestigador');
 
 Route::get('/investigadores/perfiles/nombres/Ajax','Usuarios\InvestigadorController@getDataAjax')->name('getNombresPerfilesAjax');
+
+
+/*
+ *  |Rutas para la gestion de proyectos de investigacion ...............................................................
+ */
+
+Route::get('/proyectos/busqueda','Usuarios\ProyectosInvestigacionController@index')->name('busqueda.proyectos.investigacion');
+
+Route::get('/proyectos/mis-proyectos','Usuarios\ProyectosInvestigacionController@obtenerProyectos')->name('misproyectos.investigacion');
+Route::get('/proyectos/mis-proyectos/{id}','Usuarios\ProyectosInvestigacionController@detalleProyecto');
+
+
+Route::get('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@registrarForm')->name('registrar.proyectos.investigacion.form');
+Route::post('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@registrar')->name('registrar.proyecto.investigacion');
+
+Route::get('/proyectos/actualizar','Usuarios\ProyectosInvestigacionController@actualizar')->name('actualizar.proyectos.investigacion');
+
+
+Route::get('/inicio/notificaciones','NotificacionesController@index')->name('notificaciones');
+
+
+
 
 /*======================================================================================================
  *==============================  Rutas reservadas para el administrador del sistema ===================
@@ -85,6 +107,23 @@ Route::get('/investigadores/perfiles/nombres/Ajax','Usuarios\InvestigadorControl
  */
 
 Route::get('/riues/home','Administrador\AdminRootController@index')->name('inicioAdministrador');
+
+
+
+/*
+ | Experimental
+ |
+*/
+
+Route::get('/riues/investigadores','Riues\InvestigadoresController@index')->name('investigadores');
+
+Route::get('/riues/investigadores/getdata','Riues\InvestigadoresController@getdata')->name('investigadores.getdata');
+
+
+/*
+ |
+ |
+*/
 Route::get('/riues/Administracion/investigadores','Administrador\GestionInvestigadoresController@index')->name('gestionRegistrosInv');
 Route::get('/riues/Administracion/investigadores/Ajax','Administrador\GestionInvestigadoresController@getDataAjax')->name('getDataAjax');
 

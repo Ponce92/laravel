@@ -2,7 +2,11 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Inicio</a>
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-home">
+                    </i>
+                    Inicio
+                </a>
             </li>
 
             <li class="nav-title">RIUES </li>
@@ -28,14 +32,6 @@
                             <i class="cui-settings icons font-2xl"></i> Datos Personales
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('verUsuario') }}">
-                            <i class="fas fa-user-edit"></i> Usuario
-                        </a>
-
-                    </li>
-
                     @if($user->fk_id_rol != 0)
                         <li class="nav-item"   >
                             <a  class="nav-link"
@@ -54,15 +50,52 @@
 
                         </li>
                     @endif
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ route('verUsuario') }}">
+                            <i class="fas fa-user-edit"></i> Usuario
+                        </a>
+
+                    </li>
                 </ul>
             </li>
+
+            {{--<li class="nav-item nav-dropdown">--}}
+                {{--<a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Perfil</a>--}}
+                {{--<ul class="nav-dropdown-items">--}}
+                    {{--<li>--}}
+                        {{----}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+
             @if($user->fk_id_rol != 0)
                 <li class="nav-item nav-dropdown">
-                    <a class="nav-link" href="{{route('getPerfilesInvestigadores')}}"><i class="icon-people"></i>Investigadores</a>
-
+                    <a class="nav-link" href="{{route('getPerfilesInvestigadores')}}">
+                        <i class="icon-people"></i>Investigadores
+                    </a>
                 </li>
-            @endif
 
+            @endif
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Proyectos</a>
+                <ul class="nav-dropdown-items">
+
+                    <li class="nav-item"   >
+                        <a class="nav-link"
+                           href="{{ route('misproyectos.investigacion') }}"
+                        >
+                            <i class="cui-settings icons font-2xl"></i> Mis Proyectos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ route('verUsuario') }}">
+                            <i class="fas fa-user-edit"></i> Busqueda Proyectos
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             @if($user->fk_id_rol==0)
                 <li class="nav-item nav-dropdown">
@@ -75,11 +108,23 @@
                                 <i class="nav icon icon-list"></i> Registros
                             </a>
                         </li>
-
-
                     </ul>
                 </li>
         @endif
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link" href="{{route('notificaciones')}}">
+                    <i class="icon-bell"></i>Notificaciones
+                    @if(isset($ntf))
+                        <span class="badge badge-danger">{{count($ntf)}}</span>
+                    @endif
+
+                </a>
+            </li>
+
+
+
+
             <!--
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Buttons</a>

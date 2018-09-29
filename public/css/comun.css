@@ -319,3 +319,76 @@ safddhggkjfds
 #content h2,  #content h3,  #content p {
     margin: 0 0 15px 0;
 }
+
+.input-group-prepend,.input-group-text{
+    border-radius: 0px!important;
+}
+
+.inf{
+    color: rgba(200,200,220,.7);
+    font-weight: bold;
+    font-size: 30px;
+}
+.inf:hover{
+     color: orangered;
+     font-weight: bold;
+     font-size: 30px;
+ }
+
+/*
+        Estilos de formularios
+ */
+
+.srt{
+    font-size: 18px;
+    color: #aa0000;
+    display: inline;
+}
+
+#feedback { font-size: 1.4em; }
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: orangered; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#selectable li {
+    color: rgb(110,110,110);
+    margin: 10px;
+    padding: 0.4em;
+    font-size: 1.4em;
+    height: 75px;
+    width: 75px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#selectable li:hover {
+    background-color: orangered;
+    cursor: pointer;
+    color: white;
+
+}
+
+/*
+                COlores de riues
+ */
+
+.red-rc{
+    color: #aa0000;
+}
+.green-rc{
+    color: #00aa00;
+}
+
+.verde-rc{
+    color: greenyellow;
+}
+
+.blue-rc{
+    color: #0000aa;
+}
+
+.help-rc{
+    color: rgb(100,100,100);
+}
+.help-rc:hover{
+    color: orangered;
+}

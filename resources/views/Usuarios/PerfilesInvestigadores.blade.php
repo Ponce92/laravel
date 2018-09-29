@@ -2,6 +2,8 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('css/comun.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/Tools/jquery.toolbar.css')}}">
+
 @endsection
 
 @section('menuIzq')
@@ -10,43 +12,47 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item">Perfiles</li>
-    <li class="breadcrumb-item active">Investigadores</li>
+    <li class="breadcrumb-item">Invetigadores</li>
+    <li class="breadcrumb-item active">Registros</li>
+
 @endsection
 
 @section('default')
-
     <div class="container-fluid area-trabajo" id="area-trabajo">
         <br>
         <div class="row cabeza-seccion">
             <div class="col-12">
                 <div class="row">
                     <div class="col-9">
-                        <h2 class="title" style="font-weight: bold">Registros de investigadores</h2>
+
+                        <h2 class="title titulo">
+                            Perfiles de investigadores
+                        </h2>
+                    </div>
+                    <div class="col-3">
+                        <form name="frm-tip" id="frm-tip" method="get" >
+                            <div class="input-group">
+                                <select class="custom-select custom-select-lg"
+                                        id="opt"
+                                        style="color: #aa0000"
+                                        name="opt"
+                                        onchange="this.form.submit()"
+                                        style="font-weight: bold"
+                                >
+                                    <option value="100" {{100 ==$fkId ? 'selected':''}}>Todas las areas</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{$area->pk_id_area}}" {{$area->pk_id_area ==$fkId ? 'selected':''}}>{{$area->rt_nombre_area}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </form>
                     </div>
                     <hr>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-6"></div>
-            <div class="col-3">
-                <form name="frm-tip" id="frm-tip" method="get" >
-                    <div class="input-group">
-                        <select class="custom-select"
-                                id="opcion"
-                                name="opcion"
-                                onchange="enviarSelect(this)"
-                                style="font-weight: bold"
-                        >
-                            <option value="-1">-- Area del conocimiento --</option>
-                            @foreach($areas as $area)
-                                <option value="{{$area->pk_id_area}}" @if($area->pk_id_area==$opt) selected @endif>{{$area->rt_nombre_area}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </form>
-            </div>
+            <div class="col-9"></div>
             <div class="col-3">
                 <div class="input-group mb-3">
                     <input type="text"
@@ -58,8 +64,9 @@
                            url="{{route('getNombresPerfilesAjax')}}"
                     >
                     <div class="input-group-append">
-                        <div class="input-group-text bttn-ver" onclick="formulario()">
-                            <i class="fas fa-search"></i>
+                        <div class="input-group-text bttn-ver" onclick="formulario()" style="background-color: #aa0000">
+
+                            <i class="fas fa-search" style="color: white;"></i>
                         </div>
                     </div>
 
@@ -67,84 +74,90 @@
                 </div>
             </div>
         </div>
+        {{--Busqueda fin--}}
+
         <div class="row">
             <div class="col-12">
+                <table class="table table-bordered ">
+                    <thead hidden>
+                    <tr>
+                        <td class="3"></td>
+                        <td colspan="2"></td>
+                        <td colspan="3"></td>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                @if($count != 0)
-                    <div class="row">
-                        <table class="table">
-                            <tbody>
-                            @foreach($registros as $obj)
-                                <tr>
-                                    <td class="align-middle" width="80px">
-                                        <img class="avatar" src="{{asset('avatar/'.$obj->rt_foto_usuario)}}" alt="Error al cargar foto">
-                                    </td>
-                                    <td >
-                                        <div class="row">
-                                            <div class="col">
-                                                <b>{{$obj->rt_nombre_persona}}&nbsp;{{$obj->rt_apellido_persona}}</b><br>
-                                                <b>Area Conocimiento :</b>
-                                                @foreach($areas as $area)
-                                                    @if($area->pk_id_area == $obj->fk_id_area)
-                                                        {{$area->rt_nombre_area}}
-                                                    @endif
-                                                @endforeach
-                                                <br>
-                                                <b>Correo :</b>{{$obj->email}}<br>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td></td><td></td>
-                                    <td class="align-middle">
-                                        <i class="fas fa-eye fa-2x bttn bttn-ver"
-                                           id="{{$obj->pk_id_usuario}}"
-                                           onclick="irPerfil(this.id)"
-                                        ></i>
-                                    </td>
-                                    <td class="align-middle">
-                                        @if($obj->rt_estado=='Activo')
-                                            <i id="{{$obj->pk_id_usuario}}"
+                    @if(isset($invs))
+                        @foreach($invs as $obj)
+                            <tr scope="row">
+                                <td  colspan="1" rowspan="3" align="center" class="align-middle" style="width: 200px!important;">
+                                    <img src="{{asset('avatar/')}}/{{$obj['foto']}}"
+                                         alt="{{$obj['foto']}}"
+                                         class=" img img-thumbnail"
+                                         width="150px"
+                                    />
+                                </td>
+                                <td colspan="2">
+                                    <strong>Nombre:</strong>
+                                    {{$obj['nombre']}}&nbsp;
+                                    {{$obj['apellido']}}
+                                </td>
+                                <td colspan="1">
+                                    <strong>Sexo :</strong>{{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
+                                </td>
+                                <td colspan="1">
+                                    <strong>Edad:</strong>
+                                </td>
 
-                                               class="fas fa-toggle-on is-activo fa-2x bttn bttn-ver "
-                                               onclick="irPerfil(this.id)"
-                                            ></i>
-                                        @else
-                                            <i  id="{{$obj->pk_id_usuario}}"
-                                                class="fas fa-toggle-off fa-2x bttn bttn-ver "
-                                                onclick="irPerfil(this.id)" ></i>
-                                        @endif
+                                <td colspan="1" rowspan="3" align="center" class="align-middle">
+                                    <a href="{{route('getPerfilesInvestigadores')}}/detalle/{{$obj['id']}} ">
+                                        <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
+                                    </a>
+                                </td>
+                                <td colspan="1" rowspan="3" class="align-middle" align="center">
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <hr>
-                    @if(isset($bsq))
-                        <h3 style="color: #555555; font-weight: bold">No hay registros que conicidan con los criterios de busqueda . . .</h3>
-                        <br>
+                                    <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
+                                    <div id="toolbar-options" class="hidden">
+                                        <a href="#"><i class="fa fa-users">  Agregar a contactos</i></a>
+                                        <a href="#"><i class="fa fa-chart-pie">  Invitar a proyecto</i></a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr scope="row">
+                                <td colspan="4">
+                                    <strong>Correo Electronico :</strong>{{$obj['email']}}
+                                </td>
+
+                            </tr>
+                            <tr scope="row">
+
+                                <td colspan="1">
+                                    <strong>Publicaciones:</strong>{{$obj['npu']}}
+                                </td>
+                                <td colspan="1">
+                                    <strong>Proyectos realizados:</strong>{{$obj['npr']}}
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                        @endforeach
                     @else
-                        <h3 style="color: #555555; font-weight: bold">No existen registros de investigadores Activos o Inactivos . . .</h3>
-                        <br>
+                        <p>no tienes nada que hacer </p>
                     @endif
 
-                @endif
-
+                    </tbody>
+                </table>
 
             </div>
         </div>
     </div>
     <br>
-    <div class="row" hidden>
-        <form action="{{route('verPerfilInvestigador')}}" id="irPerfil">
-            <input type="text" id="verI" name="verI" >
-        </form>
-    </div>
 @endsection
 
 @section('js')
+
+    <script  src="{{asset('js/tools/jquery.toolbar.min.js')}}"></script>
     <script  src="{{asset('js/PefilesInvestigadores.js')}}"></script>
 @endsection
 

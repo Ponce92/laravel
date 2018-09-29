@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Administrador;
 
+use App\Models\LibrosPublicaciones;
+use App\Models\ProyectoRealizado;
+use App\Models\Publicacion;
+use Carbon\Carbon;
 use DB;
 
 use App\Models\Persona;
@@ -22,279 +26,115 @@ class GestionInvestigadoresController extends Controller
 
     public function index(Request $request)
     {
-
         $user=Auth::user();
-        $persona=Persona::find($user->fk_id_persona);
         $bsq=null;
+        $fkId=2;
+        $Invs=[];
 
         if ($request->has('opcion'))
         {
+            $fkId=$request->get('opcion');
 
-            $opcion=$request->get('opcion');
-            switch ($request->get('opcion'))
-            {
-                case 'solicitudes':
+            if($request->has('busqueda')){
+                $bsq=$request->get('busqueda');
 
-                    if($request->has('busqueda')){
-                        $bsq=$request->get('busqueda');
 
-                        $count=DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Nuevo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Nuevo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->get();
-
-                    } else{
-                        $count= DB::table('tbl_usuarios')->where('rt_estado','Nuevo')->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Nuevo')
-                            ->get();
-
-                    }
-                    break;
-
-                case 'activacion':
-
-                    if($request->has('busqueda'))
-                    {
-                        $bsq=$request->get('busqueda');
-
-                        $count=DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Pendiente')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Pendiente')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->get();
-
-                    }else{
-
-                    $count= DB::table('tbl_usuarios')->where('rt_estado','Pendiente')->count();
-
-                    $registros = DB::table('tbl_usuarios')
+                    $count=DB::table('tbl_usuarios')
                         ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                        ->select('tbl_personas.rt_nombre_persona',
-                            'tbl_personas.rt_apellido_persona',
-                            'tbl_usuarios.rt_foto_usuario',
-                            'tbl_usuarios.pk_id_usuario',
-                            'tbl_usuarios.rt_estado',
-                            'tbl_usuarios.email')
-                        ->where('tbl_usuarios.rt_estado','=','Pendiente')
+                        ->where('tbl_usuarios.fk_id_estado','=',$fkId)
+                        ->where('tbl_personas.rt_nombre_persona','=',$bsq )
+                        ->where('tbl_usuarios.fk_id_rol','<>',0)
+                        ->count();
+
+                    $join = DB::table('tbl_usuarios')
+                        ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
+                        ->where('tbl_usuarios.fk_id_estado','=',$fkId)
+                        ->where('tbl_personas.rt_nombre_persona','=',$bsq )
+                        ->where('tbl_usuarios.fk_id_rol','<>',0)
                         ->get();
-                        }
-                    break;
-                case 'inactivos':
-                    if($request->has('busqueda'))
-                    {
-                        $bsq=$request->get('busqueda');
+            }else{
+                $count=DB::table('tbl_usuarios')
+                    ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
+                    ->where('tbl_usuarios.fk_id_estado','=',$fkId)
+                    ->where('tbl_usuarios.fk_id_rol','<>',0)
+                    ->count();
 
-                        $count=DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Inactivo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Inactivo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->get();
-
-                    }else{
-                        $count= DB::table('tbl_usuarios')->where('rt_estado','Inactivo')->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Inactivo')
-                            ->get();
-
-                    }
-
-
-                    break;
-                case 'activos':
-                    if ($request->has('busqueda'))
-                    {
-                        $bsq=$request->get('busqueda');
-
-                        $count=DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Activo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Activo')
-                            ->where('tbl_personas.rt_nombre_persona','=',$bsq )
-                            ->get();
-                    } else{
-                        $count= DB::table('tbl_usuarios')->where('rt_estado','Activo')->count();
-
-                        $registros = DB::table('tbl_usuarios')
-                            ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                            ->select('tbl_personas.rt_nombre_persona',
-                                'tbl_personas.rt_apellido_persona',
-                                'tbl_usuarios.rt_foto_usuario',
-                                'tbl_usuarios.pk_id_usuario',
-                                'tbl_usuarios.rt_estado',
-                                'tbl_usuarios.email')
-                            ->where('tbl_usuarios.rt_estado','=','Activo')
-                            ->get();
-                    }
-
-                    break;
+                $join = DB::table('tbl_usuarios')
+                    ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
+                    ->where('tbl_usuarios.fk_id_estado','=',$fkId)
+                    ->where('tbl_usuarios.fk_id_rol','<>',0)
+                    ->get();
 
             }
 
         }else{
-            $opcion='solicitudes';
-            $count= DB::table('tbl_usuarios')->where('rt_estado','Nuevo')->count();
-
-            $registros = DB::table('tbl_usuarios')
+            $join = DB::table('tbl_usuarios')
                 ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                ->select('tbl_personas.rt_nombre_persona',
-                    'tbl_personas.rt_apellido_persona',
-                    'tbl_usuarios.rt_estado',
-                    'tbl_usuarios.rt_foto_usuario',
-                    'tbl_usuarios.pk_id_usuario',
-                    'tbl_usuarios.email')
-                ->where('tbl_usuarios.rt_estado','=','Nuevo')
+                ->where('tbl_usuarios.fk_id_estado','=',2)
+                ->where('tbl_usuarios.fk_id_rol','<>',0)
                 ->get();
 
         }
 
+        $i=0;
+        foreach ($join as $js)
+        {
+            //..Atributos necesarios para mostrar datos en la vista ...............
+            $Invs[$i]['nombre']=$js->rt_nombre_persona;
+            $Invs[$i]['apellido']=$js->rt_apellido_persona;
+            $Invs[$i]['foto']=$js->rt_foto_usuario;
+            $Invs[$i]['email']=$js->email;
+            $Invs[$i]['sexo']=$js->rl_sexo_persona;
+            $Invs[$i]['id']=$js->pk_id_usuario;
+            $Invs[$i]['estado']=$js->fk_id_estado;
 
-        return view('RootAdmin.GestionRegistrosInvestigadores')->with('user',$user)
-                                                                    ->with('count1',$count)
-                                                                    ->with('nuevos',$registros)
-                                                                    ->with('opt',$opcion)
-                                                                    ->with('bsq',$bsq);
+
+
+
+            //Valores tratados del investigador
+            $edad=Carbon::createFromFormat('Y-m-d',$js->rf_fecha_nacimiento);
+            $Invs[$i]['edad']=Carbon::parse($edad)->age;
+
+
+            $pub=Publicacion::where('fk_id_usuario','=',$js->pk_id_usuario)->count();
+            $lib=LibrosPublicaciones::where('fk_id_usuario','=',$js->pk_id_usuario)->count();
+
+            $Invs[$i]['npu']=$pub+$lib;
+            $Invs[$i]['npr']=ProyectoRealizado::where('fk_id_usuario','=',$js->pk_id_usuario)->count();
+
+            $i++;
+        }
+
+        return view('RootAdmin.GestionRegistrosInvestigadores')
+            ->with('opt',$fkId)
+            ->with('user',Auth::user())
+            ->with('invs',$Invs);
+
     }
 
 
-    /*      Funcion   que recibe un id de usuario mediante ajax y recupera los datos de dicho usuario
-     *      Retorna un join de la tabla usuario y persona junto con en numero de publicaciones y numero de proyectos
-     */
 
     public function getDataAjax(Request $request)
     {
 
         if ($request->ajax()){
-            $id=$request->get('opcion');
+            $fkId=$request->get('txt');
 
-            switch ($request->get('opcion'))
-            {
-                case 'solicitudes':
-                    $registros = DB::table('tbl_usuarios')
-                        ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                        ->select('tbl_personas.rt_nombre_persona')
-                        ->where('tbl_usuarios.rt_estado','=','Nuevo')
-                        ->get();
-                    break;
 
-                case 'activacion':
+            $join = DB::table('tbl_usuarios')
+                ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
+                ->select('tbl_personas.rt_nombre_persona')
+                ->where('tbl_usuarios.fk_id_estado','=',$fkId)
+                ->where('tbl_usuarios.fk_id_rol','<>',0)
+                ->get();
 
-                    $registros = DB::table('tbl_usuarios')
-                        ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                        ->select('tbl_personas.rt_nombre_persona')
-                        ->where('tbl_usuarios.rt_estado','=','Pendiente')
-                        ->get();
-                    break;
-                case 'inactivos':
-                    $registros = DB::table('tbl_usuarios')
-                        ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                        ->select('tbl_personas.rt_nombre_persona')
-                        ->where('tbl_usuarios.rt_estado','=','Inactivo')
-                        ->get();
-                    break;
-                case 'activos':
-                    $registros = DB::table('tbl_usuarios')
-                        ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
-                        ->select('tbl_personas.rt_nombre_persona')
-                        ->where('tbl_usuarios.rt_estado','=','Activo')
-                        ->get();
-                    break;
 
-            }
-
-            return \Response::json($registros);
+            return \Response::json($join);
 
         }else{
             return redirect('/dashboard');
         }
     }
+
 
 }

@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('framework/jquery/jquery-ui.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/simple-line-icons.css')}}" >
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/style.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/Tools/jquery.webui-popover.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('font-awesome/css/fontawesome-all.min.css')}}">
 
@@ -32,19 +33,19 @@
         *| Seccion Header de plantilla
         *|
         -->
-        <header class="app-header navbar addToJq">
+        <header class="app-header navbar addToJq" style="background-color: #aa0000;border: 0px">
             <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler sidebar-minimizer d-md-down-none" type="button">
-                <span class="navbar-toggler-icon"></span>
+                {{--<span class="navbar-toggler-icon"></span>--}}
+                <i class="fas fa-bars" style="color: white;"></i>
             </button>
 
 
 
             <!-- Menu que se localiza a la par del boton izquierdo de la barra superior... -->
-
             {{--<ul class="nav navbar-nav d-md-down-none">--}}
                 {{--<li class="nav-item px-3">--}}
                     {{--<a class="nav-link" href="#">Dashboard</a>--}}
@@ -58,7 +59,71 @@
             {{--</ul>--}}
 
             <!-- -->
+
             <ul class="nav navbar-nav ml-auto">
+
+                <li class="nav-item d-md-down-none">
+                    <a href="#" class="nav-link">
+                        <div class="menuSup" id="menuSupMsj">
+                        @if(isset($ntf))
+                            <i class="fas fa-comments bg-msj menuSup bttn-nav-w"></i>
+                            <span class="bg-msj badge badge-danger">{{count($ntf)}}</span>
+
+                        @else
+                            <i class="fas fa-comments bg-msj  bttn-nav-r"></i>
+
+                        @endif
+                        </div>
+                        <div class="webui-popover-content" style="overflow-x: hidden">
+                            <div class="row"style="width: 400px">
+                                <div class="col-12">
+                                    <strong>
+                                        Mensajes
+                                    </strong>
+                                    <div id="menuMsj">
+
+                                    </div>
+
+                                </div>
+                                <hr>
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                &nbsp;&nbsp;
+                <li class="nav-item d-md-down-none">
+                    <a href="#" class="nav-link">
+                        <div class="menuSupNtf" id="menuSupNtf">
+                        @if(isset($msjj))
+                            <i class="fas fa-bell bg-ntf bttn-nav-w"></i>
+                            <span class="bg-ntf badge badge-danger">{{count($msjj)}}</span>
+                        @else
+                                <i class="fas fa-bell bttn-nav-r"></i>
+                        @endif
+                        </div>
+                        <div class="webui-popover-content" style="overflow-x: hidden">
+                            <div class="row"style="width: 400px">
+                                <div class="col-12">
+                                    <strong>
+                                        Notificaciones
+                                    </strong>
+
+                                </div>
+                                <hr>
+                                <div class="col-12" id="menuNtf">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                </li>
+
                 {{--<li class="nav-item d-md-down-none">--}}
                     {{--<a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>--}}
                 {{--</li>--}}
@@ -93,12 +158,14 @@
                     </div>
                 </li>
             </ul>
-
+            &nbsp;&nbsp;
             <!--Boton derecho para esconder/mostrar el menu derecho-->
-            <button class="navbar-toggler aside-menu-toggler" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
+            <button class="navbar-toggler aside-menu-toggler" type="button">
+                {{--<span class="navbar-toggler-icon"></span>--}}
+                <i class="fas fa-bars" style="color: white;"></i>
+            </button>
+            &nbsp;&nbsp;
         </header>
 
 
@@ -109,10 +176,7 @@
 
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb addToJq">
-                    @yield('menu-sup-02')
-                    {{--<li class="breadcrumb-item">Home</li>--}}
-                    {{--<li class="breadcrumb-item"><a href="#">Admin</a></li>--}}
-                    {{--<li class="breadcrumb-item active">Dashboard</li>--}}
+                    @yield('menu-sup-02'){{-- Menu de navegacion superior--}}
 
                     <!-- Breadcrumb Menu-->
                     <li class="breadcrumb-menu d-md-down-none">
@@ -426,6 +490,7 @@
     <script  src="{{asset('framework/jquery/jquery-ui.min.js')}}"></script>
     <script  src="{{asset('framework/bootstrap/js/bootstrap.min.js')}}"></script>
     <script  src="{{asset('admin/js/admin.js')}}"></script>
+    <script  src="{{asset('js/tools/jquery.webui-popover.js')}}"></script>
     <script  src="{{asset('js/admin.js')}}"></script>
     @yield('js')
 </html>

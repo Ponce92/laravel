@@ -1,6 +1,7 @@
 @extends('Common.adminLayout')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('css/comun.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/Tools/jquery.toolbar.css')}}">
 @endsection
 
 @section('menuIzq')
@@ -23,11 +24,10 @@
 
 @section('default')
     <div class="container-fluid area-trabajo" id="area-trabajo">
-
         <br>
         <div class="row cabeza-seccion">
             <div class="col-10">
-                <h2 class="titulo-seccion" style="font-weight: bold">Perfil</h2>
+                <h2 class="titulo-seccion titulo" >Perfil</h2>
             </div>
         </div>
         <hr>
@@ -202,11 +202,7 @@
                                     class="form-control edt"
                                     disabled
                             >
-                                @foreach($areas as $area)
-                                    <option value="{{$area->pk_id_area}}" @if($area->pk_id_area == $perfil->fk_id_area) selected @endif>
-                                        {{$area->rt_nombre_area}}
-                                    </option>
-                                @endforeach
+                 
                             </select>
                         </div>
                         <div class="col col-4">
@@ -265,119 +261,239 @@
                     </div>
             </div>
         </div>
-
         <br>
-        <h2 style="font-weight: bold;color: rgb(90,90,90)">Otros</h2>
+        <div class="row pie-seccion justify-content-end">
+            @if($user->fk_id_rol!=0)
+                <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
+                <div id="toolbar-options" class="hidden">
+                    <a href="#"><i class="fa fa-users">&nbsp;&nbsp;Agregar a contactos</i></a>
+                    <a href="#"><i class="fa fa-chart-pie">&nbsp;&nbsp;Invitar a proyecto</i></a>
+                </div>
+
+            @else
+                <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
+                <div id="toolbar-options" class="hidden">
+                    <a href="#"><i class="fa fa-users">&nbsp;&nbsp;Aceptar</i></a>
+                    <a href="#"><i class="fa fa-chart-pie">&nbsp;&nbsp;Rechazar</i></a>
+                </div>
+
+            @endif
+
+            <div class="col-1"></div>
+        </div>
+        <br>
+        <h2 class="titulo">Otros</h2>
         <hr>
         <div class="row cuerpo-seccion">
             <ul id="tabs">
-                <li><a href="#" name="#tab1">Proyectos Realizados ({{$count1}})</a></li>
-                <li><a href="#" name="#tab2">Publicaciones ({{$count2}})</a></li>
+                <li><a href="#" name="#tab1">Proyectos Realizados ({{$countA}})</a></li>
+                <li><a href="#" name="#tab2">Publicaciones ({{$countB + $countC}})</a></li>
             </ul>
             <div id="content">
                 <div id="tab1" class="container-fluid">
                     <div class="row">
-                        @if($count1 > 0)
+                        @if($countA > 0){{--  +++++++++++++++++++++++++++++++  Proyectos realizados  +++++++++++++++++++++++++++++++++++++--}}
                             <div class="col-12">
-                                <table class="table">
-                                    <tbody>
-                                    @foreach($proyectos as $proyecto )
+                                @foreach($proyectos as $proyecto )
+
+                                <table class="table table-bordered">
+                                    <thead hidden>
                                         <tr>
-                                            <td class="align-middle">
+                                            <td colspan="12"></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="3" colspan="3" class="align-middle" align="center">
                                                 <i class="fab fa-codepen fa-4x "></i>
                                             </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <b>
-                                                            Titulo :  <i>{{$proyecto->rt_titulo_proyecto}} </i>
-                                                        </b>
-                                                        <br>
-                                                        <b>Area Conocimiento :</b>
-                                                        @foreach($areas as $area)
-                                                            @if($area->pk_id_area == $proyecto->fk_id_area)
-                                                                {{$area->rt_nombre_area}}
-                                                            @endif
-                                                        @endforeach
-                                                        <br>
-                                                        <b>Desde : </b>{{$proyecto->rf_fecha_inicio_proyecto}}
-                                                        <b>Hasta : </b>{{$proyecto->rf_fecha_fin_proyecto}}
-                                                        <br>
-                                                        <b>Descripcion:</b>  {{$proyecto->rd_descripcion_proyecto}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">
-                                                <i class="fas fa-eye fa-2x bttn bttn-ver"
-                                                   name="{{route('getProyectosRealizadosAjax')}}"
-                                                   id="{{$proyecto->pk_id_proyecto}}"
-                                                   onclick="verProyecto(this)"></i>
+                                            <td class="td" colspan="1">Titulo Proyecto</td>
+                                            <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
+                                            <td class="td" colspan="1">Area conocimiento:</td>
+                                            <td colspan="2">
+                                                {{$proyecto->rt_nombre_area}}
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        <tr>
+                                            <td colspan="1" class="td">Fech. Inicio :</td>
+                                            <td colspan="">{{$proyecto->rf_fecha_inicio_proyecto}}</td>
+
+                                            <td colspan="1" class="td">Fech. finalizacion :</td>
+                                            <td colspan="1">{{$proyecto->rf_fecha_fin_proyecto}}</td>
+
+                                            <td colspan="1" class="td">Pais de ejecucion :</td>
+                                            <td colspan="2">
+                                                @foreach($paises as $pais)
+                                                    {{ $pais->pk_id_pais == $proyecto->fk_id_pais ? $pais->rt_nombre_pais:''  }}
+                                                @endforeach
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" class="td"> Descripcion :</td>
+                                            <td colspan="5">{{$proyecto->rd_descripcion_proyecto}}</td>
+                                        </tr>
                                     </tbody>
+
                                 </table>
+
+                                @endforeach
                             </div>
                             <hr>
-                        @else
-                            <div class="col-12">
-                                <h3 style="font-weight: bold;color: rgb(80,80,80)">Este usuario no tiene proyectos realizados . . .</h3>
-                            </div>
-
                         @endif
                     </div>
                 </div>
                 <div id="tab2">
-                    <table class="table">
-                        <tbody>
-                        @if($count2 >0)
-                            @foreach($publicaciones as $publicacion )
-                                <tr>
-                                    <td class="align-middle">
-                                        <i class="fab fa-codepen fa-4x "></i>
-                                    </td>
 
-                                    <td>
-                                        <div class="row">
-                                            <div class="col">
+                        @if($countB >0)
+                            <table class="table table-bordered">
+                                <thead hidden="">
+                                    <tr>
+                                        <td colspan="12"></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="12">Articulos y notas cientificas realizadas</td>
+                                    </tr>
+                                @foreach($publicaciones as $publicacion)
+                                    <tr>
+                                        <td colspan="1" rowspan="3" class="align-middle" align="center" style="width: 150px">
+                                            <i class="fab fa-codepen fa-4x "></i>
+                                        </td>
 
-                                                <b>
-                                                    Titulo :  <i>{{$publicacion->rt_titulo_publicacion}} </i>
-                                                </b>
-                                                <br>
-                                                <b>Area Conocimiento :</b>
+                                        <td class="td" colspan="1">Titulo Publicacion:</td>
+                                        <td colspan="3">
+                                            {{$publicacion->rt_titulo}}
+                                        </td>
+                                        <td class="td" colspan="1">Enlace :</td>
+                                        <td colspan="4">
+                                            <a href="{{$publicacion->rt_enlace_publicacion }}">
+                                                {{$publicacion->rt_enlace_publicacion }}
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td" colspan="1">Tipo Publicacion : </td>
+                                        <td colspan="2">
+                                            {{$publicacion->rt_tipo_publicacion =='ac' ? 'Articulo Cientifico':'Nota Cientifica'}}
+                                        </td>
+                                        <td class="td" colspan="1"> Area conocimiento:</td>
+                                        <td colspan="2">
+                                            @if(!$publicacion->rl_tipo_area)
                                                 @foreach($areas as $area)
-                                                    @if($area->pk_id_area == $publicacion->fk_id_area)
-                                                        {{$area->rt_nombre_area}}
-                                                    @endif
+                                                    {{$area->pk_id_area==$publicacion->rn_id_area ? $area->rt_nombre_area:''}}
                                                 @endforeach
-                                                <br>
-                                                <b>Tipo de publicacion : </b>{{$publicacion->rt_tipo_publicacion}}<br>
-                                                <b>Fecha publicacion : </b>{{$publicacion->rf_fecha_publicacion}}<br>
-                                                <b>Descripcion:</b>  {{$publicacion->rd_descripcion_publicacion}}<br>
-                                                <b>Url:</b><a href="{{$publicacion->rt_enlace_publicacion}}">{{$publicacion->rt_enlace_publicacion}}</a>
+                                            @else
+                                                @foreach($otrasAreas as $area)
+                                                    {{$area->pk_id_ac==$publicacion->rn_id_area ? $area->rt_nombre_ac:''}}
+                                                @endforeach
+                                            @endif
+                                        </td>
 
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <i class="fas fa-eye fa-2x bttn bttn-ver"
-                                           name="{{route('getPublicacionAjax')}}"
-                                           id="{{$publicacion->pk_id_publicacion}}"
-                                           onclick="verPublicacion(this)"></i>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        <td class="td" colspan="1"> Fecha Publicacion : </td>
+                                        <td colspan="1">
+                                            {{$publicacion->rf_fecha_publicacion}}
+                                        </td>
+                                        <td colspan="1" class="align-middle" align="center">
+                                            @if(Session::has('pubb'))
+                                                @if(Session::get('pubb')->pk_id_publicacion == $publicacion->pk_id_publicacion)
+                                                    <i class="fas fa-circle fa-2x" style="color: #00cc00"></i>
+                                                    {{Session::forget('pubb')}}
+                                                @endif
+                                            @endif
+                                        </td>
 
-                        @else
-                            <div class="col-12">
-                                <h3 style="font-weight: bold;color: rgb(80,80,80)">
-                                    Este usuario no tiene publicaciones . . .
-                                </h3>
-                            </div>
+                                    </tr>
+                                    <tr>
+                                        <td class="td" colspan="1">
+                                            Descripcion:
+                                        </td>
+                                        <td colspan="8">
+                                            {{$publicacion->rd_descripcion_publicacion}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                                </tbody>
+                            </table>
                         @endif
-                        </tbody>
-                    </table>
+
+                        @if($countC >0)
+                            <table class="table table-bordered">
+                                <thead hidden="">
+                                <tr>
+                                    <td colspan="12"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="12">Articulos y notas cientificas realizadas</td>
+                                </tr>
+                                @foreach($libros as $libro)
+                                    <tr>
+                                        <td colspan="1" rowspan="3" class="align-middle" align="center" style="width: 150px">
+                                            <i class="fab fa-codepen fa-4x "></i>
+                                        </td>
+
+                                        <td class="td" colspan="1">Titulo libro:</td>
+                                        <td colspan="4">
+                                            {{$libro->rt_titulo}}
+                                        </td>
+                                        <td class="td" colspan="1">Fecha publicacion :</td>
+                                        <td colspan="1">
+                                            {{$publicacion->rf_fecha_publicacion}}
+                                        </td>
+                                        <td colspan="1" class="td" style="width: 75px">ISSN :</td>
+                                        <td colspan="1" >{{$libro->rt_issn}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td" colspan="1">Area conocimiento:</td>
+                                        <td colspan="3">
+                                            @if(!$libro->rl_tipo_area)
+                                                @foreach($areas as $area)
+                                                    {{$area->pk_id_area==$libro->rn_id_area ? $area->rt_nombre_area:''}}
+                                                @endforeach
+                                            @else
+                                                @foreach($otrasAreas as $area)
+                                                    {{$area->pk_id_ac==$libro->rn_id_area ? $area->rt_nombre_ac:''}}
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td colspan="1" class="td" >Capitulo : </td>
+                                        <td colspan="1">{{$libro->rn_capitulo}}</td>
+
+                                        <td colspan="1" class="td" style="width: 125px">Pagina:</td>
+                                        <td colspan="1">{{$libro->rn_pagina}}</td>
+
+                                        <td colspan="1" class="align-middle" align="center">
+                                            @if(Session::has('libb'))
+                                                @if(Session::get('libb')->pk_id_libro==$libro->pk_id_libro)
+                                                    <i class="fas fa-circle fa-2x" style="color: #00cc00"></i>
+                                                    {{Session::forget('libb')}}
+                                                @endif
+
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td" colspan="1">
+                                            Descripcion:
+                                        </td>
+                                        <td colspan="8">
+                                            {{$libro->rd_descripcion}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        @endif
+
+
+
                 </div>
             </div>
         </div>
@@ -386,178 +502,16 @@
     <br>
     <br>
 
-    <div class="row" hidden>
-        <div id="frm-proj" title="Proyecto Realizado">
-                <div class="row">
-
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="nombreProyecto">Titulo del Proyecto :</label>
-                            <input type="text"
-                                   form="frm-edt"
-                                   id="nombre"
-                                   class="form-control"
-                                   name="nombre-edt"
-                                   readonly
-                            >
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <label for="fechaIncicio">Fecha Incicio :</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <input type="text"
-                                       name="fechaInicio"
-                                       class="form-control edt"
-                                       id="fechaInicio"
-                                       readonly
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label for="fechaFin-edt">Fecha Finalizacion:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <input type="tex"
-                                       class="form-control"
-                                       id="fechafin"
-                                       name="fechafin-edt"
-                                       readonly
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <br>
-                        <label for="descripcion">Area Conocimiento :</label>
-                        <select name="area"
-                                id="area-e"
-                                class="form-control"
-                                disabled
-                        >
-                        </select>
-                    </div>
-
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <label for="descripcion">Descripcion :</label>
-                        <br>
-                        <textarea class="edt"
-                                  name="txtArea-edt"
-                                  id="textarea"
-                                  rows="4"
-                                  cols="58"
-                                  readonly
-                        ></textarea>
-                    </div>
-                </div>
-        </div>
-    </div>
-    <div class="row" hidden>
-        <div id="editar-frm" title="Detalle Publicacion">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="nombreProyecto">Titulo Publicacion :</label>
-                            <input type="text"
-                                   id="titulo-edt"
-                                   class="form-control mb-3"
-                                   name="titulo-edt"
-                                    readonly
-                            >
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="tipo-edt">Tipo publicacion :</label>
-                        <select name="tipo-edt" id="tipo-edt" class="form-control mb-3" disabled>
-                            <option value="Articulo Cientifico">Articulo Cientifico</option>
-                            <option value="Nota Cientifica">Nota cientifica</option>
-                            <option value="Libro">Libro</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="descripcion">Area Conocimiento :</label>
-                        <select name="area-edt" id="area-edt" class="form-control mb-3" disabled>
-                            @foreach($areas as $area)
-                                <option value="{{$area->pk_id_area}}">{{$area->rt_nombre_area}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="fecha-edt">Fecha publicacion :</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="fas fa-calendar-alt"></i>
-                            </span>
-                            </div>
-                            <input type="text"
-                                   name="fecha-edt"
-                                   id="fecha-edt"
-                                   class="form-control"
-                                   readonly
-                            >
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="descripcion">Descripcion :</label>
-                        <textarea class="form-control mb-3 "
-                                  name="descripcion-edt"
-                                  id="descripcion-edt"
-                                  rows="4"
-                                  cols="59"
-                                  readonly
-                        ></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="enlace-edt">Link de publicacion</label>
-                        <div class="input-group mb-3 ">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-link"></i>
-                                </div>
-                            </div>
-                            <input type="text"
-                                   name="enlace-edt"
-                                   id="enlace-edt"
-                                   class="form-control edt"
-                                   readonly
-                            >
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-
 @endsection
 
 @section('js')
-    <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>
+    <script  src="{{asset('js/tools/jquery.toolbar.min.js')}}"></script>
+    @if($user->fk_id_rol!=0)
+        <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>
+    @else
+        <script  src="{{asset('js/Riues/Investigador.js')}}"></script>
+    @endif
+
 @endsection
 
 

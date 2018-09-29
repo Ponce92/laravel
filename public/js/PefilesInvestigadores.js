@@ -1,8 +1,20 @@
+$(".b").toolbar({
+    content: '#toolbar-options',
+    position: 'left',
+    style: 'danger',
+    event: 'click',
+    adjustment:110,
+    hideOnClick:true
+});
 
 /*  Area de funciones Ajax de las interfaz de gestion de registros de investigadores....
  *  Autor: Azael Ponce
  *  Fecha Creacion: 09-09-2018          Fecha ultima edicion: 09-09-2018
  */
+
+
+
+
 function enviarSelect(e){
     $('#busqueda').prop('disabled',true);
     e.form.submit();
@@ -18,10 +30,11 @@ $(function () {
         data: {opcion:opcion},
         success: function( data )
         {
+            console.log(data);
             $.each(data,function (index,value) {
                 array.push(value.rt_nombre_persona);
             });
-            console.log(array.length);
+
             if (array.length >1){
                 $('#busqueda').autocomplete({
                     source: array
@@ -51,11 +64,5 @@ function formulario() {
 
 }
 
-
-function irPerfil(e) {
-
-    $('input#verI').val(e);
-    $('form#irPerfil').submit();
-}
 
 

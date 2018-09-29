@@ -17,7 +17,7 @@
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
-  --red: #f86c6b;
+  --red: #aa0000;
   --orange: #f8cb00;
   --yellow: #ffc107;
   --green: #4dbd74;
@@ -4231,11 +4231,11 @@ tbody.collapse.show {
     color: #fff; }
 
 .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .navbar .dropdown-toggle, .navbar .navbar-dark .navbar-nav .dropdown-toggle {
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(119, 0,0, 0.5); }
   .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .navbar .dropdown-toggle:hover, .navbar .navbar-dark .navbar-nav .dropdown-toggle:hover, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .navbar .dropdown-toggle:focus, .navbar .navbar-dark .navbar-nav .dropdown-toggle:focus {
-    color: rgba(255, 255, 255, 0.75); }
+    color: rgba(119, 0, 0, 0.75); }
   .navbar-dark .navbar-nav .nav-link.disabled, .navbar-dark .navbar-nav .navbar .disabled.dropdown-toggle, .navbar .navbar-dark .navbar-nav .disabled.dropdown-toggle {
-    color: rgba(255, 255, 255, 0.25); }
+    color: rgba(119, 0, 0, 0.25); }
 
 .navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .navbar .show > .dropdown-toggle, .navbar .navbar-dark .navbar-nav .show > .dropdown-toggle,
 .navbar-dark .navbar-nav .active > .nav-link,

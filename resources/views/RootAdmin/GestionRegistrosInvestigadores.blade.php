@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('css/comun.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/Tools/jquery.toolbar.css')}}">
 @endsection
 
 @section('menuIzq')
@@ -12,6 +13,7 @@
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item">Invetigadores</li>
     <li class="breadcrumb-item active">Registros</li>
+
 @endsection
 
 @section('default')
@@ -22,21 +24,30 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-9">
-                        <h2 class="title" style="font-weight: bold">Solicitudes de registro</h2>
+
+                        <h2 class="title titulo">
+                            {{$opt == 0 ? 'Usuarios Inactivos':''}}
+                            {{$opt == 1 ? 'Usuarios Activos':''}}
+                            {{$opt == 2 ? 'Solicitudes de Registro':''}}
+                            {{$opt == 3 ? 'Solicitudes Rechazadas':''}}
+                            {{$opt == 4 ? 'Solicitudes de reactivacion':''}}
+                        </h2>
                     </div>
                     <div class="col-3">
                         <form name="frm-tip" id="frm-tip" method="get" >
                             <div class="input-group">
                                 <select class="custom-select custom-select-lg"
                                         id="opcion"
+                                        style="color: #aa0000"
                                         name="opcion"
                                         onchange="this.form.submit()"
                                         style="font-weight: bold"
                                 >
-                                    <option value="solicitudes" @if($opt== 'solicitudes') selected @endif>Solicitudes de registro</option>
-                                    <option value="activacion" @if($opt== 'activacion') selected @endif>Solicitudes de activacion</option>
-                                    <option value="inactivos"@if($opt== 'inactivos') selected @endif>Usuarios Inactivos</option>
-                                    <option value="activos" @if($opt== 'activos') selected @endif>Usuarios Activos</option>
+                                    <option value="0" {{$opt == 0 ? 'selected':''}}>Usuarios Inactivos</option>
+                                    <option value="1"{{$opt == 1 ? 'selected':''}} >Usuarios Activos</option>
+                                    <option value="2"{{$opt == 2 ? 'selected':''}}>Solicitudes de registro</option>
+                                    <option value="3" {{$opt == 3 ? 'selected':''}}>Solicitudes Rechazadas</option>
+                                    <option value="4" {{$opt == 4 ? 'selected':''}}>Solicitudes de Reactivacion</option>
                                 </select>
                             </div>
                         </form>
@@ -58,8 +69,9 @@
                            url="{{route('getDataAjax')}}"
                     >
                     <div class="input-group-append">
-                        <div class="input-group-text bttn-ver" onclick="formulario()">
-                            <i class="fas fa-search"></i>
+                        <div class="input-group-text bttn-ver" onclick="formulario()" style="background-color: #aa0000">
+
+                            <i class="fas fa-search" style="color: white;"></i>
                         </div>
                     </div>
 
@@ -67,118 +79,96 @@
                 </div>
             </div>
         </div>
+        {{--Busqueda fin--}}
+
         <div class="row">
             <div class="col-12">
-                @if(isset($bsq))
-                    @if($count1 != 0)
-                        <div class="row">
-                            <table class="table">
-                                <tbody>
-                                @foreach($nuevos as $obj)
-                                    <tr>
-                                        <td class="align-middle" width="80px">
-                                            <img class="avatar" src="{{asset('avatar/'.$obj->rt_foto_usuario)}}" alt="Error al cargar foto">
-                                        </td>
-                                        <td >
-                                            <div class="row">
-                                                <div class="col">
-                                                    <b>{{$obj->rt_nombre_persona}}&nbsp;{{$obj->rt_apellido_persona}}</b><br>
-                                                    <b></b><br>
-                                                    <b>Correo :</b>{{$obj->email}}<br>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td></td><td></td>
-                                        <td class="align-middle">
-                                            <i class="fas fa-eye fa-2x bttn bttn-ver"
-                                               id="{{$obj->pk_id_usuario}}"
-                                               onclick="irPerfil(this.id)"></i>
-                                        </td>
-                                        <td class="align-middle">
-                                            @if($obj->rt_estado=='Activo')
-                                                <i class="fas fa-toggle-on is-activo fa-2x bttn bttn-ver "
+                <table class="table table-bordered ">
+                    <thead hidden>
+                        <tr>
+                            <td class="3"></td>
+                            <td colspan="2"></td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(isset($invs))
+                            @foreach($invs as $obj)
+                                <tr scope="row">
+                                    <td  colspan="1" rowspan="3" align="center" class="align-middle" style="width: 200px!important;">
+                                        <img src="{{asset('avatar/')}}/{{$obj['foto']}}"
+                                             alt="{{$obj['foto']}}"
+                                             class=" img img-thumbnail"
+                                             width="150px"
+                                        />
+                                    </td>
+                                    <td colspan="2">
+                                        <strong>Nombre:</strong>
+                                        {{$obj['nombre']}}&nbsp;
+                                        {{$obj['apellido']}}
+                                    </td>
+                                    <td colspan="1">
+                                        <strong>Sexo :</strong>{{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
+                                    </td>
+                                    <td colspan="1">
+                                        <strong>Edad:</strong>&nbsp;{{$obj['edad']}}  Anios
+                                    </td>
 
-                                                ></i>
-                                            @else
-                                                <i class="fas fa-toggle-off fa-2x bttn bttn-ver "
-                                                ></i>
-                                            @endif
+                                    <td colspan="1" rowspan="3" align="center" class="align-middle">
+                                        <a href="{{route('getPerfilesInvestigadores')}}/detalle/{{$obj['id']}}">
+                                            <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
+                                        </a>
+                                    </td>
+                                    <td colspan="1" rowspan="3" class="align-middle" align="center">
+{{--========================================================================================--}}
+                                        <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        <div id="toolbar-options" class="hidden">
+                                            <a href="#"><i class="fa fa-users">  Agregar a contactos</i></a>
+                                            <a href="#"><i class="fa fa-chart-pie">  Invitar a proyecto</i></a>
+                                        </div>
 
-                    @else
-                        <h3 style="color: #555555; font-weight: bold">No hay registros que concuerden con el nombre especificado</h3>
-                        <br>
-                    @endif
-                @else
-                    @if($count1 != 0)
-                        <div class="row">
-                            <table class="table">
-                                <tbody>
-                                @foreach($nuevos as $obj)
-                                    <tr>
-                                        <td class="align-middle" width="80px">
-                                            <img class="avatar" src="{{asset('avatar/'.$obj->rt_foto_usuario)}}" alt="Error al cargar foto">
-                                        </td>
-                                        <td >
-                                            <div class="row">
-                                                <div class="col">
-                                                    <b>{{$obj->rt_nombre_persona}}&nbsp;{{$obj->rt_apellido_persona}}</b><br>
-                                                    <b></b><br>
-                                                    <b>Correo :</b>{{$obj->email}}<br>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td></td><td></td>
-                                        <td class="align-middle">
-                                            <i class="fas fa-eye fa-2x bttn bttn-ver"
-                                               id="{{$obj->pk_id_usuario}}"
-                                               onclick="irPerfil(this.id)"
-                                           ></i>
-                                        </td>
-                                        <td class="align-middle">
-                                            @if($obj->rt_estado=='Activo')
-                                                <i id="{{$obj->pk_id_usuario}}"
 
-                                                   class="fas fa-toggle-on is-activo fa-2x bttn bttn-ver "
-                                                   onclick="irPerfil(this.id)"
-                                                ></i>
-                                            @else
-                                                <i  id="{{$obj->pk_id_usuario}}"
-                                                    class="fas fa-toggle-off fa-2x bttn bttn-ver "
-                                                    onclick="irPerfil(this.id)" ></i>
-                                            @endif
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </td>
+                                </tr>
+                                <tr scope="row">
+                                    <td colspan="4">
+                                        <strong>Correo Electronico :</strong>&nbsp;{{$obj['email']}}
+                                    </td>
 
-                    @else
-                        <h3 style="color: #555555; font-weight: bold">No Hay solicitudes nuevas.</h3>
-                        <br>
-                    @endif
-                @endif
+                                </tr>
+                                <tr scope="row">
+
+                                    <td colspan="1">
+                                        <strong>Publicaciones:</strong>&nbsp;{{$obj['npu']}}
+                                    </td>
+                                    <td colspan="1">
+                                        <strong>Proyectos realizados:</strong>&nbsp;{{$obj['npr']}}
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <td colspan="12" align="center" class="align-middle">
+                                <span class="titulo">
+                                    No se econtraron registros . . .
+                                </span>
+                            </td>
+
+                        @endif
+                    </tbody>
+                </table>
 
             </div>
         </div>
     </div>
     <br>
-    <div class="row" hidden>
-        <form action="{{route('verPerfilInvestigador')}}" id="irPerfil">
-            <input type="text" id="verI" name="verI" >
-        </form>
-    </div>
+
 @endsection
 
 @section('js')
+    <script  src="{{asset('js/tools/jquery.toolbar.min.js')}}"></script>
     <script  src="{{asset('js/GestionInvestigadores.js')}}"></script>
 @endsection
 
