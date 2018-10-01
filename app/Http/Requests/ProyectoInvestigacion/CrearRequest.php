@@ -33,14 +33,12 @@ class CrearRequest extends FormRequest
             'pais'=>'required',
             'estadoP'=>'required',
             'desc'=>'required',
-            'obj'=>'required|min:6|max:100|string',
-            'descObj'=>'string|max:200|min:8',
             'monto'=>'numeric|required',
             'fi'=>'required',
             'ff'=>'required',
-            'red'=>'string|min:6|max:8',
+            'red'=>'string|min:6|max:100',
             'tipoRed'=>'required',
-            'paisRed'=>'required'
+            'Obj'=>'required'
         ];
     }
 

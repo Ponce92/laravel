@@ -7,7 +7,9 @@ use App\Models\AreasConocimiento;
 use App\Models\DetalleProyectoInvestigacion;
 use App\Models\EstadoProyectoInvestigacion;
 use App\Models\Icono;
+use App\Models\Color;
 use App\Models\Notificacion;
+use App\Models\ObjetivoSocioeconomico;
 use App\Models\Pais;
 use App\Models\ProyectosInvestigacion;
 use App\Models\RedInvestigadores;
@@ -36,15 +38,22 @@ class ProyectosInvestigacionController extends Controller
             {
 
                 $datos[$i]=ProyectosInvestigacion::find($prj->fk_id_proyecto_investigacion);
+                $detalle=DetalleProyectoInvestigacion::where('fk_codigo_proyecto','=',$prj->fk_id_proyecto_investigacion)->first();
 
-                $bb=$datos[$i]->icono()->first();
-                $datos[$i]['icono']=$bb->rt_icono;
+
+                $obj1=Icono::find($detalle->fk_codigo_icono);
+                $obj2=Color::find($detalle->fk_codigo_color);
+
+                $datos[$i]['icono']=$obj1->rt_icono;
+
+                $datos[$i]['color']=$obj2->rt_valor;
                 $i=$i+1;
             }
 
         }
 
         return view('Usuarios.ProyectosInvestigacion.gestionProyectosInvestigacion')
+
             ->with('prjs',$datos)
             ->with('user',$user);
 
@@ -84,6 +93,8 @@ class ProyectosInvestigacionController extends Controller
         return view('Usuarios.ProyectosInvestigacion.RegistrarProyectoInvestigacion')
             ->with('user',$user)
             ->with('paises',Pais::all())
+            ->with('colores',Color::all())
+            ->with('objetivosS',ObjetivoSocioeconomico::all())
             ->with('tiposProyectos',TiposProyectosInvestigacion::all())
             ->with('areas',AreasConocimiento::all())
             ->with('iconos',Icono::all())
@@ -104,24 +115,25 @@ class ProyectosInvestigacionController extends Controller
             return back()->withErrors(['nombre'=>'Ya participas en un proyecto de inevstigacion con ese nombre']);
         }
 
-        /*
-         *  Se inicia la trasaccion para evitar que un registro quede insertado a medias................................
-         */
+
+
         DB::beginTransaction();
         try{
             /*
-             *  Datos generales del proyecto de investigacion ..........................................................
-             */
+            |-------------------------------------------------------------------------------------
+            |          Realizamos la insersion del proyecto de investigacion. . .
+            |-------------------------------------------------------------------------------------
+            */
 
             $prj=new ProyectosInvestigacion;
 
-            //Verificamos si viene un codigo, en caso de no existir se genera string random de 12 letras;
-            if($request->has('codigo')){
+            if($request->has('codigo')){                        //Se verifica el codigo del proyecto...
 
                 $prj->pk_id_proyecto_investigacion=$request->get('codigo');
             }else{
-                $prj->pk_id_proyecto_investigacion=str_random(12);
+                $prj->pk_id_proyecto_investigacion=str_random(10);
             }
+
             $prj->rt_titulo_proyecto=$request->get('nombre');
             $prj->rt_acronimo_proyecto=$request->get('acronimo');
             $prj->rd_descripcion_proyecto=$request->get('desc');
@@ -130,67 +142,31 @@ class ProyectosInvestigacionController extends Controller
             $prj->fk_id_titular=$user->pk_id_usuario;
             $prj->fk_id_estado=$request->get('estadoP');
             $prj->fk_id_tipo_proyecto=$request->get('tipoP');
-            $prj->fk_codigo_objetivo_socioeconomico=0;
+            $prj->fk_codigo_objetivo_socioeconomico=$request->get('Obj');
 
-            if(!$request->has('idInconoTxt')){
-                $prj->fk_codigo_icono=0;
-            }else{
-                $prj->fk_codigo_icono=$request->get('idInconoTxt');
-            }
+            if ( $request->has('area-c')){
 
-
-            //Insersion del area del conocimiento
-            if ( $request->has('area-c')){//Verificamos si biene el campo de especificacion del area del conocimiento....................
-                $prj->rl_tipo_area=true;
-                //Si existe el campo los buscamos antes de insertarlo.
-                $bandera=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->count();
+                $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
 
                 if ($bandera != 0){
-                    $ac=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->first();
-                    $prj->rn_codigo_area=$ac->pk_id_ac;
-
+                    $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                    $prj->fk_id_area=$ac->pk_id_area;
                 }else{
-                    $oa=new OtrasAreasConocimiento;
-                    $oa->rt_nombre_ac=$request->get('area-c');
+                    $oa=new AreasConocimiento;
+                    $oa->fk_codigo_icono=1;
+                    $oa->rt_nombre_area=$request->get('area-c');
                     $oa->save();
 
-                    $prj->rn_codigo_area=$oa->pk_id_ac;
+                    $prj->fk_id_area=$oa->pk_id_area;
                 }
 
-            }else{//Si no esta presente entonces insertamos el id del area de conocimiento..............................
-                $prj->rl_tipo_area=false;
-                $prj->rn_codigo_area=$request->get('area');
+            }else{
+                $prj->fk_id_area=$request->get('area');
             }
-
             $prj->save();
-            /*
-             *          Insertamos la red de investigacodres
-             */
-
-            $ri=new RedInvestigadores;
-
-            $ri->pk_id_red=str_random(8);
-            $ri->rt_color=$request->get('colorIcon');
-            $ri->rt_nombre_red=$request->get('red');
-            $ri->fk_id_proyecto_investigacion=$prj->pk_id_proyecto_investigacion;
-            $ri->fk_codigo_pais=$request->get('paisRed');
-
-            if($request->has('idInconoTxt')){
-                $ri->fk_codigo_icono=0;
-            }else{
-                $ri->fk_codigo_icono=$request->get('idInconoTxt');
-            }
-
-            if ($request->get('tipoRed') == 0){
-                $ri->rl_is_diciplinaria=false;
-            }else{
-                $ri->rl_is_diciplinaria=true;
-            }
-
-            $ri->save();
-
-            /*
-             *      Insertamos el detalle del proyecto de investigacion....................
+            /*----------------------------------------------------------------------------------------------------------
+             * Insertamos el detalle del proyecto de investigacion recien registrado;
+             * ---------------------------------------------------------------------------------------------------------
              */
 
             $dt=new DetalleProyectoInvestigacion;
@@ -200,15 +176,25 @@ class ProyectosInvestigacionController extends Controller
             $dt->rf_fecha_inicio=$request->get('ff');
             $dt->rf_fecha_fin=$request->get('ff');
             $dt->rn_monto=$request->get('monto');
-            $dt->rt_objetivo=$request->get('obj');
-            $dt->rd_descripcion_objetivo=$request->get('descObj');
+
+
+            if(!$request->has('idInconoTxt')){
+                $dt->fk_codigo_icono=2;
+            }else{
+                $dt->fk_codigo_icono=$request->get('idInconoTxt');
+            }
+
+            if(!$request->has('colorIcon')){
+                $dt->fk_codigo_color=1;
+            }else{
+                $dt->fk_codigo_color=$request->get('colorIcon');
+            }
 
             $dt->save();
-
-            /*
-             *  Insersion en la tabla usuarios-proyectos
+            /*----------------------------------------------------------------------------------------------------------
+             * Insertamos el proyecto en la tabla proyectos<==>Usuarios
+             *----------------------------------------------------------------------------------------------------------
              */
-
             DB::table('tbl_usuarios_proyectos')->insert([
                 [
                     'fk_id_participante'=>$user->pk_id_usuario,
@@ -217,19 +203,60 @@ class ProyectosInvestigacionController extends Controller
 
             ]);
 
-            /*
-             *  Insersion de la notificacion...........
+
+            /*----------------------------------------------------------------------------------------------------------
+             * Insertamos la red de invstigadores para el proyecto.
+             * ---------------------------------------------------------------------------------------------------------
+             */
+
+
+            $ri=new RedInvestigadores;
+
+            $ri->pk_id_red=str_random(10);
+
+            $ri->rt_nombre_red=$request->get('red');
+            $ri->fk_id_proyecto_investigacion=$prj->pk_id_proyecto_investigacion;
+
+
+            if ($request->get('tipoRed') == 1){
+                $ri->rl_is_diciplinaria=false;
+            }else{
+                $ri->rl_is_diciplinaria=true;
+            }
+
+            if(!$request->has('idInconoTxt')){
+                $ri->fk_codigo_icono=2;
+            }else{
+                $ri->fk_codigo_icono=$request->get('idInconoTxt');
+            }
+
+            if(!$request->has('colorIcon')){
+                $ri->fk_id_color=1;
+            }else{
+                $ri->fk_id_color=$request->get('colorIcon');
+            }
+
+            $ri->save();
+
+
+
+
+            /*----------------------------------------------------------------------------------------------------------
+             *  Creamos una notificacion para el usuario administrador.
+             *----------------------------------------------------------------------------------------------------------
              */
 
             $ntf=new Notificacion;
+
             $ntf->pk_id_notificacion=str_random(12);
-            $ntf->fk_id_usuario=$user->pk_id_usuario;
-            $ntf->fk_id_tipo_notificacion=6;
+            $ntf->fk_id_usuario='@riues';
+            $ntf->fk_id_tipo_notificacion=101;
             $ntf->rl_vista=false;
             $ntf->rf_fecha_creacion=Carbon::now();
             $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
 
             $ntf->save();
+
 
             DB::commit();
             $exito=true;

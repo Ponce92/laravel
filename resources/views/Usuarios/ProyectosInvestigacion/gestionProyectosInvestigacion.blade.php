@@ -42,7 +42,7 @@
                                 <div class="card-header">
                                     <div class="row justify-content-center">
 
-                                        <i class="{{$prj['icono']}} fa-3x {{$prj->rt_color}}"></i>
+                                        <i class="{{$prj['icono']}} fa-3x {{$prj['color']}}"></i>
                                     </div>
                                 </div>
                                 <div class="card-body">

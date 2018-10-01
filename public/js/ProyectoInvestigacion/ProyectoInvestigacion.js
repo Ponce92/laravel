@@ -46,18 +46,28 @@ $(function () {
     });
 });
 
+/*
+ Funcion que reconstruye el valor que se ha selecionado en el selectable de ui....
+
+ Funcionamiento: Se obtiene el valor del atributo nombre  que es el icono que se ha seleccionado en el selectable
+                 luego se resetea el div y se agrega el valor que tenia anteriormente
+                 y se agrega la clase que corresponde al color seleccionado....
+
+ */
+
 $('#colorIcon').on('change',function () {
     var divv=$('#iconDestini');
     var ant=divv.attr('name');
 
+    var color = $('option:selected', $('#colorIcon')).attr("name");
 
-    var id=$('#colorIcon').val();
-    var c=$('#selectable').selectable('option');
-    console.log(c);
+
+    // var c=$('#selectable').selectable('option');
+
     divv.removeClass();
 
     divv.addClass(ant);
     $('#iconDestini').addClass('fa-5x');
-    divv.addClass(id);
+    divv.addClass(color);
 
 });

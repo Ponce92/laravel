@@ -10,8 +10,8 @@
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item active">Proyectos de investigacion</li>
-    <li class="breadcrumb-item"><a href="#">Mis proyectos</a></li>
-    <li class="breadcrumb-item">3</li>
+    <li class="breadcrumb-item"><a href="{{route('misproyectos.investigacion')}}">Mis proyectos</a></li>
+    <li class="breadcrumb-item">Administrar</li>
 @endsection
 
 @section('default')

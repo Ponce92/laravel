@@ -16,7 +16,7 @@
 
 @section('default')
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-8 col-md-8 col-sm-10">
                 <div class="card">
                     <div class="card-header">
                         <div class="row justify-content-center">
@@ -126,7 +126,7 @@
                                                 @foreach($tiposProyectos as $tipo)
                                                     <option value="{{$tipo->pk_id_tipo_proyecto}}"
                                                             {{old('tipoP') == $tipo->pk_id_tipo_proyecto ? 'selected':''}}>
-                                                        {{$tipo->rt_tipo_proyecto}}
+                                                        {{$tipo->rd_descripcion}}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -203,6 +203,28 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
+                                        <div class="col-6">
+                                            <label for="Obj">Objetivo socioeconomico :</label>
+                                            <select name="Obj"
+                                                    id="Obj"
+                                                    class="form-control mb-3 {{$errors->has('Obj')   ?  'is-invalid':''}}"
+                                            >
+                                                <option value="" >No especificado</option>
+                                                @foreach($objetivosS as $obj)
+                                                    <option value="{{$obj->pk_codigo_objetivo}}"
+                                                            {{old('Obj') == $obj->pk_codigo_objetivo ? 'selected':''}}>
+                                                        {{$obj->rd_descripcion_objetivo}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Debes especificar el objetivo socioeconomico del proyecto.
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
                                         <label for="desc">Descripcion del proyecto <h5 class="srt">*</h5></label>
                                         <textarea name="desc" id="desc" cols="30" rows="4" class="form-control {{$errors->has('desc') ? 'is-invalid':''}}"></textarea>
                                         <div class="invalid-feedback">Este campo es obligatorio</div>
@@ -211,37 +233,7 @@
 
 
                                 <div id="tab-2">
-                                    <h5 class="sub-titulo">Objetivo</h5>
-                                    <hr style="margin-top: 3px">
-                                    <div class="form-row">
-                                        <div class="col-10">
-                                            <label for="obj">Objetivo del proyecto <h5 class="srt">*</h5></label>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-hands"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="text"
-                                                       name="obj"
-                                                       id="obj"
-                                                       value="{{$errors->any() ? old('obj'):''}}"
-                                                       class="form-control {{$errors->has('obj') ? 'is-invalid':''}}"
-                                                >
-                                                <div class="invalid-feedback">{{$errors->first('obj')}}</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <label for="descObj">Descripcion del objetivo <h5 class="srt">*</h5></label>
-                                        <textarea name="descObj" id="descObj" cols="30" rows="4" class="form-control
-                                            {{$errors->has('descObj') ? 'is-invalid':''}}"></textarea>
-                                        <div class="invalid-feedback">{{$errors->first('descObj')}}</div>
-                                    </div>
-
                                     <br>
-
                                     <h5 class="sub-titulo">Financiamiento</h5>
                                     <hr style="margin-top: 0px;">
                                     <div class="form-row">
@@ -340,27 +332,10 @@
                                                     class="form-control {{$errors->has('tipoRed') ? 'is-invalid':''}}"
                                             >
                                                 <option value="">No especificado</option>
-                                                 <option value="0">Diciplinaria</option>
-                                                <option value="1">Multidiciplinaria</option>
+                                                 <option value="1">Diciplinaria</option>
+                                                <option value="2">Multidiciplinaria</option>
                                             </select>
                                             <div class="invalid-feedback">Especifique el tipo de red de investigadores.</div>
-                                        </div>
-                                        <div class="col-1"></div>
-                                        <div class="col-5">
-                                            <label for="paisRed">Pais ubicacion <h5 class="srt">*</h5></label>
-                                            <select name="paisRed"
-                                                    id="paisRed"
-                                                    class="form-control {{$errors->has('paisRed') ? 'is-invalid':''}}"
-
-                                            >
-                                                <option value="">Seleccione pais</option>
-                                            @foreach($paises as $pais)
-                                                <option value="{{$pais->pk_id_pais}}"}}>
-                                                    {{$pais->rt_nombre_pais}}
-                                                </option>
-                                            @endforeach
-                                            </select>
-                                            <div class="invalid-feedback">Especifique el pais de la red.</div>
                                         </div>
                                     </div>
                                     <br>
@@ -410,14 +385,15 @@
                                                     class="form-control"
 
                                             >
-                                                <option value="-1">Color no especificado</option>
-                                                @foreach($iconos as $icon)
-                                                    <option value="{{$icon->rt_color_icono}}" name="">
-                                                        {{$icon->rt_nombre_icono}}
+                                                <option value="" name="gris-rc">Color no especificado</option>
+                                                @foreach($colores as $color)
+                                                    <option value="{{$color->pk_id_color}}" name="{{$color->rt_valor}}">
+                                                        {{$color->rt_nombre}}
                                                     </option>
                                                 @endforeach
 
                                             </select>
+
                                         </div>
                                         <div class="col-6">
                                             <div class="row justify-content-center">

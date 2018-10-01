@@ -164,7 +164,7 @@
                         </td>
                         <td class="td" colspan="1">Fecha publicacion :</td>
                         <td colspan="1">
-                            {{$publicacion->rf_fecha_publicacion}}
+                            {{$libro->rf_fecha_publicacion}}
                         </td>
                         <td colspan="1" class="td" style="width: 75px">ISSN :</td>
                         <td colspan="1" >{{$libro->rt_issn}}</td>

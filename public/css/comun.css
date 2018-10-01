@@ -371,20 +371,36 @@ safddhggkjfds
                 COlores de riues
  */
 
-.red-rc{
+.rojo-rc{
     color: #aa0000;
 }
-.green-rc{
+.verde-rc{
     color: #00aa00;
 }
-
-.verde-rc{
-    color: greenyellow;
+.violeta-rc{
+    color: #EE82EE;
 }
 
-.blue-rc{
+.azul-rc{
     color: #0000aa;
 }
+.morado-rc{
+    color:rgb(102,51,153);
+}
+.naranja-rc{
+    color: orangered;
+}
+.amarillo-rc{
+        color: #FFD700;
+}
+
+.magenta-rc{
+    color: #ff00ff ;
+}
+
+
+
+
 
 .help-rc{
     color: rgb(100,100,100);
