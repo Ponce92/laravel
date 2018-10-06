@@ -14,6 +14,11 @@
 
 @section('default')
     <div class="container-fluid" id="target">
+        @if($user->fk_id_estado!= 1 )
+            <div class="alert alert-warning">
+                No eres un usuario con permisos de ver el contenido completo de esta pgania, debes esperar al administrador..!
+            </div>
+        @endif
         @include('AdminFragment.FrDefault')
     </div>
 
