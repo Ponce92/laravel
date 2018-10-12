@@ -28,7 +28,7 @@ class InvestigadorController extends Controller
     {
         $paises=Pais::all();
         $grados=GradosAcademicos::all();
-        $areas=AreasConocimiento::all();
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
         $perfil = DB::table('tbl_usuarios')
             ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
             ->select('tbl_personas.rt_nombre_persona',
@@ -59,6 +59,11 @@ class InvestigadorController extends Controller
                 $ff=Carbon::createFromFormat('Y-m-d',$proyecto->rf_fecha_fin_proyecto);
                 $ff=$ff->format('d-m-Y');
                 $proyecto->rf_fecha_fin_proyecto=$ff;
+
+                $area=$proyecto->area();
+                $proyecto['area']=$area->rt_nombre_area;
+
+
             }
 
 
@@ -79,6 +84,9 @@ class InvestigadorController extends Controller
                 $ff=$ff->format('d-m-Y');
 
                 $pub->rf_fecha_publicacion=$ff;
+
+                $area=$pub->area();
+                $pub['area']=$area->rt_nombre_area;
             }
 
         }
@@ -95,6 +103,10 @@ class InvestigadorController extends Controller
                 $ff=$ff->format('d-m-Y');
 
                 $lib->rf_fecha=$ff;
+
+                $area=$lib->area();
+                $lib['area']=$area->rt_nombre_area;
+
             }
         }
 
@@ -119,8 +131,8 @@ class InvestigadorController extends Controller
         $bsq=null;
         $Invs=[];
         $opt=100;
-        $areas=AreasConocimiento::all();
-        $ida=DB::table('tbl_areas_conocimiento')->max('pk_id_area');
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $ida=7;
 
         if($request->has('opt')){
             $opt=$request->get('opt');
@@ -133,7 +145,7 @@ class InvestigadorController extends Controller
                         $join = DB::table('tbl_usuarios')
                             ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                             ->where('tbl_usuarios.fk_id_estado','=',1)
-                            ->where('tbl_personas.rl_tipo_area','=',false)
+                            ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
                             ->where('tbl_personas.rt_nombre_persona','=',$nombre)
                             ->where('tbl_usuarios.fk_id_rol','<>',0)
                             ->get();
@@ -142,18 +154,19 @@ class InvestigadorController extends Controller
                         $join = DB::table('tbl_usuarios')
                             ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                             ->where('tbl_usuarios.fk_id_estado','=',1)
-                            ->where('tbl_personas.rl_tipo_area','=',false)
+                            ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
                             ->where('tbl_usuarios.fk_id_rol','<>',0)
                             ->get();
                     }
                 break;
-            case $ida;
+            case $ida;                                      //Otras areas del conocimiento.   .      .
                 if($request->has('busqueda')){
                     $nombre=$request->get('busqueda');
                     $join = DB::table('tbl_usuarios')
                         ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                         ->where('tbl_usuarios.fk_id_estado','=',1)
-                        ->where('tbl_personas.rl_tipo_area','=',true)
+                        ->where('tbl_personas.fk_id_area','>',100)
+                        ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
                         ->where('tbl_personas.rt_nombre_persona','=',$nombre)
                         ->where('tbl_usuarios.fk_id_rol','<>',0)
                         ->get();
@@ -162,8 +175,9 @@ class InvestigadorController extends Controller
                     $join = DB::table('tbl_usuarios')
                         ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                         ->where('tbl_usuarios.fk_id_estado','=',1)
-                        ->where('tbl_personas.rl_tipo_area','=',true)
+                        ->where('tbl_personas.fk_id_area','>',100)
                         ->where('tbl_usuarios.fk_id_rol','<>',0)
+                        ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
                         ->get();
                 }
                 break;
@@ -174,9 +188,9 @@ class InvestigadorController extends Controller
                     $join = DB::table('tbl_usuarios')
                         ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                         ->where('tbl_usuarios.fk_id_estado','=',1)
-                        ->where('tbl_persona.rn_id_area','=',$opt)
-                        ->where('tbl_personas.rl_tipo_area','=',false)
+                        ->where('tbl_persona.fk_id_area','=',$opt)
                         ->where('tbl_personas.rt_nombre_persona','=',$nombre)
+                        ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
                         ->where('tbl_usuarios.fk_id_rol','<>',0)
                         ->get();
                 }else{
@@ -184,8 +198,8 @@ class InvestigadorController extends Controller
                     $join = DB::table('tbl_usuarios')
                         ->join('tbl_personas','tbl_usuarios.fk_id_persona','=','tbl_personas.pk_id_persona')
                         ->where('tbl_usuarios.fk_id_estado','=',1)
-                        ->where('tbl_personas.rn_id_area','=',$opt)
-                        ->where('tbl_personas.rl_tipo_area','=',false)
+                        ->where('tbl_usuarios.pk_id_usuario','<>',$user->pk_id_usuario)
+                        ->where('tbl_personas.fk_id_area','=',$opt)
                         ->where('tbl_usuarios.fk_id_rol','<>',0)
                         ->get();
                 }
@@ -215,8 +229,6 @@ class InvestigadorController extends Controller
 
             $i++;
         }
-
-
 
         return view('Usuarios.PerfilesInvestigadores')->with('user',$user)
             ->with('invs',$Invs)

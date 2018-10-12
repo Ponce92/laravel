@@ -12,4 +12,8 @@ class LibrosPublicaciones extends Model
     protected $primaryKey='pk_id_libro';
 
     public $timestamps=false;
+
+    public  function area(){
+        return $this->hasOne('App\Models\AreasConocimiento','pk_id_area')->first();
+    }
 }

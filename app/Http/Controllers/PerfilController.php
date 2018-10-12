@@ -40,7 +40,7 @@ class PerfilController extends Controller
 
         $paises=Pais::all();
         $grados=GradosAcademicos::all();
-        $areas=AreasConocimiento::all();
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
 
         return view('gestionDatosPersonales')->with('user',$user)
                                                     ->with('persona',$persona)
@@ -80,19 +80,34 @@ class PerfilController extends Controller
         $fecha=Carbon::createFromFormat('d-m-Y',$fecha);
         $fecha=$fecha->format('Y-m-d');
         $persona->rf_fecha_nacimiento=$fecha;
-
         $persona->fk_id_pais=$request->get('pais');
-
         $persona->fk_id_grado=$request->get('grado');
-
-        $ar=AreasConocimiento::find($request->get('area'));
-        $persona->rt_nombre_area=$ar->rt_nombre_area;
-
-
+        $persona->rl_sexo_persona=$request->get('sexo');
         $persona->rn_horas_dedicadas_investigacion=$request->get('horas');
 
         $persona->rt_institucion=$request->input('institucion');
         $persona->rt_direccion=$request->input('direccion');
+
+        if ( $request->has('area-c')){
+
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
+
+            if ($bandera != 0){
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $persona->fk_id_area=$ac->pk_id_area;
+            }else{
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
+                $oa->save();
+
+                $persona->fk_id_area=$oa->pk_id_area;
+            }
+
+        }else{
+            $persona->fk_id_area=$request->get('area');
+        }
+
 
         $persona->save();
 

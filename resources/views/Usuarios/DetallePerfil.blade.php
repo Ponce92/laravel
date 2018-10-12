@@ -292,17 +292,18 @@
             <div id="content">
                 <div id="tab1" class="container-fluid">
                     <div class="row">
+
                         @if($countA > 0){{--  +++++++++++++++++++++++++++++++  Proyectos realizados  +++++++++++++++++++++++++++++++++++++--}}
-                            <div class="col-12">
+
+                        <table class="table table-bordered">
+                            <thead hidden>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="12">Proyectos realizados</td>
+                                </tr>
                                 @foreach($proyectos as $proyecto )
 
-                                <table class="table table-bordered">
-                                    <thead hidden>
-                                        <tr>
-                                            <td colspan="12"></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
                                         <tr>
                                             <td rowspan="3" colspan="3" class="align-middle" align="center">
                                                 <i class="fab fa-codepen fa-4x "></i>
@@ -311,7 +312,7 @@
                                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
                                             <td class="td" colspan="1">Area conocimiento:</td>
                                             <td colspan="2">
-                                                {{$proyecto->rt_nombre_area}}
+                                                {{$proyecto['area']}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -338,13 +339,11 @@
                                 </table>
 
                                 @endforeach
-                            </div>
-                            <hr>
                         @endif
                     </div>
                 </div>
-                <div id="tab2">
 
+                <div id="tab2">
                         @if($countB >0)
                             <table class="table table-bordered">
                                 <thead hidden="">
@@ -356,7 +355,7 @@
                                     <tr>
                                         <td colspan="12">Articulos y notas cientificas realizadas</td>
                                     </tr>
-                                @foreach($publicaciones as $publicacion)
+                                    @foreach($publicaciones as $publicacion)
                                     <tr>
                                         <td colspan="1" rowspan="3" class="align-middle" align="center" style="width: 150px">
                                             <i class="fab fa-codepen fa-4x "></i>
@@ -381,15 +380,7 @@
                                         </td>
                                         <td class="td" colspan="1"> Area conocimiento:</td>
                                         <td colspan="2">
-                                            @if(!$publicacion->rl_tipo_area)
-                                                @foreach($areas as $area)
-                                                    {{$area->pk_id_area==$publicacion->rn_id_area ? $area->rt_nombre_area:''}}
-                                                @endforeach
-                                            @else
-                                                @foreach($otrasAreas as $area)
-                                                    {{$area->pk_id_ac==$publicacion->rn_id_area ? $area->rt_nombre_ac:''}}
-                                                @endforeach
-                                            @endif
+                                            {{$publicacion['area']}}
                                         </td>
 
                                         <td class="td" colspan="1"> Fecha Publicacion : </td>
@@ -420,7 +411,7 @@
                                 </tbody>
                             </table>
                         @endif
-
+                            <hr class="all">
                         @if($countC >0)
                             <table class="table table-bordered">
                                 <thead hidden="">
@@ -432,6 +423,7 @@
                                 <tr>
                                     <td colspan="12">Articulos y notas cientificas realizadas</td>
                                 </tr>
+
                                 @foreach($libros as $libro)
                                     <tr>
                                         <td colspan="1" rowspan="3" class="align-middle" align="center" style="width: 150px">
@@ -452,15 +444,7 @@
                                     <tr>
                                         <td class="td" colspan="1">Area conocimiento:</td>
                                         <td colspan="3">
-                                            @if(!$libro->rl_tipo_area)
-                                                @foreach($areas as $area)
-                                                    {{$area->pk_id_area==$libro->rn_id_area ? $area->rt_nombre_area:''}}
-                                                @endforeach
-                                            @else
-                                                @foreach($otrasAreas as $area)
-                                                    {{$area->pk_id_ac==$libro->rn_id_area ? $area->rt_nombre_ac:''}}
-                                                @endforeach
-                                            @endif
+                                            {{$libro['area']}}
                                         </td>
                                         <td colspan="1" class="td" >Capitulo : </td>
                                         <td colspan="1">{{$libro->rn_capitulo}}</td>
@@ -492,8 +476,6 @@
                             </table>
                         @endif
 
-
-
                 </div>
             </div>
         </div>
@@ -505,12 +487,7 @@
 @endsection
 
 @section('js')
-    <script  src="{{asset('js/tools/jquery.toolbar.min.js')}}"></script>
-    @if($user->fk_id_rol!=0)
         <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>
-    @else
-        <script  src="{{asset('js/Riues/Investigador.js')}}"></script>
-    @endif
 
 @endsection
 

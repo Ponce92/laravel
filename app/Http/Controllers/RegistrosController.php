@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegistrosRequest;
 use App\Models\Persona;
 use App\Models\Usuario;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Pais;
 use App\Models\AreasConocimiento;
 use App\Models\GradosAcademicos;
+use App\Models\Notificacion;
+use DB;
 
 class RegistrosController extends Controller
 {
@@ -30,13 +34,12 @@ class RegistrosController extends Controller
     public function create()
     {
         $paises=Pais::all();
-        $areas=AreasConocimiento::all();
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
         $grados=GradosAcademicos::all();
 
-        return view('registro')->with('paisesc',$paises)
+        return view('Registro/registro')->with('paisesc',$paises)
                                      ->with('areasc',$areas)
                                      ->with('gradosc',$grados);
-        //return $grados->all();
     }
 
     /**
@@ -48,57 +51,113 @@ class RegistrosController extends Controller
     public function store(RegistrosRequest $request)
     {
 
-        if ($request->hasFile('foto')){
-            $file =$request->file('foto');
-            $url = time().$file->getClientOriginalName();
 
-        }
         $persona=new Persona();
-        $usuario=new Usuario();
-        $hoy = date("Y-m-d");
+        $usuario=new User();
 
 
-        $persona->pk_id_persona= $this->getToken(8);
-        $persona->fk_id_grado=$request->input('grado');
+        /*   Acreacion de persona    */
+        $persona->pk_id_persona= str_random(10);
         $persona->fk_id_pais=$request->input('nacionalidad');
         $persona->fk_id_area=$request->input('areas');
-        //$persona->correo_usuario=$request->input('correo');
         $persona->rt_nombre_persona=$request->input('nombre');
         $persona->rt_apellido_persona=$request->input('apellido');
         $persona->rl_sexo_persona=$request->input('sexo');
-        $persona->rf_fecha_nacimiento=$request->input('fecha');
+        $persona->fk_id_pais=$request->get('pais');
+        $persona->fk_id_grado=$request->get('grado');
         $persona->rt_institucion=$request->input('institucion');
         $persona->rt_direccion=$request->input('direccion');
-        $persona->rn_horas_dedicadas_investigacion=$request->input('horas_investigacion');
-        $persona->rn_telefono_persona=$request->input('telefono');
-        //$persona->foto_persona=$url;
+        $persona->rn_horas_dedicadas_investigacion=$request->input('horas');
+
+        /*  Insertamos la fecha adecuadamente */
+        $f=Carbon::createFromFormat("d-m-Y",$request->get('fecha'));
+        $f=$f->format('Y-m-d');
+        $persona->rf_fecha_nacimiento=$f;
+
+        /*      Insertamos el area del conocimineto */
+
+        if ( $request->has('area-c')){
+
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
+
+            if ($bandera != 0){
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $persona->fk_id_area=$ac->pk_id_area;
+            }else{
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
+                $oa->save();
+
+                $persona->fk_id_area=$oa->pk_id_area;
+            }
+
+        }else{
+            $persona->fk_id_area=$request->get('area');
+        }
+
+
+
         $persona->save();
 
-
-
-
-        $usuario->pk_id_usuario= $this->getToken(6);
-        $usuario->fk_id_persona= $persona->pk_id_persona;
-        $usuario->fk_id_rol= 1;
-        $usuario->rt_correo_usuario= $request->input('correo');
-        $usuario->rt_foto_usuario=$url;
-        $usuario->password=bcrypt($request->input('password'));
-        $usuario->rf_ultimo_acceso_usuario=$hoy;
-        $usuario->remember_token= $request->input('_token');
-        $usuario->rl_estado_usuario='activo';
-        $usuario->save();
+        /*      Seccion de usuario          */
+        $file =$request->file('foto');
+        $url = time().$file->getClientOriginalName();
         $file->move(public_path().'/avatar/', $url);
 
 
+        $usuario->pk_id_usuario=str_random(10);
+
+        $usuario->fk_id_persona= $persona->pk_id_persona;
+        $usuario->fk_id_rol= 1;
+        $usuario->fk_id_estado=2;
+        $usuario->email= $request->input('correo');
+        $usuario->remember_token='';
+        $usuario->rt_foto_usuario=$url;
+        $usuario->password=bcrypt($request->input('password'));
+        $ff=Carbon::now();
+        $usuario->rf_ultimo_acceso_usuario=$ff->format('Y-m-d');
 
 
+                                    /*      Se crea la notificacion para el administrador       */
+
+        $ntf=new Notificacion;
+
+        $ntf->pk_id_notificacion=str_random(12);
+        $ntf->fk_id_usuario='@riues';
+        $ntf->rl_vista=false;
+        $ntf->rt_tipo_notificacion='SRI';
+        $fech=Carbon::now();
+        $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
+        $ntf->fk_id_usuario_remitente=$usuario->pk_id_usuario;
 
 
+        /* Se realiza la insersion a la base de datos*/
+        DB::beginTransaction();
 
+        try {
+            $persona->save();
+            $usuario->save();
 
+            $ntf->save();
 
-        return view('login');
-        //return $request->all();
+            DB::commit();
+            $exito=true;
+
+        }catch(\Exception $e){
+            $error = $e->getMessage();
+            DB::rollback();
+            $exito=false;
+
+        }
+        if($exito){
+            return redirect()->route('log')
+                ->withsuccess('Se registrado con exito, ahora puede ingresar al sistema con tus credenciales');
+        }
+
+        return redirect()->route('log')
+            ->withdanger($error);
+
     }
 
     /**

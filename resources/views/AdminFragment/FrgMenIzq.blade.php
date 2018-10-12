@@ -121,8 +121,12 @@
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="{{route('notificaciones')}}">
                         <i class="icon-bell"></i>Notificaciones
+
                         @if(isset($ntf))
-                            <span class="badge badge-danger">{{count($ntf)}}</span>
+                            @if($ntf>0)
+                                <span class="badge badge-danger">{{$ntf}}</span>
+                            @endif
+
                         @endif
 
                     </a>

@@ -9,7 +9,7 @@
     <br>
     <div class="row justify-content-center">
         <div class="col col-xs-12 col-sm-12 col-md-5 col-lg-4">
-
+            @include('Common.FlashMsj')
             <form class="login-riues" method="post" action="{{ route('login') }}">
 
                 {{ csrf_field()  }}

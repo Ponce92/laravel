@@ -139,26 +139,25 @@
                                     </div>
                                     <div class="col mb-3">
                                         <label for="Sexo">Sexo :</label><br>
-                                        <div class="form-check form-check-inline">
+                                        <div class="form-check form-check-inline edt">
                                             <input class="form-check-input"
                                                    type="radio"
-                                                   name="Sexo"
-                                                   id="Sexo"
+                                                   name="sexo"
+                                                   id="hombre"
                                                    form="form"
-                                                   value="option1"
-                                                   @if($persona->rl_sexo_persona == 1)checked @endif
-                                                    readonly
+                                                   value="true"
+                                                   @if($persona->rl_sexo_persona == true) checked @endif
                                             >
                                             <label class="form-check-label" for="inlineRadio1">Mujer</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
+                                        <div class="form-check form-check-inline edt">
                                             <input class="form-check-input"
                                                    type="radio"
                                                    form="form"
-                                                   id="sexo"
-                                                   value="Sexo"
-                                                   @if($persona->rl_sexo_persona == 0)checked @endif
-                                                   readonly
+                                                   name="sexo"
+                                                   id="mujer"
+                                                   value="false"
+                                                   @if($persona->rl_sexo_persona == false)checked @endif
                                             >
                                             <label class="form-check-label" for="inlineRadio2">Hombre</label>
                                         </div>

@@ -7,10 +7,9 @@
 @section('cuerpo')
     <br>
 
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-
-            <div class="col-7">
+            <div class="col col-sm-11 col-md-8 col-lg-8">
                 <form class="login-riues" style="background-color: rgb(252,252,252)" method="POST" action="/registros" enctype="multipart/form-data">
                 {{ csrf_field()  }}
                     <div class="row">
@@ -35,26 +34,25 @@
                     </div>
                     <hr class="all">
                     @if($errors->any())
-                        <div class="alert alert-danger">
                             <div class="alert alert-danger msj">
                                 <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
-                                Errores en las entradas del formulario ..!
+                                Errores en la entradas del formulario, porfavor corrija los campos indicados !
+                                {{$errors->first()}}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        </div>
                     @endif
 
                     <div class="row">
                         <div class="col-4">
-                                <div class="row">
+                                <div class="row" style="height: 180px;">
                                     <div class=" col text-center">
                                         <img src=""
-                                             style="background-color: white"
                                              class="mx-auto d-block img-thumbnail border rounded-0"
-                                             alt="75x75"
-                                             id="img_destino" >
+                                             alt="No selecionada"
+                                             height="180"
+                                             id="imgSalida" />
                                     </div>
                                 </div>
                             <hr>
@@ -63,9 +61,12 @@
                                     <input id="foto"
                                            name="foto"
                                            class="form-control-file"
-                                           required=""
+                                           required="true"
                                            type="file"
-                                           value="{{ old('foto') }}">
+                                           value="{{old('foto')}}"
+                                           accept="image/*"
+                                    />
+                                    <div class="invalid-feedback">{{$errors->first('foto')}}</div>
                                 </div>
 
 
@@ -77,7 +78,7 @@
                                         <input id="nombre"
                                                name="nombre"
                                                placeholder=""
-                                               class="form-control{{$errors->has('nombre') ? 'is-invalid':''}} mb-3"
+                                               class="form-control {{$errors->has('nombre') ? 'is-invalid':''}} mb-3"
                                                type="text"
                                                value="{{ old('nombre') }}"
                                         >
@@ -111,8 +112,9 @@
                                             <input id="correo"
                                                    name="correo"
                                                    placeholder="emplo@ues.com"
-                                                   class="form-control input-md"
+                                                   class="form-control {{$errors->has('correo') ? 'is-invalid':''}}"
                                                    type="email"
+                                                   value="{{old('correo')}}"
                                             >
                                             <div class="invalid-feedback">
                                                 {{$errors->first('correo')}}
@@ -181,20 +183,39 @@
                                 </div>
                                 <input class="form-control"
                                        id="horas"
-                                       name="horas_investigacion"
+                                       name="horas"
                                        type="number"
+                                       min="1"
+                                       max="16"
+                                       step="0.5"
                                        value="{{ old('horas') }}"
                                        required
                                 >
-                                <div class="invalid-feedback">{{$errors->first('horas_investigacion')}}</div>
+                                <div class="invalid-feedback">{{$errors->first('horas')}}</div>
                             </div>
 
+                        </div>
+                        <div class="col">
+                            <label class="" for="pais">Nacionalidad</label>
+                            <select id="pais"
+                                    name="pais"
+                                    class="form-control mb-3">
+                                @foreach($paisesc as $pais)
+                                    <option value="{{$pais->pk_id_pais}}" >
+                                        {{$pais->rt_nombre_pais}}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                    <div class="row">
                        <div class="col">
-                           <label class="" for="areas">Area de Conocimiento</label>
-                           <select id="areas" name="areas" class="form-control">
+                           <label class="" for="area">Area de Conocimiento :</label>
+                           <select id="area"
+                                   name="area"
+                                   onchange="verificarSelcArea(this)"
+                                   class="form-control"
+                           >
                                @foreach($areasc as $area)
                                    <option value="{{$area->pk_id_area}}">
                                        {{$area->rt_nombre_area}}
@@ -203,16 +224,15 @@
                            </select>
                        </div>
                        <div class="col">
-                           <label class="" for="nacionalidad">Nacionalidad</label>
-                           <select id="nacionalidad"
-                                   name="nacionalidad"
-                                   class="form-control mb-3">
-                               @foreach($paisesc as $pais)
-                                   <option value="{{$pais->pk_id_pais}}" >
-                                       {{$pais->rt_nombre_pais}}
-                                   </option>
-                               @endforeach
-                           </select>
+                           <label for="area-c">Especifique Area:</label>
+                           <input type="text"
+                                  name="area-c"
+                                  id="area-c"
+                                  class="form-control {{$errors->has('area-c') ? 'is-invalid':''}}"
+                                  value="{{$errors->any() ? old('area-c'):'' }}"
+                                  disabled
+                           >
+                           <div class="invalid-feedback">{{$errors->first('area-c')}}</div>
                        </div>
                    </div>
 
@@ -257,12 +277,12 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    <hr class="all">
                     <h2 class="titulo">Usuario</h2>
-                    <hr>
+                    <hr class="all">
                     <div class="row">
                         <div class="col">
-                            <label  for="contrasenia1">Contraseña :</label>
+                            <label  for="password">Contraseña :</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -271,38 +291,36 @@
                                 </div>
                                 <input id="password"
                                        name="password"
-                                       placeholder="* * * * *" class="form-control input-md "
+                                       class="form-control {{$errors->has('password') ? 'is-invalid':''}} "
                                        type="password"
-                                >
+                                />
                                 <div class="invalid-feedback">{{$errors->first('password')}}</div>
                             </div>
                         </div>
 
                         <div class="col">
-                            <label  for="contrasenia1">Confirme contraseña :</label>
+                            <label  for="password">Confirme contraseña :</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-check-square"></i>
                                     </div>
                                 </div>
-                                <input id="password-confirm"
-                                       name="password-confirm"
-                                       placeholder="* * * * *"
+                                <input id="password_confirmation"
+                                       name="password_confirmation"
                                        class="form-control "
                                        type="password"
-                                >
-                                <div class="invalid-feedback">{{$errors->first('password')}}</div>
+                                />
                             </div>
                         </div>
 
                     </div>
-                    <hr>
+                    <hr class="all">
                     <br>
                     <div class="row justify-content-end">
                         <div class="col-2 ">
                             <!-- Button -->
-                            <button id="btnregistro" name="btnregistro"  type="submit" class="bttn bttn-red">
+                            <button id="btnregistro" name="btnregistro"  type="submit" class="btn bttn bttn-red ">
                                 &nbsp;&nbsp;Registrarse&nbsp;&nbsp;
                             </button>
                         </div>
@@ -321,5 +339,6 @@
 @stop
 
 @section('js')
+    <script  src="{{asset('js/registro.js')}}"></script>
 
 @stop

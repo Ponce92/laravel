@@ -94,9 +94,18 @@ Route::post('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@re
 
 Route::get('/proyectos/actualizar','Usuarios\ProyectosInvestigacionController@actualizar')->name('actualizar.proyectos.investigacion');
 
-
+/*------------------------------------------------------------------------------------------------------------------------------------
+ *      Funcionalidad de la notificacion para todos los usuarios. .  .                                                              --
+ * -----------------------------------------------------------------------------------------------------------------------------------
+ */
 Route::get('/inicio/notificaciones','NotificacionesController@index')->name('notificaciones');
+Route::post('/inicio/notificaciones/aceptar','NotificacionesController@aceptarRegistro')->name('notificaciones.aceptar');
+Route::post('/inicio/notificaciones/rechazar','NotificacionesController@rechazarRegistro')->name('notificaciones.rechazar');
+Route::post('/inicio/notificaciones/eliminar','NotificacionesController@eliminarNotifiacion')->name('notificaciones.eliminar');
+Route::post('/inicio/notificaciones/leer','NotificacionesController@marcarLeida')->name('notificaciones.leida');
 
+
+Route::get('/get/OtrasAreasAjax','Ajax\AjaxController@getOtrasAreas')->name('get.otras.areas');
 
 
 
@@ -117,7 +126,7 @@ Route::get('/riues/home','Administrador\AdminRootController@index')->name('inici
 
 Route::get('/riues/investigadores','Riues\InvestigadoresController@index')->name('investigadores');
 
-Route::get('/riues/investigadores/getdata','Riues\InvestigadoresController@getdata')->name('investigadores.getdata');
+Route::get('/riues/investigadores/getData','Riues\InvestigadoresController@getdata')->name('investigadores.getdata');
 
 
 /*

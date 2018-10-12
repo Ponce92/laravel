@@ -25,16 +25,19 @@ class RegistrosRequest extends FormRequest
     {
         return [
 
-            'nombre'=>' alpha | required ',
-            'apellido'=>' alpha | required ',
-            'foto'=>' image | required ',
-            'fecha'=> 'date_format:"Y-m-d"|required',
-            'hora'=>'digits_between:1,24',
-            'telefono'=> 'digits:8 |required',
-            'correo' =>'email | required',
-            //'password' => 'required | min:6 | regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/^ | confirmed',
-            //'password' => 'confirmed|min:6 | required',
-            //'password'=>'required|string|max:50|min:6',
+            'nombre'=>'required|max:100|min:6 ',
+            'apellido'=>'required|max:100|min:6 ',
+            'foto'=>'required|mimes:png,jpg,jpeg',
+            'fecha'=> 'date_format:"d-m-Y"|required',
+            'horas'=>'digits_between:1,16|required',
+            'correo' =>'required|email|required|unique:tbl_usuarios,email',
+            'pais'=>'required',
+            'area'=>'required',
+            'sexo'=>'required',
+            'grado'=>'required',
+            'institucion'=>'required|min:6|max:150',
+            'direccion'=>'required|min:8|max:150',
+            'password'=>'required|confirmed'
         ];
     }
 }

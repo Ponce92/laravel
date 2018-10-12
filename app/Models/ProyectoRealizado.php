@@ -17,5 +17,7 @@ class ProyectoRealizado extends Model
     protected $primaryKey='pk_id_proyecto';
     public $timestamps=false;
 
-
+    public  function area(){
+        return $this->hasOne('App\Models\AreasConocimiento','pk_id_area')->first();
+    }
 }

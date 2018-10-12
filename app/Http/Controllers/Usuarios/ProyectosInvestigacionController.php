@@ -267,7 +267,6 @@ class ProyectosInvestigacionController extends Controller
             $exito=false;
 
         }
-
         if($exito){
             return redirect()->route('misproyectos.investigacion')
                 ->withsuccess('Se registrado co exito el nuevo proyecto de investigacion');

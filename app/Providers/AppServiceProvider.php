@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Notificacion;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+            View::composer('*',function($view){
+               if (request()->user()){
+                   $user=request()->user();
+                   $count=Notificacion::where('rl_vista','=',false)
+                       ->where('fk_id_usuario','=',$user->pk_id_usuario)
+                       ->count();
+                   $view->with('ntf',$count);
+               }
+
+            });
+
+
+
     }
 
     /**

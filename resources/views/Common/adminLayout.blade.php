@@ -65,9 +65,9 @@
                 <li class="nav-item d-md-down-none">
                     <a href="#" class="nav-link">
                         <div class="menuSup" id="menuSupMsj">
-                        @if(isset($ntf))
+                        @if(isset($msjj))
                             <i class="fas fa-comments bg-msj menuSup bttn-nav-w"></i>
-                            <span class="bg-msj badge badge-danger">{{count($ntf)}}</span>
+                            <span class="bg-msj badge badge-danger">{{count($msjj)}}</span>
 
                         @else
                             <i class="fas fa-comments bg-msj  bttn-nav-r"></i>
@@ -95,12 +95,15 @@
                 <li class="nav-item d-md-down-none">
                     <a href="#" class="nav-link">
                         <div class="menuSupNtf" id="menuSupNtf">
-                        @if(isset($msjj))
-                            <i class="fas fa-bell bg-ntf bttn-nav-w"></i>
-                            <span class="bg-ntf badge badge-danger">{{count($msjj)}}</span>
-                        @else
-                                <i class="fas fa-bell bttn-nav-r"></i>
-                        @endif
+                            @if(isset($ntf))
+                                @if($ntf>0)
+                                    <i class="fas fa-bell bg-ntf bttn-nav-w"></i>
+                                    <span class="bg-ntf badge badge-danger">{{$ntf}}</span>
+                                @else
+                                    <i class="fas fa-bell bttn-nav-r"></i>
+                                @endif
+
+                            @endif
                         </div>
                         <div class="webui-popover-content" style="overflow-x: hidden">
                             <div class="row"style="width: 400px">
@@ -108,7 +111,6 @@
                                     <strong>
                                         Notificaciones
                                     </strong>
-
                                 </div>
                                 <hr>
                                 <div class="col-12" id="menuNtf">
@@ -479,7 +481,7 @@
           *| Seccion footer de la plantilla de administracion ..........................
         -->
 <footer class="app-footer">
-    <span><a href="#"> CoreUI </a> © 2018 creativeLabs.</span>
+    <span><a href="#"> roque </a> © 2018 creativeLabs.</span>
     <span class="ml-auto">Editado G017</span>
 </footer>
 

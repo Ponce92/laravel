@@ -113,7 +113,17 @@ class GestionInvestigadoresController extends Controller
     }
 
 
+    /*--------------------------------------------------------------------------------------------
+     *      funciones para editar los investigadores
+     * -------------------------------------------------------------------------------------------
+     */
 
+    public function aceptarInvestigador(){
+        if($request->has('codigo_notificacion') && $request->has('codigo_usuario')){
+
+        }
+
+    }
     public function getDataAjax(Request $request)
     {
 

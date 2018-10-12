@@ -408,3 +408,35 @@ safddhggkjfds
 .help-rc:hover{
     color: orangered;
 }
+/*
+        Notificaciones...............
+*/
+.ntf-not{
+    border-right:0px !important;
+    border-left: 0px;!important;
+    background-color: rgb(243,243,243);
+
+}
+.ntf-not:hover{
+    background-color: rgb(245,245,245);
+}
+.ntf{
+    border-right:0px !important;
+    border-left: 0px;!important;
+}
+
+.ntf:hover{
+    background-color: rgb(245,245,245);
+}
+
+.bttn-red-small{
+    background-color: #aa0000;
+    font-size: 12px !important;
+    border-radius: 3px;
+}
+
+.bttn-exit-small{
+    background-color:gray ;
+    font-size: 12px !important;
+    border-radius: 3px;
+}
