@@ -32,22 +32,8 @@
             <hr style="margin-bottom: 2px;margin-top: 0px;">
         </div>
         <br>
-        @if(isset($status))
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-success">
-                        <i class="fas fa-info-circle" style="color: green"></i>
-                        {{$status}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            @else
-
+        @include('Common.FlashMsj')
             <br>
-        @endif
         @if($errors->any())
             <div class="row">
                 <div class="col">
@@ -87,7 +73,7 @@
                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
                             <td class="td" colspan="1">Area conocimiento:</td>
                             <td colspan="2">
-                                    {{$proyecto->rt_nombre_area}}
+                                    {{$proyecto['area']}}
                             </td>
 
                             <td colspan="1" rowspan="3" align="center" class="align-middle tdbtn">

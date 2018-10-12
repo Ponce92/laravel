@@ -1,5 +1,5 @@
-
 $("#area").change();
+
 $("#tipo").change();
 
 function verificarSelcArea(campo){
@@ -44,3 +44,34 @@ $( function(){
         language: 'ES'
     });
 } );
+
+$(function () {
+    var url='/get/OtrasAreasAjax';
+    var array=[];
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {},
+        success: function( data )
+        {
+            console.log(data);
+            $.each(data,function (index,value) {
+                array.push(value.rt_nombre_area);
+            });
+
+            if (array.length >1){
+                $('#area-c').autocomplete({
+                    source: array
+                });
+
+            }else {
+                $('#area-c').val('');
+                $('#area-c').prop('disabled',true);
+            }
+
+        },
+        errors:function () {
+            alert("no carga nada :|");
+        }
+    });
+});

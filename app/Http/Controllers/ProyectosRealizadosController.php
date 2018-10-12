@@ -41,6 +41,9 @@ class ProyectosRealizadosController extends Controller
                 $ff=$ff->format('d-m-Y');
                 $proyecto->rf_fecha_fin_proyecto=$ff;
 
+                $ar=AreasConocimiento::find($proyecto->fk_id_area);
+                $proyecto['area']=$ar->rt_nombre_area;
+
             }
 
             return view('gestionProyectosRealizados')->with('proyectos',$proyectos)
@@ -59,7 +62,7 @@ class ProyectosRealizadosController extends Controller
     public function agregarProyectoForm(Request $request)
     {
         $user=Auth::user();
-        $areas=AreasConocimiento::all();
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
         $paises=Pais::all();
 
 
@@ -72,7 +75,6 @@ class ProyectosRealizadosController extends Controller
     public function agregarProyecto(CrearProyectoRealizadoRequest $request)
     {
         $user=Auth::user();
-        $areas=AreasConocimiento::all();
         $paises=Pais::all();
 
         $areas=AreasConocimiento::all();
@@ -104,13 +106,24 @@ class ProyectosRealizadosController extends Controller
         $proyecto->rd_descripcion_proyecto=$desc;
         $proyecto->fk_id_usuario=$user->pk_id_usuario;
 
-        if($request->has('area-c')){
-            $proyecto->rt_nombre_area=$request->get('area-c');
+        if ( $request->has('area-c')){
+
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
+
+            if ($bandera != 0){
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $proyecto->fk_id_area=$ac->pk_id_area;
+            }else{
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
+                $oa->save();
+
+                $proyecto->fk_id_area=$oa->pk_id_area;
+            }
+
         }else{
-
-            $na=AreasConocimiento::find($request->get('area'));
-
-            $proyecto->rt_nombre_area=$na->rt_nombre_area;
+            $proyecto->fk_id_area=$request->get('area');
         }
 
         $proyecto->save();
@@ -120,16 +133,12 @@ class ProyectosRealizadosController extends Controller
         $msj="El registro ha sido almacenado correctamente";
 
 
-        return view('gestionProyectosRealizados')  ->with('proyectos',$proyectos)
-                                                        ->with('areas',$areas)
-                                                        ->with('status',$msj)
-                                                        ->with('user',$user)
-                                                        ->with('paises',$paises);
+        return redirect()->route('gestionProyectosRealizados')->withsuccess('Se ha registrado correctamente el proyecto realizado');
+
 
     }
 
     public function editarProyectoForm($id){
-        $tipoArea=12345;
 
         $proyecto=ProyectoRealizado::find($id);
         $fi=Carbon::createFromFormat('Y-m-d',$proyecto->rf_fecha_inicio_proyecto);
@@ -140,20 +149,17 @@ class ProyectosRealizadosController extends Controller
         $ff=$ff->format('d-m-Y');
         $proyecto->rf_fecha_fin_proyecto=$ff;
 
-        $areas=AreasConocimiento::all();
+        $ar=AreasConocimiento::find($proyecto->fk_id_area);
+        $proyecto['area']=$ar->rt_nombre_area;
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $otrasA=AreasConocimiento::where('pk_id_area','>',100)->get();
 
-        foreach ($areas as $obj){
-            if ($obj->rt_nombre_area == $proyecto->rt_nombre_area){
-
-                $tipoArea=0;
-            }
-        }
 
         return view('Usuarios.ProyectosRealizados.EditarProyectoRealizado')
             ->with('user',Auth::user())
             ->with('proyecto',$proyecto)
             ->with('paises',Pais::all())
-            ->with('tipoArea',$tipoArea)
+            ->with('otrasA',$otrasA)
             ->with('areas',$areas)
             ->with('id',$id);
 
@@ -189,26 +195,29 @@ class ProyectosRealizadosController extends Controller
         $proyecto->rd_descripcion_proyecto=$desc;
 
 
-        if($request->has('area-c')){
-            $proyecto->rt_nombre_area=$request->get('area-c');
+        if ( $request->has('area-c')){
+
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
+
+            if ($bandera != 0){
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $proyecto->fk_id_area=$ac->pk_id_area;
+            }else{
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
+                $oa->save();
+
+                $proyecto->fk_id_area=$oa->pk_id_area;
+            }
+
         }else{
-
-            $na=AreasConocimiento::find($request->get('area'));
-
-            $proyecto->rt_nombre_area=$na->rt_nombre_area;
+            $proyecto->fk_id_area=$request->get('area');
         }
 
         $proyecto->save();
 
-        $proyectos=ProyectoRealizado::where('fk_id_usuario',$user->pk_id_usuario)->get();
-        $msj="El registro se ha actualizado correctamente";
-
-        return view('gestionProyectosRealizados')
-            ->with('proyectos',$proyectos)
-            ->with('areas',AreasConocimiento::all())
-            ->with('status',$msj)
-            ->with('user',Auth::user())
-            ->with('paises',Pais::all());
+        return redirect()->route('gestionProyectosRealizados')->withsuccess('El registro ha sido actualizado correctamente');
 
     }
 
@@ -217,35 +226,20 @@ class ProyectosRealizadosController extends Controller
         $id=$request->get('idd');
 
         $count=ProyectoRealizado::where('pk_id_proyecto',$id)->count();
-        $paises=Pais::all();
         if($count >0){
-
-            $user=Auth::user();
 
             $proyecto=ProyectoRealizado::find($id);
             $proyecto->delete();
 
-            $proyectos=ProyectoRealizado::where('fk_id_usuario',$user->pk_id_usuario)->get();
-            $areas=AreasConocimiento::all();
-            $msj="El registro a sido eliminado correctamente.";
 
 
-            return view('gestionProyectosRealizados') ->with('user',$user)
-                ->with('proyectos',$proyectos)
-                ->with('areas',$areas)
-                ->with('paises',$paises)
-                ->with('status',$msj);
+            return redirect()->route('gestionProyectosRealizados')->withsuccess('El registro ha sido elimado correctamente');
         }else{
-            $user=Auth::user();
-            $proyectos=ProyectoRealizado::where('fk_id_usuario',$user->pk_id_usuario)->get();
-            $areas=AreasConocimiento::all();
 
 
-            return view('gestionProyectosRealizados')
-                ->with('proyectos',$proyectos)
-                ->with('areas',$areas)
-                ->withErrors(['id'=>'El recurso que hacia referencia este codigo ya no existe.'])
-                ->with('user',$user);
+
+            return redirect()->route('gestionProyectosRealizados')->withinfo('El recurso que intentas elminar ya no existe');
+
         }
 
     }

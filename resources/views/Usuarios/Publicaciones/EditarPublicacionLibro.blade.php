@@ -162,41 +162,39 @@
 
 
                         </div>
-                        <div class="form-row">
-                            <div class="col-6">
-                                <label for="area">Area Conocimiento :</label>
-                                <select name="area" id="area" class="form-control  mb-3" onchange="verificarSelcArea(this)" >
-                                    @if($libro->rl_tipo_area)
-                                        @foreach($areas as $ar)
-                                            <option value="{{$ar->pk_id_area}}" {{$ar->rt_nombre_area=="Otra area del conocimiento" ? 'selected':''}}>{{$ar->rt_nombre_area}}</option>
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <label for="area">Area Conocimiento :</label>
+                                    <select id="area"
+                                            name="area"
+                                            onchange="verificarSelcArea(this)"
+                                            class="form-control"
+                                    >
+                                        @foreach($areas as $area)
+                                            <option value="{{$area->pk_id_area}}"
+                                            @if($libro->fk_id_area < 100)
+                                                {{$area->pk_id_area ==$libro->fk_id_area ? 'selected':''}}
+                                                    @else
+                                                {{$area->pk_id_area == 7 ? 'selected':''}}
+                                                    @endif
+                                            >
+                                                {{$area->rt_nombre_area}}
+                                            </option>
                                         @endforeach
-                                    @else
-                                        @foreach($areas as $ar)
-                                            <option value="{{$ar->pk_id_area}}" {{$ar->pk_id_area==$libro->rn_id_area ? 'selected':''}}>{{$ar->rt_nombre_area}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="area-c">Especifique Area:</label>
+                                    <input type="text"
+                                           name="area-c"
+                                           id="area-c"
+                                           disabled="true"
+                                           class="form-control mb-3 {{$errors->has('area-c') ? 'is-invalid':''}}"
+                                           value="@if($libro->fk_id_area > 100){{$libro['area']}}@endif"
+                                    >
+
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <label for="area-c">Especifique Area:</label>
-                                <input type="text"
-                                       name="area-c"
-                                       id="area-c"
-                                       class="form-control mb-3 {{$errors->has('area-c') ? 'is-invalid':''}}"
-                                       @if($errors->any())
-                                       value="{{old('area-c')}}"
-                                       @else
-                                       @if($libro->rl_tipo_area)
-                                       @foreach($otrasAreas as $oa)
-                                       @if($oa->pk_id_ac == $libro->rn_id_area)
-                                       value="{{$oa->rt_nombre_ac}}"
-                                        @endif
-                                        @endforeach
-                                        @endif
-                                        @endif
-                                >
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col">
                                 <label for="descripcion">Descripcion:</label>

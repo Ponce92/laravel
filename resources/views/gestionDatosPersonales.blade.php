@@ -39,21 +39,8 @@
                 <div class="container-fluid">
                     <form action="{{route('editarDatosPersonales')}}" method="post" name="form" id="form" enctype="multipart/form-data">
                         {{ csrf_field()  }}
+                        @include('Common.FlashMsj')
                         <div class="row">
-                            <div class="col-12" id="error">
-
-                            </div>
-                            @if(isset($status))
-                                <div class="col-12" id="status">
-                                    <div class="alert alert-success">
-                                        {{$status}}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            @endif
-
 
                             <div class="col-3 ">{{--+++++++++++++++++++++++++++++++++++ Foto del Usuario++++++++++++++++++++++++++++++++++++ --}}
                                 <div class="row">
@@ -229,24 +216,56 @@
                                 </select>
 
                             </div>
-                            <div class="col col-4">
-                                <label for="area"> Area Conocimiento :</label>
-                                <select name="area"
-                                        id="area"
-                                        form="form"
-                                        class="form-control edt"
-                                        disabled
+                            <div class="col">
+                                <label class="" for="area">Area de Conocimiento :</label>
+                                <select id="area"
+                                        name="area"
+                                        onchange="verificarSelcArea(this)"
+                                        class="form-control"
+
                                 >
                                     @foreach($areas as $area)
-                                        @if($area->rt_nombre_area!='Otra area del concimiento')
-                                            <option value="{{$area->pk_id_area}}"{{$area->rt_nombre_area==$persona->rt_nombre_area? 'selected':''}}>
-                                                {{$area->rt_nombre_area}}
-                                            </option>
+                                        <option value="{{$area->pk_id_area}}"
+                                        @if($persona->fk_id_area < 100)
+                                            {{$area->pk_id_area ==$persona->fk_id_area ? 'selected':''}}
+                                            @else
+                                            {{$area->pk_id_area == 7 ? 'selected':''}}
                                         @endif
-
+                                        >
+                                            {{$area->rt_nombre_area}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col">
+                                <label for="area-c">Especifique Area:</label>
+                                <input type="text"
+                                       name="area-c"
+                                       id="area-c"
+                                       class="form-control {{$errors->has('area-c') ? 'is-invalid':''}}"
+                                       value="{{$persona->fk_id_area >100 ? $persona['area']:''}}"
+                                >
+                                <div class="invalid-feedback">{{$errors->first('area-c')}}</div>
+                            </div>
+
+                            {{--<div class="col col-4">--}}
+                                {{--<label for="area"> Area Conocimiento :</label>--}}
+                                {{--<select name="area"--}}
+                                        {{--id="area"--}}
+                                        {{--form="form"--}}
+                                        {{--class="form-control edt"--}}
+                                        {{--disabled--}}
+                                {{-->--}}
+                                    {{--@foreach($areas as $area)--}}
+                                        {{--@if($area->rt_nombre_area!='Otra area del concimiento')--}}
+                                            {{--<option value="{{$area->pk_id_area}}"{{$area->rt_nombre_area==$persona->rt_nombre_area? 'selected':''}}>--}}
+                                                {{--{{$area->rt_nombre_area}}--}}
+                                            {{--</option>--}}
+                                        {{--@endif--}}
+
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
                             <div class="col col-4">
                                 <label for="horas">Horas dedicadas a investigacion :</label>
                                 <input class="form-control edt"

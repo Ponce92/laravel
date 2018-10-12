@@ -127,27 +127,22 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="area">Area Conocimiento</label>
-                                <select name="area"
-                                        id="area"
-                                        class="form-control  mb-3 edt"
-                                        {{$errors->any() ? '':'disabled'}}
+                                <label class="" for="area">Area de Conocimiento :</label>
+                                <select id="area"
+                                        name="area"
                                         onchange="verificarSelcArea(this)"
-                                        form="frm-add">
+                                        class="form-control edt"
+                                        disabled
+                                >
                                     @foreach($areas as $area)
-                                        <option     value="{{$area->pk_id_area}}"
-                                                    @if($errors->any())
-                                                        {{old('area') == $area->pk_id_area ? 'selected':'' }}
-                                                    @else
-                                                        @if($tipoArea!=0)
-                                                            {{$area->rt_nombre_area == 'Otra area del conocimiento'? 'selected':''}}
-                                                        @else
-                                                            {{$area->rt_nombre_area ==$proyecto->rt_nombre_area ? 'selected':''}}
-                                                        @endif
-                                                    @endif
-
-                                                >
-                                                {{$area->rt_nombre_area}}
+                                        <option value="{{$area->pk_id_area}}"
+                                        @if($proyecto->fk_id_area < 100)
+                                            {{$area->pk_id_area ==$proyecto->fk_id_area ? 'selected':''}}
+                                                @else
+                                            {{$area->pk_id_area == 7 ? 'selected':''}}
+                                                @endif
+                                        >
+                                            {{$area->rt_nombre_area}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -170,18 +165,18 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="areaP">Especifique el area del conocimiento :</label>
-                                <input type="text"
-                                       name="area-c"
-                                       id="area-c"
-                                       value="@if($errors->any()){{old('area-c')}}@else{{$tipoArea == 0 ? '':$proyecto->rt_nombre_area}}@endif"
-                                       form="frm-add"
-                                       class="form-control mb-3 @if($errors->has('area-c')) is-invalid @endif edt"
-                                        {{$errors->any() ? '':'disabled'}}
-                                >
-                                <div class="invalid-feedback">
-                                    {{$errors->first('area-c')}}
+                                <div class="col">
+                                    <label for="area-c">Especifique Area:</label>
+                                    <input type="text"
+                                           name="area-c"
+                                           id="area-c"
+                                           disabled
+                                           class="form-control edt {{$errors->has('area-c') ? 'is-invalid':''}}"
+                                           value="{{$proyecto->fk_id_area >100 ? $proyecto['area']:''}}"
+                                    >
+                                    <div class="invalid-feedback">{{$errors->first('area-c')}}</div>
                                 </div>
+
                             </div>
 
                         </div>

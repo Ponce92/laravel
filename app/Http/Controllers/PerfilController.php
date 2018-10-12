@@ -33,6 +33,8 @@ class PerfilController extends Controller
         $user=Auth::user();
         $persona=Persona::find($user->fk_id_persona);
 
+        $ar=AreasConocimiento::find($persona->fk_id_area);
+        $persona['area']=$ar->rt_nombre_area;
         //Se manipula la fecha de nacimiento para que se muestra correctamente..........|
         $fecha=Carbon::createFromFormat('Y-m-d',$persona->rf_fecha_nacimiento);
         $fecha=$fecha->format('d-m-Y');
@@ -41,12 +43,14 @@ class PerfilController extends Controller
         $paises=Pais::all();
         $grados=GradosAcademicos::all();
         $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $otrasA=AreasConocimiento::where('pk_id_area','>',100)->get();
 
         return view('gestionDatosPersonales')->with('user',$user)
                                                     ->with('persona',$persona)
                                                     ->with('paises',$paises)
                                                     ->with('areas',$areas)
-                                                    ->with('grados',$grados);
+                                                    ->with('grados',$grados)
+                                                    ->with('otrasA',$otrasA);
     }
 
 
@@ -120,43 +124,34 @@ class PerfilController extends Controller
         $fecha=$fecha->format('d-m-Y');
         $persona->rf_fecha_nacimiento=$fecha;
 
-        $paises=Pais::all();
-        $grados=GradosAcademicos::all();
-        $areas=AreasConocimiento::all();
 
         $mensaje='Sus datos han sido actualizados correctamente.';
 
-        return view('gestionDatosPersonales')->with('user',$user)
-            ->with('persona',$persona)
-            ->with('paises',$paises)
-            ->with('areas',$areas)
-            ->with('grados',$grados)
-            ->with('status',$mensaje);
+        return redirect()->route('gestionDatosPersonales')->withsuccess('Sus datos han sido actualizados correctamente.');
     }
     /*------------------------------------------------------------------------------------------------------------------
      *  | Funcionalidad de edicion de usuarios del sistema..............................................................
      * -----------------------------------------------------------------------------------------------------------------
      */
-    public function editarUsuario(Request $request){
-
-        return $request->all();
-
-        $frmU='Credenciales incorrectas';
-        $user=Auth::user();
-        $persona=Persona::find($user->pk_id_persona);
-
-        $paises=Pais::all();
-        $grados=GradosAcademicos::all();
-        $areas=AreasConocimiento::all();
-
-        return view('gestionDatosPersonales')->with('user',$user)
-            ->with('persona',$persona)
-            ->with('paises',$paises)
-            ->with('areas',$areas)
-            ->with('grados',$grados)
-            ->with('frmU',$frmU);
-
-    }
+//    public function editarUsuario(Request $request){
+//
+//
+//        $frmU='Credenciales incorrectas';
+//        $user=Auth::user();
+//        $persona=Persona::find($user->pk_id_persona);
+//
+//        $paises=Pais::all();
+//        $grados=GradosAcademicos::all();
+//        $areas=AreasConocimiento::all();
+//
+//        return view('gestionDatosPersonales')->with('user',$user)
+//            ->with('persona',$persona)
+//            ->with('paises',$paises)
+//            ->with('areas',$areas)
+//            ->with('grados',$grados)
+//            ->with('frmU',$frmU);
+//
+//    }
 
 
 }

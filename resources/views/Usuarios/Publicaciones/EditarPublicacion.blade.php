@@ -175,72 +175,34 @@
                         <div class="form-row">
                             <div class="col-6">
                                 <label for="area">Area Conocimiento :</label>
-                                <select name="area" id="area" class="form-control  mb-3" onchange="verificarSelcArea(this)" >
-                                @if($publicacion->rl_tipo_area)
-                                        @foreach($areas as $ar)
-                                            <option value="{{$ar->pk_id_area}}" {{$ar->rt_nombre_area=="Otra area del conocimiento" ? 'selected':''}}>{{$ar->rt_nombre_area}}</option>
-                                        @endforeach
-                                @else
-                                    @foreach($areas as $ar)
-                                        <option value="{{$ar->pk_id_area}}" {{$ar->pk_id_area==$publicacion->rn_id_area ? 'selected':''}}>{{$ar->rt_nombre_area}}</option>
+                                <select id="area"
+                                        name="area"
+                                        onchange="verificarSelcArea(this)"
+                                        class="form-control"
+                                >
+                                    @foreach($areas as $area)
+                                        <option value="{{$area->pk_id_area}}"
+                                        @if($publicacion->fk_id_area < 100)
+                                            {{$area->pk_id_area ==$publicacion->fk_id_area ? 'selected':''}}
+                                                @else
+                                            {{$area->pk_id_area == 7 ? 'selected':''}}
+                                                @endif
+                                        >
+                                            {{$area->rt_nombre_area}}
+                                        </option>
                                     @endforeach
-                                @endif
                                 </select>
-                                    {{--@if($publicacion->rl_tipo_area)--}}
-                                    {{--<select name="area"--}}
-                                            {{--id="area"--}}
-                                            {{--class="form-control  mb-3"--}}
-                                            {{--onchange="verificarSelcArea(this)"--}}
-                                    {{-->--}}
-                                        {{--@foreach($areas as $area)--}}
-
-                                            {{--<option value="{{$area->pk_id_area}}"--}}
-                                                {{--{{$area->pk_id_area == $publicacion ? 'selected':''}}--}}
-                                            {{-->--}}
-                                                {{--{{$area->rt_nombre_area}}--}}
-                                            {{--</option>--}}
-                                        {{--@endforeach--}}
-                                    {{--</select>--}}
-                                    {{----}}
-                                    {{--@else--}}
-                                    {{--<select name="area"--}}
-                                            {{--id="area"--}}
-                                            {{--class="form-control  mb-3"--}}
-                                            {{--onchange="verificarSelcArea(this)"--}}
-                                    {{-->--}}
-                                        {{--@foreach($areas as $area)--}}
-
-                                            {{--@if($area->rt_nombre_area =="Otra area del conocimiento")--}}
-                                                {{--<option value="{{$area->pk_id_area}}" selected>--}}
-                                                {{--@else--}}
-                                                {{--<option value="{{$area->pk_id_area}}" selected>--}}
-                                                {{--@endif--}}
-                                                {{--{{$area->rt_nombre_area}}--}}
-                                            {{--</option>--}}
-                                        {{--@endforeach--}}
-                                    {{--</select>--}}
-                                    {{--@endif--}}
-
-
                             </div>
                             <div class="col-6">
                                 <label for="area-c">Especifique Area:</label>
                                 <input type="text"
                                        name="area-c"
                                        id="area-c"
+                                       disabled="true"
                                        class="form-control mb-3 {{$errors->has('area-c') ? 'is-invalid':''}}"
-                                       @if($errors->any())
-                                                value="{{old('area-c')}}"
-                                       @else
-                                            @if($publicacion->rl_tipo_area)
-                                               @foreach($otrasAreas as $oa)
-                                                   @if($oa->pk_id_ac == $publicacion->rn_id_area)
-                                                       value="{{$oa->rt_nombre_ac}}"
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        @endif
+                                        value="@if($publicacion->fk_id_area > 100){{$publicacion['area']}}@endif"
                                 >
+
                             </div>
                         </div>
                         <div class="row">

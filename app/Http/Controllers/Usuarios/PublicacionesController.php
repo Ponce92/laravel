@@ -64,9 +64,10 @@ class PublicacionesController extends Controller
 
     public  function agregarPublicacionForm()
     {
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
         return view('Usuarios.Publicaciones.AgregarPublicacion')
             ->with('user',Auth::user())
-            ->with('areas',AreasConocimiento::all());
+            ->with('areas',$areas);
     }
 
     public function agregarPublicacion(CrearPublicacionRequest $request)
@@ -111,26 +112,24 @@ class PublicacionesController extends Controller
              * Isersion del area del cococimiento.....................
              */
 
-            if ( $request->has('area-c')){//Verificamos si biene el campo de especificacion del area del conocimiento....................
-                $lib->rl_tipo_area=true;
-                //Si existe el campo los buscamos antes de insertarlo.
-                $bandera=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->count();
+            if ( $request->has('area-c')){
+
+                $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
 
                 if ($bandera != 0){
-                        $ac=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->first();
-                        $lib->rn_id_area=$ac->pk_id_ac;
-
+                    $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                    $lib->fk_id_area=$ac->pk_id_area;
                 }else{
-                    $oa=new OtrasAreasConocimiento;
-                    $oa->rt_nombre_ac=$request->get('area-c');
+                    $oa=new AreasConocimiento;
+                    $oa->fk_codigo_icono=1;
+                    $oa->rt_nombre_area=$request->get('area-c');
                     $oa->save();
 
-                    $lib->rn_id_area=$oa->pk_id_ac;
+                    $lib->fk_id_area=$oa->pk_id_area;
                 }
 
-            }else{//Si no esta presente entonces insertamos el id del area de conocimiento..............................
-                $lib->rl_tipo_area=false;
-                $lib->rn_id_area=$request->get('area');
+            }else{
+                $lib->fk_id_area=$request->get('area');
             }
 
             $lib->save();
@@ -166,30 +165,24 @@ class PublicacionesController extends Controller
             $pub->rt_tipo_publicacion=$request->get('tipo');
             $pub->rt_enlace_publicacion=$request->get('enlace');
 
-            if( $request->has('area-c') ){
-                //Verificamos si biene el campo de especificacion del area del conocimiento....................
-                $pub->rl_tipo_area=true;
-                //Si existe el campo los buscamos antes de insertarlo.
+            if ( $request->has('area-c')){
 
-                $bandera=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->count();
+                $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
 
-                if ($bandera != 0 ){
-
-                    $ac=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->get()->first();
-                    $pub->rn_id_area=$ac->pk_id_ac;
-
+                if ($bandera != 0){
+                    $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                    $pub->fk_id_area=$ac->pk_id_area;
                 }else{
-
-                    $oa=new OtrasAreasConocimiento;
-                    $oa->rt_nombre_ac=$request->get('area-c');
+                    $oa=new AreasConocimiento;
+                    $oa->fk_codigo_icono=1;
+                    $oa->rt_nombre_area=$request->get('area-c');
                     $oa->save();
 
-                    $pub->rn_id_area=$oa->pk_id_ac;
+                    $pub->fk_id_area=$oa->pk_id_area;
                 }
 
-            }else{//Si no esta presente entonces insertamos el id del area de conocimiento..............................
-                $pub->rl_tipo_area=false;
-                $pub->rn_id_area=$request->get('area');
+            }else{
+                $pub->fk_id_area=$request->get('area');
             }
 
             $pub->save();
@@ -244,6 +237,11 @@ class PublicacionesController extends Controller
 
         $user=Auth::user();
         $publicacion=Publicacion::find($id);
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+
+        $ar=AreasConocimiento::find($publicacion->fk_id_area);
+
+        $publicacion['area']=$ar->rt_nombre_area;
 
         $ff=Carbon::createFromFormat('Y-m-d',$publicacion->rf_fecha_publicacion);
         $publicacion->rf_fecha_publicacion=$ff->format('d-m-Y');
@@ -251,7 +249,7 @@ class PublicacionesController extends Controller
         return view('Usuarios.Publicaciones.EditarPublicacion')
             ->with('user',$user)
             ->with('publicacion',$publicacion)
-            ->with('areas',AreasConocimiento::all())
+            ->with('areas',$areas)
             ->with('otrasAreas',OtrasAreasConocimiento::all())
             ->with('id',$id);
     }
@@ -284,28 +282,24 @@ class PublicacionesController extends Controller
         $pub->rt_tipo_publicacion=$request->get('tipo');
         $pub->rt_enlace_publicacion=$request->get('enlace');
 
-        if( $request->has('area-c') ){
-            $pub->rl_tipo_area=true;
+        if ( $request->has('area-c')){
 
-            $bandera=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->count();
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
 
-            if ($bandera != 0 ){
-
-                $ac=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->get()->first();
-                $pub->rn_id_area=$ac->pk_id_ac;
-
+            if ($bandera != 0){
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $pub->fk_id_area=$ac->pk_id_area;
             }else{
-
-                $oa=new OtrasAreasConocimiento;
-                $oa->rt_nombre_ac=$request->get('area-c');
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
                 $oa->save();
 
-                $pub->rn_id_area=$oa->pk_id_ac;
+                $pub->fk_id_area=$oa->pk_id_area;
             }
 
         }else{
-            $pub->rl_tipo_area=false;
-            $pub->rn_id_area=$request->get('area');
+            $pub->fk_id_area=$request->get('area');
         }
 
         $pub->save();
@@ -317,6 +311,7 @@ class PublicacionesController extends Controller
     }
 
     public function actualizarPublicacionLibroForm($id){
+
         $user=Auth::user();
         $libroP=LibrosPublicaciones::findOrFail($id);
 
@@ -324,14 +319,23 @@ class PublicacionesController extends Controller
             return redirect()->route('verPublicaciones')->withdanger('Parece que no eres propietario de este recurso');
         }
 
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $otrasA=AreasConocimiento::where('pk_id_area','>',100)->get();
+
+
+
         $ff=Carbon::createFromFormat('Y-m-d',$libroP->rf_fecha);
         $libroP->rf_fecha=$ff->format('d-m-Y');
+
+        $ar=AreasConocimiento::find($libroP->fk_id_area);
+
+        $libroP['area']=$ar->rt_nombre_area;
 
         return view('Usuarios.Publicaciones.EditarPublicacionLibro')
             ->with('user',$user)
             ->with('libro',$libroP)
-            ->with('areas',AreasConocimiento::all())
-            ->with('otrasAreas',OtrasAreasConocimiento::all())
+            ->with('areas',$areas)
+            ->with('otrasA',$otrasA)
             ->with('id',$id);
     }
 
@@ -362,27 +366,26 @@ class PublicacionesController extends Controller
         $libro->rn_pagina=$request->get('np');
         $libro->rd_descripcion=$request->get('descripcion');
 
-        if ( $request->has('area-c')){//Verificamos si biene el campo de especificacion del area del conocimiento....................
-            $libro->rl_tipo_area=true;
-            //Si existe el campo los buscamos antes de insertarlo.
-            $bandera=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->count();
+        if ( $request->has('area-c')){
+
+            $bandera=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->count();
 
             if ($bandera != 0){
-                $ac=OtrasAreasConocimiento::where('rt_nombre_ac','=',$request->get('area-c'))->first();
-                $libro->rn_id_area=$ac->pk_id_ac;
-
+                $ac=AreasConocimiento::where('rt_nombre_area','=',$request->get('area-c'))->first();
+                $libro->fk_id_area=$ac->pk_id_area;
             }else{
-                $oa=new OtrasAreasConocimiento;
-                $oa->rt_nombre_ac=$request->get('area-c');
+                $oa=new AreasConocimiento;
+                $oa->fk_codigo_icono=1;
+                $oa->rt_nombre_area=$request->get('area-c');
                 $oa->save();
 
-                $libro->rn_id_area=$oa->pk_id_ac;
+                $libro->fk_id_area=$oa->pk_id_area;
             }
 
-        }else{//Si no esta presente entonces insertamos el id del area de conocimiento..............................
-            $libro->rl_tipo_area=false;
-            $libro->rn_id_area=$request->get('area');
+        }else{
+            $libro->fk_id_area=$request->get('area');
         }
+
 
         $libro->save();
         $libb=$libro;
