@@ -24,3 +24,4 @@ $('.help-rc').webuiPopover({
     style:'inverse',
     trigger:'hover'
 });
+

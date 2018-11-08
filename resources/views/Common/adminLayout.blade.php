@@ -105,7 +105,7 @@
 
                             @endif
                         </div>
-                        <div class="webui-popover-content" style="overflow-x: hidden">
+                        <div class="webui-popover-content" >
                             <div class="row"style="width: 400px">
                                 <div class="col-12">
                                     <strong>

@@ -10,4 +10,10 @@ class Icono extends Model
     public $primaryKey="pk_codigo_icono";
     public $incrementing=false;
     public $timestamps=false;
+
+    public static function getValorIcono($id){
+        $ico=Icono::findOrFail($id);
+
+        return $ico->rt_icono;
+    }
 }

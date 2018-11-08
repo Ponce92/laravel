@@ -94,7 +94,7 @@
                             <td colspan="2">
                                 {{$publicacion->rt_tipo_publicacion =='ac' ? 'Articulo Cientifico':'Nota Cientifica'}}
                             </td>
-                            <td class="td" colspan="1"> Area conocimiento:</td>
+                            <td class="td" colspan="1"> Pertenece al Area conocimiento:</td>
                             <td colspan="2">
                                 @if(!$publicacion->rl_tipo_area)
                                     @foreach($areas as $area)

@@ -59,35 +59,12 @@ class ProyectosInvestigacionController extends Controller
 
     }
 
-    public function detalleProyecto($id)
-    {
-        $colaboradores=[];
-        $i=0;
-        $user=Auth::user();
-        $detalle=DetalleProyectoInvestigacion::where('fk_codigo_proyecto','=',$id)->first();
 
-        $proyecto=ProyectosInvestigacion::find($id);
-
-        $cols=DB::table('tbl_usuarios_proyectos')
-            ->where('fk_id_proyecto_investigacion','=',$id)
-            ->get();
-
-        foreach ($cols as $col){
-            $colaboradores[$i]=User::find($col->fk_id_participante);
-                $i=$i+1;
-        }
-
-        return view('Usuarios.ProyectosInvestigacion.AdministrarProyectoInvestigacion')
-            ->with('user',$user)
-            ->with('participantes',$colaboradores)
-            ->with('detalle',$detalle)
-            ->with('proyecto',$proyecto);
-    }
 
     public function registrarForm()
     {
         $user=Auth::user();
-
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
 
 
         return view('Usuarios.ProyectosInvestigacion.RegistrarProyectoInvestigacion')
@@ -96,7 +73,7 @@ class ProyectosInvestigacionController extends Controller
             ->with('colores',Color::all())
             ->with('objetivosS',ObjetivoSocioeconomico::all())
             ->with('tiposProyectos',TiposProyectosInvestigacion::all())
-            ->with('areas',AreasConocimiento::all())
+            ->with('areas',$areas)
             ->with('iconos',Icono::all())
             ->with('estados',EstadoProyectoInvestigacion::all());
     }
@@ -205,7 +182,7 @@ class ProyectosInvestigacionController extends Controller
 
 
             /*----------------------------------------------------------------------------------------------------------
-             * Insertamos la red de invstigadores para el proyecto.
+             * Insertamos la red de investigadores para el proyecto.
              * ---------------------------------------------------------------------------------------------------------
              */
 
@@ -250,8 +227,8 @@ class ProyectosInvestigacionController extends Controller
 
             $ntf->pk_id_notificacion=str_random(12);
             $ntf->fk_id_usuario='@riues';
-            $ntf->fk_id_tipo_notificacion=101;
             $ntf->rl_vista=false;
+            $ntf->rt_tipo_notificacion="RNP";//Registro Nuevo Proyecto
             $ntf->rf_fecha_creacion=Carbon::now();
             $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
 
@@ -279,5 +256,31 @@ class ProyectosInvestigacionController extends Controller
 
     }
 
+    public function detalleProyecto($id)
+    {
+        $colaboradores=[];
+        $i=0;
+        $user=Auth::user();
 
+        $proyecto=ProyectosInvestigacion::find($id);
+
+        $detalle=DetalleProyectoInvestigacion::where('fk_codigo_proyecto','=',$id)->first();
+
+
+
+        $colaboradores=DB::table('tbl_usuarios_proyectos')
+            ->where('fk_id_proyecto_investigacion','=',$id)
+            ->get();
+
+        foreach ($colaboradores as $col){
+            $colaboradores[$i]=User::find($col->fk_id_participante);
+            $i=$i+1;
+        }
+
+        return view('Usuarios.ProyectosInvestigacion.AdministrarProyectoInvestigacion')
+            ->with('user',$user)
+            ->with('participantes',$colaboradores)
+            ->with('detalle',$detalle)
+            ->with('proyecto',$proyecto);
+    }
 }

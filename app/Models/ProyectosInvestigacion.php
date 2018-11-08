@@ -15,4 +15,12 @@ class ProyectosInvestigacion extends Model
     public function icono(){
         return $this->hasOne('App\Models\Icono','pk_codigo_icono','fk_codigo_icono');
     }
+
+    public static  function getDetalle($id){
+
+        $detalle=DetalleProyectoInvestigacion::find($id);
+
+        return $detalle;
+    }
+
 }

@@ -33,20 +33,9 @@
         <hr>
         <br>
         <div class="row cuerpo-seccion">
+            @include('Common.FlashMsj')
             <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12" id="error">
-
-                        </div>
-                        @if(isset($status))
-                            <div class="col-12" id="status">
-                                <div class="alert alert-success">
-                                    {{$status}}
-                                </div>
-                            </div>
-                        @endif
-
-
                         <div class="col-3 ">{{--+++++++++++++++++++++++++++++++++++ Foto del Usuario++++++++++++++++++++++++++++++++++++ --}}
                             <div class="row">
                                 <div class="col-12 div-image">
@@ -60,7 +49,7 @@
                         <div class="col-9">{{-- Nombre y apellido--}}
                             <div class="row">
                                 <div class="col mb-3">
-                                    <label for="nombre">Nombres :</label>
+                                    <label for="nombre">Nombre completo :</label>
                                     <input type="text"
                                            id="nombres"
                                            name="nombres"
@@ -262,25 +251,51 @@
             </div>
         </div>
         <br>
+
+        <!--
+                |------------------------------------------------------------------------------------
+                |   Opciones del que observa el perfil del invstigador . . .
+                |-------------------------------------------------------------------------------------
+        -->
+
+
         <div class="row pie-seccion justify-content-end">
-            @if($user->fk_id_rol!=0)
-                <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
-                <div id="toolbar-options" class="hidden">
-                    <a href="#"><i class="fa fa-users">&nbsp;&nbsp;Agregar a contactos</i></a>
-                    <a href="#"><i class="fa fa-chart-pie">&nbsp;&nbsp;Invitar a proyecto</i></a>
-                </div>
 
-            @else
-                <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
-                <div id="toolbar-options" class="hidden">
-                    <a href="#"><i class="fa fa-users">&nbsp;&nbsp;Aceptar</i></a>
-                    <a href="#"><i class="fa fa-chart-pie">&nbsp;&nbsp;Rechazar</i></a>
-                </div>
+            <div class="opciones-menu-click" id="opciones-menu-click" style="padding: 0px">
+                <i class="fas fa-cog fa-2x bttn bttn-ver"></i>
+            </div>
+            <ul class="webui-popover-content list-group">
+                @if($user->fk_id_rol!=0)
+                        <li class="list-group-item bttn-ver f-20">
+                            <i class="fas fa-users f-24 "></i>
+                            &nbsp;Agregar a contactos
+                        </li>
+                        <li class="list-group-item bttn-ver f-20">
+                            <i class="fas fa-code-branch bttn-ver f-24 "></i>
+                            &nbsp;Invitar a proyecto
+                        </li>
+                @else
+                    <li class="list-group-item bttn-ver f-20">
+                        <i class="fas fa-cog bttn-ver f-24 "></i>
+                        &nbsp;Activar investigador
+                    </li>
+                    <li class="list-group-item bttn-ver f-20">
+                        <i class="fas fa-cog bttn-ver f-24"></i>
+                        &nbsp;Desactivar investigador
+                    </li>
+                @endif
 
-            @endif
+            </ul>
 
             <div class="col-1"></div>
         </div>
+       <!--
+            |------------------------------------------------------------------------------------
+            |   Proyectos y publicaciones del investigador ...
+            |-------------------------------------------------------------------------------------
+       -->
+
+
         <br>
         <h2 class="titulo">Otros</h2>
         <hr>
@@ -488,7 +503,6 @@
 
 @section('js')
         <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>
-
 @endsection
 
 

@@ -217,7 +217,7 @@
 
                             </div>
                             <div class="col">
-                                <label class="" for="area">Area de Conocimiento :</label>
+                                <label class="" for="area">Area de Conocimiento:</label>
                                 <select id="area"
                                         name="area"
                                         onchange="verificarSelcArea(this)"
@@ -248,24 +248,7 @@
                                 <div class="invalid-feedback">{{$errors->first('area-c')}}</div>
                             </div>
 
-                            {{--<div class="col col-4">--}}
-                                {{--<label for="area"> Area Conocimiento :</label>--}}
-                                {{--<select name="area"--}}
-                                        {{--id="area"--}}
-                                        {{--form="form"--}}
-                                        {{--class="form-control edt"--}}
-                                        {{--disabled--}}
-                                {{-->--}}
-                                    {{--@foreach($areas as $area)--}}
-                                        {{--@if($area->rt_nombre_area!='Otra area del concimiento')--}}
-                                            {{--<option value="{{$area->pk_id_area}}"{{$area->rt_nombre_area==$persona->rt_nombre_area? 'selected':''}}>--}}
-                                                {{--{{$area->rt_nombre_area}}--}}
-                                            {{--</option>--}}
-                                        {{--@endif--}}
 
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
                             <div class="col col-4">
                                 <label for="horas">Horas dedicadas a investigacion :</label>
                                 <input class="form-control edt"

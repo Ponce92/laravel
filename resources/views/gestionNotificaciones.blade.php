@@ -60,14 +60,16 @@
                                     <div class="col-1">
                                         <div class="row justify-content-center" style="font-size: 26px">
                                             <div class="col">
-                                                <i
+                                                <i      title="Elimnar notificacion"
                                                         class="fas fa-trash-alt bttn bttn-ver"
                                                         onclick="eliminarNotificacion('{{$not->pk_id_notificacion}}')"></i>
                                                 &nbsp;&nbsp;
                                                 @if($not->rl_vista == true)
-                                                    <i class="fas fa-eye bttn bttn-ver"></i>
+                                                    <i  title="Marcar como no leido"
+                                                            class=" fas fa-eye bttn bttn-ver"></i>
                                                     @else
-                                                    <i  class="fas fa-eye-slash bttn bttn-ver"
+                                                    <i      title="Marcar como leido"
+                                                            class="fas fa-eye-slash bttn bttn-ver"
                                                         onclick="leerNotificacion('{{$not->pk_id_notificacion}}')"></i>
                                                 @endif
 

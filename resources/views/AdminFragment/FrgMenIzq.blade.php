@@ -98,6 +98,25 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i>Redes</a>
+                        <ul class="nav-dropdown-items">
+
+                            <li class="nav-item"   >
+                                <a class="nav-link" href="{{ route('redes.todas') }}">
+
+                                    <i class="nav icon icon-list"></i> Mis Redes
+                                </a>
+                            </li>
+
+                            <li class="nav-item"   >
+                                <a class="nav-link" href="{{ route('redes.busqueda') }}">
+                                    <i class="nav icon icon-list"></i> Busqueda
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
             @endif
 
@@ -115,6 +134,8 @@
                         </li>
                     </ul>
                 </li>
+
+
         @endif
 
             @if($user->fk_id_estado==1 || $user->fk_id_rol==0)

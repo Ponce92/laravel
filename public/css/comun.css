@@ -1,3 +1,12 @@
+.f-16{
+    font-size: 16px;
+}
+.f-20{
+    font-size: 18px;
+}
+.f-24{
+    font-size: 24px;
+}
 /*
  *  Estilos para los campos de formulario...
  *
@@ -414,20 +423,28 @@ safddhggkjfds
 .ntf-not{
     border-right:0px !important;
     border-left: 0px;!important;
-    background-color: rgb(243,243,243);
+    background-color: rgb(248,248,248);
 
 }
 .ntf-not:hover{
     background-color: rgb(245,245,245);
 }
+.ntf-not .bttn-exit-small,.bttn-red-small{
+    visibility: visible;
+}
+
 .ntf{
     border-right:0px !important;
     border-left: 0px;!important;
+}
+.ntf .bttn-red-small,.bttn-exit-small{
+    visibility: hidden;
 }
 
 .ntf:hover{
     background-color: rgb(245,245,245);
 }
+
 
 .bttn-red-small{
     background-color: #aa0000;

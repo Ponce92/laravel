@@ -105,6 +105,24 @@ Route::post('/inicio/notificaciones/eliminar','NotificacionesController@eliminar
 Route::post('/inicio/notificaciones/leer','NotificacionesController@marcarLeida')->name('notificaciones.leida');
 
 
+/*-------------------------------------------------------------------------------------------------------------------------------------
+ *  |Administracion de redes de investigadores                                                                                  -------
+ *-------------------------------------------------------------------------------------------------------------------------------------
+ */
+Route::get('/inicio/redes/investigador','Usuarios\RedController@index')->name('redes.todas');
+Route::get('/inicio/redes/investigador/detalle/{id}','Usuarios\RedController@obtenerDetalleRed');
+Route::post('/inicio/redes/investigador/act','Usuarios\RedController@actualizarRed')->name('act.red');
+
+Route::get('/inicio/redes/busqueda','Usuarios\RedController@busquedaRedes')->name('redes.busqueda');
+Route::get('/inicio/redes/busqueda/detalle/{id}','Usuarios\RedController@detalleRed');
+
+
+
+/*---------------------------------------------------------------------------------------------
+ *  |                                          -------
+ *---------------------------------------------------------------------------------------------
+ */
+
 Route::get('/get/OtrasAreasAjax','Ajax\AjaxController@getOtrasAreas')->name('get.otras.areas');
 
 

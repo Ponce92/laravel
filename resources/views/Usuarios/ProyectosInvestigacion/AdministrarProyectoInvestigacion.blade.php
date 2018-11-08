@@ -48,7 +48,8 @@
                         </a>
                     </li>
                 </ul>
-                <div id="tabs-1">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                <div id="tabs-1">
+                    {{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
                 
                 </div>
                 <div id="tabs-2">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
