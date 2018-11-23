@@ -24,8 +24,15 @@
             </div>
         </div>
         <hr>
+        <div class="row">
+            <div class="col col-12">
+                @include('Common.FlashMsj')
+            </div>
+        </div>
         <div class="row cuerpo-seccion">
-            <div id="bvt" style="min-height: 800px!important;width: 100%!important;">
+
+
+            <div id="bvt" style="min-height: 500px!important;width: 100%!important;">
                 <ul class="ui-nav"  >
                     <li>
                         <a href="#tabs-1" style="font-weight: bold">
@@ -39,48 +46,64 @@
                     </li>
                     <li>
                         <a href="#tabs-3" style="font-weight: bold">
-                            <i class="fas fa-book"></i>&nbsp;&nbsp;Documentos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#tabs-4"style="font-weight: bold">
-                            <i class="fas fa-users"></i>&nbsp;&nbsp; Colaboradores
+                            <i class="fas fa-book"></i>&nbsp;&nbsp;Participantes
                         </a>
                     </li>
                 </ul>
                 <div id="tabs-1">
                     {{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
-                
+                    @include('Frg.vista_proyecto')
                 </div>
                 <div id="tabs-2">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                    @include('Frg.vista_detalle')
                 </div>
-                <div id="tabs-3">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                <div id="tabs-3">
+                    <ul class="list-group" style="border-radius: 0px !important; min-width: 400px">
+                        @foreach($participantes as $usuario)
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col col-1" style="width: 100px">
+                                        <img src="{{asset('avatar/'.$usuario->rt_foto_usuario)}}"
+                                             alt="vista no disponible"
+                                             class="img-thumbnail"
+                                             width="100px"
+                                        >
+                                    </div>
+                                    <div class="col col-6">
+
+                                        <strong>
+                                            <a href="#">{{$usuario->email}}</a>
+                                        </strong>
+                                    </div>
+                                    <div class="col col-2">
+
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div id="tabs-4"></div>{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
             </div>
-            <br>
         </div>
-        <br><br><br>
+        <br>
+        <div class="pie-seccion">
+            <div class="row justify-content-end">
+                @if($proyecto->fk_id_titular == $user->pk_id_usuario)
+                    <button class="btn bttn bttn-red btn-lg sw_dg_fr"  form="sw_dg_fr" onclick="this.form.submit()">Actualizar</button>
+                    &nbsp;
+                    <button class="btn bttn bttn-red btn-lg sw_dp_fr"  form="sw_dp_fr" onclick="this.form.submit()">Actualizar detalle</button>
+
+                @endif
+                    <div class="col-1">
+
+                </div>
+            </div>
+        </div>
+
     </div>
     <br>
 @endsection
 
 @section('js')
-    <script>
-        $( function() {
-            $( "#bvt" ).tabs({
-                heightStyle:"fill",
-                classes:{
-                    "ui-tabs-tab":"ui-tabs-tab-ctm",
-                    "ui-tabs-nav":"ui-nav",
-
-                }
-
-            });
-
-        } );
-    </script>
+    <script  src="{{asset('js/ProyectoInvestigacion/Administrar.js')}}"></script>
 @endsection
-
-
-

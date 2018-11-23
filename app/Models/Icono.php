@@ -16,4 +16,12 @@ class Icono extends Model
 
         return $ico->rt_icono;
     }
+
+    public function getId(){
+        return $this->pk_codigo_icono;
+    }
+
+    public function getNombre(){
+        return $this->rt_icono;
+    }
 }

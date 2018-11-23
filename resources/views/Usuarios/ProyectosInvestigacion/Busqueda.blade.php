@@ -9,8 +9,8 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item active">Proyectos de investigacion</li>
-    <li class="breadcrumb-item active">Mis proyectos</li>
+    <li class="breadcrumb-item ">Proyectos de investigacion</li>
+    <li class="breadcrumb-item active">Busqueda</li>
 @endsection
 
 @section('default')
@@ -18,14 +18,31 @@
 
         <br>
         <div class="row cabeza-seccion">
-            <div class="col-8">
+            <div class="col-6">
                 <h2 class="titulo-seccion titulo">Mis proyectos de investigacion</h2>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row justify-content-end">
-                    <a href="{{route('registrar.proyectos.investigacion.form')}}">
-                        <button class="btn btn-lg bttn-red">&nbsp;&nbsp; Nuevo registro &nbsp;&nbsp;</button>
-                    </a>
+                    <div class="col-6">
+                        <form id="filtrar" action="{{route('Busqueda.Proyectos')}}" method="get">
+                            <select name="tipo_proyecto"
+                                    id="tipo_proyecto"
+                                    form="filtrar"
+                                    class="form-control input-lg"
+                                    onchange="this.form.submit()"
+                            >
+                                <option value="-1" {{$bsq ==-1 ? 'selected':''}}>Selecione tipo de proyecto</option>
+                                @foreach($tiposProyectos as $tipo)
+                                    <option value="{{$tipo->pk_id_tipo_proyecto}}" {{$bsq ==$tipo->pk_id_tipo_proyecto ? 'selected':''}}>
+                                        {{$tipo->rd_descripcion}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
+
+                    </div>
+
+                    <div class="col-1"></div>
                 </div>
             </div>
 
@@ -36,13 +53,15 @@
             <div class="container-fluid">
                 @include('Common.FlashMsj')
                 <div class="row">
-                    @if(count($prjs)!=0)
-                        @foreach($prjs as $prj)
+                    @if(count($proyectos) !=0 )
+                        @foreach($proyectos as $prj)
                             <div class="card mb-3" style="width: 18rem;margin-left: 15px">
                                 <div class="card-header">
                                     <div class="row justify-content-center">
-
-                                        <i class="{{$prj['icono']}} fa-3x {{$prj['color']}}"></i>
+                                        <i class="{{$prj->getDetalleProyecto()->getIcono()->getNombre()}}
+                                                    fa-4x
+                                                    {{$prj->getDetalleProyecto()->getColor()->getValor()}}"></i>
+                                        {{--<i class="{{$prj['icono']}} fa-3x {{$prj['color']}}"></i>--}}
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -52,15 +71,10 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row justify-content-end">
-                                        <a href="{{route('proyecto.gestion.documentos')}}/{{$prj->pk_id_proyecto_investigacion}}">
-                                            <button class="btn btn-lg bttn-red">
-                                                Documentos
-                                            </button>
-                                        </a>
                                         &nbsp;&nbsp;&nbsp;
-                                        <a href="{{route('misproyectos.investigacion')}}/{{$prj->pk_id_proyecto_investigacion}}">
-                                            <button class="btn btn-success btn-lg">
-                                                Administrar
+                                        <a href="{{route('proyecto.buscar.detalle')}}/{{$prj->getId()}}">
+                                            <button class="btn bttn-red btn-lg">
+                                                Ver detalle
                                             </button>
                                         </a>
                                     </div>
@@ -71,7 +85,7 @@
                         <br><br><br><br>
                         <div class="col-10 offset-1">
                             <h1 style="color: rgb(100,100,100);font-weight: bold;font-family: 'Open Sans'">
-                                "No hemos encontrado proyectos en los que participes"
+                                "No hemos encontrado proyectos disponibles"
                             </h1>
                         </div>
 

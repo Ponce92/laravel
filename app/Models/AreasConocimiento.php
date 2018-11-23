@@ -17,4 +17,7 @@ class AreasConocimiento extends Model
     protected $primaryKey='pk_id_area';
     public $timestamps=false;
 
+    public function getId(){
+        return $this->pk_id_area;
+    }
 }

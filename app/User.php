@@ -61,5 +61,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\LibrosPublicaciones','fk_id_usuario');
     }
 
+    public function getCorreo(){
+        return $this->email;
+    }
 
+    public function getId(){
+     return $this->pk_id_usuario;
+    }
 }

@@ -45,7 +45,6 @@
             <div class="col-4">
                 <div class="row justify-content-center">
                     <div class="text-center" style="width: 125px;padding-top: 15px;height: 125px;border: 1px solid rgb(210,210,210);">
-
                         <input type="text" name="idInconoTxt" id="idInconoTxt" hidden value="{{$valorIcono}}" >
                     </div>
                 </div>

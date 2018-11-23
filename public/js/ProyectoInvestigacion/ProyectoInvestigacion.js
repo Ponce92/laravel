@@ -32,8 +32,9 @@ $(function () {
 
             var clase=ui.selected;
             var clc=clase.id;
+            alert(clc);
 
-            $('#idInconoTxt').val('clc');
+            $('#idInconoTxt').val(clc);
             $('#iconDestini').removeClass();
             $('#iconDestini').removeAttr('name');
 

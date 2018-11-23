@@ -73,7 +73,7 @@ hr.all{
 .bttn-red{
     border: solid 2px #aa0000 ;
     background-color: #aa0000;
-    color: white;
+    color: white!important;
 }
 .btn{
     color: white;

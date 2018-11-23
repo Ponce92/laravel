@@ -10,4 +10,12 @@ class TiposProyectosInvestigacion extends Model
 
     public $primaryKey='pk_id_tipo_proyecto';
     public $timestamps=false;
+
+    public function getId(){
+        return $this->pk_id_tipo_proyecto;
+    }
+
+    public function getDescripcion(){
+        return $this->rd_descripcion;
+    }
 }

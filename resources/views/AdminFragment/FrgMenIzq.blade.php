@@ -92,8 +92,8 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="{{ route('verUsuario') }}">
-                                    <i class="fas fa-user-edit"></i> Busqueda Proyectos
+                                   href="{{ route('Busqueda.Proyectos') }}">
+                                    <i class="fas fa-user-edit"></i> Busqueda
                                 </a>
                             </li>
                         </ul>
@@ -134,10 +134,7 @@
                         </li>
                     </ul>
                 </li>
-
-
         @endif
-
             @if($user->fk_id_estado==1 || $user->fk_id_rol==0)
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="{{route('notificaciones')}}">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Requests\ProyectoInvestigacion\CrearRequest;
+use App\Http\Requests\ProyectoInvestigacion\ActualizarDatosGeneralesRequest;
+use Illuminate\Http\Request;
 use App\Models\AreasConocimiento;
 use App\Models\DetalleProyectoInvestigacion;
 use App\Models\EstadoProyectoInvestigacion;
@@ -58,8 +60,6 @@ class ProyectosInvestigacionController extends Controller
             ->with('user',$user);
 
     }
-
-
 
     public function registrarForm()
     {
@@ -263,24 +263,139 @@ class ProyectosInvestigacionController extends Controller
         $user=Auth::user();
 
         $proyecto=ProyectosInvestigacion::find($id);
-
         $detalle=DetalleProyectoInvestigacion::where('fk_codigo_proyecto','=',$id)->first();
-
+        $valorIcono=Icono::getValorIcono($detalle->fk_codigo_icono);
+        $valorColor=Color::getValorColor($detalle->fk_codigo_color);
+        $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $area=$proyecto->getArea();
+        $estadoProyecto=$proyecto->getEstado();
+        $titular=$proyecto->getTitular();
 
 
         $colaboradores=DB::table('tbl_usuarios_proyectos')
             ->where('fk_id_proyecto_investigacion','=',$id)
             ->get();
 
+
+
+        /*Recuperamos la lista de colaboradores del proyecto de ivestigacion sin importar si es duenio o no*/
         foreach ($colaboradores as $col){
             $colaboradores[$i]=User::find($col->fk_id_participante);
             $i=$i+1;
         }
 
         return view('Usuarios.ProyectosInvestigacion.AdministrarProyectoInvestigacion')
+            ->with('iconos',Icono::all())
+            ->with('icono',$detalle->getIcono())
+            ->with('colores',Color::all())
+            ->with('color',$detalle->getColor())
             ->with('user',$user)
+            ->with('titular',$titular)
+            ->with('valorIcono',$valorIcono)
+            ->with('valorColor',$valorColor)
+            ->with('areas',$areas)
+            ->with('area',$area)
+            ->with('estadoProyecto',$estadoProyecto)
+            ->with('tiposProyectos',TiposProyectosInvestigacion::all())
+            ->with('estadosProyectos',EstadoProyectoInvestigacion::all())
+            ->with('idTipoProyecto',$proyecto->fk_id_tipo_proyecto)
             ->with('participantes',$colaboradores)
             ->with('detalle',$detalle)
+            ->with('objetivo',$proyecto->getObjetivo())
+            ->with('objetivosProyectos',ObjetivoSocioeconomico::all())
             ->with('proyecto',$proyecto);
+    }
+
+    public function ActualizarDatosGenerales(ActualizarDatosGeneralesRequest $request){
+        $user=Auth::user();
+        if(!$request->has('_id')){
+            return redirect()->route('dashboard')->withInfo('Error al accesar recurso.');
+        }
+        $proyecto=ProyectosInvestigacion::findOrFail($request->get('_id'));
+
+        if($user->getId() != $proyecto->getTitular()->getId()){
+            return redirect()->route('dashboard')->withInfo('No eres el duenio del proyecto que intentas modificar');
+        }
+        $proyecto->setTitulo($request->get('titulo'));
+        $proyecto->setAcronimo($request->get('acronimo'));
+        $proyecto->setId($request->get('codigo'));
+        $proyecto->setDecripcion($request->get('descripcion'));
+        $proyecto->setEstado($request->get('estado_proyecto'));
+        $proyecto->setTipo($request->get('tipo_proyecto'));
+        $proyecto->setArea($request->get('area'));
+        $proyecto->setObjetivo($request->get('objetivo_proyecto'));
+
+        $proyecto->save();
+
+        return redirect()
+            ->action('Usuarios\ProyectosInvestigacionController@detalleProyecto',['id'=>$proyecto->getId()])
+            ->withsuccess('El registro se ha actualizado exitosamente');
+    }
+
+    public function ActualizarDetalle(Request $request){
+
+
+        $detalle=DetalleProyectoInvestigacion::where('fk_codigo_proyecto','=',$request->get('_id'))->first();
+
+        $detalle->setFechaFin($request->get('fechaFin'));
+        $detalle->setFechaInicio($request->get('fechaInicio'));
+        $detalle->setMonto($request->get('monto'));
+
+        if($request->has('idInconoTxt')){
+            $detalle->setIcono($request->get('idInconoTxt'));
+        }
+        if($request->has('colorIcon')){
+            $detalle->setColor($request->get('colorIcon'));
+        }
+
+        $idP=$detalle->fk_id_proyecto;
+
+        $detalle->save();
+
+        return redirect()->action('Usuarios\ProyectosInvestigacionController@detalleProyecto',['id'=>$idP])->withsuccess("El detalle del proyecto se ha actualizado con exito");
+
+    }
+
+    public function BusquedaProyectos(Request $request){
+
+        $proyectos=[];
+        $i=0;
+        $user=Auth::user();
+        $bsq=-1;
+
+        if($request->has('tipo_proyecto')){
+            $bsq=$request->get('tipo_proyecto');
+        }
+
+        $proy=DB::table('tbl_usuarios_proyectos')
+            ->where('fk_id_participante','<>',$user->pk_id_usuario)
+            ->get();
+
+        if(count($proy)!=0)
+        {
+            foreach ($proy as $prj)
+            {
+                $proyecto=ProyectosInvestigacion::find($prj->fk_id_proyecto_investigacion);
+
+                if($bsq ==-1){
+                    $proyectos[$i]=$proyecto;
+                    $i=$i+1;
+                }else{
+                    if($proyecto->getTipo()->getId() ==$bsq){
+                        $proyectos[$i]=$proyecto;
+                        $i=$i+1;
+                    }
+                }
+
+
+            }
+
+        }
+
+        return view('Usuarios.ProyectosInvestigacion.Busqueda')
+            ->with('user',$user)
+            ->with('bsq',$bsq)
+            ->with('proyectos',$proyectos)
+            ->with('tiposProyectos',TiposProyectosInvestigacion::all());
     }
 }

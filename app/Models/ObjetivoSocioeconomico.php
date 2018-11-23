@@ -10,4 +10,12 @@ class ObjetivoSocioeconomico extends Model
     public $primaryKey='pk_codigo_objetivo';
     public $timestamps=false;
     public $incrementing=false;
+
+    public function getId(){
+        return $this->pk_codigo_objetivo;
+    }
+
+    public function getDescripcion(){
+        return $this->rd_descripcion_objetivo;
+    }
 }

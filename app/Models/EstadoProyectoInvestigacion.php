@@ -12,4 +12,12 @@ class EstadoProyectoInvestigacion extends Model
     public $timestamps=false;
     public $incrementing=false;
 
+    public function getId(){
+        return $this->pk_id_estado;
+    }
+
+    public  function getEstado(){
+        return $this->rt_nombre_estado;
+    }
+
 }

@@ -83,17 +83,20 @@ Route::get('/investigadores/perfiles/nombres/Ajax','Usuarios\InvestigadorControl
  *  |Rutas para la gestion de proyectos de investigacion ...............................................................
  */
 
-Route::get('/proyectos/busqueda','Usuarios\ProyectosInvestigacionController@index')->name('busqueda.proyectos.investigacion');
+Route::get('/proyectos/busqueda','Usuarios\ProyectosInvestigacionController@BusquedaProyectos')->name('Busqueda.Proyectos');
+Route::get('/proyectos/busqueda/detalle','Usuarios\ProyectosInvestigacionController@BusquedaProyectos')->name('proyecto.buscar.detalle');
+Route::get('/proyectos/busqueda/detalle/{id}','Usuarios\ProyectosInvestigacionController@BusquedaProyectos');
 
 Route::get('/proyectos/mis-proyectos','Usuarios\ProyectosInvestigacionController@obtenerProyectos')->name('misproyectos.investigacion');
 Route::get('/proyectos/mis-proyectos/{id}','Usuarios\ProyectosInvestigacionController@detalleProyecto');
+Route::post('/Proyectos/actualizar/general/','Usuarios\ProyectosInvestigacionController@ActualizarDatosGenerales')->name('proyecto.investigacion.actualizar');
 
 
 Route::get('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@registrarForm')->name('registrar.proyectos.investigacion.form');
 Route::post('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@registrar')->name('registrar.proyecto.investigacion');
 
 Route::get('/proyectos/actualizar','Usuarios\ProyectosInvestigacionController@actualizar')->name('actualizar.proyectos.investigacion');
-
+Route::post('/proyecto/actualizar','Usuarios\ProyectosInvestigacionController@ActualizarDetalle')->name('proyecto.actualizar');
 /*------------------------------------------------------------------------------------------------------------------------------------
  *      Funcionalidad de la notificacion para todos los usuarios. .  .                                                              --
  * -----------------------------------------------------------------------------------------------------------------------------------
@@ -117,9 +120,17 @@ Route::get('/inicio/redes/busqueda','Usuarios\RedController@busquedaRedes')->nam
 Route::get('/inicio/redes/busqueda/detalle/{id}','Usuarios\RedController@detalleRed');
 
 
+/*---------------------------------------------------------------------------------------------
+ *  |Administracion de Documentos de proyectos                                          -------misproyectos.documentos
+ *---------------------------------------------------------------------------------------------
+ */
+Route::get('/proyecto/documentos/','Usuarios\DocumentosController@Index')->name('proyecto.gestion.documentos');
+Route::get('/proyecto/documentos/{id}','Usuarios\DocumentosController@Index');
+
+
 
 /*---------------------------------------------------------------------------------------------
- *  |                                          -------
+ *  |                                                         -------
  *---------------------------------------------------------------------------------------------
  */
 

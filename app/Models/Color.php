@@ -17,4 +17,15 @@ class Color extends Model
 
         return $col->rt_valor;
     }
+
+    public function getId(){
+        return $this->pk_id_color;
+    }
+    public function getNombre(){
+        return $this->rt_nombre;
+    }
+
+    public function getValor(){
+        return $this->rt_valor;
+    }
 }
