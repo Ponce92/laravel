@@ -20,4 +20,8 @@ class AreasConocimiento extends Model
     public function getId(){
         return $this->pk_id_area;
     }
+
+    public function getNombre(){
+        return $this->rt_nombre_area;
+    }
 }

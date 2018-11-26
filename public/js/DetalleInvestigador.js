@@ -55,71 +55,21 @@ function getDetalleP(id,url) {
     });
 }
 
-function mostrarFormEdtPr(prj) {
-    $('#nombre').val(prj.rt_titulo_proyecto);
-    $('#fechaInicio').val(prj.rf_fecha_inicio_proyecto);
-    $('#fechafin').val(prj.rf_fecha_fin_proyecto);
-    $('#area-e').append('<option selected value="'+prj.pk_id_area+'"+ >'+prj.rt_nombre_area+' </option>');
 
-    $('#textarea').val(prj.rd_descripcion_proyecto);
-
-    $( "#frm-proj" ).dialog("open");
-}
-
-$( function() {
-    $ ("#frm-proj").dialog({
-            autoOpen: false,
-            height: 700,
-            width: 675,
-            modal:true,
-            resizable:false,
-            draggable:false,
-            classes: {
-                "ui-dialog": "my",
-                "ui-dialog-titlebar":"frm-modal-title",
-                "dialogClass": 'hide-close',
-            },
-            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
-            buttons: [
-                {
-                    text: "Cerrar",
-                    click: function()
-                    {
-                        $(this).dialog('close');
-                    }
-                }
-            ]
-        }
-    );
-} );
 
 /*
 *       Seccion de ver las Publicacioens del perfil que se observa
 * */
 
 $( function() {
-    $ ("#editar-frm").dialog({
+    $ ("#proyectos").dialog({
             autoOpen: false,
-            height: 725,
-            width: 675,
-            modal:true,
+            // modal:true,
+            title:"Seleccione Proyecto",
+
+            width:450,
             resizable:false,
-            draggable:false,
-            classes: {
-                "ui-dialog": "my",
-                "ui-dialog-titlebar":"frm-modal-title",
-                "dialogClass": 'hide-close',
-            },
-            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); },
-            buttons: [
-                {
-                    text: "Cerrar",
-                    click: function()
-                    {
-                        $(this).dialog('close');
-                    }
-                }
-            ]
+            open: function(event, ui) { $(this).parent().find(".ui-dialog-titlebar-close").remove(); }
         }
     );
 } );
@@ -165,12 +115,28 @@ function getDetalle(id,url) {
         }
     });
 }
+/*-----------------------------------------------------------------------------------------------
+ *      |
+ *-----------------------------------------------------------------------------------------------
+ */
+$("#info-12").hide();
+function proyectos(){
+    $( "#proyectos" ).dialog("open");
+    $("#info-12").hide();
+}
 
+function proyectosExit(){
+    $( "#proyectos" ).dialog("close");
+    $("#inputPrj").val('');
+}
+function valueInput(id){
+    $("#inputPrj").val(id);
+    $("#info-12").show();
+}
 
 /*-----------------------------------------------------------------------------------------------
  *      |   menus de investigador
  *-----------------------------------------------------------------------------------------------
- *
  */
 
 $('#opciones-menu-click').webuiPopover({

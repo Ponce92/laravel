@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contacto;
 use App\Models\Notificacion;
 use App\User;
+use App\Models\ProyectosInvestigacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class NotificacionesController extends Controller
 {
 
      public function index(){
         $user=Auth::user();
+        $Notificaciones=Notificacion::where('fk_id_usuario','=',$user->getId())->get();
+//        $join=DB::table('tbl_notificaciones')
+//            ->join('tbl_usuarios','tbl_usuarios.pk_id_usuario','=','tbl_notificaciones.fk_id_usuario_remitente')
+//            ->where()
+//            ->get();
 
-        $join=DB::table('tbl_notificaciones')
-            ->join('tbl_usuarios','tbl_usuarios.pk_id_usuario','=','tbl_notificaciones.fk_id_usuario_remitente')
-            ->where('tbl_notificaciones.fk_id_usuario','=',$user->pk_id_usuario)
-            ->get();
          return view('gestionNotificaciones')
              ->with('user',$user)
-             ->with('notificaciones',$join);
+             ->with('notificaciones',$Notificaciones);
      }
 
      public function aceptarRegistro(Request $request){
@@ -30,6 +34,19 @@ class NotificacionesController extends Controller
 
             $ntf->rl_vista=true;
             $ntf->save();
+
+            /*         */
+
+            $ntff =new Notificacion();
+            $ntff->pk_id_notificacion=str_random(12);
+            $ntff->fk_id_usuario=$ntf->fk_id_usuario_remitente;
+            $ntff->rl_vista=false;
+            $ntff->rt_tipo_notificacion='RSR';
+            $fech=Carbon::now();
+            $ntff->rf_fecha_creacion=$fech->format('Y-m-d');
+            $ntff->fk_id_usuario_remitente='@riues';
+            $ntff->save();
+
 
             $reg=User::findOrFail($ntf->fk_id_usuario_remitente);
 
@@ -48,6 +65,7 @@ class NotificacionesController extends Controller
      public function rechazarRegistro(Request $request){
 
          if($request->has('codigo_rechazar')) {
+             $user=Auth::user();
              $id = $request->get('codigo_rechazar');
              $ntf = Notificacion::findOrFail($id);
 
@@ -101,4 +119,229 @@ class NotificacionesController extends Controller
 
      }
 
+     public function SolicitarAmistad(Request $request){
+         $id=$request->get('idU');
+         $amigo=User::find($id);
+         $user=Auth::user();
+
+         $am=Contacto::where('fk_codigo_usuario2','=',$user->getId())
+                        ->where('fk_codigo_usuario1','=',$amigo->getId())->get();
+
+         $am2=Contacto::where('fk_codigo_usuario1','=',$user->getId())
+             ->where('fk_codigo_usuario2','=',$amigo->getId())->get();
+         $ss=count($am)+count($am2);
+
+         if($ss > 0){
+             return back()->withinfo('Ya tienes a este usuario como contacto');
+         }
+
+         if($amigo){
+
+             $ntff =new Notificacion();
+             $ntff->pk_id_notificacion=str_random(12);
+             $ntff->fk_id_usuario=$amigo->getId();
+             $ntff->rl_vista=false;
+             $ntff->rt_tipo_notificacion='SSA';
+             $fech=Carbon::now();
+
+             $ntff->rf_fecha_creacion=$fech->format('Y-m-d');
+             $ntff->fk_id_usuario_remitente=$user->getId();
+             $ntff->save();
+
+             return back()->withsuccess('El usuario recibira una notificacion con tu solicitud');
+         }else{
+             return redirect('/');
+         }
+     }
+
+    public function ResponderSolicitudAmistad(Request $request){
+        $n=$request->get('idN');
+
+        $user=Auth::user();
+
+        $ntf=Notificacion::find($n);
+        $ntf->setVista(true);
+        $ntf->save();
+
+        $ntff=new Notificacion();
+        $ntff->setTipo('RSA');
+        $ntff->setId(str_random(12));
+        $ntff->setUsuario($ntf->getRemitente()->getId());
+        $ntff->setFecha(Carbon::now());
+        $ntff->setRemitente($user->getId());
+        $ntff->setVista(false);
+
+
+        $ntff->save();
+
+        /*Creamos la relacion entre usuarios*/
+
+        $contacto = new Contacto();
+
+        $contacto->setId(str_random(12));
+        $contacto->setUsuario1($user->getId());
+        $contacto->setUsuario2($ntff->getUsuario()->getId());
+
+        $contacto->save();
+
+        return back()->withsuccess('Has aceptado que el usuario se una a tu lista de contactos.');
+    }
+
+    public function SolicitudAnexion(Request $request){
+         $idProyecto=$request->get('codigo_proyecto');
+         $idInvitado=$request->get('codigo_invitado');
+         $user=Auth::user();
+
+        $val=DB::table('tbl_usuarios_proyectos')
+            ->where('fk_id_participante','=',$idInvitado)
+            ->where('fk_id_proyecto_investigacion','=',$idProyecto)
+            ->get();
+        if(count($val)!=0){
+            return back()->withsuccess('Error, este usuario ya perteneces al proyecto');
+        }
+
+        $ntf =new Notificacion();
+
+        $ntf->setId(str_random(12));
+        $ntf->setUsuario($idInvitado);
+        $ntf->setVista(false);
+        $ntf->setTipo('SAI');
+        $ntf->setFecha(Carbon::now());
+        $ntf->setProyecto($idProyecto);
+        $ntf->setRemitente($user->getid());
+
+        $ntf->save();
+
+        return back()->withsuccess('Exito enla operacion, este usuario recibira una notificacion con tu solicitud');
+    }
+
+    public function ResponderAnexion(Request $request){
+         $user = Auth::user();
+         $idNot=$request->get('idN24');
+         $not=Notificacion::find($idNot);
+
+         /*-------------------------------------------------------------------------------------------------------------
+          |     | Creamos la entrada para que aparesca como participante de del proyecto
+          |-------------------------------------------------------------------------------------------------------------
+         */
+
+         $val=DB::table('tbl_usuarios_proyectos')
+             ->where('fk_id_participante','=',$user->getId())
+             ->where('fk_id_proyecto_investigacion','=',$not->getProyecto()->getId())
+            ->get();
+         if(count($val)!=0){
+            return back()->withsuccess('Error, este usuario ya perteneces al proyecto');
+         }
+
+        DB::table('tbl_usuarios_proyectos')->insert([
+            [
+                'fk_id_participante'=>$not->getUsuario()->getId(),
+                'fk_id_proyecto_investigacion'=>$not->getProyecto()->getId(),
+            ]
+        ]);
+
+        /*-------------------------------------------------------------------------------------------------------------
+         |     | Marcamos la notificacion como vista y creamos la nueva notificacion para informar al otro usuario
+         |-------------------------------------------------------------------------------------------------------------
+         */
+        $not->setVista(true);
+        $not->save();
+
+        $ntf= new Notificacion();
+
+        $ntf->setId(str_random(12));
+        $ntf->setUsuario($not->getRemitente()->getId());
+        $ntf->setVista(false);
+        $ntf->setTipo('RAP');
+        $ntf->setFecha(Carbon::now());
+        $ntf->setRemitente($user->getid());
+
+        $ntf->save();
+        return back()->withsuccess('Ha aceptato tu solicitud, ahora forma parte de tu grupo de investigacion');
+    }
+
+    public function SolicitarParticipacionProyecto(Request $request){
+
+         $idProyecto=$request->get('idP');
+
+         $user=Auth::user();
+         $proyecto=ProyectosInvestigacion::find($idProyecto);
+
+         /*-------------------------------------------------------------------------------------------------------------
+          | | Buscamos si este usuario ya pertenece al proyecto (Por si acaso)
+          |-------------------------------------------------------------------------------------------------------------
+          */
+
+         $val=DB::table('tbl_usuarios_proyectos')
+            ->where('fk_id_participante','=',$user->getId())
+            ->where('fk_id_proyecto_investigacion','=',$idProyecto)
+            ->get();
+            if(count($val)!=0){
+                return back()->withsuccess('Ya eres participante en este proyecto');
+            }
+
+        /*-------------------------------------------------------------------------------------------------------------
+          | | Si aun no pertenece entoces creamos la notificacion......
+          |-------------------------------------------------------------------------------------------------------------
+          */
+        $ntf =new Notificacion();
+
+        $ntf->setId(str_random(12));
+        $ntf->setUsuario($proyecto->getTitular()->getId());
+        $ntf->setVista(false);
+        $ntf->setTipo('SPP');
+        $ntf->setFecha(Carbon::now());
+        $ntf->setProyecto($idProyecto);
+        $ntf->setRemitente($user->getid());
+
+        $ntf->save();
+        return back()->withsuccess('Se notificara al titular de proyecto para que responda a tu solicitud');
+     }
+
+     public function ResponderParticipacionProyecto(Request $request){
+
+         $idNot=$request->get('idN25');
+         $not=Notificacion::find($idNot);
+         $not->setVista(true);
+         $not->save();
+         $proyecto=$not->getProyecto();
+         $user=Auth::user();
+
+         /*-------------------------------------------------------------------------------------------------------------
+          | | Buscamos si este usuario ya pertenece al proyecto (Por si acaso)
+          |-------------------------------------------------------------------------------------------------------------
+          */
+
+         $val=DB::table('tbl_usuarios_proyectos')
+             ->where('fk_id_participante','=',$not->getRemitente()->getId())
+             ->where('fk_id_proyecto_investigacion','=',$proyecto->getId())
+             ->get();
+         if(count($val)!=0){
+             return back()->withsuccess('Este usuario ya se encuentra como participante del proyecto');
+         }
+         /*-------------------------------------------------------------------------------------------------------------
+            |   | Si no es colaborador entonces lo insertamos como paricipante
+            |-------------------------------------------------------------------------------------------------------------
+        */
+         DB::table('tbl_usuarios_proyectos')->insert([
+             [
+                 'fk_id_participante'=>$not->getRemitente()->getId(),
+                 'fk_id_proyecto_investigacion'=>$not->getProyecto()->getId(),
+             ]
+         ]);
+
+         $ntf =new Notificacion();
+
+         $ntf->setId(str_random(12));
+         $ntf->setUsuario($not->getRemitente()->getId());
+         $ntf->setVista(false);
+         $ntf->setTipo('RPP');
+         $ntf->setFecha(Carbon::now());
+         $ntf->setProyecto($proyecto->getId());
+         $ntf->setRemitente($user->getid());
+
+         $ntf->save();
+
+         return back()->withsuccess('Se ha agregado al usuario como participante de tu proyecto');
+     }
 }

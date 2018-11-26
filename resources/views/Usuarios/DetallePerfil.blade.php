@@ -31,9 +31,10 @@
             </div>
         </div>
         <hr>
+        @include('Common.FlashMsj')
         <br>
         <div class="row cuerpo-seccion">
-            @include('Common.FlashMsj')
+
             <div class="container-fluid">
                     <div class="row">
                         <div class="col-3 ">{{--+++++++++++++++++++++++++++++++++++ Foto del Usuario++++++++++++++++++++++++++++++++++++ --}}
@@ -266,11 +267,15 @@
             </div>
             <ul class="webui-popover-content list-group">
                 @if($user->fk_id_rol!=0)
-                        <li class="list-group-item bttn-ver f-20">
-                            <i class="fas fa-users f-24 "></i>
-                            &nbsp;Agregar a contactos
+                    <form action="{{route('solicitar.amistad')}}" name="amigo" id="amigo" method="post">
+                        {{ csrf_field()  }}
+                        <li class="list-group-item bttn-ver f-20" onclick="amigo.submit()">
+                                <i class="fas fa-users f-24 "></i>
+                                &nbsp;Agregar a contactos
+                            <input type="text" name="idU" id="idU" value="{{$perfil->pk_id_usuario}}" hidden>
                         </li>
-                        <li class="list-group-item bttn-ver f-20">
+                    </form>
+                        <li class="list-group-item bttn-ver f-20" onclick="proyectos()">
                             <i class="fas fa-code-branch bttn-ver f-24 "></i>
                             &nbsp;Invitar a proyecto
                         </li>
@@ -451,7 +456,7 @@
                                         </td>
                                         <td class="td" colspan="1">Fecha publicacion :</td>
                                         <td colspan="1">
-                                            {{$publicacion->rf_fecha_publicacion}}
+                                            {{$libro->rf_fecha_publicacion}}
                                         </td>
                                         <td colspan="1" class="td" style="width: 75px">ISSN :</td>
                                         <td colspan="1" >{{$libro->rt_issn}}</td>
@@ -498,8 +503,55 @@
     </div>
     <br>
     <br>
+    {{--
+        | Fragmento de codigo para invitar a proyecto de investigacion ....
+    --}}
+    <div class="row" hidden>
+        <div class="col" style="width: 300px" id="proyectos" >
+            @if(count($misProyectos) > 0)
+                <ul class="list-group all">
+                    @foreach($misProyectos as $prj)
+                        <li  class="list-group-item list-group-item-action  bttn-ver"  onclick="valueInput('{{$prj->getId()}}')">
+                            <i class="{{$prj->getDetalleProyecto()->getIcono()->getNombre()}} fa-2x"></i>&nbsp;
+                            <strong>{{$prj->getTitulo()}}</strong>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+
+            <div class="col-12">
+                <hr class="all">
+            </div>
+
+            <div class="row justify-content-end">
+                    <button class="btn bttn bttn-exit btn-lg"
+                            style="color: white"
+                            onclick="proyectosExit()"
+                            >
+                        Cancelar
+                    </button>
+                    <div class="col-1"></div>
+                    <button class="bttn bttn bttn-red btn-lg"
+                            onclick="this.form.submit()"
+                            form="frg-98u"
+                            id="info-12"
+                    >
+                        Aceptar
+                    </button>
+                    &nbsp;
+            </div>
+            <div class="row" hidden>
+                <form action="{{route('solicitar.proyecto.union')}}" method="post" name="frg-98u" id="frg-98u">
+                    {{ csrf_field()  }}
+                    <input type="text" id="inputPrj" name="codigo_proyecto" value="" readonly>
+                    <input type="text" id="876" name="codigo_invitado" readonly value="{{$perfil->pk_id_usuario}}">
+                </form>
+            </div>
+        </div>
+    </div>
 
 @endsection
+
 
 @section('js')
         <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>

@@ -68,4 +68,7 @@ class User extends Authenticatable
     public function getId(){
      return $this->pk_id_usuario;
     }
+    public function getFoto(){
+        return $this->rt_foto_usuario;
+    }
 }

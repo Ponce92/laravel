@@ -272,8 +272,7 @@ class ProyectosInvestigacionController extends Controller
         $titular=$proyecto->getTitular();
 
 
-        $colaboradores=DB::table('tbl_usuarios_proyectos')
-            ->where('fk_id_proyecto_investigacion','=',$id)
+        $colaboradores=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$id)
             ->get();
 
 
@@ -397,5 +396,27 @@ class ProyectosInvestigacionController extends Controller
             ->with('bsq',$bsq)
             ->with('proyectos',$proyectos)
             ->with('tiposProyectos',TiposProyectosInvestigacion::all());
+    }
+
+    public function VerDetalleProyecto($id){
+        $user=Auth::user();
+        $proyecto=ProyectosInvestigacion::find($id);
+        $colaboradores=[];
+        $i=0;
+
+        $cols=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$id)
+            ->get();
+
+        /*Recuperamos la lista de colaboradores del proyecto de ivestigacion sin importar si es duenio o no*/
+        foreach ($cols as $col){
+            $colaboradores[$i]=User::find($col->fk_id_participante);
+            $i=$i+1;
+        }
+
+        return view('Usuarios.ProyectosInvestigacion.Detalle')
+            ->with('user',$user)
+            ->with('proyecto',$proyecto)
+            ->with('colaboradores',$colaboradores);
+
     }
 }

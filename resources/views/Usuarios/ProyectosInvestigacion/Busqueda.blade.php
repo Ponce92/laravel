@@ -72,7 +72,7 @@
                                 <div class="card-footer">
                                     <div class="row justify-content-end">
                                         &nbsp;&nbsp;&nbsp;
-                                        <a href="{{route('proyecto.buscar.detalle')}}/{{$prj->getId()}}">
+                                        <a href="{{route('ver.detalle.proyecto')}}/{{$prj->getId()}}">
                                             <button class="btn bttn-red btn-lg">
                                                 Ver detalle
                                             </button>

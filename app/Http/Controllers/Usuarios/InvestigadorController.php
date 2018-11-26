@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AreasConocimiento;
 use App\Models\GradosAcademicos;
 use App\Models\LibrosPublicaciones;
+use App\Models\ProyectosInvestigacion;
+use App\Models\Notificacion;
 use App\Models\Pais;
 use App\Models\ProyectoRealizado;
 use App\Models\Publicacion;
@@ -39,6 +41,14 @@ class InvestigadorController extends Controller
             ->where('tbl_usuarios.pk_id_usuario','=',$id)
             ->first();
         $edad=Carbon::parse($perfil->rf_fecha_nacimiento)->age;
+
+        /*------------------------------------------------------------------------------
+         |  |   Recuperamos los proyectos el que observa es administrador
+         |------------------------------------------------------------------------------
+         */
+        $user=Auth::user();
+        $misProyecto=ProyectosInvestigacion::where('fk_id_titular','=',$user->getId())->get();
+
 
         /*
          *      Se obtienen los registros de los proyectos que ha realizado el Investigador
@@ -111,9 +121,11 @@ class InvestigadorController extends Controller
         }
 
 
-        return view('Usuarios.DetallePerfil')->with('edad',$edad)
+        return view('Usuarios.DetallePerfil')
+                    ->with('edad',$edad)
+                    ->with('misProyectos',$misProyecto)
                     ->with('perfil',$perfil)
-                    ->with('user',Auth::user())
+                    ->with('user',$user)
                     ->with('paises',$paises)
                     ->with('areas',$areas)
                     ->with('grados',$grados)
@@ -250,8 +262,25 @@ class InvestigadorController extends Controller
         }
     }
 
-    /*
-     *      Funciones  privadas del controlador:
-     */
+    public function SolicitarReactivacion(){
+        $user=Auth::user();
+
+        $user->fk_id_estado=4;
+
+        $user ->save();
+
+        $ntf =new Notificacion();
+        $ntf->pk_id_notificacion=str_random(12);
+        $ntf->fk_id_usuario='@riues';
+        $ntf->rl_vista=false;
+        $ntf->rt_tipo_notificacion='SRA';
+        $fech=Carbon::now();
+        $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
+        $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
+
+        $ntf->save();
+
+        return redirect('/dashboard')->withsuccess("Tu solicitud a sido enviada al administrador");
+    }
 
 }

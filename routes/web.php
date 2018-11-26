@@ -97,6 +97,10 @@ Route::post('/proyectos/registrar','Usuarios\ProyectosInvestigacionController@re
 
 Route::get('/proyectos/actualizar','Usuarios\ProyectosInvestigacionController@actualizar')->name('actualizar.proyectos.investigacion');
 Route::post('/proyecto/actualizar','Usuarios\ProyectosInvestigacionController@ActualizarDetalle')->name('proyecto.actualizar');
+
+Route::get('/proyectos/ver/detalle','Usuarios\ProyectosInvestigacionController@VerDetalleProyecto')->name('ver.detalle.proyecto');
+Route::get('/proyectos/ver/detalle/{id}','Usuarios\ProyectosInvestigacionController@VerDetalleProyecto');
+
 /*------------------------------------------------------------------------------------------------------------------------------------
  *      Funcionalidad de la notificacion para todos los usuarios. .  .                                                              --
  * -----------------------------------------------------------------------------------------------------------------------------------
@@ -106,6 +110,22 @@ Route::post('/inicio/notificaciones/aceptar','NotificacionesController@aceptarRe
 Route::post('/inicio/notificaciones/rechazar','NotificacionesController@rechazarRegistro')->name('notificaciones.rechazar');
 Route::post('/inicio/notificaciones/eliminar','NotificacionesController@eliminarNotifiacion')->name('notificaciones.eliminar');
 Route::post('/inicio/notificaciones/leer','NotificacionesController@marcarLeida')->name('notificaciones.leida');
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------
+ |      rutas para la admiistracion de solicitudes vairas
+ |-------------------------------------------------------------------------------------------------------------------------------
+ */
+
+Route::post('/investigadores/solicitar/reactivacion','Usuarios\InvestigadorController@SolicitarReactivacion')->name('notificacion.reactivacion');
+Route::post('/investigadores/solicitar/amistad','NotificacionesController@SolicitarAmistad')->name('solicitar.amistad');
+Route::post('/investigadores/responder/amistad','NotificacionesController@ResponderSolicitudAmistad')->name('responder.amistad');
+
+Route::post('/investigadores/solicitar/anexion','NotificacionesController@SolicitudAnexion')->name('solicitar.proyecto.union');
+Route::post('/investigadores/responder/anexion','NotificacionesController@ResponderAnexion')->name('responder.invitacion.proyecto');
+
+Route::post('/investigadores/solicitar/participacion','NotificacionesController@SolicitarParticipacionProyecto')->name('solicitar.participar.proyecto');
+Route::post('/investigadores/responder/participacion/proyecto','NotificacionesController@ResponderParticipacionProyecto')->name('esponder.participar.proyecto');
 
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -139,7 +159,6 @@ Route::get('/get/OtrasAreasAjax','Ajax\AjaxController@getOtrasAreas')->name('get
 
 
 /*======================================================================================================
- *==============================  Rutas reservadas para el administrador del sistema ===================
  *    ==========    Todas las rutas en esta seccion se deben proeger con el middleware auth=============
  * =====================================================================================================
  */
@@ -148,20 +167,11 @@ Route::get('/riues/home','Administrador\AdminRootController@index')->name('inici
 
 
 
-/*
- | Experimental
- |
-*/
-
 Route::get('/riues/investigadores','Riues\InvestigadoresController@index')->name('investigadores');
 
 Route::get('/riues/investigadores/getData','Riues\InvestigadoresController@getdata')->name('investigadores.getdata');
 
 
-/*
- |
- |
-*/
 Route::get('/riues/Administracion/investigadores','Administrador\GestionInvestigadoresController@index')->name('gestionRegistrosInv');
 Route::get('/riues/Administracion/investigadores/Ajax','Administrador\GestionInvestigadoresController@getDataAjax')->name('getDataAjax');
 
