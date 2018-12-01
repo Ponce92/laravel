@@ -177,6 +177,9 @@ Route::get('/riues/Administracion/investigadores/Ajax','Administrador\GestionInv
 
 Route::resource('/registros','RegistrosController');
 
+Route::get('/chat','ChatController@index')->name('chat');
+
+
 
 Auth::routes();
 

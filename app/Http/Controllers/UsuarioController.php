@@ -6,6 +6,8 @@ use App\Http\Requests\editarUsuarioRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Persona;
+
 
 
 class UsuarioController extends Controller
