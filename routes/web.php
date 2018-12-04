@@ -25,8 +25,8 @@ Route::post('password/reset','Auth\ResetPasswordController@reset');
 
 
 
-Route::post('/registro','RegistroController@postRegistro');
-Route::get('/registro','RegistroController@getRegistro');
+//Route::post('/registro','RegistroController@postRegistro');
+//Route::get('/registro','RegistroController@getRegistro');
 Route::get('/dashboard','adminController@getAdmin')->name('dashboard');
 
 
@@ -133,6 +133,7 @@ Route::post('/investigadores/responder/participacion/proyecto','NotificacionesCo
  *-------------------------------------------------------------------------------------------------------------------------------------
  */
 Route::get('/inicio/redes/investigador','Usuarios\RedController@index')->name('redes.todas');
+
 Route::get('/inicio/redes/investigador/detalle/{id}','Usuarios\RedController@obtenerDetalleRed');
 Route::post('/inicio/redes/investigador/act','Usuarios\RedController@actualizarRed')->name('act.red');
 
@@ -159,6 +160,7 @@ Route::get('/get/OtrasAreasAjax','Ajax\AjaxController@getOtrasAreas')->name('get
 
 
 /*======================================================================================================
+ *==============================  Rutas reservadas para el administrador del sistema ===================
  *    ==========    Todas las rutas en esta seccion se deben proeger con el middleware auth=============
  * =====================================================================================================
  */
@@ -172,11 +174,30 @@ Route::get('/riues/investigadores','Riues\InvestigadoresController@index')->name
 Route::get('/riues/investigadores/getData','Riues\InvestigadoresController@getdata')->name('investigadores.getdata');
 
 
+/*
+ |
+ |
+*/
 Route::get('/riues/Administracion/investigadores','Administrador\GestionInvestigadoresController@index')->name('gestionRegistrosInv');
 Route::get('/riues/Administracion/investigadores/Ajax','Administrador\GestionInvestigadoresController@getDataAjax')->name('getDataAjax');
 
 Route::resource('/registros','RegistrosController');
+/*---------------------------------------------------------------------------------------------
+ *  |Rutas de Foros y mensajes                                          -------
+ *---------------------------------------------------------------------------------------------
+ */
+Route::get('/foros/show/{id}','ForosController@showForo')->name('foros.shows');
+Route::get('/respuestas/show/{id}/{idf}','RespuestasController@showRespuestas')->name('respuestas.shows');
+Route::get('/foros/eliminar/{id}','ForosController@eliminarTema')->name('eliminar.tema');
+Route::get('/respuesta/eliminar/{id}/{idt}','RespuestasController@eliminarRespuesta')->name('eliminar.respuesta');
 
+Route::resource('/foros','ForosController');
+Route::resource('/respuestas','RespuestasController');
+
+/*
+ |
+ |
+*/
 Route::get('/chat','ChatController@index')->name('chat');
 
 

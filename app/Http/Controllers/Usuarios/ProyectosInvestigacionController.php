@@ -16,6 +16,7 @@ use App\Models\Pais;
 use App\Models\ProyectosInvestigacion;
 use App\Models\RedInvestigadores;
 use App\Models\TiposProyectosInvestigacion;
+use App\Models\Foro;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
@@ -218,6 +219,8 @@ class ProyectosInvestigacionController extends Controller
 
 
 
+
+
             /*----------------------------------------------------------------------------------------------------------
              *  Creamos una notificacion para el usuario administrador.
              *----------------------------------------------------------------------------------------------------------
@@ -233,6 +236,21 @@ class ProyectosInvestigacionController extends Controller
             $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
 
             $ntf->save();
+
+            /*----------------------------------------------------------------------------------------------------------
+             *  Creamos el foro que pertenece a cada red de investigadores.
+             *----------------------------------------------------------------------------------------------------------
+             */
+            $foro=new Foro();
+            $cod=str_random(7);
+            $foro->pk_id_foro=$cod;
+            $foro->fk_id_red=$ri->pk_id_red;
+            $foro->fk_id_participante=$user->pk_id_usuario;
+            $foro->fk_id_proyecto=$prj->pk_id_proyecto_investigacion;
+            $foro->id_foro=$cod;
+            $foro->save();
+
+
 
 
             DB::commit();

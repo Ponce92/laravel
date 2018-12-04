@@ -117,6 +117,12 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('foros.index')}}"><i class="icon-people"></i>Foros</a>
+                    </li>
+
                 @endif
             @endif
 
