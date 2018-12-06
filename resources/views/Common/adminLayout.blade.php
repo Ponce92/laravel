@@ -93,7 +93,7 @@
 
                         </div>
                     </a>
-                    <a href="http://localhost:8080/">Chat</a>
+                    <a href="/chat">Chat</a>
                 </li>
                 &nbsp;&nbsp;
                 <li class="nav-item d-md-down-none">
