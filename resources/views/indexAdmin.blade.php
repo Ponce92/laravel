@@ -44,7 +44,7 @@
                     <div class="row justify-content-end">
                         <form action="{{route('notificacion.reactivacion')}}"  method="post" id="frm-slr" name="frm-slr" >
                             <input type="text"  hidden value="{{$user->getId()}}" name="idU" >
-                               {{ csrf_field()  }}
+                               {{ csrf_field()
                             <button class="btn btn-lg bttn bttn-red"
                                     type="submit"
                                     form="frm-slr"

@@ -221,7 +221,8 @@
                                 <select id="area"
                                         name="area"
                                         onchange="verificarSelcArea(this)"
-                                        class="form-control"
+                                        class="form-control edt"
+                                        disabled
 
                                 >
                                     @foreach($areas as $area)

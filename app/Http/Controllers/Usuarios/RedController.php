@@ -118,41 +118,59 @@ class RedController extends Controller
         }
 
 
-        $prj=DB::table('tbl_usuarios_proyectos')
-            ->where('fk_id_participante','<>',$user->pk_id_usuario)
-            ->get();
+//        $prj=DB::table('tbl_usuarios_proyectos')
+//            ->where('fk_id_participante','<>',$user->pk_id_usuario)
+//            ->get();
 
-        if(count($prj)!=0)
-        {
-            foreach ($prj as $p){
-
-                $pro=ProyectosInvestigacion::find($p->fk_id_proyecto_investigacion);
-
-                if($idTipoProyecto !=0){
-
-                    if($pro->fk_id_tipo_proyecto ==$idTipoProyecto ){
-                        $redes[$i]=RedInvestigadores::where('fk_id_proyecto_investigacion','=',$p->fk_id_proyecto_investigacion)
-                            ->first();
-                        $redes[$i]['icono']=Icono::getValorIcono($redes[$i]->fk_codigo_icono);
-                        $redes[$i]['color']=Color::getValorColor($redes[$i]->fk_id_color);
-                        $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
-                        $redes[$i]['codigoProyecto']=$pro->pk_id_proyecto_investigacion;
-                        $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
-
-                    }
-
-                }else{
-                    $redes[$i]=RedInvestigadores::where('fk_id_proyecto_investigacion','=',$p->fk_id_proyecto_investigacion)
-                        ->first();
-                    $redes[$i]['icono']=Icono::getValorIcono($redes[$i]->fk_codigo_icono);
-                    $redes[$i]['color']=Color::getValorColor($redes[$i]->fk_id_color);
-                    $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
-                    $redes[$i]['codigoProyecto']=$pro->pk_id_proyecto_investigacion;
-                    $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
-                }
-
-                $i=$i+1;
-            }
+//        if(count($prj)!=0)
+//        {
+//            foreach ($prj as $p){
+//
+//                $pro=ProyectosInvestigacion::find($p->fk_id_proyecto_investigacion);
+//
+//                if($idTipoProyecto !=0){
+//
+//                    if($pro->fk_id_tipo_proyecto ==$idTipoProyecto ){
+//                        $redes[$i]=RedInvestigadores::where('fk_id_proyecto_investigacion','=',$p->fk_id_proyecto_investigacion)
+//                            ->first();
+//                        $redes[$i]['icono']=Icono::getValorIcono($redes[$i]->fk_codigo_icono);
+//                        $redes[$i]['color']=Color::getValorColor($redes[$i]->fk_id_color);
+//                        $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
+//                        $redes[$i]['codigoProyecto']=$pro->pk_id_proyecto_investigacion;
+//                        $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
+//
+//                    }
+//
+//                }else{
+//                    $redes[$i]=RedInvestigadores::where('fk_id_proyecto_investigacion','=',$p->fk_id_proyecto_investigacion)
+//                        ->first();
+//                    $redes[$i]['icono']=Icono::getValorIcono($redes[$i]->fk_codigo_icono);
+//                    $redes[$i]['color']=Color::getValorColor($redes[$i]->fk_id_color);
+//                    $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
+//                    $redes[$i]['codigoProyecto']=$pro->pk_id_proyecto_investigacion;
+//                    $redes[$i]['nombreProyecto']=$pro->rt_titulo_proyecto;
+//                }
+//
+//                $i=$i+1;
+//            }
+//        }
+        if($idTipoProyecto!=0){
+            $redes=DB::table('tbl_redes_investigadores')
+                ->join('tbl_usuarios_proyectos','tbl_usuarios_proyectos.fk_id_proyecto_investigacion','=','tbl_redes_investigadores.fk_id_proyecto_investigacion')
+                ->join('tbl_proyectos_investigacion','tbl_proyectos_investigacion.pk_id_proyecto_investigacion','=','tbl_redes_investigadores.fk_id_proyecto_investigacion')
+                ->join('tbl_iconos','tbl_iconos.pk_codigo_icono','=','tbl_redes_investigadores.fk_codigo_icono')
+                ->join('tbl_colores','tbl_colores.pk_id_color','=','tbl_redes_investigadores.fk_id_color')
+                ->where('tbl_proyectos_investigacion.fk_id_tipo_proyecto','=',$idTipoProyecto)
+                ->where('tbl_usuarios_proyectos.fk_id_participante','<>',$user->getId())
+                ->paginate(8);
+        }else{
+            $redes=DB::table('tbl_redes_investigadores')
+                ->join('tbl_usuarios_proyectos','tbl_usuarios_proyectos.fk_id_proyecto_investigacion','=','tbl_redes_investigadores.fk_id_proyecto_investigacion')
+                ->join('tbl_proyectos_investigacion','tbl_proyectos_investigacion.pk_id_proyecto_investigacion','=','tbl_redes_investigadores.fk_id_proyecto_investigacion')
+                ->join('tbl_iconos','tbl_iconos.pk_codigo_icono','=','tbl_redes_investigadores.fk_codigo_icono')
+                ->join('tbl_colores','tbl_colores.pk_id_color','=','tbl_redes_investigadores.fk_id_color')
+                ->where('tbl_usuarios_proyectos.fk_id_participante','<>',$user->getId())
+                ->paginate(8);
         }
 
 

@@ -50,45 +50,50 @@
     <br>
     @include('Common.FlashMsj')
     <div class="row cuerpo-seccion">
-        <div class="col-12">
-            @if(count($redes)>0)
-            <div class="card-deck">
+        @if(count($redes)>0)
+            <div class="col-md-12">
+                <div class="row">
                 @foreach($redes as $red)
 
-                <div class="card"style="max-width: 18rem">
-                    <div class="card-header text-center">
-                        <i class=" {{$red['icono']}} fa-3x {{$red['color']}}"></i>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="text-h4-card">
-                            {{$red->rt_nombre_red}}
-                        </h4>
-                        <label for="#">Proyecto asociado :  </label>
-                        <br>
-                        {{$red['nombreProyecto']}}
-                        <br>
+                    <div class="card mb-3"   style="width: 15rem;margin-left: 15px;" >
+                        <div class="card-header text-center">
+                            <i class=" {{$red->rt_icono}} fa-3x {{$red->rt_valor}}"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="text-h4-card">
+                                {{$red->rt_nombre_red}}
+                            </h4>
+                            <label for="#">Proyecto asociado :  </label>
+                            <br>
+                            {{--{{$red->}}--}}
+                            <br>
 
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{route('redes.busqueda')}}/detalle/{{$red->pk_id_red}}">
+                                <div class="row justify-content-end">
+                                    <button class="btn bttn bttn-red" style="color: white;">Ver detalle</button>
+                                </div>
+                            </a>
+                            <div class="col-1"></div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{route('redes.busqueda')}}/detalle/{{$red->pk_id_red}}">
-                            <div class="row justify-content-end">
-                                <button class="btn bttn bttn-red" style="color: white;">Ver detalle</button>
-                            </div>
-                        </a>
-                        <div class="col-1"></div>
+                @endforeach
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row justify-content-end">
+                    <div class="col-md-3">
+                        <div class="row justify-content-center">
+                            {{ $redes->links('Frg.link') }}
+                        </div>
                     </div>
                 </div>
-                @endforeach
             </div>
-            <br><br>
-            @else
-            <div class="row">
-                <h4>
-                    No tienes ninguna red a mostrar.
-                </h4>
-            </div>
-            @endif
-        </div>
+
+        @else
+            @include('AdminFragment.frg_default')
+        @endif
     </div>
 </div>
 <br>

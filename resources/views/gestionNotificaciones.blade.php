@@ -170,12 +170,7 @@
                     </ul>
 
                 @else
-                    <br><br>
-                    <div class="row justify-content-center">
-                        <h3 style="font-weight: bold;font-size: 30px;color: gray">
-                            "No tienes notificaciones nuevas"
-                        </h3>
-                    </div>
+                   @include('AdminFragment.frg_default')
                 @endif
             </div>
 

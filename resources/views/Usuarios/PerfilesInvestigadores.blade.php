@@ -115,15 +115,15 @@
                                         <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
                                     </a>
                                 </td>
-                                <td colspan="1" rowspan="3" class="align-middle" align="center">
+                                {{--<td colspan="1" rowspan="3" class="align-middle" align="center">--}}
 
-                                    <i class="fas fa-cog fa-2x bttn bttn-ver b"></i>
-                                    <div id="toolbar-options" class="hidden">
-                                        <a href="#"><i class="fa fa-users">  Agregar a contactos</i></a>
-                                        <a href="#"><i class="fa fa-chart-pie">  Invitar a proyecto</i></a>
-                                    </div>
+                                    {{--<i class="fas fa-cog fa-2x bttn bttn-ver b"></i>--}}
+                                    {{--<div id="toolbar-options" class="hidden">--}}
+                                        {{--<a href="#"><i class="fa fa-users">  Agregar a contactos</i></a>--}}
+                                        {{--<a href="#"><i class="fa fa-chart-pie">  Invitar a proyecto</i></a>--}}
+                                    {{--</div>--}}
 
-                                </td>
+                                {{--</td>--}}
                             </tr>
                             <tr scope="row">
                                 <td colspan="4">
@@ -143,13 +143,17 @@
                             </tr>
                         @endforeach
                     @else
-                        <p>no tienes nada que hacer </p>
+                        <p>Registros no encontrados </p>
                     @endif
 
                     </tbody>
                 </table>
 
             </div>
+        </div>
+        <div class="row justify-content-end">
+            {{--{{$invs->link('Frg.link')}}--}}
+            <div class="col-sm-1"></div>
         </div>
     </div>
     <br>

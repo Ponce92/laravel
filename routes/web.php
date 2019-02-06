@@ -147,6 +147,11 @@ Route::get('/inicio/redes/busqueda/detalle/{id}','Usuarios\RedController@detalle
  */
 Route::get('/proyecto/documentos/','Usuarios\DocumentosController@Index')->name('proyecto.gestion.documentos');
 Route::get('/proyecto/documentos/{id}','Usuarios\DocumentosController@Index');
+Route::post('/proyecto/documentos/agregar','Usuarios\DocumentosController@AgregarDocumento')->name('documento.agregar');
+Route::get('/proyecto/documentos/descargar/','Usuarios\DocumentosController@DocumentoDescargar')->name('documentos.download');
+Route::get('/proyecto/documentos/descargar/{id}','Usuarios\DocumentosController@DocumentoDescargar');
+Route::get('/proyecto/documentos/eliminar/','Usuarios\DocumentosController@DocumentoDelete')->name('documento.eliminar');
+Route::get('/proyecto/documentos/eliminar/{id}','Usuarios\DocumentosController@DocumentoDelete');
 
 
 
@@ -186,12 +191,20 @@ Route::resource('/registros','RegistrosController');
  *  |Rutas de Foros y mensajes                                          -------
  *---------------------------------------------------------------------------------------------
  */
-Route::get('/foros/show/{id}','ForosController@showForo')->name('foros.shows');
+Route::get('/foros','Usuarios\ForosController@index')->name('foros');
+Route::get('/foros/tematicas/crear/{id}','Usuarios\TematicaController@getCrear')->name('tematicas.crear');
+Route::post('/foros/tematicas/crear/','Usuarios\TematicaController@Crear')->name('tematicas.guardar');
+Route::get('/foros/tematicas/{id}','Usuarios\TematicaController@Index')->name('tematicas.index');
+Route::get('/foros/tematica/ver/{id}','Usuarios\TematicaController@Show')->name('tematica.Index');
+Route::get('/foros/tematica/respuesta/agregar/{id}','Usuarios\TematicaController@agregarRespuesta')->name('tematica.respuesta.form');
+Route::post('/foros/tematica/respuesta/agregar','Usuarios\TematicaController@Responder')->name('tematica.respuesta');
+
+
+Route::get('/foros/show/{id}','Usuarios\ForosController@showForo')->name('foros.shows');
 Route::get('/respuestas/show/{id}/{idf}','RespuestasController@showRespuestas')->name('respuestas.shows');
 Route::get('/foros/eliminar/{id}','ForosController@eliminarTema')->name('eliminar.tema');
 Route::get('/respuesta/eliminar/{id}/{idt}','RespuestasController@eliminarRespuesta')->name('eliminar.respuesta');
 
-Route::resource('/foros','ForosController');
 Route::resource('/respuestas','RespuestasController');
 
 /*

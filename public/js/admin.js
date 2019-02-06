@@ -1,5 +1,19 @@
-$('#menuSupNtf').webuiPopover();
-$('#menuSupMsj').webuiPopover();
+$('#menuSupNtf').webuiPopover(
+    {
+        placement:'bottom-left',
+        multi:false,
+        container:'#barraS'
+
+    }
+);
+$('#menuSupMsj').webuiPopover({
+    placement:'bottom-left',
+    multi:false,
+    container:'#barraS'
+});
+
+
+
 
 $('#menuSupNtf').on('click',function () {
     $.ajax({
@@ -25,3 +39,8 @@ $('.help-rc').webuiPopover({
     trigger:'hover'
 });
 
+$(document).ready(function() {
+    setTimeout(function() {
+        $(".msj").fadeOut(1200);
+    },3000);
+});

@@ -58,9 +58,9 @@
                             <div class="card mb-3" style="width: 18rem;margin-left: 15px">
                                 <div class="card-header">
                                     <div class="row justify-content-center">
-                                        <i class="{{$prj->getDetalleProyecto()->getIcono()->getNombre()}}
+                                        <i class="{{$prj->rt_icono}}
                                                     fa-4x
-                                                    {{$prj->getDetalleProyecto()->getColor()->getValor()}}"></i>
+                                                    {{$prj->rt_valor}}"></i>
                                         {{--<i class="{{$prj['icono']}} fa-3x {{$prj['color']}}"></i>--}}
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 <div class="card-footer">
                                     <div class="row justify-content-end">
                                         &nbsp;&nbsp;&nbsp;
-                                        <a href="{{route('ver.detalle.proyecto')}}/{{$prj->getId()}}">
+                                        <a href="{{route('ver.detalle.proyecto')}}/{{$prj->pk_id_proyecto_investigacion}}">
                                             <button class="btn bttn-red btn-lg">
                                                 Ver detalle
                                             </button>
@@ -82,14 +82,13 @@
                             </div>
                         @endforeach
                     @else
-                        <br><br><br><br>
-                        <div class="col-10 offset-1">
-                            <h1 style="color: rgb(100,100,100);font-weight: bold;font-family: 'Open Sans'">
-                                "No hemos encontrado proyectos disponibles"
-                            </h1>
-                        </div>
+                        @include('AdminFragment.frg_default')
 
                     @endif
+                </div>
+                <div class="row justify-content-end">
+                    {{$proyectos->links('Frg.link')}}
+                    <div class="col-sm-1"></div>
                 </div>
             </div>
         </div>

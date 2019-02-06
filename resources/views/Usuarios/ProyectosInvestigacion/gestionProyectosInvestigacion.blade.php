@@ -68,12 +68,8 @@
                             </div>
                         @endforeach
                     @else
-                        <br><br><br><br>
-                        <div class="col-10 offset-1">
-                            <h1 style="color: rgb(100,100,100);font-weight: bold;font-family: 'Open Sans'">
-                                "No hemos encontrado proyectos en los que participes"
-                            </h1>
-                        </div>
+
+                        @include('AdminFragment.frg_default')
 
                     @endif
                 </div>

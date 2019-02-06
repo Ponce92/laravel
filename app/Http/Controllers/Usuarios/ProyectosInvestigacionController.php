@@ -34,6 +34,7 @@ class ProyectosInvestigacionController extends Controller
                         ->where('fk_id_participante','=',$user->pk_id_usuario)
                         ->get();
 
+
         if(count($proyectos)!=0)
         {
 
@@ -242,7 +243,7 @@ class ProyectosInvestigacionController extends Controller
              *----------------------------------------------------------------------------------------------------------
              */
             $foro=new Foro();
-            $cod=str_random(7);
+            $cod=str_random(12);
             $foro->pk_id_foro=$cod;
             $foro->fk_id_red=$ri->pk_id_red;
             $foro->fk_id_participante=$user->pk_id_usuario;
@@ -384,30 +385,27 @@ class ProyectosInvestigacionController extends Controller
             $bsq=$request->get('tipo_proyecto');
         }
 
-        $proy=DB::table('tbl_usuarios_proyectos')
-            ->where('fk_id_participante','<>',$user->pk_id_usuario)
-            ->get();
-
-        if(count($proy)!=0)
-        {
-            foreach ($proy as $prj)
-            {
-                $proyecto=ProyectosInvestigacion::find($prj->fk_id_proyecto_investigacion);
-
-                if($bsq ==-1){
-                    $proyectos[$i]=$proyecto;
-                    $i=$i+1;
-                }else{
-                    if($proyecto->getTipo()->getId() ==$bsq){
-                        $proyectos[$i]=$proyecto;
-                        $i=$i+1;
-                    }
-                }
 
 
-            }
-
+        if($bsq != -1){
+            $proyectos=DB::table('tbl_proyectos_investigacion')
+                ->join('tbl_usuarios_proyectos','tbl_usuarios_proyectos.fk_id_proyecto_investigacion','=','tbl_proyectos_investigacion.pk_id_proyecto_investigacion')
+                ->join('tbl_detalle_proyectos_investigacion','tbl_detalle_proyectos_investigacion.fk_codigo_proyecto','=','tbl_proyectos_investigacion.pk_id_proyecto_investigacion')
+                ->join('tbl_iconos','tbl_iconos.pk_codigo_icono','=','tbl_detalle_proyectos_investigacion.fk_codigo_icono')
+                ->join('tbl_colores','tbl_colores.pk_id_color','=','tbl_detalle_proyectos_investigacion.fk_codigo_color')
+                ->where('tbl_proyectos_investigacion.fk_id_tipo_proyecto','=',$bsq)
+                ->where('tbl_usuarios_proyectos.fk_id_participante','<>',$user->getId())
+                ->paginate(8);
+        }else{
+            $proyectos=DB::table('tbl_proyectos_investigacion')
+                ->join('tbl_usuarios_proyectos','tbl_usuarios_proyectos.fk_id_proyecto_investigacion','=','tbl_proyectos_investigacion.pk_id_proyecto_investigacion')
+                ->join('tbl_detalle_proyectos_investigacion','tbl_detalle_proyectos_investigacion.fk_codigo_proyecto','=','tbl_proyectos_investigacion.pk_id_proyecto_investigacion')
+                ->join('tbl_iconos','tbl_iconos.pk_codigo_icono','=','tbl_detalle_proyectos_investigacion.fk_codigo_icono')
+                ->join('tbl_colores','tbl_colores.pk_id_color','=','tbl_detalle_proyectos_investigacion.fk_codigo_color')
+                ->where('tbl_usuarios_proyectos.fk_id_participante','<>',$user->getId())
+                ->paginate(8);
         }
+
 
         return view('Usuarios.ProyectosInvestigacion.Busqueda')
             ->with('user',$user)

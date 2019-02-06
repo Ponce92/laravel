@@ -4,16 +4,14 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/Tools/jquery.toolbar.css')}}">
 @endsection
 
-@section('menuIzq')
-    @include('AdminFragment.FrgMenIzq')
-@endsection
 
 @section('menu-sup-02')
-
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item active">Foros</li>
+@endsection
 
-
+@section('menuIzq')
+    @include('AdminFragment.FrgMenIzq')
 @endsection
 
 @section('default')
@@ -27,94 +25,53 @@
         <hr>
         <br>
         @include('Common.FlashMsj')
-
-        <div class="table-responsive">
-            @if(isset($foros))
-
-                <!-- /* <table class="table table-bordered">
+        <div class="cuerpo-seccion" style="min-height: 400px;">
+            <div class="row">
+                @if(count($foros) > 0 )
+                    <table class="table">
                         <thead>
-                        <tr>
-                            <th scope="col">Foro del Proyecto</th>
-                            <th scope="col">Red</th>
-                            <th scope="col">Acronimo</th>
-                            <th scope="col">Descripcion</th>
+                        <tr style="background-color: #aa0000;color: #fff;" >
+                            <th scope="col"></th>
+                            <th scope="col">Red Asociada</th>
+                            <th scope="col">Tematicas</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($foros as $foro )
-                        <tr>
-                            <td>
-
-
-                                @foreach($forums as $f)
-                                    <a href="/foros/show/{{$f->fk_id_proyecto == $foro->codigoProyecto ? $f->pk_id_foro:''}}">{{$f->fk_id_proyecto == $foro->codigoProyecto ? $foro->nombreProyecto:''}}</a>
-                                    <a href="{{route('foros.shows', ['id' => $f->fk_id_proyecto == $foro->codigoProyecto ? $f->pk_id_foro:''])}}">{{$f->fk_id_proyecto == $foro->codigoProyecto ? $foro->nombreProyecto:''}}</a>
-                                @endforeach
-
-
-                            </td>
-                            <td>{{$foro->rt_nombre_red}}</td>
-                            <td>{{$foro->acronimoProyecto}}</td>
-                            <td>{{$foro->descripcionProyecto}}</td>
-
-                        </tr>
-
-                            @endforeach
-                        <br><br>
-                        </tbody>
-                </table> */ -->
-                <div class="card-deck">
-                    @foreach($foros as $r)
-
-                        <div class="card"style="max-width: 18rem">
-                            <div class="card-header text-center">
-                                <i class=" {{$r['icono']}} fa-3x {{$r['color']}}"></i>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="text-h4-card">
-                                    {{$r->rt_nombre_red}}
-                                </h4>
-                                <label for="#">Proyecto asociado :  </label>
-                                <br>
-                                {{$r['nombreProyecto']}}
-                                <br>
-
-                            </div>
-                            <div class="card-footer">
-                                        @foreach($forums as $f)
-                                           @if($f->fk_id_proyecto == $r->codigoProyecto )
-                                              <a href="{{route('foros.shows', ['id' => $f->fk_id_proyecto == $r->codigoProyecto ? $f->pk_id_foro:''])}}">
-                                           @endif
-                                        @endforeach
-                                        <div class="row justify-content-end">
-                                            <button class="btn bttn bttn-red" style="color: white;">Ver Foro</button>
-                                        </div>
+                        @foreach($foros as $obj)
+                            <tr style="font-weight: bold;">
+                                <td align="center"><i class="fa fa-globe  fa-2x bttn"></i></td>
+                                <td>{{$obj->rt_nombre_red}}</td>
+                                <td>{{$obj->co}}</td>
+                                <td align="center">
+                                    <a href="{{route('tematicas.index',['id'=>$obj->pk_id_foro])}}">
+                                        <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
                                     </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
 
-                                <div class="col-1"></div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <br><br>
+                    </table>
+
+                @else
+                    @include('AdminFragment.frg_default')
+                @endif
         </div>
-        @else
-
-            <div class="row cuerpo-seccion">
-                <div class="col">
-
-                    <div class="row">
-                        <br>
-                        <h4>A Actualmente No participas en ningun foro</h4>
-
-                    </div>
-                </div>
-            </div>
-
-        @endif
 
 
     </div>
+        <div class="pie-seccion">
+            @if(count($foros) > 0 )
+                <div class="row justify-content-center">
+                    {{ $foros->links('Frg.link') }}
+                </div>
+
+            @endif
+        </div>
+
+
+</div>
     <br>
 
 @endsection

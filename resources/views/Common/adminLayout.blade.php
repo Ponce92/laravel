@@ -60,7 +60,7 @@
 
             <!-- -->
 
-            <ul class="nav navbar-nav ml-auto">
+            <ul class="nav navbar-nav ml-auto" id="barraS">
 
                 <li class="nav-item d-md-down-none">
                     <a href="" class="nav-link">
@@ -75,20 +75,20 @@
                         @endif
 
                         </div>
-                        <div  class="webui-popover-content" style="overflow-x: hidden">
+                        <div  class="webui-popover-content" style="overflow-x: hidden;">
                             <div class="row"style="width: 400px">
                                 <div class="col-12">
-                                     <strong >
-                                        Mensajes
-                                    </strong>
+                                     <strong > Mensajes </strong>
+                                    <hr>
                                     <div id="menuMsj">
+                                        @if(isset($msj))
 
-                                      Tienes un mensaje
-
+                                        @else
+                                            No tienes mensajes ...!
+                                        @endif
                                     </div>
-
                                 </div>
-                                <hr>
+
                             </div>
 
                         </div>
@@ -110,7 +110,7 @@
                             @endif
                         </div>
                         <div class="webui-popover-content" >
-                            <div class="row"style="width: 400px">
+                            <div class="row" style="width: 400px">
                                 <div class="col-12">
                                     <strong>
                                         Notificaciones
@@ -145,9 +145,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">
-                            <strong>Account</strong>
+                            <strong>My cuenta</strong>
                         </div>
-                        <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
+                        <a class="dropdown-item" href="{{ route('gestionDatosPersonales') }}"><i class="fa fa-bell-o" style="color: green"></i> Perfil</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-lock" style="color:#aa0000;"></i> Logout</a>
+                        <!--
                         <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
                         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
                         <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
@@ -160,18 +162,18 @@
                         <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
                         <div class="divider"></div>
                         <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
-                        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                        -->
                     </div>
                 </li>
             </ul>
             &nbsp;&nbsp;
             <!--Boton derecho para esconder/mostrar el menu derecho-->
-
+            @if(isset($var51))
             <button class="navbar-toggler aside-menu-toggler" type="button">
                 {{--<span class="navbar-toggler-icon"></span>--}}
                 <i class="fas fa-bars" style="color: white;"></i>
             </button>
-            &nbsp;&nbsp;
+            &nbsp;&nbsp;@endif
         </header>
 
 
@@ -184,7 +186,7 @@
                 <ol class="breadcrumb addToJq">
                     @yield('menu-sup-02'){{-- Menu de navegacion superior--}}
 
-                    <!-- Breadcrumb Menu-->
+                    <!-- Breadcrumb Menu
                     <li class="breadcrumb-menu d-md-down-none">
                         <div class="btn-group" role="group" aria-label="Button group">
                             <a class="btn" href="#"><i class="icon-speech"></i></a>
@@ -192,6 +194,7 @@
                             <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
                         </div>
                     </li>
+                    -->
                 </ol>
 
                 <div class="container-fluid">
@@ -200,7 +203,7 @@
                 <!-- /.conainer-fluid -->
 
             </main>
-
+            @if(isset($var51))
             <aside class="aside-menu">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -216,6 +219,7 @@
 
                 <!-- Contenido del menu/tabla derecha de la aplicacion -->
                 <!-- Contenido del menu/tabla derecha de la aplicacion -->
+
                 <div class="tab-content">
                     <div class="tab-pane active" id="timeline" role="tabpanel">
                         <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
@@ -477,16 +481,17 @@
                 <small class="text-muted">25GB/256GB</small>
             </div>
                 </div>
-            </aside>
 
+            </aside>
+            @endif
         </div>
 
         <!---
           *| Seccion footer de la plantilla de administracion ..........................
         -->
 <footer class="app-footer">
-    <span><a href="#"> roque </a> © 2018 creativeLabs.</span>
-    <span class="ml-auto">Editado G017</span>
+    <span><a href="#"> Universiad de El Salvaor </a> © Secretaria de Investigacion Cientifica de la universidad del el salvador </span>
+    <span class="ml-auto">Editado: G017</span>
 </footer>
 
 

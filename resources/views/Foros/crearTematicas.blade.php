@@ -15,9 +15,6 @@
 @endsection
 
 @section('default')
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="container-fluid area-trabajo" id="area-trabajo">
 
         <br>
@@ -27,30 +24,19 @@
             </div>
             <div class="col-4">
                 <div class="row justify-content-end">
-                        <button href="#" id="btn-agregar" class="boton-rojo-riues" data-toggle="modal" data-target="#crearTema">&nbsp;&nbsp; Agregar Temática &nbsp;&nbsp;</button>
+                    
+                    <a href="{{route('tematicas.crear',['id'=>$idf])}}">
+                        <button  class="btn bttn bttn-red">&nbsp;&nbsp; Agregar Temática &nbsp;&nbsp;</button>
                     </a>
                 </div>
             </div>
-            @include('Foros.crearTema')
-
         </div>
         <hr>
         @include('Common.FlashMsj')
         <div class="table-responsive">
                 @if(isset($frs))
                     <table class="table table-bordered">
-                    <!-- /*<thead>
-                        <tr>
-                            <th scope="col">Foro</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Creador</th>
-                            <th scope="col">Respuestas</th>
-                            <th scope="col">Visitas</th>
-                            <th scope="col">Creacion</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+
                         @foreach($frs as $tema )
                             <tr>
                                 <td>{{$tema->fk_id_foro}}</td>
@@ -117,19 +103,7 @@
 
         </div>
                 @else
-                <div class="row">
-
-                    <br><br><br><br>
-                    <div class="col-10 offset-1">
-                        <h2 style="color: rgb(100,100,100);font-weight: bold;font-family: 'Open Sans'">
-                            "No se han registrado temáticas en el Foro"
-                        </h2>
-                    </div>
-
-                </div>
-
-
-
+                    @include('AdminFragment.frg_default')
                  @endif
 
 

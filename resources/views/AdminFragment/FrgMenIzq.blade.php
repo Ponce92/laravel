@@ -120,7 +120,7 @@
 
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{route('foros.index')}}"><i class="icon-people"></i>Foros</a>
+                        <a class="nav-link" href="{{route('foros')}}"><i class="icon-people"></i>Foros</a>
                     </li>
 
                 @endif

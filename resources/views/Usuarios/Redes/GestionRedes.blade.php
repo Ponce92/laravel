@@ -28,12 +28,12 @@
         <br>
         @include('Common.FlashMsj')
         <div class="row cuerpo-seccion">
-            <div class="col-12">
+
                 @if(count($redes)>0)
-                    <div class="card-deck">
+
                     @foreach($redes as $red)
 
-                            <div class="card"style="max-width: 18rem">
+                            <div class="card"style="width: 15rem;margin-left: 15px;">
                             <div class="card-header text-center">
                                 <i class=" {{$red['icono']}} fa-3x {{$red['color']}}"></i>
                             </div>
@@ -57,8 +57,8 @@
                             </div>
                         </div>
                     @endforeach
-                    </div>
-                    <br><br>
+
+
                 @else
                     <div class="row">
                         <h4>
@@ -66,7 +66,7 @@
                         </h4>
                     </div>
                 @endif
-            </div>
+
         </div>
     </div>
     <br>
