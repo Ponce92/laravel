@@ -14,18 +14,10 @@ function verificarSelcArea(campo){
 
 $(function () {
    $('#ff').datepicker({
-        dateFormat:"dd-mm-yy",
-        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-        changeMonth: true,
-        changeYear: true,
+       dateFormat:"yy-mm-dd"
    });
     $('#fi').datepicker({
-        dateFormat:"dd-mm-yy",
-        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-        changeMonth: true,
-        changeYear: true,
+        dateFormat:"yy-mm-dd"
     });
 });
 

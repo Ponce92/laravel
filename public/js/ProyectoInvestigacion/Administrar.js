@@ -95,8 +95,6 @@ $(function () {
 $( function(){
     $(".fechass").datepicker({
         dateFormat:'dd-mm-yy',
-        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
         changeMonth: true,
         changeYear: true,
         language: 'es'
