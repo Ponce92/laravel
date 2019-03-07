@@ -84,7 +84,7 @@
 
 
         </div>
-        <div class="pie-seccion">
+        <div class=" row pie-seccion">
             @if(count($tematicas) > 0 )
                 <div class="row justify-content-center">
                     {{ $tematicas->links('Frg.link') }}

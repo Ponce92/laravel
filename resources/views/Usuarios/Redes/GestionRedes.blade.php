@@ -32,7 +32,6 @@
                 @if(count($redes)>0)
 
                     @foreach($redes as $red)
-
                             <div class="card"style="width: 15rem;margin-left: 15px;">
                             <div class="card-header text-center">
                                 <i class=" {{$red['icono']}} fa-3x {{$red['color']}}"></i>

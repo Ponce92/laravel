@@ -25,7 +25,7 @@
         <hr>
         <br>
         @include('Common.FlashMsj')
-        <div class="cuerpo-seccion" style="min-height: 400px;">
+        <div class="col-md-12 cuerpo-seccion" style="min-height: 400px;">
             <div class="row">
                 @if(count($foros) > 0 )
                     <table class="table">
@@ -53,27 +53,25 @@
                         </tbody>
 
                     </table>
-
                 @else
                     @include('AdminFragment.frg_default')
                 @endif
+            </div>
+
         </div>
 
-
-    </div>
-        <div class="pie-seccion">
+        <div class="col-md-12 pie-seccion">
             @if(count($foros) > 0 )
-                <div class="row justify-content-center">
+                <div class="row justify-content-end">
                     {{ $foros->links('Frg.link') }}
+                    <div class="col-md-1"></div>
                 </div>
 
             @endif
         </div>
 
-
-</div>
+    </div>
     <br>
-
 @endsection
 
 @section('js')
