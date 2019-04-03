@@ -1,3 +1,11 @@
+
+/*------------------------------------------------------------------------------
+ *    |Estilos de chat
+ *-------------------------------------------------------------------------------
+ */
+
+
+/* ----------------------------------------------------------------------------- */
 .f-16{
     font-size: 16px;
 }
@@ -507,9 +515,7 @@ form[name="chat"]{
 .msj-rta{
     float:right;background:whitesmoke;
 }
-.msj{
-    float:left;background:white;
-}
+
 .frame{
     background:#e0e0de;
     height:450px;
@@ -525,28 +531,7 @@ body > div > div > div:nth-child(2) > span{
 body > div > div > div.msj-rta.macro{
     margin:auto;margin-left:1%;
 }
-ul {
-    width:100%;
-    list-style-type: none;
-    padding:18px;
-    position:absolute;
-    bottom:47px;
-    display:flex;
-    flex-direction: column;
-    top:0;
-    overflow-y:scroll;
-}
-.msj:before{
-    width: 0;
-    height: 0;
-    content:"";
-    top:-5px;
-    left:-14px;
-    position:relative;
-    border-style: solid;
-    border-width: 0 13px 13px 0;
-    border-color: transparent #ffffff transparent transparent;
-}
+
 .msj-rta:after{
     width: 0;
     height: 0;

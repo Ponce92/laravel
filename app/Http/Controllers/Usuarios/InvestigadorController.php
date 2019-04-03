@@ -95,7 +95,7 @@ class InvestigadorController extends Controller
 
                 $pub->rf_fecha_publicacion=$ff;
 
-                $area=$pub->area();
+                $area=$pub->getArea();
                 $pub['area']=$area->rt_nombre_area;
             }
 

@@ -6,6 +6,7 @@ $('#menuSupNtf').webuiPopover(
 
     }
 );
+
 $('#menuSupMsj').webuiPopover({
     placement:'bottom-left',
     multi:false,

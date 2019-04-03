@@ -207,13 +207,16 @@ Route::get('/respuesta/eliminar/{id}/{idt}','RespuestasController@eliminarRespue
 
 Route::resource('/respuestas','RespuestasController');
 
-/*
- |
- |
-*/
-Route::get('/chat','ChatController@index')->name('chat');
+/*---------------------------------------------------------------------------------------------
+ *  |    Modulo de chat en linea  de RIUES                                               -------
+ *---------------------------------------------------------------------------------------------
+ */
+Route::get('/chat','Usuarios\ChatController@Index')->name('chat');
+Route::get('/chat/load/json','Usuarios\ChatController@loadJson')->name('chat.load');  
+
+
+// Route::get('/chat','ChatController@index')->name('chat');
 
 
 
 Auth::routes();
-

@@ -93,7 +93,7 @@
 
                         </div>
                     </a>
-                    <a href="/chat">Chat</a>
+
                 </li>
                 &nbsp;&nbsp;
                 <li class="nav-item d-md-down-none">
@@ -169,11 +169,11 @@
             &nbsp;&nbsp;
             <!--Boton derecho para esconder/mostrar el menu derecho-->
             @if(isset($var51))
-            <button class="navbar-toggler aside-menu-toggler" type="button">
+            <button class="navbar-toggler aside-menu-toggler" id="messageBtn" type="button">
                 {{--<span class="navbar-toggler-icon"></span>--}}
                 <i class="fas fa-bars" style="color: white;"></i>
             </button>
-            &nbsp;&nbsp;@endif
+            @endif
         </header>
 
 
@@ -206,22 +206,25 @@
             @if(isset($var51))
             <aside class="aside-menu">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab"><i class="icon-list"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><i class="icon-speech"></i></a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
+                        <a id="mssjLink" class="nav-link " data-toggle="tab" href="#messages" role="tab">
+                            <i class="icon-speech"></i>
+                        </a>
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#settings" role="tab"><i class="icon-settings"></i></a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <!-- Contenido del menu/tabla derecha de la aplicacion -->
                 <!-- Contenido del menu/tabla derecha de la aplicacion -->
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="timeline" role="tabpanel">
+                    @include('Common.FrgMenDer')
+                    {{-- <div class="tab-pane active" id="timeline" role="tabpanel">
                         <div class="callout m-0 py-2 text-muted text-center bg-light text-uppercase">
                             <small><b>Today</b></small>
                         </div>
@@ -235,8 +238,8 @@
                             </div>
                             <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
                             <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA </small>
-                        </div>
-                    <hr class="mx-3 my-0">
+                        </div> --}}
+                    {{-- <hr class="mx-3 my-0">
                 <div class="callout callout-info m-0 py-3">
                     <div class="avatar float-right">
                         <img src="img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
@@ -314,88 +317,13 @@
                         </div>
                     </div>
                 </div>
-                <hr class="mx-3 my-0">
-            </div>
-                    <div class="tab-pane p-3" id="messages" role="tabpanel">
-                <div class="message">
-                    <div class="py-3 pb-5 mr-3 float-left">
-                        <div class="avatar">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                            <span class="avatar-status badge-success"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <small class="text-muted">Lukasz Holeczek</small>
-                        <small class="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
-                </div>
-                <hr>
-                <div class="message">
-                    <div class="py-3 pb-5 mr-3 float-left">
-                        <div class="avatar">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                            <span class="avatar-status badge-success"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <small class="text-muted">Lukasz Holeczek</small>
-                        <small class="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
-                </div>
-                <hr>
-                <div class="message">
-                    <div class="py-3 pb-5 mr-3 float-left">
-                        <div class="avatar">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                            <span class="avatar-status badge-success"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <small class="text-muted">Lukasz Holeczek</small>
-                        <small class="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
-                </div>
-                <hr>
-                <div class="message">
-                    <div class="py-3 pb-5 mr-3 float-left">
-                        <div class="avatar">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                            <span class="avatar-status badge-success"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <small class="text-muted">Lukasz Holeczek</small>
-                        <small class="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
-                </div>
-                <hr>
-                <div class="message">
-                    <div class="py-3 pb-5 mr-3 float-left">
-                        <div class="avatar">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                            <span class="avatar-status badge-success"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <small class="text-muted">Lukasz Holeczek</small>
-                        <small class="text-muted float-right mt-1">1:52 PM</small>
-                    </div>
-                    <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
-                </div>
-            </div>
-                    <div class="tab-pane p-3" id="settings" role="tabpanel">
-                <h6>Settings</h6>
+                <hr class="mx-3 my-0"> --}}
+            {{-- </div> --}}
 
-                <div class="aside-options">
+                    {{-- <div class="tab-pane p-3" id="settings" role="tabpanel"> --}}
+                {{-- <h6>Settings</h6> --}}
+
+                {{-- <div class="aside-options">
                     <div class="clearfix mt-4">
                         <small><b>Option 1</b></small>
                         <label class="switch switch-text switch-pill switch-success switch-sm float-right">
@@ -407,9 +335,9 @@
                     <div>
                         <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="aside-options">
+                {{-- <div class="aside-options">
                     <div class="clearfix mt-3">
                         <small><b>Option 2</b></small>
                         <label class="switch switch-text switch-pill switch-success switch-sm float-right">
@@ -478,8 +406,8 @@
                 <div class="progress progress-xs">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <small class="text-muted">25GB/256GB</small>
-            </div>
+                <small class="text-muted">25GB/256GB</small> --}}
+            {{-- </div> --}}
                 </div>
 
             </aside>

@@ -7,16 +7,25 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//
+// Vue.component('example', require('./components/Example.vue'));
+//
+// const app = new Vue({
+//     el: '#app'
+// });
 
-Vue.component('example', require('./components/Example.vue'));
+// Ri-Ues
+import Echo  from 'laravel-echo'
 
-const app = new Vue({
-    el: '#app'
-});
+window.io = require('socket.io-client');
+window.Echo e =new Echo({
+    broadcaster:'socket.io',
+    host:window.location.hostname + ':6001'
+})

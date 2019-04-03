@@ -17,11 +17,6 @@ class NotificacionesController extends Controller
      public function index(){
         $user=Auth::user();
         $Notificaciones=Notificacion::where('fk_id_usuario','=',$user->getId())->get();
-//        $join=DB::table('tbl_notificaciones')
-//            ->join('tbl_usuarios','tbl_usuarios.pk_id_usuario','=','tbl_notificaciones.fk_id_usuario_remitente')
-//            ->where()
-//            ->get();
-
          return view('gestionNotificaciones')
              ->with('user',$user)
              ->with('notificaciones',$Notificaciones);
@@ -34,8 +29,6 @@ class NotificacionesController extends Controller
 
             $ntf->rl_vista=true;
             $ntf->save();
-
-            /*         */
 
             $ntff =new Notificacion();
             $ntff->pk_id_notificacion=str_random(12);
@@ -124,11 +117,11 @@ class NotificacionesController extends Controller
          $amigo=User::find($id);
          $user=Auth::user();
 
-         $am=Contacto::where('fk_codigo_usuario2','=',$user->getId())
-                        ->where('fk_codigo_usuario1','=',$amigo->getId())->get();
+         $am=Contacto::where('fk_id_user1','=',$user->getId())
+                        ->where('fk_id_user2','=',$amigo->getId())->get();
 
-         $am2=Contacto::where('fk_codigo_usuario1','=',$user->getId())
-             ->where('fk_codigo_usuario2','=',$amigo->getId())->get();
+         $am2=Contacto::where('fk_id_user2','=',$user->getId())
+             ->where('fk_id_user1','=',$amigo->getId())->get();
          $ss=count($am)+count($am2);
 
          if($ss > 0){
@@ -178,7 +171,6 @@ class NotificacionesController extends Controller
 
         $contacto = new Contacto();
 
-        $contacto->setId(str_random(12));
         $contacto->setUsuario1($user->getId());
         $contacto->setUsuario2($ntff->getUsuario()->getId());
 

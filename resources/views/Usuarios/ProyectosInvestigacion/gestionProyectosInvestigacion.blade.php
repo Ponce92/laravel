@@ -51,15 +51,15 @@
                                     </h4>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="row justify-content-end">
+                                    <div class="row justify-content-center">
                                         <a href="{{route('proyecto.gestion.documentos')}}/{{$prj->pk_id_proyecto_investigacion}}">
-                                            <button class="btn btn-lg bttn-red">
+                                            <button class="btn bttn-red" style="color: #fff; font-size: 14px!important;">
                                                 Documentos
                                             </button>
                                         </a>
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="{{route('misproyectos.investigacion')}}/{{$prj->pk_id_proyecto_investigacion}}">
-                                            <button class="btn btn-success btn-lg">
+                                            <button class="btn bttn btn-success" style="color: #fff; font-size: 14px!important;">
                                                 Administrar
                                             </button>
                                         </a>

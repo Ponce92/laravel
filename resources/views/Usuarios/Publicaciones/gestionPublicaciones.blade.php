@@ -36,6 +36,8 @@
         <hr>
         <br>
         @include('Common.FlashMsj')
+
+        @if (count($publicaciones)+count($libros) > 0)
             <table class="table table-bordered">
                 <thead hidden>
                     <tr>
@@ -73,7 +75,7 @@
                             </td>
                             <td class="td" colspan="1">Enlace :</td>
                             <td colspan="4">
-                                {{$publicacion->rt_enlace_publicacion }}
+                                <a href="{{$publicacion->rt_enlace_publicacion }}">{{$publicacion->rt_enlace_publicacion }}</a>
                             </td>
 
                             <td colspan="1" rowspan="3"class="align-middle" align="center">
@@ -94,31 +96,16 @@
                             <td colspan="2">
                                 {{$publicacion->rt_tipo_publicacion =='ac' ? 'Articulo Cientifico':'Nota Cientifica'}}
                             </td>
-                            <td class="td" colspan="1"> Pertenece al Area conocimiento:</td>
+                            <td class="td" colspan="1">Area conocimiento:</td>
                             <td colspan="2">
-                                @if(!$publicacion->rl_tipo_area)
-                                    @foreach($areas as $area)
-                                            {{$area->pk_id_area==$publicacion->rn_id_area ? $area->rt_nombre_area:''}}
-                                    @endforeach
-                                @else
-                                    @foreach($otrasAreas as $area)
-                                        {{$area->pk_id_ac==$publicacion->rn_id_area ? $area->rt_nombre_ac:''}}
-                                    @endforeach
-                                @endif
+                                {{$publicacion->getArea()->getNombre()}}
                             </td>
 
                             <td class="td" colspan="1"> Fecha Publicacion : </td>
-                            <td colspan="1">
+                            <td colspan="2">
                                     {{$publicacion->rf_fecha_publicacion}}
                             </td>
-                            <td colspan="1" class="align-middle" align="center">
-                                @if(Session::has('pubb'))
-                                    @if(Session::get('pubb')->pk_id_publicacion == $publicacion->pk_id_publicacion)
-                                        <i class="fas fa-circle fa-2x" style="color: #00cc00"></i>
-                                        {{Session::forget('pubb')}}
-                                    @endif
-                                @endif
-                            </td>
+
 
                         </tr>
                         <tr>
@@ -145,10 +132,8 @@
                 <tbody>
                 <tr>
                     <td class="align-middle"
-                        align="center"
                         colspan="12"
-                        style="background-color: #aa0000;color:white;font-weight: bold;font-size: 16px;"
-                    >
+                        style="background-color: #aa0000;color:white;font-weight: bold;font-size: 16px;">
                         Publicaciones en libros
                     </td>
                 </tr>
@@ -164,7 +149,7 @@
                         </td>
                         <td class="td" colspan="1">Fecha publicacion :</td>
                         <td colspan="1">
-                            {{$libro->rf_fecha_publicacion}}
+                            {{$libro->rf_fecha}}
                         </td>
                         <td colspan="1" class="td" style="width: 75px">ISSN :</td>
                         <td colspan="1" >{{$libro->rt_issn}}</td>
@@ -183,32 +168,14 @@
                     </tr>
                     <tr>
                         <td class="td" colspan="1">Area conocimiento:</td>
-                        <td colspan="3">
-                            @if(!$libro->rl_tipo_area)
-                                @foreach($areas as $area)
-                                    {{$area->pk_id_area==$libro->rn_id_area ? $area->rt_nombre_area:''}}
-                                @endforeach
-                            @else
-                                @foreach($otrasAreas as $area)
-                                    {{$area->pk_id_ac==$libro->rn_id_area ? $area->rt_nombre_ac:''}}
-                                @endforeach
-                            @endif
-                        </td>
+                        <td colspan="3">{{$publicacion->getArea()->getNombre()}}</td>
                         <td colspan="1" class="td" >Capitulo : </td>
                         <td colspan="1">{{$libro->rn_capitulo}}</td>
 
                         <td colspan="1" class="td" style="width: 125px">Pagina:</td>
-                        <td colspan="1">{{$libro->rn_pagina}}</td>
+                        <td colspan="2">{{$libro->rn_pagina}}</td>
 
-                        <td colspan="1" class="align-middle" align="center">
-                            @if(Session::has('libb'))
-                                @if(Session::get('libb')->pk_id_libro==$libro->pk_id_libro)
-                                    <i class="fas fa-circle fa-2x" style="color: #00cc00"></i>
-                                    {{Session::forget('libb')}}
-                                @endif
 
-                            @endif
-                        </td>
                     </tr>
                     <tr>
                         <td class="td" colspan="1">
@@ -221,10 +188,11 @@
                 @endforeach
                 </tbody>
             </table>
+        @else
+            @include('AdminFragment.frg_default')
+        @endif
 
-        </div>
-        <hr>
-        <br>
+
         <br>
     </div>
 

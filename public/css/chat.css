@@ -1,0 +1,80 @@
+.message{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+.message:hover{
+    background-color: rgba(230,230,230);
+}
+hr.rh{
+    margin-top: 5px ;
+    margin-bottom: 5px;
+}
+hr.chatDiv{
+
+    margin-left: -45px;
+    margin-right: -45px;
+}
+
+
+input#chtInput{
+    border-radius: 25px !important;
+}
+.container-fluid{
+    height: calc(100% - 124px);
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+p.p{
+    margin-bottom: 0px;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+div#block-msj{
+    height:36rem;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+div.sendMsj{
+    border-top: 1px solid rgb(230,230,230);
+    padding-top: 9px;
+    background-color: white;
+    min-height: 55px;
+}
+div.sendMsj > input{
+    border-radius: 25px !important;
+}
+
+div.divMsj{
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+div.blueMsj{
+    background-color: #0084ff;
+    color:#fff;
+}
+div.witheMsj{
+    background-color: rgb(245,245,245);
+}
+#sendBtn{
+    background-color: #aa0000;
+    color: white;
+    padding: 5px;
+    padding-left: 7px;
+}
+
+#sendBtn:hover{
+    background-color: #770000;
+    cursor: pointer;
+}
+#sendBtn:active{
+    background-color: #fff;
+    color: #aa0000;
+}

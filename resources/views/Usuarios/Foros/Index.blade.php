@@ -32,7 +32,12 @@
         </div>
         <hr>
         <br>
-        @include('Common.FlashMsj')
+        <div class="row">
+            <div class="col-md-12">
+                @include('Common.FlashMsj')
+            </div>
+        </div>
+
         <div class="cuerpo-seccion" style="min-height: 400px;">
             <div class="row">
                 @if(count($tematicas) > 0 )
@@ -58,11 +63,10 @@
                                          class="rounded-circle"
                                          width="70"
                                          height="70"
-                                         style="border: 3px solid rgb(165,165,165);"
-                                    >
+                                         style="border: 3px solid rgb(165,165,165);">
                                 </td>
                                 <td colspan="2" style="vertical-align: middle"> {{$obj->getTitulo()}}</td>
-                                <td>{{$obj->getEstado()}}</td>
+                                <td  style="vertical-align: middle">{{$obj->getEstado()}}</td>
                                 <td colspan="1" style="vertical-align: middle">{{count($obj->getRespuestas())}}</td>
                                 <td colspan="1" style="vertical-align: middle">{{$obj->getFecha()}}</td>
                                 <td colspan="1" align="center" style="vertical-align: middle">
@@ -84,7 +88,7 @@
 
 
         </div>
-        <div class=" row pie-seccion">
+        <div class="pie-seccion">
             @if(count($tematicas) > 0 )
                 <div class="row justify-content-center">
                     {{ $tematicas->links('Frg.link') }}

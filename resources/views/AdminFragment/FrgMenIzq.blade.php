@@ -122,6 +122,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="{{route('foros')}}"><i class="icon-people"></i>Foros</a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('chat')}}"><i class="icon-bubble"></i>Chat</a>
+                    </li>
 
                 @endif
             @endif

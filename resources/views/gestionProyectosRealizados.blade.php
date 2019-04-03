@@ -48,7 +48,7 @@
             </div>
         @endif
 
-        <div class="table-responsive">
+
             @if(isset($proyectos))
                 <table class="table table-bordered">
                     <thead hidden>
@@ -115,17 +115,7 @@
                     </tbody>
                 </table>
             @else
-        </div>
-            <br>
-            <br>
-            <div class="row align-items-center">
-
-                <div class="col-8 offset-2 align-content-center">
-                    <h1 style="font-size: 2.5em; font-family: Aller;color: rgb(130,130,130);">
-                        " No tienes proyectos registrados "
-                    </h1>
-                </div>
-            </div>
+                @include('AdminFragment.frg_default')
             @endif
 
         <hr>

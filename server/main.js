@@ -2,8 +2,10 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
 const fs=require('file-system');
+
+
+var ctrl=require('./Control');
 
 
 
@@ -13,34 +15,33 @@ var messages = [{
     author: "Stanley"
 }];
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+
+
+
+server.listen(8080, function() {
+    console.log("Servidor corriendo en http://localhost:8080");
+});
 
 
 io.on('connection', function(socket) {
     console.log('Alguien se ha conectado con Sockets');
-    socket.emit('messages', messages);
+        // ========================================== Se establece la identidad del usuario =======================
 
-    socket.on('new-message', function(data) {
-        messages.push(data);
+        socket.on('setIdentidad',function(data){
+            ctrl.agregar(data,socket.id);
+            
+        });
 
-        io.sockets.emit('messages', messages);
-
-        for (var prop in messages){
-            console.log(messages[prop]);
-        }
-
-        for (var val = messages.length-1; val <messages.length; val++){
-
-            fs.writeFile('public/documento.txt',"<b>"+messages[val].author +":</b> \t\t"+ messages[val].text +"\n", {'flag':'a'}, function (err) {
-                if (err) throw err;
-                console.log('doc creado con exito');
-            });
-        }
-
-
-    });
-});
-
-server.listen(8080, function() {
-    console.log("Servidor corriendo en http://localhost:8080");
+        //===================================== Recepccion de mensajes =============================================
+        socket.on('mensaje',function(data){
+            console.log(data);
+            ctrl.nuevo_mensaje(data.destinatario,data.remitente,data.msj);
+            io.to(socket.id).emit('new_mensaje', data);
+            
+            var socket_id=ctrl.getConected(data.destinatario);
+            if(socket_id){
+                io.to(socket_id).emit('new_mensaje', data);
+            }
+        });
 });

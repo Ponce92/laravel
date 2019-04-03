@@ -8,7 +8,6 @@ $( function() {
         }
 
     });
-
 } );
 
 $("#area").change();
@@ -25,8 +24,7 @@ function verificarSelcArea(campo){
 }
 
 $('button.sw_dp_fr').hide();
-$(function ()
-{
+$(function (){
     if($('#sw_dg').hasClass('activo'))
     {
         $('button.sw_dg_fr').show();
@@ -91,15 +89,15 @@ $(function () {
  *
  */
 
-//
-// $( function(){
-//     $(".fechass").datepicker({
-//         dateFormat:'dd-mm-yy',
-//         changeMonth: true,
-//         changeYear: true,
-//         language: 'es'
-//     });
-// } );
+
+$( function(){
+    $(".fechass").datepicker({
+        dateFormat:'dd-mm-YYYY',
+        changeMonth: true,
+        changeYear: true,
+        language: 'es'
+    });
+} );
 
 $('#colorIcon').on('change',function () {
     var divv=$('#iconDestini');

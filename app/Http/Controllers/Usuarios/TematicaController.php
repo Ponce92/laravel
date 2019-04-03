@@ -52,7 +52,7 @@ class TematicaController extends Controller
 
         $tema->save();
 
-        return redirect()->route('foros.shows',['id'=>$request->get('idf')])
+        return redirect()->route('tematicas.index',['id'=>$request->get('idf')])
             ->withsuccess('Se ha registrado el nuevo tema de discucion');
     }
 

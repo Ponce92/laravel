@@ -40,17 +40,10 @@ class ChatController extends Controller
         $user=Auth::user();
         $persona=Persona::find($user->fk_id_persona);
 
-        //opcion 1
-
         return view('chat')
            ->with('user',$user)
             ->with('persona',$persona);
-
-
-
-        // Opcion 2
-        //return redirect('/public/index');
-
-
     }
+
+
 }

@@ -72,7 +72,7 @@ class ForosController extends Controller
         $user=Auth::user();
         $idf=$request->input('idf');
 
-        return redirect()->route('foros.shows', ['id' => $idf])
+        return redirect()->route('tematicas.index', ['id' => $idf])
             ->withsuccess('La tematica se almacenado correctamente');
 
     }
@@ -85,7 +85,6 @@ class ForosController extends Controller
      */
     public function showForo( $id)
     {
-        dd($id);
         $user=Auth::user();
         $count=Tematica::where('fk_id_foro',$id)->count();
 
