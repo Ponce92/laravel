@@ -25,8 +25,8 @@ class CrearRequest extends FormRequest
     {
         return [
             'nombre'=>'required|min:8|max:150|string',
-            'codigo'=>'max:45|min:6|nullable',
-            'acronimo'=>'string|max:25|min:4',
+            'codigo'=>'max:45|min:5|nullable',
+            'acronimo'=>'string|max:25|min:5',
             'tipoP'=>'required',
             'area'=>'required',
             'area-c'=>'string|required_if:area,"Otra area del concimiento"',

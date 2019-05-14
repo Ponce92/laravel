@@ -52,4 +52,9 @@ class Respuesta extends Model
        return $this->fecha;
     }
 
+    public function getComentarios(){
+        $comm=Comentario::where('fk_id_respuesta','=',$this->getId())->get();
+        return $comm;
+    }
+
 }

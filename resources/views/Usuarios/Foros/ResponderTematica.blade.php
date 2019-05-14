@@ -36,23 +36,7 @@
                 <form method="post" id="agregar" action="{{route('tematica.respuesta')}}" enctype="multipart/form-data">
                     {{ csrf_field()  }}
                     <input type="hidden" name="idt" value="{{$tematica->getId()}}">
-                    {{--<div class="form-group">--}}
-                        {{--<div class="col-md-8">--}}
-                            {{--<label for="titulo">Titulo del Tema</label>--}}
-                            {{--<input id="titulo"--}}
-                                   {{--type="text"--}}
-                                   {{--class="form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }} mb-3"--}}
-                                   {{--name="titulo"--}}
-                                   {{--value="{{ old('titulo') }}"--}}
-                                   {{--required--}}
-                                   {{--autofocus>--}}
-                            {{--@if ($errors->has('titulo'))--}}
-                                {{--<span class="invalid-feedback" role="alert">--}}
-                                    {{--<strong>{{ $errors->first('titulo') }}</strong>--}}
-                                {{--</span>--}}
-                            {{--@endif--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+
                     <br>
                     <div class="form-group">
 

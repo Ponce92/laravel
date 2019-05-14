@@ -3,7 +3,6 @@ $('#menuSupNtf').webuiPopover(
         placement:'bottom-left',
         multi:false,
         container:'#barraS'
-
     }
 );
 
@@ -13,25 +12,22 @@ $('#menuSupMsj').webuiPopover({
     container:'#barraS'
 });
 
-
-
-
 $('#menuSupNtf').on('click',function () {
     $.ajax({
-        url : '/notificaciones/getNotificacion/',
+        url : '/notificaciones/getNotificacion/ajax',
         type:'get',
-        dataType:'json',
         success:function (data) {
-            $('#menuNtf').html(data);
+            console.log(data);
+            $('#menuNtf').html(data.html);
         },
         error:function (xhr,status) {
-            $('#menuNtf').html("<strong>Servidor no encontrado</strong>")
+            $('#menuNtf').html("<strong>Servidor no encontrado  ..!!</strong>")
         }
     });
 });
 
 /*
-    botones de help de los formularios          ...........................
+        |botones de help de los formularios          ...........................
  */
 
 $('.help-rc').webuiPopover({

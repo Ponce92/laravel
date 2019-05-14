@@ -336,4 +336,20 @@ class NotificacionesController extends Controller
 
          return back()->withsuccess('Se ha agregado al usuario como participante de tu proyecto');
      }
+
+    public function getNotificacionesAjax(Request $request)
+    {
+        $user=Auth::user();
+        $notificaciones=Notificacion::where('fk_id_usuario','=',$user->getId())
+                                    ->where('rl_vista','=',false)
+                                    ->get();
+
+        $vista= view('Frg.FrgNotificaciones')
+        
+        ->with('ntfs',$notificaciones)
+        ->render();
+
+        return response()->json(array('html'=>$vista));
+
+    }
 }

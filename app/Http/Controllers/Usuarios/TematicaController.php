@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Usuarios;
 
 use App\Models\Foro;
+use App\Models\Comentario;
 use App\Models\Respuesta;
 use App\Models\Tematica;
 use Illuminate\Http\Request;
@@ -89,6 +90,23 @@ class TematicaController extends Controller
         $resp->save();
 
         return redirect()->route('tematica.Index',['id'=>$request->get('idt')])
+            ->withsuccess('Su respuesta se ha almacenado correctamente');
+    }
+
+    public function Comentar(Request $request)
+    {
+        $user=Auth::user();
+
+        $com=new Comentario();
+
+        $com->setFecha();
+        $com->setRespuesta($request->get('res'));
+        $com->setUser($user->getId());
+        $com ->setValor($request->get('comm'));
+
+        $com->save();
+
+        return redirect()->route('tematica.Index',['id'=>$request->get('tem')])
             ->withsuccess('Su respuesta se ha almacenado correctamente');
     }
 }

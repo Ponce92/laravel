@@ -1,11 +1,12 @@
 <div    class="callout callout-primary m-0 py-3"
         id="messages"
-        url="{{route('chat.load')}}" 
+        url="{{route('chat.load')}}"
         role="tabpanel">
     @if(count($contactos) > 0)
         <hr class="rh">
         @foreach ($contactos as $am)
             <div    class="message"
+                    id="usr-{{$am->getUser($user->getId())->getId()}}"
                     onclick="loadDivMjs('{{$am->getUser($user->getId())->getId()}}')"
                     style="overflow: hidden; height:50px;">
                 <div class=" mr-3 float-left">

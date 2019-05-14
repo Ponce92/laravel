@@ -44,7 +44,11 @@
                     <table class="table table-sm">
                         <thead>
                         <tr style="background-color: #aa0000;color: #fff;" >
-                            <th scope="col">Usuario</th>
+                            <th scope="col">
+                                <div class="row justify-content-center">
+                                    Usuario
+                                </div>
+                            </th>
                             <th scope="col">Titulo</th>
                             <th scope="col"></th>
                             <th scope="col">Estado</th>
@@ -57,13 +61,16 @@
                         @foreach($tematicas as $obj)
                             <tr style="font-size: 14px;">
                                 <td colspan="1" align="center">
-                                    <img src="{{asset('/avatar/'.$obj->getCreador()->getFoto())}}"
-                                         alt="Nombre de la persona"
-                                         title="Nombre :"
-                                         class="rounded-circle"
-                                         width="70"
-                                         height="70"
-                                         style="border: 3px solid rgb(165,165,165);">
+                                    <a href="{{route('getPerfilInvestigador',['id'=>$obj->getCreador()->getId()])}}">
+                                        <img src="{{asset('/avatar/'.$obj->getCreador()->getFoto())}}"
+                                             alt="Nombre de la persona"
+                                             title="Nombre :"
+                                             class="rounded-circle"
+                                             width="70"
+                                             height="70"
+                                             style="border: 3px solid rgb(165,165,165);">
+                                    </a>
+
                                 </td>
                                 <td colspan="2" style="vertical-align: middle"> {{$obj->getTitulo()}}</td>
                                 <td  style="vertical-align: middle">{{$obj->getEstado()}}</td>
@@ -95,6 +102,8 @@
                 </div>
 
             @endif
+
+
         </div>
 
 

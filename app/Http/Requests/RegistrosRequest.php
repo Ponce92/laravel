@@ -25,8 +25,8 @@ class RegistrosRequest extends FormRequest
     {
         return [
 
-            'nombre'=>'required|max:100|min:6 ',
-            'apellido'=>'required|max:100|min:6 ',
+            'nombre'=>'required|max:100|min:3',
+            'apellido'=>'required|max:100|min:3 ',
             'foto'=>'required|mimes:png,jpg,jpeg',
             'fecha'=> 'date_format:"d-m-Y"|required',
             'horas'=>'digits_between:1,16|required',

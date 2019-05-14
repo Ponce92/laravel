@@ -168,7 +168,7 @@
                     </tr>
                     <tr>
                         <td class="td" colspan="1">Area conocimiento:</td>
-                        <td colspan="3">{{$publicacion->getArea()->getNombre()}}</td>
+                        <td colspan="3">{{$libro->getArea()->getNombre()}}</td>
                         <td colspan="1" class="td" >Capitulo : </td>
                         <td colspan="1">{{$libro->rn_capitulo}}</td>
 

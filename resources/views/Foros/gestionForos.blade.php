@@ -31,10 +31,18 @@
                     <table class="table">
                         <thead>
                         <tr style="background-color: #aa0000;color: #fff;" >
-                            <th scope="col"></th>
+                            <th scope="col">
+                                <div class="row justify-content-center">
+                                    <img src="ues_logo3.png" height="25" alt="...">
+                                </div>
+                            </th>
                             <th scope="col">Red Asociada</th>
                             <th scope="col">Tematicas</th>
-                            <th scope="col"></th>
+                            <th scope="col" align="center">
+                                <div class="row justify-content-center">
+                                    Acciones
+                                </div>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>

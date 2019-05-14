@@ -20,7 +20,7 @@
                 </div>
                 <hr class="all">
                 <div class="form-group mb-3 ">
-                    <label for="usuario">Usuario</label>
+                    <label for="usuario">Correo :</label>
                     <input type="text"
                            class="form-control {{ $errors->has('usuario') ? 'is-invalid' : '' }}"
                            name="usuario"
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="clave">Contrasenia</label>
+                    <label for="clave">Contraseña :</label>
                     <input type="password"
                            class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                            name="password"

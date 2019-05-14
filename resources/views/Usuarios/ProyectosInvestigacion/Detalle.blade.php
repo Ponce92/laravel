@@ -32,7 +32,7 @@
         <div class="row cuerpo-seccion">
 
 
-            <div id="bvt" style="min-height: 500px!important;width: 100%!important;">
+            <div id="bvt" style="width: 100%!important;">
                 <ul class="ui-nav"  >
                     <li>
                         <a href="#tabs-1" style="font-weight: bold">
@@ -238,20 +238,17 @@
         <div class="pie-seccion">
             <div class="row justify-content-end">
 
-                <div class="opciones-menu-click" id="opciones-menu-click" style="padding: 0px">
-                    <i class="fas fa-cog fa-2x bttn bttn-ver"></i>
-                </div>
-                <ul class="webui-popover-content list-group">
+
 
                     <form action="{{route('solicitar.participar.proyecto')}}" name="part" id="part" method="post">
                         {{ csrf_field()  }}
-                        <li class="list-group-item bttn-ver f-20" onclick="part.submit()">
+                        <li class="list-group-item bttn-ver f-20" onclick="$('#part').submit()">
                             <i class="fas fa-users f-24 "></i>
                             &nbsp;Solicitar Participacion
                             <input hidden type="text" name="idP" id="idP" value="{{$proyecto->getId()}}">
                         </li>
                     </form>
-                </ul>
+
                 <div class="col-1"></div>
             </div>
         </div>

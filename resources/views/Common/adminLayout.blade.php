@@ -110,14 +110,12 @@
                             @endif
                         </div>
                         <div class="webui-popover-content" >
-                            <div class="row" style="width: 400px">
+                            <div class="row" style="width: 400px;overflow:hidden !important;">
                                 <div class="col-12">
-                                    <strong>
-                                        Notificaciones
-                                    </strong>
+
                                 </div>
                                 <hr>
-                                <div class="col-12" id="menuNtf">
+                                <div class="col-12" id="menuNtf" style="overflow:hidden !important;">
 
                                 </div>
                             </div>

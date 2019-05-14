@@ -3,7 +3,7 @@ var codigo_usuario=$('#sendMsj').attr('codigo-user');
 var url_load=$('#messages').attr("url");
 
 function loadDivMjs(id){
-    
+
     $.ajax({
         url: url_load,
         data:{
@@ -12,16 +12,23 @@ function loadDivMjs(id){
         success:function (data) {
             $("#targetChat").html(data.html);
             $("#block-msj").scrollTop(10000);
-            
+
         }
     });
+
+    str='usr-'+id;
+    $('#'+str).removeClass("nv");
 }
 // Funciones de conexion al servidor node js:
+try {
+    var socket = io.connect('http://localhost:8080', {
+        'forceNew': true
+     });
+} catch (e) {
+    alert('Servidor no disponible');
+    location.href="/dashboard";
+}
 
-
-var socket = io.connect('http://localhost:8080', { 
-    'forceNew': true
- });
 
 // Funciones de envio de datos al server
 function sendMensaje(){
@@ -43,7 +50,15 @@ function sendMensaje(){
 }
 
 socket.on('new_mensaje',function(data){
-    creatMsj(data);
+    var activo =$('#msj-destino').attr('destinatario');
+    if(activo==data.remitente || activo==data.destinatario){
+        creatMsj(data);
+    }else{
+        $('#usr-'+data.remitente).addClass('nv');
+
+    }
+
+
 });
 
 
@@ -90,5 +105,5 @@ function creatMsj(data){
         $("#targetChat").append(tot);
         $("#block-msj").scrollTop(10000);
     }
-    
+
 }

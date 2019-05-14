@@ -42,8 +42,7 @@
                                 <div class="col-12 div-image">
                                     <img src="{{asset('avatar/'.$perfil->rt_foto_usuario)}}"
                                          alt="vista no disponible"
-                                         class="img-thumbnail"
-                                    >
+                                         class="img-thumbnail">
                                 </div>
                             </div>
                         </div>
@@ -192,7 +191,12 @@
                                     class="form-control edt"
                                     disabled
                             >
-                 
+                                @foreach($areas as $area)
+                                    <option value="{{$area->pk_id_area}}"
+                                            @if($perfil->fk_id_area == $area->pk_id_area) selected @endif>
+                                        {{$area->rt_nombre_area}}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col col-4">
@@ -262,10 +266,6 @@
 
         <div class="row pie-seccion justify-content-end">
 
-            <div class="opciones-menu-click" id="opciones-menu-click" style="padding: 0px">
-                <i class="fas fa-cog fa-2x bttn bttn-ver"></i>
-            </div>
-            <ul class="webui-popover-content list-group">
                 @if($user->fk_id_rol!=0)
                     <form action="{{route('solicitar.amistad')}}" name="amigo" id="amigo" method="post">
                         {{ csrf_field()  }}
@@ -275,6 +275,7 @@
                             <input type="text" name="idU" id="idU" value="{{$perfil->pk_id_usuario}}" hidden>
                         </li>
                     </form>
+                    &nbsp;
                         <li class="list-group-item bttn-ver f-20" onclick="proyectos()">
                             <i class="fas fa-code-branch bttn-ver f-24 "></i>
                             &nbsp;Invitar a proyecto
@@ -284,13 +285,14 @@
                         <i class="fas fa-cog bttn-ver f-24 "></i>
                         &nbsp;Activar investigador
                     </li>
+                    &nbsp;
                     <li class="list-group-item bttn-ver f-20">
                         <i class="fas fa-cog bttn-ver f-24"></i>
                         &nbsp;Desactivar investigador
                     </li>
                 @endif
 
-            </ul>
+
 
             <div class="col-1"></div>
         </div>
@@ -507,7 +509,7 @@
         | Fragmento de codigo para invitar a proyecto de investigacion ....
     --}}
     <div class="row" hidden>
-        <div class="col" style="width: 300px" id="proyectos" >
+        <div class="col" style="width: 300px;overflow-x: hidden;" id="proyectos" >
             @if(count($misProyectos) > 0)
                 <ul class="list-group all">
                     @foreach($misProyectos as $prj)
@@ -517,6 +519,12 @@
                         </li>
                     @endforeach
                 </ul>
+            @else
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h4><p>No tienes proyectos . . . </p></h4>
+                    </div>
+                </div>
             @endif
 
             <div class="col-12">
@@ -556,6 +564,3 @@
 @section('js')
         <script  src="{{asset('js/DetalleInvestigador.js')}}"></script>
 @endsection
-
-
-

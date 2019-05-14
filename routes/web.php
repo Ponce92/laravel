@@ -74,7 +74,7 @@ Route::post('/perfil/publicaciones/editar/libro/','Usuarios\PublicacionesControl
  * =====================================================================================================
  */
 Route::get('/investigadores/perfiles','Usuarios\InvestigadorController@getRegistrosInvestigadores')->name('getPerfilesInvestigadores');
-Route::get('/investigadores/perfiles/detalle/{id}','Usuarios\InvestigadorController@getInvestigador');
+Route::get('/investigadores/perfiles/detalle/{id}','Usuarios\InvestigadorController@getInvestigador')->name('getPerfilInvestigador');
 
 Route::get('/investigadores/perfiles/nombres/Ajax','Usuarios\InvestigadorController@getDataAjax')->name('getNombresPerfilesAjax');
 
@@ -99,7 +99,7 @@ Route::get('/proyectos/actualizar','Usuarios\ProyectosInvestigacionController@ac
 Route::post('/proyecto/actualizar','Usuarios\ProyectosInvestigacionController@ActualizarDetalle')->name('proyecto.actualizar');
 
 Route::get('/proyectos/ver/detalle','Usuarios\ProyectosInvestigacionController@VerDetalleProyecto')->name('ver.detalle.proyecto');
-Route::get('/proyectos/ver/detalle/{id}','Usuarios\ProyectosInvestigacionController@VerDetalleProyecto');
+Route::get('/proyectos/ver/detalle/{id}','Usuarios\ProyectosInvestigacionController@VerDetalleProyecto')->name('getProyecto');
 
 /*------------------------------------------------------------------------------------------------------------------------------------
  *      Funcionalidad de la notificacion para todos los usuarios. .  .                                                              --
@@ -111,6 +111,7 @@ Route::post('/inicio/notificaciones/rechazar','NotificacionesController@rechazar
 Route::post('/inicio/notificaciones/eliminar','NotificacionesController@eliminarNotifiacion')->name('notificaciones.eliminar');
 Route::post('/inicio/notificaciones/leer','NotificacionesController@marcarLeida')->name('notificaciones.leida');
 
+Route::get('/notificaciones/getNotificacion/ajax','NotificacionesController@getNotificacionesAjax');
 
 /*-------------------------------------------------------------------------------------------------------------------------------
  |      rutas para la admiistracion de solicitudes vairas
@@ -198,6 +199,7 @@ Route::get('/foros/tematicas/{id}','Usuarios\TematicaController@Index')->name('t
 Route::get('/foros/tematica/ver/{id}','Usuarios\TematicaController@Show')->name('tematica.Index');
 Route::get('/foros/tematica/respuesta/agregar/{id}','Usuarios\TematicaController@agregarRespuesta')->name('tematica.respuesta.form');
 Route::post('/foros/tematica/respuesta/agregar','Usuarios\TematicaController@Responder')->name('tematica.respuesta');
+Route::post('/foros/tematica/respuesta/comentar','Usuarios\TematicaController@Comentar')->name('tematica.comentar');
 
 
 Route::get('/foros/show/{id}','Usuarios\ForosController@showForo')->name('foros.shows');
@@ -212,7 +214,7 @@ Route::resource('/respuestas','RespuestasController');
  *---------------------------------------------------------------------------------------------
  */
 Route::get('/chat','Usuarios\ChatController@Index')->name('chat');
-Route::get('/chat/load/json','Usuarios\ChatController@loadJson')->name('chat.load');  
+Route::get('/chat/load/json','Usuarios\ChatController@loadJson')->name('chat.load');
 
 
 // Route::get('/chat','ChatController@index')->name('chat');

@@ -26,7 +26,7 @@ class CrearPublicacionRequest extends FormRequest
         return [
             'titulo'=>'string',
             'fecha'=>'required',
-            'issn'=>'string|required_if:tipo,"libro" ',
+            'issn'=>'string|required_if:tipo,"libro" |max:25|min:3',
             'nc'=>'numeric|required_if:tipo,"libro"',
             'np'=>'numeric|required_if:tipo,"libro"',
             'area-c'=>'required_if:area,"Otra area del concimiento"',
@@ -44,7 +44,7 @@ class CrearPublicacionRequest extends FormRequest
             'titulo.min'=>'Este campo debe tener almenos 6 caracteres',
             'fecha.required'=>'Debes especificar una fecha para la publicacion',
             'issn.numeric'=>'El formato no es el correcto',
-            'issn.max'=>'El codigo ingresado contiene demasiados caracteres',
+            'issn.max'=>'El codigo ingresado debe contener como maximo 25 caraceteres',
             'issn.min'=>'El codigo ingresado no es correcto',
             'nc.required_if'=>'Debes espeficicar el numero de capitulo',
             'np.required_if'=>'Debes especificar un numero de pagina',

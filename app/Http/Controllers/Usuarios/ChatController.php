@@ -32,7 +32,7 @@ class ChatController extends Controller
         $Mensajes = Mensaje::where('rt_codigo','=',$user->getId().'_'.$request->get('id'))
                             ->orWhere('rt_codigo','=',$request->get('id').'_'.$user->getId())
                             ->get();
-        
+
         $vista= view('Usuarios.Chat.frgChat')
         ->with('Mensajes',$Mensajes)
         ->with('user',$user)

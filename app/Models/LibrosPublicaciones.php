@@ -16,4 +16,9 @@ class LibrosPublicaciones extends Model
     public  function area(){
         return $this->hasOne('App\Models\AreasConocimiento','pk_id_area')->first();
     }
+
+    public function getArea(){
+        $area=AreasConocimiento::find($this->fk_id_area);
+        return $area;
+    }
 }

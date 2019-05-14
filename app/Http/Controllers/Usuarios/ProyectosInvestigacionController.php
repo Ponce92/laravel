@@ -35,7 +35,8 @@ class ProyectosInvestigacionController extends Controller
                         ->get();
 
 
-        if(count($proyectos)!=0)
+
+        if(count($proyectos) > 0)
         {
 
             foreach ($proyectos as $prj)
@@ -55,7 +56,6 @@ class ProyectosInvestigacionController extends Controller
             }
 
         }
-
         return view('Usuarios.ProyectosInvestigacion.gestionProyectosInvestigacion')
 
             ->with('prjs',$datos)
@@ -177,7 +177,8 @@ class ProyectosInvestigacionController extends Controller
             DB::table('tbl_usuarios_proyectos')->insert([
                 [
                     'fk_id_participante'=>$user->pk_id_usuario,
-                    'fk_id_proyecto_investigacion'=>$prj->pk_id_proyecto_investigacion
+                    'fk_id_proyecto_investigacion'=>$prj->pk_id_proyecto_investigacion,
+                    'rl_is_riues'=>false
                 ]
 
             ]);

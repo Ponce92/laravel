@@ -1,10 +1,18 @@
 
-/*------------------------------------------------------------------------------
- *    |Estilos de chat
- *-------------------------------------------------------------------------------
- */
+.linkComent{
+    text-decoration: none;
+    text-transform: none;
+    color: rgb(210,210,210);
+}
+.linkComent:hover{
+    color: ligth-blue;
+    text-decoration: none;
+}
+#svg2{
 
-
+    height: 40px;
+    font-weight: bold;
+}
 /* ----------------------------------------------------------------------------- */
 .f-16{
     font-size: 16px;

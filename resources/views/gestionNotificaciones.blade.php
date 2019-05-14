@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-6">
                                         <strong>
-                                                <a href="">
+                                                <a href="{{route('getPerfilInvestigador',['id'=>$not->getRemitente()->getId()])}}">
                                                     {{$not->getRemitente()->getCorreo()}}
                                                 </a>
                                         </strong>
@@ -49,19 +49,19 @@
                                         {{$not->rt_tipo_notificacion =='SSA' ? 'Ha solicitado agregarte a sus contactos':''}}
                                         {{$not->rt_tipo_notificacion =='RSA' ? 'Ha acpetado tu solicitud de contacto':''}}
                                         @if($not->getTipo() =='SAI')
-                                            Te ha invitado a participar en el proyecto <a href="#">
-                                                {{$not->getProyecto()->getTitulo()}}
-                                            </a>
+                                            ,te ha invitado a participar en el proyecto
+                                            <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}"> {{$not->getProyecto()->getTitulo()}} </a>
                                         @endif
                                         {{$not->rt_tipo_notificacion =='RAP' ? 'Ha acpetado tu invitacion  a proyecto':''}}
 
                                         @if($not->getTipo() =='SPP')
-                                            Ha solicitado participar en el proyecto <a href="#">
+                                            ,ha solicitado participar en el proyecto
+                                            <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif
                                         @if($not->getTipo() =='RPP')
-                                            A aceptado tu union al proyecto <a href="#">
+                                            ,a aceptado tu union al proyecto <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif
@@ -216,6 +216,3 @@
 @section('js')
     <script src="{{asset('js/Notificaciones.js')}}" type="text/javascript"></script>
 @endsection
-
-
-

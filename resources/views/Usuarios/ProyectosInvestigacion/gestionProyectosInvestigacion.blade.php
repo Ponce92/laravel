@@ -36,7 +36,8 @@
             <div class="container-fluid">
                 @include('Common.FlashMsj')
                 <div class="row">
-                    @if(count($prjs)!=0)
+    
+                    @if(count($prjs) > 0)
                         @foreach($prjs as $prj)
                             <div class="card mb-3" style="width: 18rem;margin-left: 15px">
                                 <div class="card-header">
@@ -83,6 +84,3 @@
 @section('js')
 
 @endsection
-
-
-

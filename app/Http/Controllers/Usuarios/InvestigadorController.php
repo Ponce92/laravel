@@ -114,8 +114,8 @@ class InvestigadorController extends Controller
 
                 $lib->rf_fecha=$ff;
 
-                $area=$lib->area();
-                $lib['area']=$area->rt_nombre_area;
+                // $area=$lib->area();
+                $lib['area']=$lib->getArea()->getNombre();
 
             }
         }
