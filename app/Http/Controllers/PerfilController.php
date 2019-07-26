@@ -41,8 +41,8 @@ class PerfilController extends Controller
         $fecha=$fecha->format('d-m-Y');
         $persona->rf_fecha_nacimiento=$fecha;
 
-        $paises=Pais::all();
-        $grados=GradosAcademicos::all();
+        $paises=Pais::where('rl_estado','=',true)->get();
+        $grados=GradosAcademicos::where('rl_estado','=',true)->get();
         $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
         $otrasA=AreasConocimiento::where('pk_id_area','>',100)->get();
 
@@ -65,12 +65,18 @@ class PerfilController extends Controller
 
             $eliminar=$user->rt_foto_usuario;
 
-            Storage::delete(public_path().'/avatar/'.$eliminar);
+            Storage::disk('local')->delete('public/avatar/'.$eliminar);
 
             $file = $request->file('foto');
             $name=time().str_random(4).$file->getClientOriginalName();
 
-            $file->move(public_path().'/avatar/',$name);
+            Storage::disk('local')->putFileAs(
+                'public/avatar/',
+                $file,
+                $name
+            );
+
+//            $file->move(public_path().'/avatar/',$name);
 
             $user->rt_foto_usuario=$name;
             $user->save();

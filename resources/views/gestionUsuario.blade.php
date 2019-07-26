@@ -7,6 +7,13 @@
     @include('AdminFragment.FrgMenIzq')
 @endsection
 
+@section('menu-sup-02')
+    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
+    <li class="breadcrumb-item active">perfil</li>
+    <li class="breadcrumb-item active">usuario</li>
+@endsection
+
+
 @section('default')
     <div class="container-fluid area-trabajo" id="area-trabajo">
         {{--        Seccion de Usuario del investigador      --}}

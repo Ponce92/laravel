@@ -71,7 +71,7 @@ class ProyectosInvestigacionController extends Controller
 
         return view('Usuarios.ProyectosInvestigacion.RegistrarProyectoInvestigacion')
             ->with('user',$user)
-            ->with('paises',Pais::all())
+            ->with('paises',Pais::where('rl_estado','=',true)->get())
             ->with('colores',Color::all())
             ->with('objetivosS',ObjetivoSocioeconomico::all())
             ->with('tiposProyectos',TiposProyectosInvestigacion::all())

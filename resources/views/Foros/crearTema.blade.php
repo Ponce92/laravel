@@ -31,7 +31,7 @@
                         <label for="titulo" class="col-md-4 col-form-label text-md-right">Titulo del Tema</label>
                         <div class="col-md-6">
                             <input type="hidden" name="idf" value="{{$idf}}">
-                            <input id="titulo" type="text" class="form-control{{ $errors->has('titulo') ? ' is-invalid' : '' }}" name="titulo" value="{{ old('titulo') }}" required autofocus>
+                            <input id="titulo" type="text" class="form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}" name="titulo" value="{{ old('titulo') }}" required autofocus>
 
                             @if ($errors->has('titulo'))
                                 <span class="invalid-feedback" role="alert">

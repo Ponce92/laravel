@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RegistrosRequest;
 use App\Models\Persona;
-use App\Models\Usuario;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,9 +33,9 @@ class RegistrosController extends Controller
      */
     public function create()
     {
-        $paises=Pais::all();
+        $paises=Pais::where('rl_estado','=',true)->get();
         $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
-        $grados=GradosAcademicos::all();
+        $grados=GradosAcademicos::where('rl_estado','=',true)->get();
 
         return view('Registro/registro')->with('paisesc',$paises)
                                      ->with('areasc',$areas)
@@ -47,10 +47,11 @@ class RegistrosController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * RegistrosRequest
      */
-    public function store(RegistrosRequest $request)
+    public function store(Request $request)
     {
-
 
         $persona=new Persona();
         $usuario=new User();
@@ -100,10 +101,19 @@ class RegistrosController extends Controller
 
         $persona->save();
 
-        /*      Seccion de usuario          */
+//        Intentamos realizar la insersion del la foto a la carpeta storage
         $file =$request->file('foto');
         $url = time().$file->getClientOriginalName();
-        $file->move(public_path().'/avatar/', $url);
+
+//        $file->move(public_path().'/avatar/', $url);
+//        Storage::disk('local')->put('/avatar/'.$url,$file);
+
+        Storage::disk('local')->putFileAs(
+            'public/avatar/',
+            $file,
+            $url
+        );
+
 
 
         $usuario->pk_id_usuario=str_random(10);

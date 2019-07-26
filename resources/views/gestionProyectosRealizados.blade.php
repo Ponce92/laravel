@@ -67,7 +67,7 @@
 
                         <tr>
                             <td rowspan="3" colspan="3" class="align-middle" align="center">
-                                <i class="fab fa-codepen fa-4x "></i>
+                                <i class="icon-rocket fa-4x" style="color: #3e4548;"></i>
                             </td>
                             <td class="td" colspan="1">Titulo Proyecto</td>
                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>

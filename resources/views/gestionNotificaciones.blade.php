@@ -32,7 +32,7 @@
                             <li class="list-group-item  {{$not->rl_vista == false ? 'ntf-not':'ntf' }}">
                                 <div class="row">
                                     <div class="col-1" style="min-width: 100px">
-                                            <img src="{{asset('avatar/'.$not->getRemitente()->getFoto())}}" width="75" class="rounded" alt="No imgage">
+                                            <img src="{{asset('storage/avatar/'.$not->getRemitente()->getFoto())}}" width="75" class="rounded" alt="No imgage">
                                     </div>
                                     <div class="col-6">
                                         <strong>

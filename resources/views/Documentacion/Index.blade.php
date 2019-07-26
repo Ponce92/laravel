@@ -42,58 +42,60 @@
                          </div>
                         <div class="row">
                             <div class="col-12">
-                                <table class="table">
+                                <table class="table table-striped table-bordered">
                                     <thead>
                                     <td class="td" align="center">Archivo</td>
                                     <td class="td" align="center">Nombre del documento</td>
                                     <td class="td" align="center">Tipo de archivo</td>
-                                    <td class="td" align="center" ></td>
-                                    <td class="td"></td>
-                                        @if($user->getId() ==$proyecto->getTitular()->getId())
-                                        <td class="td"></td>
-                                        @endif
-
+                                    <td class="td">Acciones</td>
                                     </thead>
                                     @foreach ($documentos as $doc)
                                         <tr>
                                             <td align="center">
                                                 @if($doc->getTipoArchivo()=="img")
-                                                    <i class="fas fa-file-image fa-3x bttn bttn-ver" style="color:darkcyan"></i>
+                                                    <i class="fas fa-file-image fa-2x bttn bttn-ver" style="color:darkcyan"></i>
                                                 @endif
                                                 @if($doc->getTipoArchivo() =="pdf")
-                                                    <i class="fas fa-file-pdf fa-3x bttn" style="color:darkred"></i>
+                                                    <i class="fas fa-file-pdf fa-2x bttn" style="color:darkred"></i>
                                                 @endif
                                                 @if($doc->getTipoArchivo()=="excel")
-                                                    <i class="fas fa-file-excel fa-3x bttn" style="color:green"></i>
+                                                    <i class="fas fa-file-excel fa-2x bttn" style="color:green"></i>
                                                 @endif
                                                 @if($doc->getTipoArchivo() =="word")
-                                                    <i class="fas fa-file-word fa-3x bttn" style="color:blue"></i>
+                                                    <i class="fas fa-file-word fa-2x bttn" style="color:blue"></i>
                                                 @endif
                                                 @if($doc->getTipoArchivo()=="none")
-                                                    <i class="fas fa-file fa-3x bttn" style="color:slategray"></i>
+                                                    <i class="fas fa-file fa-2x bttn" style="color:slategray"></i>
+                                                @endif
+                                                @if($doc->getTipoArchivo()=="texto")
+                                                    <i class="fas fa-file-alt fa-2x bttn" style="color:slategray"></i>
+                                                @endif
+                                                @if($doc->getTipoArchivo()=="rar")
+                                                    <i class="fas fa-file-archive fa-2x bttn" style="color:slategray"></i>
+                                                @endif
+                                                @if($doc->getTipoArchivo()=="rar")
+                                                    <i class="fas fa-photo-video fa-2x bttn" style="color:slategray"></i>
                                                 @endif
                                             </td>
 
                                             <td>{{$doc->getNombre()}}</td>
                                             <td align="center">{{$doc->getExtension()}}</td>
-                                            <td align="center" class="align-middle tdbtn">
-
-
-                                            </td>
                                             <td align="center" class="align-middle">
-                                                <a href="{{route('documentos.download')}}/{{$doc->getNombre()}}">
-                                                    <i class="fas fa-download fa-2x bttn bttn-ver"></i>
+                                                <a href="{{route('documentos.download')}}/{{$doc->getNombre()}}" style="margin-right: 20px;">
+                                                    <i class="fas fa-download bttn bttn-ver" style="font-size: 26px;">
+
+                                                    </i>
                                                 </a>
 
-                                            </td>
                                             @if($user->getId() ==$proyecto->getTitular()->getId())
-                                                <td align="center">
+
                                                     <a href="{{route('documento.eliminar')}}/{{$doc->getNombre()}}">
-                                                        <i class="fas fa-trash-alt fa-2x bttn bttn-ver"></i>
+                                                        <i class="fas fa-trash-alt bttn bttn-ver" style="font-size: 26px;" ></i>
                                                     </a>
 
-                                                </td>
+
                                             @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </table>

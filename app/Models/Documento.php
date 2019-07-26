@@ -44,7 +44,8 @@ class Documento extends Model
 
     public function getTipoArchivo(){
         $tipo="none";
-        if($this->getExtension()=="png" || $this->getExtension()=="jpg" ){
+        $ex=$this->getExtension();
+        if($this->getExtension()=="png" || $this->getExtension()=="jpg" ||$ex=="raw" || $ex=="psd" ||$ex=="jpeg"||$ex=="bmp" ){
         $tipo='img';
         }
 
@@ -57,6 +58,15 @@ class Documento extends Model
         }
         if($this->getExtension()=="pdf"){
             $tipo='pdf';
+        }
+        if($this->getExtension()=="txt"){
+            $tipo="texto";
+        }
+        if($ex=="zip" || $ex=="rar" ||$ex=="7zip" || $ex=="tar"){
+            $tipo="texto";
+        }
+        if($ex=="mkv" || $ex=="mp4" ||$ex=="mpeg" || $ex=="wmv" ||$ex=="mov"||$ex=="avi"){
+            $tipo="video";
         }
 
         return $tipo;

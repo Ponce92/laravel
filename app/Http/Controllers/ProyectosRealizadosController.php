@@ -63,7 +63,7 @@ class ProyectosRealizadosController extends Controller
     {
         $user=Auth::user();
         $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
-        $paises=Pais::all();
+        $paises=Pais::where('rl_estado','=',true)->get();
 
 
         return view('Usuarios.ProyectosRealizados.CrearProyectoRealizado')
@@ -158,7 +158,7 @@ class ProyectosRealizadosController extends Controller
         return view('Usuarios.ProyectosRealizados.EditarProyectoRealizado')
             ->with('user',Auth::user())
             ->with('proyecto',$proyecto)
-            ->with('paises',Pais::all())
+            ->with('paises',Pais::where('rl_estado','=',true)->get())
             ->with('otrasA',$otrasA)
             ->with('areas',$areas)
             ->with('id',$id);

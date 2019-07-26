@@ -15,7 +15,8 @@
 @section('default')
     @include('Common.FlashMsj')
     <div class="container-fluid" id="target">
-        @if($user->fk_id_estado == 0  )
+
+        @if($user->fk_id_estado == "Inactivo")
             <div class="row">
                 <div class="col-12">
                     <div class="alert alert-warning">
@@ -34,6 +35,17 @@
             </div>
 
         @endif
+
+        @if($user->getEstado()->getNombre() =='Pendiente'   )
+                <div class="alert alert-warning">
+                    <i class="fas fa-info-circle"></i>&nbsp;&nbsp;No eres un usuario con permisos de ver el contenido completo de esta pgania, debes esperar al administrador..!
+                </div>
+
+            @endif
+
+
+
+
 
         @include('AdminFragment.FrDefault')
 

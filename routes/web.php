@@ -210,6 +210,42 @@ Route::get('/respuesta/eliminar/{id}/{idt}','RespuestasController@eliminarRespue
 Route::resource('/respuestas','RespuestasController');
 
 /*---------------------------------------------------------------------------------------------
+ *  |    Paises                                                                         -------
+ *---------------------------------------------------------------------------------------------
+ */
+
+Route::get('riues/ajustes/paises/','Administrador\PaisController@index')->name('ajustes.paises');
+Route::get('riues/ajustes/paises/crear/','Administrador\PaisController@getCrear')->name('ajustes.paises.crear.get');
+Route::get('riues/ajustes/paises/editar/{id}/','Administrador\PaisController@getEditar')->name('ajustes.paises.editar.get');
+Route::post('riues/ajustes/paises/editar/','Administrador\PaisController@Editar')->name('ajustes.paises.editar.post');
+Route::post('riues/ajustes/paises/crear/post/','Administrador\PaisController@crear')->name('ajustes.paises.crear.post');
+
+/*---------------------------------------------------------------------------------------------
+ *  |    Areas del conocimiento                                                                         -------
+ *---------------------------------------------------------------------------------------------
+ */
+
+Route::get('admin/ajustes/areas/','Administrador\PaisController@index')->name('areas');
+Route::get('admin/ajustes/areas/crear/','Administrador\PaisController@getCrear')->name('areas.crear');
+Route::post('admin/ajustes/areas/crear/post/','Administrador\PaisController@crear')->name('areas.creas.post');
+
+Route::get('admin/ajustes/areas/editar/{id}/','Administrador\PaisController@getEditar')->name('areas.editar');
+Route::post('admin/ajustes/areas/editar/','Administrador\PaisController@Editar')->name('areas.editar.post');
+
+
+/*---------------------------------------------------------------------------------------------
+ *  |    Grados Academicos                                                              -------
+ *---------------------------------------------------------------------------------------------
+ */
+
+Route::get('admin/ajustes/grado/','Administrador\GradoController@index')->name('grados');
+Route::get('admin/ajustes/grado/crear/','Administrador\GradoController@getCrear')->name('grado.crear');
+Route::post('admin/ajustes/grado/crear/post/','Administrador\GradoController@crear')->name('grado.crear.post');
+
+Route::get('admin/ajustes/grado/editar/{id}/','Administrador\GradoController@getEditar')->name('grado.editar');
+Route::post('admin/ajustes/grado/editar/','Administrador\GradoController@editar')->name('grado.editar.post');
+
+/*---------------------------------------------------------------------------------------------
  *  |    Modulo de chat en linea  de RIUES                                               -------
  *---------------------------------------------------------------------------------------------
  */

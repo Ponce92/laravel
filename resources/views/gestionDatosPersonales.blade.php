@@ -9,7 +9,8 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item active">Datos Personales</li>
+    <li class="breadcrumb-item">perfil</li>
+    <li class="breadcrumb-item">Datos Personales</li>
 @endsection
 
 @section('default')
@@ -43,14 +44,17 @@
                         <div class="row">
 
                             <div class="col-3 ">{{--+++++++++++++++++++++++++++++++++++ Foto del Usuario++++++++++++++++++++++++++++++++++++ --}}
-                                <div class="row">
-                                    <div class="col-12 div-image">
-                                        <img src="{{asset('avatar/'.$user->rt_foto_usuario)}}"
+                                <div class="row justify-content-center">
+
+                                        <img src="{{asset('storage/avatar/'.$user->rt_foto_usuario)}}"
                                              alt="vista no disponible"
+                                             style="max-height: 200px;max-width: 250px;"
+
                                              class="img-thumbnail"
                                         >
-                                    </div>
+
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="">

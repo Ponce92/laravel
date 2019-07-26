@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Estado;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPasswordNotification;
@@ -64,7 +65,9 @@ class User extends Authenticatable
     public function getCorreo(){
         return $this->email;
     }
-
+    public function getEstado(){
+        return Estado::find($this->fk_id_estado);
+    }
     public function getId(){
      return $this->pk_id_usuario;
     }

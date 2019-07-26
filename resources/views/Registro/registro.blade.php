@@ -24,25 +24,28 @@
                         <div class="col">
                             <h4 style="font-weight: bold">Datos personales</h4>
                         </div>
-                        <div class="col">
-                            <div class="row justify-content-end">
-                                <a href="" style="color: #3e4548;margin-right: 25px;">
-                                    Importar de SICCP-UES?
-                                </a>
-                            </div>
-                        </div>
+{{--                        <div class="col">--}}
+{{--                            <div class="row justify-content-end">--}}
+{{--                                <a href="" style="color: #3e4548;margin-right: 25px;">--}}
+{{--                                    Importar de SICCP-UES?--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <hr class="all">
                     @if($errors->any())
                             <div class="alert alert-danger msj">
                                 <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
                                 Errores en la entradas del formulario, porfavor corrija los campos indicados !
-                                {{$errors->first()}}
+                                &nbsp;
+                                <strong>{{ $errors->first() }}</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+
                     @endif
+{{--                    @include('Common.FlashMsj')--}}
 
                     <div class="row">
                         <div class="col-4">
@@ -77,6 +80,7 @@
                                         <label class="" for="nombre">Nombres :</label>
                                         <input id="nombre"
                                                name="nombre"
+                                               autocomplete="off"
                                                placeholder=""
                                                class="form-control {{$errors->has('nombre') ? 'is-invalid':''}} mb-3"
                                                type="text"
@@ -91,6 +95,7 @@
                                         <input id="apellido"
                                                name="apellido"
                                                placeholder=""
+                                               autocomplete="off"
                                                class="form-control mb-3 {{$errors->has('apellido') ? 'is-invalid':''}}"
                                                type="text"
                                                value="{{ old('apellido') }}"
@@ -110,6 +115,7 @@
                                                 </div>
                                             </div>
                                             <input id="correo"
+                                                   autocomplete="off"
                                                    name="correo"
                                                    placeholder="emplo@ues.com"
                                                    class="form-control {{$errors->has('correo') ? 'is-invalid':''}}"

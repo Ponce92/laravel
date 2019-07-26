@@ -139,7 +139,7 @@
                 {{--</li>--}}
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{asset('avatar/'.$user->rt_foto_usuario)}}" class="img-avatar" alt="{{$user->rt_correo_usuario}}">
+                        <img src="{{asset('storage/avatar/'.$user->rt_foto_usuario)}}" class="img-avatar" alt="{{$user->rt_correo_usuario}}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">

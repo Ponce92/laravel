@@ -22,7 +22,7 @@ class DocumentosController extends Controller
         $user=Auth::user();
         $proyecto=ProyectosInvestigacion::find($id);
 
-        $paginate=5;
+        $paginate=7;
         $documentos = Documento::where('fk_id_proyecto','=',$id)->paginate($paginate);
         return view('Documentacion.Index', compact($documentos))
             ->with('id',$id)
@@ -38,9 +38,21 @@ class DocumentosController extends Controller
         $doc->setNombre($file->getClientOriginalName());
         $doc->setExtension($file->getClientOriginalExtension());
         $doc->setProyecto($request->get('id_proyecto'));
-        $doc->save();
 
-        $file->storeAs('public/DocumentosProyecto',$doc->getId().'.'.$doc->getExtension());
+        try{
+            $doc->save();
+            Storage::disk('local')->putFileAs(
+                'public/documentos/',
+                $file,
+                $doc->getId().'.'.$doc->getExtension()
+            );
+        }catch (\Exception $e){
+            $doc->delete();
+            return back()->withdanger('Error al cargar el archivo al servidor, documento excede el tamanio soportado por el servidor');
+        }
+
+
+        //$file->storeAs('public/DocumentosProyecto',$doc->getId().'.'.$doc->getExtension());
 
         return back()->withsuccess('El archivo a sido subido de foma exitosa');
     }
@@ -51,12 +63,12 @@ class DocumentosController extends Controller
         $tipoDoc=$doc->getTipoArchivo();
 
         $nombre=$doc->getId().'.'.$doc->getExtension();
-        $url='public/DocumentosProyecto/'.$nombre;
+        $url='public/documentos/'.$nombre;
 
 
         if (Storage::exists($url))
         {
-             return Response()->download('storage/DocumentosProyecto/'.$nombre);
+             return Response()->download('storage/documentos/'.$nombre);
         }else{
             try {
                  $doc->delete();
@@ -64,8 +76,6 @@ class DocumentosController extends Controller
                 return back();
             }
         }
-
-
 
         return back()->withinfo("El recurso no existe");
 
@@ -77,10 +87,10 @@ class DocumentosController extends Controller
         $nombre=$doc->getId().'.'.$doc->getExtension();
 
 
-        if (Storage::exists('public/DocumentosProyecto/'.$nombre))
+        if (Storage::exists('public/documentos/'.$nombre))
         {
             $doc->delete();
-            Storage::delete('DocumentosProyecto/'.$nombre);
+            Storage::delete('public/documentos/'.$nombre);
             return back()->withsuccess('Elemento eliminado correctamente');
 
         }else{
@@ -97,7 +107,5 @@ class DocumentosController extends Controller
         return response()->download( );
 
     }
-
-
 
 }

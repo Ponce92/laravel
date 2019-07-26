@@ -49,7 +49,7 @@ class ResetPasswordNotification extends Notification
         return (new MailMessage)
             ->greeting('Hola : '.$notifiable->email)
             ->line('Has recibido este mensaje debido a que se solicito restablecer las credenciales de este correo en la aplicacion')
-            ->action('Restablecer credenciales', url(config('app.url').route('password.reset', $this->token, false)))
+            ->action('Restablecer credenciales', url(route('password.reset', $this->token, true)))
             ->line('Si tu no has solicitado esto, puedes ingnorar este email')
             ->salutation("Hacia la libertad por la cultura");
 

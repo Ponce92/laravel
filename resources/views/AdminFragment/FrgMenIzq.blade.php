@@ -9,27 +9,19 @@
                 </a>
             </li>
 
-            <li class="nav-title">RIUES </li>
+            <li class="nav-title" style="text-align: center;">  RIUES </li>
+
             <li class="divider"></li>
 
-            <!--
-            <li class="nav-item">
-                <a href="colors.html" class="nav-link"><i class="icon-drop"></i> Colors</a>
-            </li>
-            <li class="nav-item">
-                <a href="typography.html" class="nav-link">
-                    <i class="icon-pencil"></i> Typograhy</a>
-            </li>
-            -->
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Perfil</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wrench"></i>Perfil</a>
                 <ul class="nav-dropdown-items">
 
                     <li class="nav-item"   >
                         <a class="nav-link"
                            href="{{ route('gestionDatosPersonales') }}"
                            >
-                            <i class="cui-settings icons font-2xl"></i> Datos Personales
+                            <i class="nav icon icon-list"></i> Datos Personales
                         </a>
                     </li>
                     @if($user->fk_id_rol != 0)
@@ -38,14 +30,14 @@
                                 href="{{ route('gestionProyectosRealizados') }}"
                             >
 
-                                <i class="fas fa-address-book"></i> Proyectos Realizados
+                                <i class="nav icon icon-list"></i> Trayectoria
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link"
                                href="{{ route('verPublicaciones') }}">
-                                <i class="fas fa-address-book"></i>Publicaciones
+                                <i class="nav icon icon-list"></i>Publicaciones
                             </a>
 
                         </li>
@@ -53,22 +45,12 @@
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ route('verUsuario') }}">
-                            <i class="fas fa-user-edit"></i> Usuario
+                            <i class="nav icon icon-list"></i> Usuario
                         </a>
 
                     </li>
                 </ul>
             </li>
-
-            {{--<li class="nav-item nav-dropdown">--}}
-                {{--<a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Perfil</a>--}}
-                {{--<ul class="nav-dropdown-items">--}}
-                    {{--<li>--}}
-                        {{----}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-
 
             @if($user->fk_id_rol != 0 )
                 @if($user->fk_id_estado ==1 )
@@ -80,27 +62,28 @@
                     </li>
 
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i>Proyectos</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="icon-rocket"></i>Proyectos</a>
                         <ul class="nav-dropdown-items">
 
                             <li class="nav-item"   >
                                 <a class="nav-link"
                                    href="{{ route('misproyectos.investigacion') }}"
                                 >
-                                    <i class="cui-settings icons font-2xl"></i> Mis Proyectos
+                                    <i class="nav icon icon-list"></i> Mis Proyectos
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="{{ route('Busqueda.Proyectos') }}">
-                                    <i class="fas fa-user-edit"></i> Busqueda
+                                    <i class="nav icon icon-list"></i> Busqueda
                                 </a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i>Redes</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-share"></i>Redes</a>
                         <ul class="nav-dropdown-items">
 
                             <li class="nav-item"   >
@@ -143,8 +126,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="icon-settings"></i>Ajustes
+                    </a>
+                    <ul class="nav-dropdown-items">
+
+                        <li class="nav-item"   >
+                            <a class="nav-link" href="{{ route('ajustes.paises') }}">
+
+                                <i class="nav icon icon-list"></i> Paises
+                            </a>
+                        </li>
+                        <li class="nav-item"   >
+                            <a class="nav-link" href="{{ route('grados') }}">
+
+                                <i class="nav icon icon-list"></i> Grados academicos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
         @endif
-            @if($user->fk_id_estado==1 || $user->fk_id_rol==0)
+
+            @if($user->fk_id_estado==1 || $user->fk_id_rol== 0)
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="{{route('notificaciones')}}">
                         <i class="icon-bell"></i>Notificaciones
@@ -160,35 +164,6 @@
                 </li>
             @endif
 
-
-
-
-
-            <!--
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Buttons</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="buttons-buttons.html"><i class="icon-cursor"></i> Buttons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="buttons-button-group.html"><i class="icon-cursor"></i> Buttons Group</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="buttons-dropdowns.html"><i class="icon-cursor"></i> Dropdowns</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="buttons-social-buttons.html"><i class="icon-cursor"></i> Social Buttons</a>
-                    </li>
-                </ul>
-            </li>
-           -->
-
-            <!--
-                /*
-                 *Boton de logout de la pagina.................................|
-                 */
-            -->
             <li class="nav-item mt-auto">
             </li>
             <li class="nav-item" style="background-color: #aa0000;font-weight: bold;" >
