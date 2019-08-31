@@ -99,7 +99,7 @@ class RegistrosController extends Controller
 
 
 
-        $persona->save();
+//        $persona->save(); para que no se guarde si falla la creacion del usuario
 
 //        Intentamos realizar la insersion del la foto a la carpeta storage
         $file =$request->file('foto');

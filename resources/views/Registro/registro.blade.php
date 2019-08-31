@@ -154,11 +154,11 @@
                                         <label class="" for="sexo">Sexo</label>
                                         <br>
                                         <label class="radio-inline" for="sexo-0">
-                                            <input name="sexo" id="sexo-0" value="true"  checked="checked" type="radio">
+                                            <input name="sexo" id="sexo-0" value="false"  checked="checked" type="radio">
                                             Hombre
                                         </label>
                                         <label class="radio-inline" for="sexo-1">
-                                            <input name="sexo" id="sexo-1"  value="false" type="radio">
+                                            <input name="sexo" id="sexo-1"  value="true" type="radio">
                                             Mujer
                                         </label>
                                 </div>{{--- .......Sexo del investigador.........--}}

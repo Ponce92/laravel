@@ -40,7 +40,7 @@
                         <div class="col-3 ">{{--+++++++++++++++++++++++++++++++++++ Foto del Usuario++++++++++++++++++++++++++++++++++++ --}}
                             <div class="row">
                                 <div class="col-12 div-image">
-                                    <img src="{{asset('avatar/'.$perfil->rt_foto_usuario)}}"
+                                    <img src="{{asset('storage/avatar/'.$perfil->rt_foto_usuario)}}"
                                          alt="vista no disponible"
                                          class="img-thumbnail">
                                 </div>
@@ -357,10 +357,11 @@
                                             <td colspan="5">{{$proyecto->rd_descripcion_proyecto}}</td>
                                         </tr>
                                     </tbody>
+                                    @endforeach
 
                                 </table>
 
-                                @endforeach
+                                
                         @endif
                     </div>
                 </div>

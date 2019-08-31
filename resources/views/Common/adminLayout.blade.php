@@ -61,6 +61,7 @@
             <!-- -->
 
             <ul class="nav navbar-nav ml-auto" id="barraS">
+                <!-- 
 
                 <li class="nav-item d-md-down-none">
                     <a href="" class="nav-link">
@@ -94,7 +95,7 @@
                         </div>
                     </a>
 
-                </li>
+                </li> -->
                 &nbsp;&nbsp;
                 <li class="nav-item d-md-down-none">
                     <a href="#" class="nav-link">

@@ -80,7 +80,7 @@
                                             <button name="{{$not->pk_id_notificacion}}"
                                                     class="btn bttn-red-small"
                                                     onclick="aceptarUsuario(this.name)">
-                                                Reactivar
+                                                Activar
                                             </button>
                                         @endif
                                         @if($not->getTipo() =='SRA')

@@ -70,8 +70,8 @@ class InvestigadorController extends Controller
                 $ff=$ff->format('d-m-Y');
                 $proyecto->rf_fecha_fin_proyecto=$ff;
 
-                $area=$proyecto->area();
-                $proyecto['area']=$area->rt_nombre_area;
+                $ar=AreasConocimiento::find($proyecto->fk_id_area);
+                $proyecto['area']=$ar->rt_nombre_area;
 
 
             }

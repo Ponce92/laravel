@@ -96,7 +96,7 @@
                             @foreach($invs as $obj)
                                 <tr scope="row">
                                     <td  colspan="1" rowspan="3" align="center" class="align-middle" style="width: 200px!important;">
-                                        <img src="{{asset('avatar/')}}/{{$obj['foto']}}"
+                                        <img src="{{asset('storage/avatar/')}}/{{$obj['foto']}}"
                                              alt="{{$obj['foto']}}"
                                              class=" img img-thumbnail"
                                              width="150px"
