@@ -10,7 +10,7 @@
                 </li>
             @endfor
             <li class="page-item {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
-                <a class="page-link" href="{{ $paginator->url($paginator->currentPage()+1) }}" >Ultimo</a>
+                <a class="page-link" href="{{ $paginator->url($paginator->currentPage()+1) }}" >Último</a>
             </li>
         </ul>
     </nav>

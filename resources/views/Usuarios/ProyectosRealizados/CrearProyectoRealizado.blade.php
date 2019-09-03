@@ -33,7 +33,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                     &nbsp;&nbsp; </i>Porfavor corrija los campos que se marcan en rojo.
+                                     &nbsp;&nbsp; </i>Por favor corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombreProyecto">Titulo del Proyecto :</label>
+                                    <label for="nombreProyecto">Título del Proyecto :</label>
                                     <input type="text"
                                            form="frm-add"
                                            class="form-control @if($errors->has('nombre')) is-invalid @endif"
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="fechaF">Fecha Finalizacion:</label>
+                                <label for="fechaF">Fecha Finalización:</label>
                                 <div class="input-group  mb-3">
                                     <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -109,7 +109,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="area">Area Conocimiento</label>
+                                <label for="area">Área de Conocimiento</label>
                                 <select name="area"
                                         id="area"
                                         class="form-control  mb-3"
@@ -123,7 +123,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="pais">Pais de ejecucion :</label>
+                                <label for="pais">País de ejecución :</label>
                                 <select name="pais" id="pais" class="form-control  mb-3" form="frm-add">
                                     @foreach($paises as $pais)
                                         <option value="{{$pais->pk_id_pais}}" {{ old('pais') == $pais->pk_id_pais ? 'selected':'' }}>{{$pais->rt_nombre_pais}}</option>
@@ -132,7 +132,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="areaP">Especifique el area del conocimiento :</label>
+                                <label for="areaP">Especifique el área de conocimiento :</label>
                                 <input type="text"
                                        name="area-c"
                                        id="area-c"
@@ -149,7 +149,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="descripcion">Descripcion:</label>
+                                <label for="descripcion">Descripción:</label>
                                 <textarea   class="form-control  mb-3
                                                 @if($errors->has('descripcion')) is-invalid @endif"
                                             rows="4"

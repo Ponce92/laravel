@@ -86,7 +86,7 @@ class RedController extends Controller
         $red->save();
         return redirect()
             ->route('redes.todas')
-            ->withSuccess('El registro de la red de investigador se ha actualizaro correctamente');
+            ->withSuccess('El registro de la red de investigador se ha actualizado correctamente');
     }
 
     public function detalleRed($id){

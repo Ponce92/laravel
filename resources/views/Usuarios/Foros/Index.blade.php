@@ -49,11 +49,11 @@
                                     Usuario
                                 </div>
                             </th>
-                            <th scope="col">Titulo</th>
+                            <th scope="col">Título</th>
                             <th scope="col"></th>
                             <th scope="col">Estado</th>
                             <th scope="col">Respuestas</th>
-                            <th scope="col">Fecha Creacion</th>
+                            <th scope="col">Fecha de Creación</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>

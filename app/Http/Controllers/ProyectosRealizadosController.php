@@ -85,7 +85,7 @@ class ProyectosRealizadosController extends Controller
                 ->with('user',$user)
                 ->with('areas',$areas)
                 ->with('paises',$paises)
-                ->withErrors(['fechaI'=>'La fecha de inicio no puede ser mayor a la fecha de finalizacion']);
+                ->withErrors(['fechaI'=>'La fecha de inicio no puede ser mayor a la fecha de finalización']);
         }
         $fi=Carbon::createFromFormat('d-m-Y',$request->get('fechaI'));
         $ff=Carbon::createFromFormat('d-m-Y',$request->get('fechaF'));
@@ -133,7 +133,7 @@ class ProyectosRealizadosController extends Controller
         $msj="El registro ha sido almacenado correctamente";
 
 
-        return redirect()->route('gestionProyectosRealizados')->withsuccess('Se ha registrado correctamente el proyecto realizado');
+        return redirect()->route('gestionProyectosRealizados')->withsuccess('Se ha registrado correctamente el proyecto realizado.');
 
 
     }
@@ -175,7 +175,7 @@ class ProyectosRealizadosController extends Controller
                 ->with('user',$user)
                 ->with('areas',AreasConocimiento::all())
                 ->with('paises',Pais::all())
-                ->withErrors(['fechaI'=>'La fecha de inicio no puede ser mayor a la fecha de finalizacion']);
+                ->withErrors(['fechaI'=>'La fecha de inicio no puede ser mayor a la fecha de finalización']);
         }
         $fi=Carbon::createFromFormat('d-m-Y',$request->get('fechaI'));
         $ff=Carbon::createFromFormat('d-m-Y',$request->get('fechaF'));
@@ -233,12 +233,12 @@ class ProyectosRealizadosController extends Controller
 
 
 
-            return redirect()->route('gestionProyectosRealizados')->withsuccess('El registro ha sido elimado correctamente');
+            return redirect()->route('gestionProyectosRealizados')->withsuccess('El registro ha sido eliminado correctamente');
         }else{
 
 
 
-            return redirect()->route('gestionProyectosRealizados')->withinfo('El recurso que intentas elminar ya no existe');
+            return redirect()->route('gestionProyectosRealizados')->withinfo('El recurso que intenta eliminar ya no existe');
 
         }
 

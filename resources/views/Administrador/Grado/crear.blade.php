@@ -10,7 +10,7 @@
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item ">Ajustes</li>
-    <li class="breadcrumb-item"><a href="{{route('grados')}}">Grados academicos</a></li>
+    <li class="breadcrumb-item"><a href="{{route('grados')}}">Grados académicos</a></li>
     <li class="breadcrumb-item active">crear</li>
 @endsection
 
@@ -19,14 +19,14 @@
         <div class="col-sm-5">
             <div class="card">
                 <div class="card-header">
-                    <strong>Grado academico :: Agregar</strong>
+                    <strong>Grado académico :: Agregar</strong>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('grado.crear.post') }}" method="post" id="frm_crear" name="frm_crear">
                         {{ csrf_field()  }}
 
                         <div class="form-group">
-                            <label class="form-col-form-label" for="nombre">Grado academico :</label>
+                            <label class="form-col-form-label" for="nombre">Grado académico :</label>
                             <input class="form-control {{ $errors->has('nombre') ? ' is-invalid' : '' }}"
                                    id="nombre"
                                    name="nombre"

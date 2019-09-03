@@ -29,7 +29,7 @@ class CrearRequest extends FormRequest
             'acronimo'=>'string|max:25|min:5',
             'tipoP'=>'required',
             'area'=>'required',
-            'area-c'=>'string|required_if:area,"Otra area del concimiento"',
+            'area-c'=>'string|required_if:area,"Otra Área de conocimiento"',
             'pais'=>'required',
             'estadoP'=>'required',
             'desc'=>'required',

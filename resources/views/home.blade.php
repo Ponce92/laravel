@@ -15,7 +15,7 @@
                         </div>
                     @endif
                 <div class="alert">
-                    Tu restablecimiento de credenciales a concluido de fomra exitosa.
+                    Su restablecimiento de credenciales ha concluído de forma exitosa.
                 </div>
 
 

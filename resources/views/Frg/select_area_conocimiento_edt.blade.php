@@ -1,13 +1,13 @@
 
 <div class="col">
-    <label class="" for="area">Area de Conocimiento:</label>
+    <label class="" for="area">Área de Conocimiento:</label>
     <select id="area"
             name="area"
             onchange="verificarSelcArea(this)"
             class="form-control mb-3 edt"
             {{$errors->any() ? '':'disabled'}}
     >
-        <option value="" disabled>Seleccione area del conocimiento</option>
+        <option value="" disabled>Seleccione Área de conocimiento</option>
         @foreach($areas as $obj)
             <option value="{{$obj->pk_id_area}}"
             @if($errors->any())
@@ -16,7 +16,7 @@
                 @if($area->pk_id_area < 100)
                     {{$obj->pk_id_area ==$area->pk_id_area ? 'selected':''}}
                 @else
-                    {{$obj->rt_nombre_area == 'Otra area del conocimiento' ? 'selected':''}}
+                    {{$obj->rt_nombre_area == 'Otra área de conocimiento' ? 'selected':''}}
                 @endif
             @endif
 
@@ -27,7 +27,7 @@
     </select>
 </div>
 <div class="col">
-    <label for="area-c">Especifique Area:</label>
+    <label for="area-c">Especifique Área:</label>
     <input type="text"
            name="area-c"
            id="area-c"

@@ -9,7 +9,7 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item active">Proyectos de investigacion</li>
+    <li class="breadcrumb-item active">Proyectos de investigación</li>
     <li class="breadcrumb-item"><a href="{{route('misproyectos.investigacion')}}">Mis proyectos</a></li>
     <li class="breadcrumb-item">Registrar proyecto</li>
 @endsection
@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row justify-content-center">
-                            <h3 class="titulo">Registro de proyecto de investigacion.</h3>
+                            <h3 class="titulo">Registro de proyecto de investigación.</h3>
                         </div>
                     </div>
                     <div class="card-body">
@@ -29,7 +29,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                             </i>Porfavor corrija los campos que se marcan en rojo.
+                                             </i>Por favor corrija los campos que se marcan en rojo.
                                         {{$errors->first()}}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         @endif
-                        <form name="frm" id="frm" action="{{route('registrar.proyecto.investigacion')}}" method="post">{{-- Formulario de registro de proyecto de investigacion --}}
+                        <form name="frm" id="frm" action="{{route('registrar.proyecto.investigacion')}}" method="post">{{-- Formulario de registro de proyecto de investigación --}}
                             {{ csrf_field()  }}
                             <div id="form-tabs" style="min-height: 600px">
                                 <ul>
@@ -56,7 +56,7 @@
 
                                         </a>
                                     </li>
-                                    <li><a href="#tab-5">Personalizacion</a></li>
+                                    <li><a href="#tab-5">Personalización</a></li>
                                 </ul>
                                 <div id="tab-1">
                                     <br>
@@ -64,7 +64,7 @@
                                     <hr style="margin-top: 0px;">
                                     <div class="form-row">
                                         <div class="col-12">
-                                            <label for="nombre">Titulo del Proyecto <h5 class="srt">*</h5></label>
+                                            <label for="nombre">Título del Proyecto <h5 class="srt">*</h5></label>
                                             <div class="input-group mb-3">
                                                 <input type="text"
                                                        name="nombre"
@@ -78,10 +78,10 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-4">
-                                            <label for="codigo">Codigo
+                                            <label for="codigo">Código
                                                 <i class="fas fa-info-circle help-rc" data-placement="horizontal"></i>
                                                 <div  class="webui-popover-content">
-                                                    <p>Si no es especificado un codigo se  generara uno aleatorio</p>
+                                                    <p>Si no se especifica un código se generará uno aleatoriamente.</p>
                                                 </div>
                                             </label>
                                             <div class="input-group mb-3">
@@ -100,7 +100,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <label for="acronimo">Acronimo<h5 class="srt">*</h5></label>
+                                            <label for="acronimo">Acrónimo<h5 class="srt">*</h5></label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -136,9 +136,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-row">{{-- Areas del conocimiento del pruecto de investigacion --}}
+                                    <div class="form-row">{{-- Áreas de conocimiento del proyecto de investigación --}}
                                         <div class="col-6">
-                                            <label for="area">Area Conocimiento <h5 class="srt">*</h5> </label>
+                                            <label for="area">Área de Conocimiento <h5 class="srt">*</h5> </label>
                                             <select name="area"
                                                     id="area"
                                                     class="form-control {{$errors->has('area') ? 'is-invalid':''}}"
@@ -151,10 +151,10 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <div class="invalid-feedback">Especifique un area.</div>
+                                            <div class="invalid-feedback">Especifique un área.</div>
                                         </div>
                                         <div class="col-6">
-                                            <label for="area-c">Especifique Area:</label>
+                                            <label for="area-c">Especifique Área:</label>
                                             <input type="text"
                                                    name="area-c"
                                                    id="area-c"
@@ -168,7 +168,7 @@
                                     <br>
                                     <div class="form-row">
                                         <div class="col-6">
-                                            <label for="pais">Pais de ejecucion</label>
+                                            <label for="pais">País de ejecución</label>
                                             <select name="pais"
                                                     id="pais"
                                                     class="form-control {{$errors->has('pais') ? 'is-invalid':''}}"
@@ -181,7 +181,7 @@
                                                 @endforeach
                                             </select>
                                             <div class="invalid-feedback">
-                                                Especifique un pais de ejecucion.
+                                                Especifique un país de ejecución.
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -204,7 +204,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-6">
-                                            <label for="Obj">Objetivo socioeconomico :</label>
+                                            <label for="Obj">Objetivo socioeconómico:</label>
                                             <select name="Obj"
                                                     id="Obj"
                                                     class="form-control mb-3 {{$errors->has('Obj')   ?  'is-invalid':''}}"
@@ -218,14 +218,14 @@
                                                 @endforeach
                                             </select>
                                             <div class="invalid-feedback">
-                                                Debes especificar el objetivo socioeconomico del proyecto.
+                                                Debe especificar el objetivo socioeconómico del proyecto.
                                             </div>
 
                                         </div>
                                     </div>
 
                                     <div class="form-row">
-                                        <label for="desc">Descripcion del proyecto <h5 class="srt">*</h5></label>
+                                        <label for="desc">Descripción del proyecto <h5 class="srt">*</h5></label>
                                         <textarea name="desc" id="desc" cols="30" rows="4" class="form-control {{$errors->has('desc') ? 'is-invalid':''}}"></textarea>
                                         <div class="invalid-feedback">Este campo es obligatorio</div>
                                     </div>
@@ -238,18 +238,17 @@
                                     <hr style="margin-top: 0px;">
                                     <div class="form-row">
                                         <div class="col-6">
-                                            <label for="tipo">Fuente de financiameto :</label>
+                                            <label for="tipo">Fuente de financiamiento :</label>
                                             <select name="tipoFuente"
                                             id="tipoFuente"
                                             class="form-control mb-3"
-                                            disabled
-                                            >
+                                            disabled>
                                                 <option value="4">Mixto</option>
                                                 <option value="3" selected>Externa</option>
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <label for="monto">Monto de la inversion <h5 class="srt">*</h5></label>
+                                            <label for="monto">Monto de la inversión <h5 class="srt">*</h5></label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
@@ -307,7 +306,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>{{-- Fin de seccion de datos complementarios del proyecto de investigacion --}}
+                                </div>{{-- Fin de sección de datos complementarios del proyecto de investigación --}}
 
 
                                 <div id="tab-4">
@@ -332,8 +331,8 @@
                                                     class="form-control {{$errors->has('tipoRed') ? 'is-invalid':''}}"
                                             >
                                                 <option value="">No especificado</option>
-                                                 <option value="1">Diciplinaria</option>
-                                                <option value="2">Multidiciplinaria</option>
+                                                 <option value="1">Disciplinaria</option>
+                                                <option value="2">Multidisciplinaria</option>
                                             </select>
                                             <div class="invalid-feedback">Especifique el tipo de red de investigadores.</div>
                                         </div>
@@ -347,8 +346,7 @@
                                         </div>
                                         <div class="col-11">
                                             <p>
-                                                El nombre de la red de ivestigadores se utilizara para labores de interaccion
-                                                entre los integrantes del proyecto de investigacion.
+                                                El nombre de la red de investigadores se utilizará para labores de interacción entre los integrantes del proyecto de investigación.
                                             </p>
                                         </div>
                                     </div>
@@ -358,7 +356,7 @@
 
                                 <div id="tab-5">
                                     <h5 class="sub-titulo">
-                                        Personalizacion
+                                        Personalización
                                     </h5>
                                     <hr style="margin-top: 0px">
 
@@ -415,9 +413,9 @@
                                         </div>
                                         <div class="col-11">
                                             <p>
-                                              El icono servira para identificar tanto el proyecto de investigaicon como a la red de investigadores
+                                              El icono servirá para identificar tanto el proyecto de investigación como a la red de investigadores.
                                                 <br>
-                                                Se aplicara un icono y tema por defecto si hace no se especifica una configuracion.
+                                                Se aplicará un icono y tema por defecto, si no se hace especifica una configuración.
                                             </p>
                                         </div>
                                     </div>

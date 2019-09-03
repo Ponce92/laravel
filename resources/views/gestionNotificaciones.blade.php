@@ -40,28 +40,28 @@
                                                     {{$not->getRemitente()->getCorreo()}}
                                                 </a>
                                         </strong>
-                                        {{$not->rt_tipo_notificacion =='SRI' ? 'ha solicitado registrarse en el sistema.':''}}
+                                        {{$not->rt_tipo_notificacion =='SRI' ? 'Ha solicitado registrarse en el sistema.':''}}
                                         {{$not->rt_tipo_notificacion =='SRA' ? 'Ha solicitado reactivar su cuenta.':''}}
-                                        {{$not->rt_tipo_notificacion =='RSR' ? 'Ha acpetado tu solicitud':''}}
+                                        {{$not->rt_tipo_notificacion =='RSR' ? 'Ha aceptado su solicitud':''}}
                                         {{--
-                                        Solicituede de amistad
+                                        Solicitud de de amistad
                                         --}}
                                         {{$not->rt_tipo_notificacion =='SSA' ? 'Ha solicitado agregarte a sus contactos':''}}
-                                        {{$not->rt_tipo_notificacion =='RSA' ? 'Ha acpetado tu solicitud de contacto':''}}
+                                        {{$not->rt_tipo_notificacion =='RSA' ? 'Ha aceptado su solicitud de contacto':''}}
                                         @if($not->getTipo() =='SAI')
-                                            ,te ha invitado a participar en el proyecto
+                                            ,Le ha invitado a participar en el proyecto
                                             <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}"> {{$not->getProyecto()->getTitulo()}} </a>
                                         @endif
-                                        {{$not->rt_tipo_notificacion =='RAP' ? 'Ha acpetado tu invitacion  a proyecto':''}}
+                                        {{$not->rt_tipo_notificacion =='RAP' ? 'Ha aceptado su invitación al proyecto':''}}
 
                                         @if($not->getTipo() =='SPP')
-                                            ,ha solicitado participar en el proyecto
+                                            ,Ha solicitado participar en el proyecto
                                             <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif
                                         @if($not->getTipo() =='RPP')
-                                            ,a aceptado tu union al proyecto <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
+                                            ,Ha aceptado su unión al proyecto <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif

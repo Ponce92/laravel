@@ -44,7 +44,7 @@ class GradoController extends Controller
         $grado->save();
         return redirect()
                 ->route('grados')
-                ->withsuccess('El grado academico se ha almacenado exitosamente');
+                ->withsuccess('El grado académico se ha almacenado exitosamente');
     }
 
     public function getEditar($id){
@@ -63,7 +63,7 @@ class GradoController extends Controller
                             ->exists();
 
         if($gr){
-            return back()->withErrors(['nombre'=>'El grado academico ya se encuentra registrado en el sistema']);
+            return back()->withErrors(['nombre'=>'El grado académico ya se encuentra registrado en el sistema']);
         }
 
         $grado->setNombre($request->get('nombre'));

@@ -43,7 +43,7 @@ class InvestigadorController extends Controller
         $edad=Carbon::parse($perfil->rf_fecha_nacimiento)->age;
 
         /*------------------------------------------------------------------------------
-         |  |   Recuperamos los proyectos el que observa es administrador
+         |  |   Recuperamos los proyectos en el que observa es administrador
          |------------------------------------------------------------------------------
          */
         $user=Auth::user();
@@ -280,7 +280,7 @@ class InvestigadorController extends Controller
 
         $ntf->save();
 
-        return redirect('/dashboard')->withsuccess("Tu solicitud a sido enviada al administrador");
+        return redirect('/dashboard')->withsuccess("Tu solicitud ha sido enviada al administrador");
     }
 
 }

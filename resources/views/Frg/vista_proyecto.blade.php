@@ -35,7 +35,7 @@
                 <div class="col-9">
                     <div class="row">
                         <div class="col-6">
-                            <label for="titulo">Titulo proyecto :</label>
+                            <label for="titulo">Titulo del proyecto :</label>
                             <input  type="text"
                                     name="titulo"
                                     id="titulo"
@@ -46,7 +46,7 @@
                             <div class="invalid-feedback">{{$errors->first('titulo')}}</div>
                         </div>
                         <div class="col-3">
-                            <label for="titulo">Codigo proyecto :</label>
+                            <label for="titulo">Código del proyecto :</label>
                             <input  type="text"
                                     name="codigo"
                                     id="codigo"
@@ -57,7 +57,7 @@
                             <div class="invalid-feedback">{{$errors->first('codigo')}}</div>
                         </div>
                         <div class="col-3">
-                            <label for="titulo">Acronimo proyecto :</label>
+                            <label for="titulo">Acrónimo del proyecto :</label>
                             <input  type="text"
                                     name="acronimo"
                                     id="acronimo"
@@ -111,7 +111,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="descripcion">Descripcion Proyecto :</label>
+                            <label for="descripcion">Descripción del Proyecto :</label>
                             <textarea   name="descripcion"
                                         id="descripcion"
                                         cols="50"

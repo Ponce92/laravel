@@ -36,7 +36,7 @@ class editarProyectoRealizadoRequest extends FormRequest{
             'fechaI'=>'date|required',
             'fechaF'=>'date|required',
             'area'=>'numeric|required',
-            'area-c'=>'string|required_if:area,"Otra area del concimiento"',
+            'area-c'=>'string|required_if:area,"Otra Área de conocimiento"',
             'descripcion'=>'required|string|min:6|max:150'
 
 
@@ -52,7 +52,7 @@ class editarProyectoRealizadoRequest extends FormRequest{
             'fechaI.required'=>'Debes especificar una fecha de inicio del proyecto',
             'fechaI.date'=>'El formato de fecha no es valido',
             'fechaF.required'=>'Debes especificar una fecha de inicio del proyecto',
-            'fechaF.date'=>'El formato de fecha no es valido',
+            'fechaF.date'=>'El formato de fecha no es válido',
             'descripcion.string'=>'El campo es obligatorio'
 
         ];

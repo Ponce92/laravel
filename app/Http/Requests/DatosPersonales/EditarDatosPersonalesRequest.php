@@ -43,8 +43,8 @@ class EditarDatosPersonalesRequest extends FormRequest
             'apellidos.max'=>'Limite de caracteres excedido',
             'fecha.required'=>'Debes especificar una fecha.',
             'direccion.required'=>'Este campo es obligatorio',
-            'direccion.min'=>'una direccion valida tiene mas de 15 caracteres',
-            'direccion.max'=>'Una direccion valida tiene menos de 200 caracteres'
+            'direccion.min'=>'Una dirección válida tiene más de 15 caracteres',
+            'direccion.max'=>'Una direccion válida tiene menos de 200 caracteres'
 
 
         ];

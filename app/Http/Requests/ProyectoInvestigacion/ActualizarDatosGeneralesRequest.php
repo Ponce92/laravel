@@ -30,7 +30,7 @@ class ActualizarDatosGeneralesRequest extends FormRequest
             'estado_proyecto'=>'required',
             'tipo_proyecto'=>'required',
             'area'=>'required',
-            'area-c'=>'string|required_if:area,"Otra area del concimiento"',
+            'area-c'=>'string|required_if:area,"Otra Área del conocimiento"',
             'descripcion'=>'string|min:4|max:250'
 
         ];
@@ -39,14 +39,14 @@ class ActualizarDatosGeneralesRequest extends FormRequest
     public function messages()
     {
         return [
-            'titulo.min'=>'El titulo debe tener mas de 4 caracteres',
+            'titulo.min'=>'El titulo debe tener más de 4 caracteres',
             'titulo.max'=>'El titulo es demasiado largo',
-            'codigo.string'=>'El codigo no puede ir vacio',
-            'acronimo.max'=>'El acronimo es demasiado largo',
-            'acronimo.string'=>'Debes especificar un acronimo del proyecto',
-            'area-c.required'=>'Especifica un valor para el area del conocimiento',
-            'descripcion.string'=>'Especifica una descripcion del proyecto',
-            'descripcion.max'=>'Longitud de la descripcion excede el maximo de caracteres'
+            'codigo.string'=>'El código no puede estar vacío',
+            'acronimo.max'=>'El acrónimo es demasiado largo',
+            'acronimo.string'=>'Debes especificar un acrónimo del proyecto',
+            'area-c.required'=>'Especifíca un valor para el Área del conocimiento',
+            'descripcion.string'=>'Especifíca una descripción del proyecto',
+            'descripcion.max'=>'Longitud de la descripción excede el máximo de caracteres'
         ];
     }
 }

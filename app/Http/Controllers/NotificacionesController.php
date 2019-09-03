@@ -44,12 +44,12 @@ class NotificacionesController extends Controller
             $reg=User::findOrFail($ntf->fk_id_usuario_remitente);
 
             if($reg->fk_id_estado == 1){
-                return  back()->withinfo('Este registro ya se encuentra activo . . . !');
+                return  back()->withinfo('Este registro ya se encuentra activo . . . ');
             }
             $reg->fk_id_estado=1;
             $reg->save();
 
-            return redirect()->route('notificaciones')->withsuccess('El Investigador se ha activadosatisfactoriamente');
+            return redirect()->route('notificaciones')->withsuccess('El investigador se ha activado satisfactoriamente.');
 
         }
         return back();
@@ -68,15 +68,15 @@ class NotificacionesController extends Controller
 
              $reg = User::findOrFail($ntf->fk_id_usuario_remitente);
              if ($reg->fk_id_estado == 3) {
-                 return redirect()->route('notificaciones')->withinfo('Este registro ya fue rechazado ...!');
+                 return redirect()->route('notificaciones')->withinfo('Este registro ya fue rechazado.');
              }
 
              $reg->fk_id_estado = 3;
              $reg->save();
 
-             return redirect()->route('notificaciones')->withsuccess('El registro se ha rechazado, puede cambiar el estado dese la interfaza de registros . . . !');
+             return redirect()->route('notificaciones')->withsuccess('El registro se ha rechazado, puede cambiar el estado desde la interfaz de registros.');
          }
-         return back()->withdanger('No puedes realizar esta acion');
+         return back()->withdanger('No puede realizar esta acción');
      }
 
      public function eliminarNotifiacion(Request $request){
@@ -87,11 +87,11 @@ class NotificacionesController extends Controller
              $ntf->delete();
 
              return redirect()->route('notificaciones')
-                 ->withsuccess('Notificacion eliminada correctamente !');
+                 ->withsuccess('Notificación eliminada correctamente !');
          }
 
 
-        return redirect()->route('notificaciones')->withwarning("Error, Recurso no encontrado");
+        return redirect()->route('notificaciones')->withwarning("Error, Recurso no encontrado.");
      }
 
      public function marcarLeida(Request $request){
@@ -100,13 +100,13 @@ class NotificacionesController extends Controller
              $ntf = Notificacion::findOrFail($id);
 
              if($ntf->rl_vista ==true){
-                 return back()->withdwarring("Notificacion ya maracada como vista");
+                 return back()->withdwarring("Notificación ya marcada como vista");
              }
 
              $ntf->rl_vista=true;
              $ntf->save();
              return redirect()->route('notificaciones')
-                 ->withsuccess('Has marcada como vista esta notificacion');
+                 ->withsuccess('Se ha marcado como vista esta notificación');
          }
          return back()->withdwarring("Error, Recurso no encontrado");
 
@@ -125,7 +125,7 @@ class NotificacionesController extends Controller
          $ss=count($am)+count($am2);
 
          if($ss > 0){
-             return back()->withinfo('Ya tienes a este usuario como contacto');
+             return back()->withinfo('Ya tiene a este usuario como contacto');
          }
 
          if($amigo){
@@ -141,7 +141,7 @@ class NotificacionesController extends Controller
              $ntff->fk_id_usuario_remitente=$user->getId();
              $ntff->save();
 
-             return back()->withsuccess('El usuario recibira una notificacion con tu solicitud');
+             return back()->withsuccess('El usuario recibirá una notificación con su solicitud.');
          }else{
              return redirect('/');
          }
@@ -176,7 +176,7 @@ class NotificacionesController extends Controller
 
         $contacto->save();
 
-        return back()->withsuccess('Has aceptado que el usuario se una a tu lista de contactos.');
+        return back()->withsuccess('Ha aceptado que el usuario se una a su lista de contactos.');
     }
 
     public function SolicitudAnexion(Request $request){
@@ -189,7 +189,7 @@ class NotificacionesController extends Controller
             ->where('fk_id_proyecto_investigacion','=',$idProyecto)
             ->get();
         if(count($val)!=0){
-            return back()->withsuccess('Error, este usuario ya perteneces al proyecto');
+            return back()->withsuccess('Error, este usuario ya pertenece al proyecto');
         }
 
         $ntf =new Notificacion();
@@ -204,7 +204,7 @@ class NotificacionesController extends Controller
 
         $ntf->save();
 
-        return back()->withsuccess('Exito enla operacion, este usuario recibira una notificacion con tu solicitud');
+        return back()->withsuccess('Éxito en la operación, este usuario recibirá una notificación con su solicitud.');
     }
 
     public function ResponderAnexion(Request $request){
@@ -222,7 +222,7 @@ class NotificacionesController extends Controller
              ->where('fk_id_proyecto_investigacion','=',$not->getProyecto()->getId())
             ->get();
          if(count($val)!=0){
-            return back()->withsuccess('Error, este usuario ya perteneces al proyecto');
+            return back()->withsuccess('Error, este usuario ya pertenece al proyecto');
          }
 
         DB::table('tbl_usuarios_proyectos')->insert([
@@ -249,7 +249,7 @@ class NotificacionesController extends Controller
         $ntf->setRemitente($user->getid());
 
         $ntf->save();
-        return back()->withsuccess('Ha aceptato tu solicitud, ahora forma parte de tu grupo de investigacion');
+        return back()->withsuccess('Ha aceptado su solicitud, ahora forma parte de su grupo de investigación.');
     }
 
     public function SolicitarParticipacionProyecto(Request $request){
@@ -269,11 +269,11 @@ class NotificacionesController extends Controller
             ->where('fk_id_proyecto_investigacion','=',$idProyecto)
             ->get();
             if(count($val)!=0){
-                return back()->withsuccess('Ya eres participante en este proyecto');
+                return back()->withsuccess('Ya es participante en este proyecto');
             }
 
         /*-------------------------------------------------------------------------------------------------------------
-          | | Si aun no pertenece entoces creamos la notificacion......
+          | | Si aun no pertenece entoces creamos la notificación......
           |-------------------------------------------------------------------------------------------------------------
           */
         $ntf =new Notificacion();
@@ -287,7 +287,7 @@ class NotificacionesController extends Controller
         $ntf->setRemitente($user->getid());
 
         $ntf->save();
-        return back()->withsuccess('Se notificara al titular de proyecto para que responda a tu solicitud');
+        return back()->withsuccess('Se notificará al titular de proyecto para que responda a su solicitud.');
      }
 
      public function ResponderParticipacionProyecto(Request $request){
@@ -312,7 +312,7 @@ class NotificacionesController extends Controller
              return back()->withsuccess('Este usuario ya se encuentra como participante del proyecto');
          }
          /*-------------------------------------------------------------------------------------------------------------
-            |   | Si no es colaborador entonces lo insertamos como paricipante
+            |   | Si no es colaborador entonces lo insertamos como participante
             |-------------------------------------------------------------------------------------------------------------
         */
          DB::table('tbl_usuarios_proyectos')->insert([
@@ -334,7 +334,7 @@ class NotificacionesController extends Controller
 
          $ntf->save();
 
-         return back()->withsuccess('Se ha agregado al usuario como participante de tu proyecto');
+         return back()->withsuccess('Se ha agregado al usuario como participante de su proyecto');
      }
 
     public function getNotificacionesAjax(Request $request)

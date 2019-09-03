@@ -134,7 +134,7 @@
                                 </tr>
                                 <tr scope="row">
                                     <td colspan="4">
-                                        <strong>Correo Electronico :</strong>&nbsp;{{$obj['email']}}
+                                        <strong>Correo Electrónico :</strong>&nbsp;{{$obj['email']}}
                                     </td>
 
                                 </tr>
@@ -152,7 +152,7 @@
                         @else
                             <td colspan="12" align="center" class="align-middle">
                                 <span class="titulo">
-                                    No se econtraron registros . . .
+                                    No se encontraron registros . . .
                                 </span>
                             </td>
 

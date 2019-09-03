@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="alert alert-warning">
-                        <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Tu cuenta ha sido desactivada!
+                        <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Su cuenta ha sido desactivada.
                     </div>
                 </div>
             </div>
@@ -31,14 +31,14 @@
 
         @if($user->fk_id_estado == 4  )
             <div class="alert alert-warning">
-                <i class="fas fa-info-circle"></i>&nbsp;&nbsp;No eres un usuario con permisos de ver el contenido completo de esta pgania, debes esperar al administrador..!
+                <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Usted no es un usuario con permisos para ver el contenido completo de esta página, debe esperar la autorización del administrador.
             </div>
 
         @endif
 
         @if($user->getEstado()->getNombre() =='Pendiente'   )
                 <div class="alert alert-warning">
-                    <i class="fas fa-info-circle"></i>&nbsp;&nbsp;No eres un usuario con permisos de ver el contenido completo de esta pgania, debes esperar al administrador..!
+                    <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Usted no es un usuario con permisos para ver el contenido completo de esta página, debe esperar la autorización del administrador.
                 </div>
 
             @endif
@@ -60,7 +60,7 @@
                             <button class="btn btn-lg bttn bttn-red"
                                     type="submit"
                                     form="frm-slr">
-                                Solicitar reactivacion
+                                Solicitar reactivación
                             </button>
                         </form>
                         <div class="col-1"></div>

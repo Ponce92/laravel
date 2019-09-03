@@ -32,18 +32,18 @@
             <hr>
             <div class="row riues-cuerpo">
                 <div class="col-12">
-                    <h5 class="riues-font-01">Direccion</h5>
+                    <h5 class="riues-font-01">Dirección</h5>
                     <div class="form-row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="direccion">Direccion</label>
+                                <label for="direccion">Dirección</label>
                                 <input type="text"
                                        class="form-control"
                                        id="direccion">
                             </div>
                         </div>
                         <div class="col-6">
-                            <label for="pais">Pais</label>
+                            <label for="pais">País</label>
                             <div class="input-group">
                                 <input type="text"
                                        class="form-control" disabled
@@ -65,7 +65,7 @@
                     <h5 class="riues-font-01">Otros</h5>
                     <div class="form-row">
                         <div class="col-4">
-                            <label for="grado">Area del Conocimiento</label>
+                            <label for="grado">Área de Conocimiento</label>
                             <input type="text"
                                    class="form-control"
                                    disabled
@@ -87,7 +87,7 @@
 
                         </div>
                         <div class="col-4">
-                            <label for="horas">Horas de investigacion</label>
+                            <label for="horas">Horas de investigación</label>
                             <div class="input-group">
                                 <input type="text"
                                        class="form-control"

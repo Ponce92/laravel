@@ -81,7 +81,7 @@ class PublicacionesController extends Controller
         $titulo=$request->get('titulo');
         $user=Auth::user();
 
-        if($tipo=='libro'){// La publicacion es un libro................................................................
+        if($tipo=='libro'){// La publicación es un libro................................................................
             $count=LibrosPublicaciones::where('rt_titulo','=',$titulo)
                                 ->where('fk_id_usuario','=',$user->pk_id_usuario)
                                 ->count();
@@ -208,7 +208,7 @@ class PublicacionesController extends Controller
                 ->withinfo('El registro se ha eliminado correctamente');
         }else{
 
-            return redirect()->route('verPublicaciones')->withdanger('El recurso que intentas eliminar ya  no existe');
+            return redirect()->route('verPublicaciones')->withdanger('El recurso que se intenta eliminar ya no existe');
         }
     }
 
@@ -226,10 +226,10 @@ class PublicacionesController extends Controller
              *
             */
 
-            return redirect()->route('verPublicaciones')->withsuccess('El registro se ha eliminado con exito');
+            return redirect()->route('verPublicaciones')->withsuccess('El registro se ha eliminado con éxito');
         }else{
 
-            return redirect()->route('verPublicaciones')->withdanger('El recurso que solicitaste eliminar no existe');
+            return redirect()->route('verPublicaciones')->withdanger('El recurso que se intenta eliminar, no existe');
         }
     }
 
@@ -352,7 +352,7 @@ class PublicacionesController extends Controller
             return back()
                 ->withInput()
                 ->with('areas',AreasConocimiento::all())
-                ->withErrors(['titulo'=>'Ya tienes otra publicacion en libros con ese titulo.']);
+                ->withErrors(['titulo'=>'Ya tienes otra publicación en libros con ese titulo.']);
         }
 
         $fch=Carbon::createFromFormat('d-m-Y',$request->get('fecha'));

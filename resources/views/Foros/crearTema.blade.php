@@ -9,7 +9,7 @@
             <br>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Ingrese los Datos de la Temática</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Ingrese los datos de la temática</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -28,7 +28,7 @@
 
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="titulo" class="col-md-4 col-form-label text-md-right">Titulo del Tema</label>
+                        <label for="titulo" class="col-md-4 col-form-label text-md-right">Título del tema</label>
                         <div class="col-md-6">
                             <input type="hidden" name="idf" value="{{$idf}}">
                             <input id="titulo" type="text" class="form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}" name="titulo" value="{{ old('titulo') }}" required autofocus>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
+                        <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripción</label>
                         <div class="col-md-6">
                             <textarea id="descripcion" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion"  required >
                             </textarea>

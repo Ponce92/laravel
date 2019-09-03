@@ -47,7 +47,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                            &nbsp;&nbsp; </i>Porfavor corrija los campos que se marcan en rojo.
+                                            &nbsp;&nbsp; </i>Por favor corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombreProyecto">Titulo del Proyecto :</label>
+                                    <label for="nombreProyecto">Título del Proyecto:</label>
                                     <input type="text"
                                            form="frm-add"
                                            class="form-control @if($errors->has('nombre')) is-invalid @endif edt"
@@ -77,7 +77,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="fechaIncicio">Fecha Incicio :</label>
+                                <label for="fechaIncicio">Fecha de Inicio:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="fechaF">Fecha Finalizacion:</label>
+                                <label for="fechaF">Fecha de Finalización:</label>
                                 <div class="input-group  mb-3">
                                     <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -127,7 +127,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label class="" for="area">Area de Conocimiento :</label>
+                                <label class="" for="area">Área de Conocimiento:</label>
                                 <select id="area"
                                         name="area"
                                         onchange="verificarSelcArea(this)"
@@ -148,7 +148,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="pais">Pais de ejecucion :</label>
+                                <label for="pais">País de ejecución :</label>
                                 <select name="pais" id="pais" class="form-control mb-3 edt" form="frm-add" {{$errors->any() ? '':'disabled'}}>
                                     @foreach($paises as $pais)
                                         <option value="{{$pais->pk_id_pais}}"
@@ -166,7 +166,7 @@
 
                             <div class="col-12">
                                 <div class="col">
-                                    <label for="area-c">Especifique Area:</label>
+                                    <label for="area-c">Especifique Área:</label>
                                     <input type="text"
                                            name="area-c"
                                            id="area-c"
@@ -183,7 +183,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="descripcion">Descripcion:</label>
+                                <label for="descripcion">Descripción:</label>
                                 <textarea   class="form-control  mb-3 edt
                                                 @if($errors->has('descripcion')) is-invalid @endif"
                                             rows="4"

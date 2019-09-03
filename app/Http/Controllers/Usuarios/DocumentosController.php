@@ -48,13 +48,13 @@ class DocumentosController extends Controller
             );
         }catch (\Exception $e){
             $doc->delete();
-            return back()->withdanger('Error al cargar el archivo al servidor, documento excede el tamanio soportado por el servidor');
+            return back()->withdanger('Error al cargar el archivo al servidor, documento excede el tamaño soportado por el servidor');
         }
 
 
         //$file->storeAs('public/DocumentosProyecto',$doc->getId().'.'.$doc->getExtension());
 
-        return back()->withsuccess('El archivo a sido subido de foma exitosa');
+        return back()->withsuccess('El archivo se ha subido con éxito');
     }
 
     public function DocumentoDescargar($id){
@@ -91,7 +91,7 @@ class DocumentosController extends Controller
         {
             $doc->delete();
             Storage::delete('public/documentos/'.$nombre);
-            return back()->withsuccess('Elemento eliminado correctamente');
+            return back()->withsuccess('El archivo se ha eliminado correctamente');
 
         }else{
             try {

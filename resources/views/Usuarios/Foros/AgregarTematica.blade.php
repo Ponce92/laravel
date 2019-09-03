@@ -11,7 +11,7 @@
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item"><a href="/foros">Foros</a></li>
     <li class="breadcrumb-item"><a href="{{route('tematicas.index',['id'=>$foro->getCodigo()])}}">{{$foro->getRed()->getNombre()}}</a></li>
-    <li class="breadcrumb-item active">Agregar Tematica</li>
+    <li class="breadcrumb-item active">Agregar Temática</li>
 @endsection
 
 @section('default')
@@ -20,7 +20,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-8">
-                <h2 class="titulo-seccion titulo">Nueva tematica</h2>
+                <h2 class="titulo-seccion titulo">Nueva temática</h2>
             </div>
 
         </div>
@@ -57,7 +57,7 @@
                     <div class="form-group">
 
                         <div class="col-md-12">
-                            <label for="descripcion">Descripcion :</label>
+                            <label for="descripcion">Descripción:</label>
                             <textarea id="desc"
                                       class="form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}"
                                       name="desc"

@@ -18,7 +18,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-8">
-                <h2 class="titulo-seccion titulo">Paises</h2>
+                <h2 class="titulo-seccion titulo">Países</h2>
             </div>
             <div class="col-4">
                 <div class="row justify-content-end" style="padding-right: 25px;">
@@ -47,7 +47,7 @@
                             <div class="col-12">
                                 <table class="table table-striped table-bordered">
                                     <thead>
-                                    <td class="td" align="center" style="width: 25px;">Codigo</td>
+                                    <td class="td" align="center" style="width: 25px;">Código</td>
                                     <td class="td" align="center">Nombre</td>
                                     <td class="td" align="center">Estado</td>
                                     <td class="td" align="center">Acciones</td>

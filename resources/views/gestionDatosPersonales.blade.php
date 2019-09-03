@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="">
-                                            <label for="foto">Foto : </label>
+                                            <label for="foto">Foto: </label>
                                             <input type="file"
                                                    class="edt"
                                                    id="foto"
@@ -74,7 +74,7 @@
                             <div class="col-9">{{-- Nombre y apellido--}}
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="nombre">Nombres :</label>
+                                        <label for="nombre">Nombres:</label>
                                         <input type="text"
                                                id="nombres"
                                                name="nombres"
@@ -84,11 +84,11 @@
                                                disabled
                                         >
                                         <div class="invalid-feedback">
-                                            Un nombre valido tiene mas de 6 caracteres y menos de 50 y solo contiene carteres del afabeto.
+                                            Un nombre válido debe tener más de 6 caracteres y menos de 50.
                                         </div>
                                     </div>
                                     <div class="col mb-3">
-                                        <label for="apellidos">Apellidos :</label>
+                                        <label for="apellidos">Apellidos:</label>
                                         <input type="text"
                                                form="form"
                                                name="apellidos"
@@ -99,14 +99,14 @@
 
                                         >
                                         <div class="invalid-feedback">
-                                            Un apellido valido contiene solo letras que ocilan entre 6 y 50 caracteres.
+                                            Un apellido válido debe tener más de 6 caracteres y menos de 50.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">{{-- Fecha y sexo del invetigador--}}
+                                <div class="row">{{-- Fecha y sexo del investigador--}}
                                     <div class="col">
-                                        <label for="fechaNacimiento">Fecha Nacimiento :</label>
+                                        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                     <div class="col mb-3">
-                                        <label for="Sexo">Sexo :</label><br>
+                                        <label for="Sexo">Sexo:</label><br>
                                         <div class="form-check form-check-inline edt">
                                             <input class="form-check-input"
                                                    type="radio"
@@ -139,7 +139,7 @@
                                                    value="true"
                                                    @if($persona->rl_sexo_persona == true) checked @endif
                                             >
-                                            <label class="form-check-label" for="inlineRadio1">Mujer</label>
+                                            <label class="form-check-label" for="inlineRadio1">Hombre</label>
                                         </div>
                                         <div class="form-check form-check-inline edt">
                                             <input class="form-check-input"
@@ -150,7 +150,7 @@
                                                    value="false"
                                                    @if($persona->rl_sexo_persona == false)checked @endif
                                             >
-                                            <label class="form-check-label" for="inlineRadio2">Hombre</label>
+                                            <label class="form-check-label" for="inlineRadio2">Mujer</label>
                                         </div>
                                     </div>
                                     <br>
@@ -159,7 +159,7 @@
 
                                 <div class="row">
                                     <div class="col">
-                                        <label for="telefono">Correo electronico</label>
+                                        <label for="telefono">Correo electrónico</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -175,12 +175,12 @@
                                                    disabled
                                             >
                                             <div class="invalid-feedback">
-                                                El formato del correo es invalido.
+                                                El formato del correo es inválido.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label for="nacionalidad">Nacionalidad :</label>
+                                        <label for="nacionalidad">Nacionalidad:</label>
                                         <select id="pais"
                                                 name="pais"
                                                 class="form-control mb-3 edt"
@@ -202,9 +202,9 @@
 
                         </div>
                         <br>
-                        <div class="row">{{--Area Conocimiento,grado academico,horas dedicadas a investigacion --}}
+                        <div class="row">{{--Área de Conocimiento, grado académico, horas dedicadas a investigación --}}
                             <div class="col">
-                                <label for="grado">Grado Academico :</label>
+                                <label for="grado">Grado Académico:</label>
                                 <select name="grado"
                                         id="grado"
                                         form="form"
@@ -221,7 +221,7 @@
 
                             </div>
                             <div class="col">
-                                <label class="" for="area">Area de Conocimiento:</label>
+                                <label class="" for="area">Área de Conocimiento:</label>
                                 <select id="area"
                                         name="area"
                                         onchange="verificarSelcArea(this)"
@@ -243,7 +243,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="area-c">Especifique Area:</label>
+                                <label for="area-c">Especifique Área:</label>
                                 <input type="text"
                                        name="area-c"
                                        id="area-c"
@@ -255,7 +255,7 @@
 
 
                             <div class="col col-4">
-                                <label for="horas">Horas dedicadas a investigacion :</label>
+                                <label for="horas">Horas dedicadas a investigación :</label>
                                 <input class="form-control edt"
                                        id="horas"
                                        form="form"
@@ -265,14 +265,14 @@
                                        disabled
                                 >
                                 <div class="invalid-feedback">
-                                    Debes especificar las horas de investigadion, no puede ser menos a 1 ni mayor a 14
+                                    Debe especificar las horas de investigación, no puede ser menor que 1 ni mayor que 14 horas.
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <label for="institucion">Institucion :</label>
+                                <label for="institucion">Institución:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -289,7 +289,7 @@
                                            disabled
                                     >
                                     <div class="invalid-feedback">
-                                        Un nombre valido contiene entre 6-100 caracteres
+                                        Un nombre válido contiene entre 6 a 100 caracteres
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <label for="direccion">Direccion :</label>
+                                <label for="direccion">Dirección:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -314,7 +314,7 @@
                                             disabled
                                     >
                                     <div class="invalid-feedback">
-                                        Debes proporcionar tu direccion actual.
+                                        Debe proporcionar su dirección actual.
                                     </div>
                                 </div>
                             </div>

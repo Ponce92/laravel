@@ -49,7 +49,7 @@
                         <div class="col-9">{{-- Nombre y apellido--}}
                             <div class="row">
                                 <div class="col mb-3">
-                                    <label for="nombre">Nombre completo :</label>
+                                    <label for="nombre">Nombre completo:</label>
                                     <input type="text"
                                            id="nombres"
                                            name="nombres"
@@ -60,7 +60,7 @@
                                     >
                                 </div>
                                 <div class="col mb-3">
-                                    <label for="apellidos">Apellidos :</label>
+                                    <label for="apellidos">Apellidos:</label>
                                     <input type="text"
                                            form="form"
                                            name="apellidos"
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">{{-- Fecha y sexo del invetigador--}}
+                            <div class="row">{{-- Fecha y sexo del investigador--}}
                                 <div class="col">
                                     <label for="fechaNacimiento">Edad</label>
                                     <div class="input-group">
@@ -104,7 +104,7 @@
                                                @if($perfil->rl_sexo_persona == 1)checked @endif
                                                readonly
                                         >
-                                        <label class="form-check-label" for="inlineRadio1">Mujer</label>
+                                        <label class="form-check-label" for="inlineRadio1">Hombre</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input"
@@ -116,7 +116,7 @@
                                                @if($perfil->rl_sexo_persona == 0)checked @endif
                                                readonly
                                         >
-                                        <label class="form-check-label" for="inlineRadio2">Hombre</label>
+                                        <label class="form-check-label" for="inlineRadio2">Mujer</label>
                                     </div>
                                 </div>
                                 <br>
@@ -125,7 +125,7 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <label for="telefono">Email</label>
+                                    <label for="telefono">Email:</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nacionalidad">Nacionalidad :</label>
+                                    <label for="nacionalidad">Nacionalidad:</label>
                                     <select id="pais"
                                             name="pais"
                                             class="form-control mb-3 edt"
@@ -167,7 +167,7 @@
                     <br>
                     <div class="row">{{--Area Conocimiento,grado academico,horas dedicadas a investigacion --}}
                         <div class="col">
-                            <label for="grado">Grado Academico :</label>
+                            <label for="grado">Grado Académico:</label>
                             <select name="grado"
                                     id="grado"
                                     form="form"
@@ -184,7 +184,7 @@
 
                         </div>
                         <div class="col col-4">
-                            <label for="area"> Area Conocimiento :</label>
+                            <label for="area"> Área de Conocimiento:</label>
                             <select name="area"
                                     id="area"
                                     form="form"
@@ -200,7 +200,7 @@
                             </select>
                         </div>
                         <div class="col col-4">
-                            <label for="horas">Horas dedicadas a investigacion :</label>
+                            <label for="horas">Horas dedicadas a la investigación:</label>
                             <input class="form-control edt"
                                    id="horas"
                                    form="form"
@@ -214,7 +214,7 @@
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <label for="institucion">Institucion :</label>
+                            <label for="institucion">Institución:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -235,7 +235,7 @@
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <label for="direccion">Direccion :</label>
+                            <label for="direccion">Dirección:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -259,7 +259,7 @@
 
         <!--
                 |------------------------------------------------------------------------------------
-                |   Opciones del que observa el perfil del invstigador . . .
+                |   Opciones del que observa el perfil del investigador . . .
                 |-------------------------------------------------------------------------------------
         -->
 
@@ -330,21 +330,21 @@
                                             <td rowspan="3" colspan="3" class="align-middle" align="center">
                                                 <i class="fab fa-codepen fa-4x "></i>
                                             </td>
-                                            <td class="td" colspan="1">Titulo Proyecto</td>
+                                            <td class="td" colspan="1">TÍtulo Proyecto</td>
                                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
-                                            <td class="td" colspan="1">Area conocimiento:</td>
+                                            <td class="td" colspan="1">Área de conocimiento:</td>
                                             <td colspan="2">
                                                 {{$proyecto['area']}}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="1" class="td">Fech. Inicio :</td>
+                                            <td colspan="1" class="td">Fech. Inicio:</td>
                                             <td colspan="">{{$proyecto->rf_fecha_inicio_proyecto}}</td>
 
-                                            <td colspan="1" class="td">Fech. finalizacion :</td>
+                                            <td colspan="1" class="td">Fech. finalización:</td>
                                             <td colspan="1">{{$proyecto->rf_fecha_fin_proyecto}}</td>
 
-                                            <td colspan="1" class="td">Pais de ejecucion :</td>
+                                            <td colspan="1" class="td">País de ejecución:</td>
                                             <td colspan="2">
                                                 @foreach($paises as $pais)
                                                     {{ $pais->pk_id_pais == $proyecto->fk_id_pais ? $pais->rt_nombre_pais:''  }}
@@ -353,7 +353,7 @@
 
                                         </tr>
                                         <tr>
-                                            <td colspan="1" class="td"> Descripcion :</td>
+                                            <td colspan="1" class="td"> Descripción:</td>
                                             <td colspan="5">{{$proyecto->rd_descripcion_proyecto}}</td>
                                         </tr>
                                     </tbody>
@@ -376,7 +376,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="12">Articulos y notas cientificas realizadas</td>
+                                        <td colspan="12">Artículos y notas científicas realizadas</td>
                                     </tr>
                                     @foreach($publicaciones as $publicacion)
                                     <tr>
@@ -384,11 +384,11 @@
                                             <i class="fab fa-codepen fa-4x "></i>
                                         </td>
 
-                                        <td class="td" colspan="1">Titulo Publicacion:</td>
+                                        <td class="td" colspan="1">Título Publicación:</td>
                                         <td colspan="3">
                                             {{$publicacion->rt_titulo}}
                                         </td>
-                                        <td class="td" colspan="1">Enlace :</td>
+                                        <td class="td" colspan="1">Enlace:</td>
                                         <td colspan="4">
                                             <a href="{{$publicacion->rt_enlace_publicacion }}">
                                                 {{$publicacion->rt_enlace_publicacion }}
@@ -397,16 +397,16 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td" colspan="1">Tipo Publicacion : </td>
+                                        <td class="td" colspan="1">Tipo Publicación: </td>
                                         <td colspan="2">
-                                            {{$publicacion->rt_tipo_publicacion =='ac' ? 'Articulo Cientifico':'Nota Cientifica'}}
+                                            {{$publicacion->rt_tipo_publicacion =='ac' ? 'Artículo Científico':'Nota Científica'}}
                                         </td>
-                                        <td class="td" colspan="1"> Area conocimiento:</td>
+                                        <td class="td" colspan="1"> Área de conocimiento:</td>
                                         <td colspan="2">
                                             {{$publicacion['area']}}
                                         </td>
 
-                                        <td class="td" colspan="1"> Fecha Publicacion : </td>
+                                        <td class="td" colspan="1"> Fecha de Publicación: </td>
                                         <td colspan="1">
                                             {{$publicacion->rf_fecha_publicacion}}
                                         </td>
@@ -444,7 +444,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td colspan="12">Articulos y notas cientificas realizadas</td>
+                                    <td colspan="12">Artículos y notas científicas realizadas</td>
                                 </tr>
 
                                 @foreach($libros as $libro)
@@ -453,26 +453,26 @@
                                             <i class="fab fa-codepen fa-4x "></i>
                                         </td>
 
-                                        <td class="td" colspan="1">Titulo libro:</td>
+                                        <td class="td" colspan="1">Título libro:</td>
                                         <td colspan="4">
                                             {{$libro->rt_titulo}}
                                         </td>
-                                        <td class="td" colspan="1">Fecha publicacion :</td>
+                                        <td class="td" colspan="1">Fecha de publicación:</td>
                                         <td colspan="1">
                                             {{$libro->rf_fecha_publicacion}}
                                         </td>
-                                        <td colspan="1" class="td" style="width: 75px">ISSN :</td>
+                                        <td colspan="1" class="td" style="width: 75px">ISSN:</td>
                                         <td colspan="1" >{{$libro->rt_issn}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="td" colspan="1">Area conocimiento:</td>
+                                        <td class="td" colspan="1">Área de conocimiento:</td>
                                         <td colspan="3">
                                             {{$libro['area']}}
                                         </td>
-                                        <td colspan="1" class="td" >Capitulo : </td>
+                                        <td colspan="1" class="td" >Capítulos: </td>
                                         <td colspan="1">{{$libro->rn_capitulo}}</td>
 
-                                        <td colspan="1" class="td" style="width: 125px">Pagina:</td>
+                                        <td colspan="1" class="td" style="width: 125px">Páginas:</td>
                                         <td colspan="1">{{$libro->rn_pagina}}</td>
 
                                         <td colspan="1" class="align-middle" align="center">
@@ -487,7 +487,7 @@
                                     </tr>
                                     <tr>
                                         <td class="td" colspan="1">
-                                            Descripcion:
+                                            Descripción:
                                         </td>
                                         <td colspan="8">
                                             {{$libro->rd_descripcion}}
@@ -507,7 +507,7 @@
     <br>
     <br>
     {{--
-        | Fragmento de codigo para invitar a proyecto de investigacion ....
+        | Fragmento de código para invitar a proyecto de investigación...
     --}}
     <div class="row" hidden>
         <div class="col" style="width: 300px;overflow-x: hidden;" id="proyectos" >
@@ -523,7 +523,7 @@
             @else
                 <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <h4><p>No tienes proyectos . . . </p></h4>
+                        <h4><p>No tiene proyectos... </p></h4>
                     </div>
                 </div>
             @endif

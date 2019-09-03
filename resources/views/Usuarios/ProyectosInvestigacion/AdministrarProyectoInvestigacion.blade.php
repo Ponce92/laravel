@@ -9,7 +9,7 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item active">Proyectos de investigacion</li>
+    <li class="breadcrumb-item active">Proyectos de investigación</li>
     <li class="breadcrumb-item"><a href="{{route('misproyectos.investigacion')}}">Mis proyectos</a></li>
     <li class="breadcrumb-item">Administrar</li>
 @endsection
@@ -51,10 +51,10 @@
                     </li>
                 </ul>
                 <div id="tabs-1">
-                    {{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                    {{-- Pestaña de edición del proyecto de investigación, es editable si pertenece a RI-UES --}}
                     @include('Frg.vista_proyecto')
                 </div>
-                <div id="tabs-2">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                <div id="tabs-2">{{-- Pestaña de edición del proyecto de investigación, es editable si pertenece a RI-UES --}}
                     @include('Frg.vista_detalle')
                 </div>
                 <div id="tabs-3">

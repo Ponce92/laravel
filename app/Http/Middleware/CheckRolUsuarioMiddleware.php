@@ -24,7 +24,7 @@ class CheckRolUsuarioMiddleware
     public function handle($request, Closure $next)
     {
         if($this->auth->user()->fk_id_rol !=0){
-            Session::flash('message-error','No tienes los permisos de ingresar!');
+            Session::flash('message-error','No tiene permisos para ingresar');
             return redirect('dashboard');
         }
 

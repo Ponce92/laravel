@@ -11,17 +11,17 @@
                             {{$ntf->getRemitente()->getCorreo()}}
                             {{$ntf->rt_tipo_notificacion =='SRI' ? 'Ha solicitado registrarse en el sistema.':''}}
                             {{$ntf->rt_tipo_notificacion =='SRA' ? 'Ha solicitado reactivar su cuenta.':''}}
-                            {{$ntf->rt_tipo_notificacion =='RSR' ? 'Ha acpetado tu solicitud':''}}
+                            {{$ntf->rt_tipo_notificacion =='RSR' ? 'Ha aceptado tu solicitud':''}}
                         {{--
-                        Solicituede de amistad
+                        Solicitud de amistad
                         --}}
-                            {{$ntf->rt_tipo_notificacion =='SSA' ? 'ha solicitado agregarte a sus contactos':''}}
-                            {{$ntf->rt_tipo_notificacion =='RSA' ? 'ha acpetado tu solicitud de contacto':''}}
+                            {{$ntf->rt_tipo_notificacion =='SSA' ? 'Ha solicitado agregarte a sus contactos':''}}
+                            {{$ntf->rt_tipo_notificacion =='RSA' ? 'Ha aceptado su solicitud de contacto':''}}
                             @if($ntf->getTipo() =='SAI')
                                 Te ha invitado a participar en el proyecto :
                                     {{$ntf->getProyecto()->getTitulo()}}
                             @endif
-                            {{$ntf->rt_tipo_notificacion =='RAP' ? 'Ha acpetado tu invitacion  a proyecto':''}}
+                            {{$ntf->rt_tipo_notificacion =='RAP' ? 'Ha aceptado su invitación al proyecto':''}}
 
                             @if($ntf->getTipo() =='SPP')
                                 ha solicitado participar en el proyecto
@@ -40,7 +40,7 @@
         @endforeach
     @else
         <div class="row justify-content-center">
-            <strong>No tienes notificaciones nuevas</strong>
+            <strong>No tiene notificaciones nuevas</strong>
         </div>
     @endif
 

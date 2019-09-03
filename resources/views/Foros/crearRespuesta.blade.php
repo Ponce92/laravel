@@ -28,7 +28,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-10">
-                <h3 class="titulo-seccion titulo" >Agrega tu Respuesta</h3>
+                <h3 class="titulo-seccion titulo" >Agregue su respuesta</h3>
                 <h4>Tematica: {{$tema->titulo}}</h4>
             </div>
         </div>

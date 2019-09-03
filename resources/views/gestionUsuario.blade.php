@@ -16,7 +16,7 @@
 
 @section('default')
     <div class="container-fluid area-trabajo" id="area-trabajo">
-        {{--        Seccion de Usuario del investigador      --}}
+        {{--        Sección de Usuario del investigador      --}}
         <br>
         <div class="row">
             <div class="col-10">
@@ -51,7 +51,7 @@
             <div class="row">
                 @if($errors->any())
                     <div class=" col alert alert-danger">
-                        <i class="fas fa-exclamation-triangle">  </i>&nbsp;&nbsp; Porfavor corrije los campos indicados
+                        <i class="fas fa-exclamation-triangle">  </i>&nbsp;&nbsp; Por favor corrija los campos indicados.
                     </div>
                 @endif
                 @if(isset($estado))
@@ -65,7 +65,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <label for="correo">E-Mail : </label>
+                    <label for="correo">E-Mail: </label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -88,7 +88,7 @@
 
             <div class="row">
                 <div class="col-6">
-                    <label for="viejoPassword">Ingrese antiguo password :</label>
+                    <label for="viejoPassword">Ingrese la antigua contraseña:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -116,7 +116,7 @@
 
             <div class="row">
                 <div class="col">
-                    <label for="nuevaClave">Ingrese nuevo password :</label>
+                    <label for="nuevaClave">Ingrese su nueva contraseña:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="col">
-                    <label for="fonfirm">Confirme password :</label>
+                    <label for="fonfirm">Confirme su contraseña:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">

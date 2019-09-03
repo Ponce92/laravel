@@ -162,7 +162,7 @@ class RegistrosController extends Controller
         }
         if($exito){
             return redirect()->route('log')
-                ->withsuccess('Se registrado con exito, ahora puede ingresar al sistema con tus credenciales');
+                ->withsuccess('Se ha registrado con éxito, ahora puede ingresar al sistema con sus credenciales.');
         }
 
         return redirect()->route('log')

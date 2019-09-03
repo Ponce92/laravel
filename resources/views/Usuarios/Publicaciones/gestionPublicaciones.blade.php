@@ -53,7 +53,7 @@
                     <td colspan="12" style="background-color: #aa0000">
                         <div class="row">
                             <div class="col-11" style="color: white;font-size: 16px;font-weight: bold">
-                                Notas Cientificas y Articulos cientificos
+                                Notas Científicas y Artículos científicos
                             </div>
                             <div class="col-1" style="color: white;font-weight: bold">
                                 <div class="row justify-content-end">
@@ -69,11 +69,11 @@
                                 <i class="fab fa-codepen fa-4x "></i>
                             </td>
 
-                            <td class="td" colspan="1">Titulo Publicacion:</td>
+                            <td class="td" colspan="1">Título de la Publicación:</td>
                             <td colspan="3">
                                 {{$publicacion->rt_titulo}}
                             </td>
-                            <td class="td" colspan="1">Enlace :</td>
+                            <td class="td" colspan="1">Enlace:</td>
                             <td colspan="4">
                                 <a href="{{$publicacion->rt_enlace_publicacion }}">{{$publicacion->rt_enlace_publicacion }}</a>
                             </td>
@@ -92,16 +92,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="td" colspan="1">Tipo Publicacion : </td>
+                            <td class="td" colspan="1">Tipo de Publicación: </td>
                             <td colspan="2">
-                                {{$publicacion->rt_tipo_publicacion =='ac' ? 'Articulo Cientifico':'Nota Cientifica'}}
+                                {{$publicacion->rt_tipo_publicacion =='ac' ? 'Artículo Cientifico':'Nota Científica'}}
                             </td>
-                            <td class="td" colspan="1">Area conocimiento:</td>
+                            <td class="td" colspan="1">Área de conocimiento:</td>
                             <td colspan="2">
                                 {{$publicacion->getArea()->getNombre()}}
                             </td>
 
-                            <td class="td" colspan="1"> Fecha Publicacion : </td>
+                            <td class="td" colspan="1"> Fecha de Publicación: </td>
                             <td colspan="2">
                                     {{$publicacion->rf_fecha_publicacion}}
                             </td>
@@ -110,7 +110,7 @@
                         </tr>
                         <tr>
                         <td class="td" colspan="1">
-                            Descripcion:
+                            Descripción:
                         </td>
                         <td colspan="8">
                             {{$publicacion->rd_descripcion_publicacion}}
@@ -143,15 +143,15 @@
                             <i class="fab fa-codepen fa-4x "></i>
                         </td>
 
-                        <td class="td" colspan="1">Titulo libro:</td>
+                        <td class="td" colspan="1">Título del libro:</td>
                         <td colspan="4">
                             {{$libro->rt_titulo}}
                         </td>
-                        <td class="td" colspan="1">Fecha publicacion :</td>
+                        <td class="td" colspan="1">Fecha de publicación:</td>
                         <td colspan="1">
                             {{$libro->rf_fecha}}
                         </td>
-                        <td colspan="1" class="td" style="width: 75px">ISSN :</td>
+                        <td colspan="1" class="td" style="width: 75px">ISSN:</td>
                         <td colspan="1" >{{$libro->rt_issn}}</td>
                         <td colspan="1" rowspan="3"class="align-middle" align="center">
                             <a href="{{route('verPublicaciones')}}/editar/libro/{{$libro->pk_id_libro}}">
@@ -167,19 +167,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="td" colspan="1">Area conocimiento:</td>
+                        <td class="td" colspan="1">Área de conocimiento:</td>
                         <td colspan="3">{{$libro->getArea()->getNombre()}}</td>
-                        <td colspan="1" class="td" >Capitulo : </td>
+                        <td colspan="1" class="td" >Capítulo : </td>
                         <td colspan="1">{{$libro->rn_capitulo}}</td>
 
-                        <td colspan="1" class="td" style="width: 125px">Pagina:</td>
+                        <td colspan="1" class="td" style="width: 125px">Página:</td>
                         <td colspan="2">{{$libro->rn_pagina}}</td>
 
 
                     </tr>
                     <tr>
                         <td class="td" colspan="1">
-                            Descripcion:
+                            Descripción:
                         </td>
                         <td colspan="8">
                             {{$libro->rd_descripcion}}
@@ -196,7 +196,7 @@
         <br>
     </div>
 
-{{-- ..............Formulario de eliminacion de proyectos .................. --}}
+{{-- ..............Formulario de eliminación de proyectos .................. --}}
 
     <div class="row" hidden="hidden">
         <div class="col">
@@ -222,7 +222,7 @@
                 <div class="col-8">
                     <p>
                         <b>
-                            Estas a punto de eliminar esta publicacion, si lo haces no podras recuperarla.
+                            Está a punto de eliminar esta publicación, si lo hace no podrá recuperarla.
                         </b>
                     </p>
                 </div>

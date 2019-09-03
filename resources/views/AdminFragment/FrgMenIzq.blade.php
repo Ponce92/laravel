@@ -76,7 +76,7 @@
                             <li class="nav-item">
                                 <a class="nav-link"
                                    href="{{ route('Busqueda.Proyectos') }}">
-                                    <i class="nav icon icon-list"></i> Busqueda
+                                    <i class="nav icon icon-list"></i> Búsqueda
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +95,7 @@
 
                             <li class="nav-item"   >
                                 <a class="nav-link" href="{{ route('redes.busqueda') }}">
-                                    <i class="nav icon icon-list"></i> Busqueda
+                                    <i class="nav icon icon-list"></i> Búsqueda
                                 </a>
                             </li>
                         </ul>
@@ -139,7 +139,7 @@
                         <li class="nav-item"   >
                             <a class="nav-link" href="{{ route('grados') }}">
 
-                                <i class="nav icon icon-list"></i> Grados academicos
+                                <i class="nav icon icon-list"></i> Grados académicos
                             </a>
                         </li>
                     </ul>
@@ -165,7 +165,7 @@
             <li class="nav-item mt-auto">
             </li>
             <li class="nav-item" style="background-color: #aa0000;font-weight: bold;" >
-                <a class="nav-link" href="{{ route('logout') }}" target="_top"><i class="fas fa-power-off fa-4x" style="color: white"></i> Cerrar Sesion</a>
+                <a class="nav-link" href="{{ route('logout') }}" target="_top"><i class="fas fa-power-off fa-4x" style="color: white"></i> Cerrar Sesión</a>
             </li>
 
         </ul>

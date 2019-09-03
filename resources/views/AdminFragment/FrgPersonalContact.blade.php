@@ -16,14 +16,14 @@
                             <th scope="col">No</th>
                             <th scope="col">Contacto</th>
                             <th scope="col">Tipo Contacto</th>
-                            <th class="td" scope="col">Accion</th>
+                            <th class="td" scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr scope="row">
                             <td>1</td>
                             <td>7056-6420</td>
-                            <td>Telefono</td>
+                            <td>Teléfono</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-primary">
@@ -40,7 +40,7 @@
                         <tr scope="row">
                             <td>1</td>
                             <td>7056-6420</td>
-                            <td>Telefono</td>
+                            <td>Teléfono</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-primary">
@@ -80,8 +80,8 @@
                     <div class="form-group">
                         <label for="TipoContacto"></label>
                         <select name="Tipocontacto" id="TipoContacto" class="form-control">
-                            <option value="telefono" selected="true">Telefono</option>
-                            <option value="email">Correo Electronico</option>
+                            <option value="telefono" selected="true">Teléfono</option>
+                            <option value="email">Correo Electrónico</option>
                         </select>
                     </div>
                 </fomr>

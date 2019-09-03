@@ -30,7 +30,7 @@ class EditarPublicacionRequest extends FormRequest
             'issn'=>'string|required_if:tipo,"libro" ',
             'nc'=>'numeric|required_if:tipo,"libro"',
             'np'=>'numeric|required_if:tipo,"libro"',
-            'area-c'=>'required_if:area,"Otra area del concimiento"',
+            'area-c'=>'required_if:area,"Otra Área de conocimiento"',
             'descripcion'=>'string|min:8|max:100',
             'enlace'=>'required_unless:tipo,"libro"|active_url',
 
@@ -40,18 +40,18 @@ class EditarPublicacionRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required'=>'Regresa a la ventana anterior e intentalo de nuevo',
+            'id.required'=>'Regrese a la ventana anterior e inténtelo de nuevo',
             'titulo.string'=>'Este campo es obligatorio',
-            'titulo.max'=>'Este campo no puede contener mas de 50 caraceteres',
-            'titulo.min'=>'Este campo debe tener almenos 6 caracteres',
-            'fecha.required'=>'Debes especificar una fecha para la publicacion',
+            'titulo.max'=>'Este campo no puede contener más de 50 caraceteres',
+            'titulo.min'=>'Este campo debe tener al menos 6 caracteres',
+            'fecha.required'=>'Debe especificar una fecha para la publicación',
             'issn.numeric'=>'El formato no es el correcto',
-            'issn.max'=>'El codigo ingresado contiene demasiados caracteres',
-            'issn.min'=>'El codigo ingresado no es correcto',
-            'nc.required_if'=>'Debes espeficicar el numero de capitulo',
-            'np.required_if'=>'Debes especificar un numero de pagina',
-            'area-c'=>'Debes especificar un area de conocinineto',
-            'enlace.required_with'=>'Debes proporcionar un url valido',
+            'issn.max'=>'El código ingresado contiene demasiados caracteres',
+            'issn.min'=>'El código ingresado no es correcto',
+            'nc.required_if'=>'Debe espeficicar el número de capítulo',
+            'np.required_if'=>'Debe especificar un número de página',
+            'area-c'=>'Debe especificar un Área de conocimiento',
+            'enlace.required_with'=>'Debe proporcionar una url válido',
             'enlace.active_url'=>'El link proporcionado es incorrecto',
 
         ];

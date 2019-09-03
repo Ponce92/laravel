@@ -80,10 +80,10 @@ class RespuestasController extends Controller
      */
     public function show(string $id)
     {
-        //crear un arespuesta
+        //crear un respuesta
         $user = Auth::user();
         $pro=Tematica::find($id);
-        $prooo = DB::table('tbl_tematicas')->where('pk_id_tema', $id)->first();//recupero la tematica
+        $prooo = DB::table('tbl_tematicas')->where('pk_id_tema', $id)->first();//recupero la temática
         $proo=DB::table('tbl_tematicas')
             ->where('pk_id_tema','=',$id)
             ->first();

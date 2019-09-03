@@ -73,7 +73,7 @@ class ForosController extends Controller
         $idf=$request->input('idf');
 
         return redirect()->route('tematicas.index', ['id' => $idf])
-            ->withsuccess('La tematica se almacenado correctamente');
+            ->withsuccess('La temática se ha almacenado correctamente');
 
     }
 
@@ -125,7 +125,7 @@ class ForosController extends Controller
         $user=Auth::user();
 
         //return $id;
-        return 'Este Projecto no Tiene Foro Asociado';
+        return 'Este Proyecto no tiene foro asociado';
     }
 
     /**
@@ -168,7 +168,7 @@ class ForosController extends Controller
 
 
 
-            return redirect()->route('foros.shows', ['id' => $idf])->withsuccess('La tematica se ha eliminado correctamente');
+            return redirect()->route('foros.shows', ['id' => $idf])->withsuccess('La temática se ha eliminado correctamente');
         }else{
 
 

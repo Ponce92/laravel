@@ -69,9 +69,9 @@
                             <td rowspan="3" colspan="3" class="align-middle" align="center">
                                 <i class="icon-rocket fa-4x" style="color: #3e4548;"></i>
                             </td>
-                            <td class="td" colspan="1">Titulo Proyecto</td>
+                            <td class="td" colspan="1">Título Proyecto</td>
                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
-                            <td class="td" colspan="1">Area conocimiento:</td>
+                            <td class="td" colspan="1">Área de conocimiento:</td>
                             <td colspan="2">
                                     {{$proyecto['area']}}
                             </td>
@@ -96,10 +96,10 @@
                             <td colspan="1" class="td">Fech. Inicio :</td>
                             <td colspan="">{{$proyecto->rf_fecha_inicio_proyecto}}</td>
 
-                            <td colspan="1" class="td">Fech. finalizacion :</td>
+                            <td colspan="1" class="td">Fech. finalización :</td>
                             <td colspan="1">{{$proyecto->rf_fecha_fin_proyecto}}</td>
 
-                            <td colspan="1" class="td">Pais de ejecucion :</td>
+                            <td colspan="1" class="td">País de ejecución:</td>
                             <td colspan="2">
                                 @foreach($paises as $pais)
                                     {{ $pais->pk_id_pais == $proyecto->fk_id_pais ? $pais->rt_nombre_pais:''  }}
@@ -108,7 +108,7 @@
 
                         </tr>
                         <tr>
-                            <td colspan="1" class="td"> Descripcion :</td>
+                            <td colspan="1" class="td"> Descripción:</td>
                             <td colspan="5">{{$proyecto->rd_descripcion_proyecto}}</td>
                         </tr>
                         @endforeach
@@ -124,7 +124,7 @@
     </div>
 
 
-{{-- ..............Formulario de eliminacion de proyectos .................. --}}
+{{-- ..............Formulario de eliminación de proyectos .................. --}}
 
     <div class="row" hidden="hidden">
         <div class="col">
@@ -141,7 +141,7 @@
                 <div class="col-8">
                     <p>
                         <b>
-                            Estas a punto de eliminar este proyecto, si lo haces no podras recuperarlo.
+                            Está a punto de eliminar este proyecto, si lo hace no podrá recuperarlo.
                         </b>
                     </p>
                 </div>

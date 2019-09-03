@@ -63,7 +63,7 @@ class PaisController extends Controller
                     ->exists();
 
         if($var){
-            return back()->withErrors(['nombre'=>'El nombre del pais ya se encuentra registrado en el sistema']);
+            return back()->withErrors(['nombre'=>'El nombre del país ya se encuentra registrado en el sistema']);
         }
 
         $pais->setNombre($request->get('nombre'));

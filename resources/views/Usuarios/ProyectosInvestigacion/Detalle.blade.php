@@ -9,8 +9,8 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item ">Proyectos de investigacion</li>
-    <li class="breadcrumb-item"><a href="#">Busqueda de proyectos</a></li>
+    <li class="breadcrumb-item ">Proyectos de investigación</li>
+    <li class="breadcrumb-item"><a href="#">Búsqueda de proyectos</a></li>
     <li class="breadcrumb-item active" >Detalle</li>
 @endsection
 
@@ -72,7 +72,7 @@
                                     <div class="col-9">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="titulo">Titulo proyecto :</label>
+                                                <label for="titulo">Título proyecto :</label>
                                                 <input  type="text"
                                                         name="titulo"
                                                         id="titulo"
@@ -82,7 +82,7 @@
                                                 >
                                             </div>
                                             <div class="col-3">
-                                                <label for="titulo">Codigo proyecto :</label>
+                                                <label for="titulo">Código proyecto :</label>
                                                 <input  type="text"
                                                         name="codigo"
                                                         id="codigo"
@@ -92,7 +92,7 @@
                                                 >
                                             </div>
                                             <div class="col-3">
-                                                <label for="titulo">Acronimo proyecto :</label>
+                                                <label for="titulo">Acrónimo proyecto :</label>
                                                 <input  type="text"
                                                         name="acronimo"
                                                         id="acronimo"
@@ -122,7 +122,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <label for="sd">Tipo de proyecto de investigacion :</label>
+                                                <label for="sd">Tipo de proyecto de investigación :</label>
                                                 <select name="r" id="fde3twqer" disabled class="form-control mb-3">
                                                     <option value="">
                                                         {{$proyecto->getTipo()->getDescripcion()}}
@@ -144,7 +144,7 @@
                                             <div class="col-8">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label class="" for="area">Area de Conocimiento:</label>
+                                                        <label class="" for="area">Área de Conocimiento:</label>
                                                         <select id="area"
                                                                 name="area"
                                                                 class="form-control mb-3"
@@ -159,7 +159,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col">
-                                                        <label for="area-c">Especifique Area:</label>
+                                                        <label for="area-c">Especifique Área:</label>
                                                         <input type="text"
                                                                name="area-c"
                                                                id="area-c"
@@ -172,7 +172,7 @@
 
                                             </div>
                                             <div class="col col-4">
-                                                <label for="as">Objetivo socioeconomico</label>
+                                                <label for="as">Objetivo socioeconómico</label>
                                                 <select name="3d" id="fder" class="form-control mb-3" disabled>
                                                     <option value="daf">
                                                         {{$proyecto->getObjetivo()->getDescripcion()}}
@@ -184,7 +184,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <label for="descripcion">Descripcion Proyecto :</label>
+                                                <label for="descripcion">Descripción del Proyecto :</label>
                                                 <textarea   name="descripcion"
                                                             id="descripcion"
                                                             cols="50"
@@ -203,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tabs-2">{{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                <div id="tabs-2">{{-- Pestaña de edición del proyecto de investigación, es editable si pertenece a RI-UES --}}
 
                 </div>
                 <div id="tabs-3">

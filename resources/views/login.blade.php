@@ -20,7 +20,7 @@
                 </div>
                 <hr class="all">
                 <div class="form-group mb-3 ">
-                    <label for="usuario">Correo :</label>
+                    <label for="usuario">Correo:</label>
                     <input type="text"
                            class="form-control {{ $errors->has('usuario') ? 'is-invalid' : '' }}"
                            name="usuario"
@@ -40,7 +40,7 @@
                            placeholder="****">
                     {!! $errors->first('password','<div class="invalid-feedback">:message</div>' )!!}
                 </div>
-                {!! $errors->first('ss','<br><div class="alert alert-danger" role="alert">Errorr en la autenticacion del usuario</div>') !!}
+                {!! $errors->first('ss','<br><div class="alert alert-danger" role="alert">Error en la autenticación del usuario</div>') !!}
                 <br>
                 <div class="form-group">
                     <div class="row justify-content-center">
@@ -71,7 +71,7 @@
                 <div class="row justify-content-center">
                     <a
                         href="{{route('getResetForm')}}"
-                        style="color: #3e4548;margin-right: 25px;">¿Olvido sus credenciales? </a>
+                        style="color: #3e4548;margin-right: 25px;">¿Olvidó sus credenciales? </a>
                 </div>
 
             </form>
@@ -81,7 +81,7 @@
         <div class="row justify-content-center">
             <div class="txt-pie">
                 <br>
-                Red de investigadores de la Universidad de Elsalvador
+                Red de investigadores de la Universidad de El Salvador
             </div>
         </div>
     </div>

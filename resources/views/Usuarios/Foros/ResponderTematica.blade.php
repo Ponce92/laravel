@@ -41,7 +41,7 @@
                     <div class="form-group">
 
                         <div class="col-md-12">
-                            <label for="descripcion">Descripcion :</label>
+                            <label for="descripcion">Descripción:</label>
                             <textarea id="desc"
                                       class="form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}"
                                       name="desc"

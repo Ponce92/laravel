@@ -10,7 +10,7 @@
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item ">Ajustes</li>
-    <li class="breadcrumb-item"><a href="{{route('ajustes.paises')}}">paises</a></li>
+    <li class="breadcrumb-item"><a href="{{route('ajustes.paises')}}">países</a></li>
     <li class="breadcrumb-item active">crear</li>
 @endsection
 
@@ -19,7 +19,7 @@
         <div class="col-sm-5">
             <div class="card">
                 <div class="card-header">
-                    <strong>Actualizar pais</strong>
+                    <strong>Actualizar país</strong>
                 </div>
                 <div class="card-body   ">
 
@@ -30,7 +30,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="form-col-form-label" for="codigo">Codigo:</label>
+                                <label class="form-col-form-label" for="codigo">Código:</label>
                                 <input class="form-control  {{ $errors->has('codigo') ? ' is-invalid' : '' }}"
                                        id="codigo"
                                        readonly
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-col-form-label" for="nombre">Nombre pais:</label>
+                            <label class="form-col-form-label" for="nombre">Nombre país:</label>
                             <input class="form-control {{ $errors->has('nombre') ? ' is-invalid' : '' }}"
                                    id="nombre"
                                    name="nombre"

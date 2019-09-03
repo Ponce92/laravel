@@ -9,7 +9,7 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item active">Proyectos de investigacion</li>
+    <li class="breadcrumb-item active">Proyectos de investigación</li>
     <li class="breadcrumb-item active">Mis proyectos</li>
 @endsection
 
@@ -19,7 +19,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-8">
-                <h2 class="titulo-seccion titulo">Mis proyectos de investigacion</h2>
+                <h2 class="titulo-seccion titulo">Mis proyectos de investigación</h2>
             </div>
             <div class="col-4">
                 <div class="row justify-content-end">

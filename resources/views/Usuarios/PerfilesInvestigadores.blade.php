@@ -12,7 +12,7 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item">Invetigadores</li>
+    <li class="breadcrumb-item">Investigadores</li>
     <li class="breadcrumb-item active">Registros</li>
 
 @endsection
@@ -39,7 +39,7 @@
                                         onchange="this.form.submit()"
                                         style="font-weight: bold"
                                 >
-                                    <option value="100" {{100 ==$fkId ? 'selected':''}}>Todas las areas</option>
+                                    <option value="100" {{100 ==$fkId ? 'selected':''}}>Todas las áreas</option>
                                     @foreach($areas as $area)
                                         <option value="{{$area->pk_id_area}}" {{$area->pk_id_area ==$fkId ? 'selected':''}}>{{$area->rt_nombre_area}}</option>
                                     @endforeach
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        {{--Busqueda fin--}}
+        {{--Búsqueda fin--}}
 
         <div class="row">
             <div class="col-12">
@@ -127,7 +127,7 @@
                             </tr>
                             <tr scope="row">
                                 <td colspan="4">
-                                    <strong>Correo Electronico :</strong>{{$obj['email']}}
+                                    <strong>Correo Electrónico :</strong>{{$obj['email']}}
                                 </td>
 
                             </tr>

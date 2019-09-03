@@ -2,7 +2,7 @@
  * User: AzaeL Ponce
  * Date: 3/25/2018
  * Time: 11:39 PM
- * Descripcion: Plantilla base que contiene las incluciones contiene todas los framework...|
+ * Descripcion: Plantilla base que contiene las inclusiones contiene todas los framework...|
  *              de css y js que requieren todas las plantillas de la administracion de la
  *              aplicacion............|
  */
@@ -144,10 +144,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header text-center">
-                            <strong>My cuenta</strong>
+                            <strong>Mi cuenta</strong>
                         </div>
                         <a class="dropdown-item" href="{{ route('gestionDatosPersonales') }}"><i class="fa fa-bell-o" style="color: green"></i> Perfil</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-lock" style="color:#aa0000;"></i> Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-lock" style="color:#aa0000;"></i> Cerrar Sesión</a>
                         <!--
                         <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
                         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
@@ -417,8 +417,8 @@
           *| Seccion footer de la plantilla de administracion ..........................
         -->
 <footer class="app-footer">
-    <span><a href="#"> Universiad de El Salvaor </a> © Secretaria de Investigacion Cientifica de la universidad del el salvador </span>
-    <span class="ml-auto">Editado: G017</span>
+    <span><a href="#"> Universidad de El Salvador </a> © Secretaría de Investigación Científica de la Universidad de El Salvador </span>
+    <span class="ml-auto"></span>
 </footer>
 
 

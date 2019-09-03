@@ -124,7 +124,7 @@
 
                     <div class="row">
                         <br>
-                        <h4>&nbsp;&nbsp; No se han Agregado Respuestas.</h4>
+                        <h4>&nbsp;&nbsp; No se han agregado respuestas.</h4>
 
                     </div>
                 </div>

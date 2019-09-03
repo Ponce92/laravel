@@ -36,7 +36,7 @@ class CrearProyectoRealizadoRequest extends FormRequest
                 'fechaI'=>'date|required',
                 'fechaF'=>'date|required',
                 'area'=>'numeric|required',
-                'area-c'=>'string|required_if:area,"Otra area del concimiento"',
+                'area-c'=>'string|required_if:area,"Otra Área de conocimiento"',
                 'descripcion'=>'required|string|min:6|max:150'
 
 
@@ -46,14 +46,14 @@ class CrearProyectoRealizadoRequest extends FormRequest
     public  function messages()
     {
         return [
-            'nombre.unique'=>'Ya posees un proyecto con ese nombre',
-            'nombre.string'=>'El campo debe ser una cadena de caracteres y no puede sesta vacio',
+            'nombre.unique'=>'Ya posee un proyecto con ese nombre',
+            'nombre.string'=>'El campo debe ser una cadena de caracteres y no puede estar vacío',
             'area-c.string'=>'Este campo es obligatorio',
 
-            'fechaI.required'=>'Debes especificar una fecha de inicio del proyecto',
+            'fechaI.required'=>'Debe especificar una fecha de inicio del proyecto',
             'fechaI.date'=>'El formato de fecha no es valido',
-            'fechaF.required'=>'Debes especificar una fecha de inicio del proyecto',
-            'fechaF.date'=>'El formato de fecha no es valido',
+            'fechaF.required'=>'Debe especificar una fecha de fin del proyecto',
+            'fechaF.date'=>'El formato de fecha no es válido',
             'descripcion.string'=>'El campo es obligatorio'
 
         ];

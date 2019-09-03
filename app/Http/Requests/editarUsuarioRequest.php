@@ -26,11 +26,11 @@ class editarUsuarioRequest extends FormRequest
 
         return [
 
-            'viejoPassword.required'=>'Debe introducir tu contrasenia actual',
+            'viejoPassword.required'=>'Debe introducir su contraseña actual',
             'password.required'=>'El campo es obligatorio',
-            'password.max'=>'Tu contrasenia es demasiado larga',
-            'password.min'=>'La contrasenia debe tener almenos 6 caracteres',
-            'error-02'=>'formulario incorrecto',
+            'password.max'=>'Su contraseña es demasiado larga',
+            'password.min'=>'La contraseña debe tener al menos 6 caracteres',
+            'error-02'=>'Formulario incorrecto',
 
         ];
     }

@@ -91,7 +91,7 @@ class ProyectosInvestigacionController extends Controller
             ->count();
 
         if($count != 0){
-            return back()->withErrors(['nombre'=>'Ya participas en un proyecto de inevstigacion con ese nombre']);
+            return back()->withErrors(['nombre'=>'Ya participas en un proyecto de investigación con ese nombre']);
         }
 
 
@@ -266,7 +266,7 @@ class ProyectosInvestigacionController extends Controller
         }
         if($exito){
             return redirect()->route('misproyectos.investigacion')
-                ->withsuccess('Se registrado co exito el nuevo proyecto de investigacion');
+                ->withsuccess('Se ha registrado co éxito el nuevo proyecto de investigación');
         }
 
         return redirect()->route('misproyectos.investigacion')
@@ -333,7 +333,7 @@ class ProyectosInvestigacionController extends Controller
         $proyecto=ProyectosInvestigacion::findOrFail($request->get('_id'));
 
         if($user->getId() != $proyecto->getTitular()->getId()){
-            return redirect()->route('dashboard')->withInfo('No eres el duenio del proyecto que intentas modificar');
+            return redirect()->route('dashboard')->withInfo('No eres el dueño del proyecto que intentas modificar');
         }
         $proyecto->setTitulo($request->get('titulo'));
         $proyecto->setAcronimo($request->get('acronimo'));
@@ -371,7 +371,7 @@ class ProyectosInvestigacionController extends Controller
 
         $detalle->save();
 
-        return redirect()->action('Usuarios\ProyectosInvestigacionController@detalleProyecto',['id'=>$idP])->withsuccess("El detalle del proyecto se ha actualizado con exito");
+        return redirect()->action('Usuarios\ProyectosInvestigacionController@detalleProyecto',['id'=>$idP])->withsuccess("El detalle del proyecto se ha actualizado con éxito");
 
     }
 
@@ -424,7 +424,7 @@ class ProyectosInvestigacionController extends Controller
         $cols=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$id)
             ->get();
 
-        /*Recuperamos la lista de colaboradores del proyecto de ivestigacion sin importar si es duenio o no*/
+        /*Recuperamos la lista de colaboradores del proyecto de investigacion sin importar si es dueño o no*/
         foreach ($cols as $col){
             $colaboradores[$i]=User::find($col->fk_id_participante);
             $i=$i+1;

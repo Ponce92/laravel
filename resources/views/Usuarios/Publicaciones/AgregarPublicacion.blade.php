@@ -11,7 +11,7 @@
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
     <li class="breadcrumb-item active">Perfil</li>
     <li class="breadcrumb-item">Publicaciones</li>
-    <li class="breadcrumb-item active">Agregar publicacion</li>
+    <li class="breadcrumb-item active">Agregar publicación</li>
 @endsection
 
 @section('default')
@@ -22,7 +22,7 @@
             {{ csrf_field()  }}
             <div class="card">
                     <div class="card-header" style="background-color: #aa0000;">
-                    <h2 class="titulo" style="color: white;">Nueva Publicacion</h2>
+                    <h2 class="titulo" style="color: white;">Nueva Publicación</h2>
                 </div>
                     <div class="card-body">
                         @if($errors->any())
@@ -30,7 +30,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                            &nbsp;&nbsp; </i>Porfavor corrija los campos que se marcan en rojo.
+                                            &nbsp;&nbsp; </i>Por favor corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -42,7 +42,7 @@
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombreProyecto">Titulo de Publicacion :</label>
+                                    <label for="nombreProyecto">Título de la Publicación:</label>
                                     <input type="text"
                                            autocomplete="off"
                                            class="form-control {{$errors->has('titulo') ? 'is-invalid':''}}"
@@ -57,22 +57,22 @@
                             </div>
                         </div>
 
-                        <div class="form-row">{{--   Tipo de publicacion    --}}
+                        <div class="form-row">{{--   Tipo de publicación    --}}
                             <div class="col-6">
-                                <label for="tipo">Tipo de publicacion :</label>
+                                <label for="tipo">Tipo de publicación:</label>
                                 <select name="tipo"
                                         class="form-control mb-3"
                                         id="tipo"
                                         onchange="verificarSelcTipo(this)"
                                 >
-                                    <option value="ac" {{old('tipo') =='ac' ? 'selected':''}}>Articulo Cientifico</option>
-                                    <option value="nc"{{old('tipo') =='nc' ? 'selected':''}}>Nota cientifica</option>
+                                    <option value="ac" {{old('tipo') =='ac' ? 'selected':''}}>Artículo Científico</option>
+                                    <option value="nc"{{old('tipo') =='nc' ? 'selected':''}}>Nota científica</option>
                                     <option value="libro"{{old('tipo') == 'libro'? 'selected':''}}>Libro</option>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <div class="col">
-                                    <label for="fechaIncicio">Fecha Publicacion :</label>
+                                    <label for="fechaIncicio">Fecha de Publicación:</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col">
-                                <label for="issn"> ISSN :</label>
+                                <label for="issn"> ISSN:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-book"></i></div>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="nc">Numero Capitulo :</label>
+                                <label for="nc">Número de Capítulos:</label>
                                 <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-indent"></i></div>
@@ -138,7 +138,7 @@
 
                             </div>
                             <div class="col">
-                                <label for="np">Numero de pagina :</label>
+                                <label for="np">Número de páginas:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-file"></i></div>
@@ -159,7 +159,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col-6">
-                                <label for="area">Area Conocimiento :</label>
+                                <label for="area">Área de Conocimiento:</label>
                                 <select name="area"
                                         id="area"
                                         class="form-control  mb-3"
@@ -173,7 +173,7 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label for="area-c">Especifique Area:</label>
+                                <label for="area-c">Especifique Área:</label>
                                 <input type="text"
                                        name="area-c"
                                        id="area-c"
@@ -186,12 +186,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="descripcion">Descripcion:</label>
+                                <label for="descripcion">Descripción:</label>
                                 <textarea   class="form-control  mb-3 {{$errors->has('descripcion') ? 'is-invalid':''}}"
                                             rows="3"
                                             autocomplete="off"
                                             cols="60"
-                                            placeholder="Descripcion..."
+                                            placeholder="Descripción..."
                                             name="descripcion"
                                             id="descripcion"
                                 >{{$errors->any() ? old('descripcion'):''}}</textarea>
@@ -204,7 +204,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label for="enlace"> Enlace de la Publicacion</label>
+                                    <label for="enlace"> Enlace de la Publicación:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-link"></i></div>

@@ -35,7 +35,7 @@ class UsuarioController extends Controller
             $confirm=$request->get('password_confirmation');
             if($clave == $confirm)
             {
-                $estado="Tus datatos han sido actualzados correctamente";
+                $estado="Sus datos han sido actualizados correctamente.";
                 $user->password=Hash::make($clave);
                 $user->save();
 
@@ -46,7 +46,7 @@ class UsuarioController extends Controller
 
             }else
                 {
-                    $err1='Tus credenciales son incorrectas';
+                    $err1='Sus credenciales son incorrectas';
 
                     return view('gestionUsuario')->with('user',$user)
                                                       ->withErrors(['password_confirmation'=>'La nuevas credenciales concuerdan.']);
@@ -54,7 +54,7 @@ class UsuarioController extends Controller
         }else{
 
             return view('gestionUsuario')->with('user',$user)
-                                              ->withErrors(['viejoPassword'=>'Tu contrasenia es incorrecta.']);
+                                              ->withErrors(['viejoPassword'=>'Su contraseña es incorrecta.']);
         }
 
     }

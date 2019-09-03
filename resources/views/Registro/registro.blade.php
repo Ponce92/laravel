@@ -36,7 +36,7 @@
                     @if($errors->any())
                             <div class="alert alert-danger msj">
                                 <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
-                                Errores en la entradas del formulario, porfavor corrija los campos indicados !
+                                Errores en las entradas del formulario, por favor corrija los campos indicados.
                                 &nbsp;
                                 <strong>{{ $errors->first() }}</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -60,7 +60,7 @@
                                 </div>
                             <hr>
                                 <div class="row" style="padding-left: 10px">
-                                    <label class="" for="foto">Agregar foto :</label>
+                                    <label class="" for="foto">Agregar foto:</label>
                                     <input id="foto"
                                            name="foto"
                                            class="form-control-file"
@@ -77,7 +77,7 @@
                         <div class="col-8">
                                 <div class="form-row">
                                     <div class="col">
-                                        <label class="" for="nombre">Nombres :</label>
+                                        <label class="" for="nombre">Nombres:</label>
                                         <input id="nombre"
                                                name="nombre"
                                                autocomplete="off"
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="fecha"> Fecha Nacimiento :</label>
+                                        <label for="fecha"> Fecha Nacimiento:</label>
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -170,7 +170,7 @@
                     <div class="row">
                         <div class="col">
                             <!-- Select Basic -->
-                            <label class="" for="grado">Grado Academico </label>
+                            <label class="" for="grado">Grado Académico: </label>
                             <select id="grado" name="grado" class="form-control mb-3">
                                 @foreach($gradosc as $grad)
                                     <option value="{{$grad->pk_id_grado}}">
@@ -180,7 +180,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <label class="" for="horas">Horas de investigacion</label>
+                            <label class="" for="horas">Horas de investigación:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -202,7 +202,7 @@
 
                         </div>
                         <div class="col">
-                            <label class="" for="pais">Nacionalidad</label>
+                            <label class="" for="pais">Nacionalidad:</label>
                             <select id="pais"
                                     name="pais"
                                     class="form-control mb-3">
@@ -216,7 +216,7 @@
                     </div>
                    <div class="row">
                        <div class="col">
-                           <label class="" for="area">Area de Conocimiento :</label>
+                           <label class="" for="area">Área de Conocimiento:</label>
                            <select id="area"
                                    name="area"
                                    onchange="verificarSelcArea(this)"
@@ -230,7 +230,7 @@
                            </select>
                        </div>
                        <div class="col">
-                           <label for="area-c">Especifique Area:</label>
+                           <label for="area-c">Especifique Área:</label>
                            <input type="text"
                                   name="area-c"
                                   id="area-c"
@@ -244,7 +244,7 @@
 
                     <div class="row">
                         <div class="col-12 ">
-                            <label class="" for="institucion">Institucion :</label>
+                            <label class="" for="institucion">Institución:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -264,7 +264,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="" for="direccion">Direccion</label>
+                            <label class="" for="direccion">Dirección</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -288,7 +288,7 @@
                     <hr class="all">
                     <div class="row">
                         <div class="col">
-                            <label  for="password">Contraseña :</label>
+                            <label  for="password">Contraseña:</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -305,7 +305,7 @@
                         </div>
 
                         <div class="col">
-                            <label  for="password">Confirme contraseña :</label>
+                            <label  for="password">Confirme contraseña:</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">

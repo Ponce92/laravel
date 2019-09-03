@@ -9,8 +9,8 @@
 
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item ">Proyectos de investigacion</li>
-    <li class="breadcrumb-item active">Busqueda</li>
+    <li class="breadcrumb-item ">Proyectos de investigación</li>
+    <li class="breadcrumb-item active">Búsqueda</li>
 @endsection
 
 @section('default')
@@ -19,7 +19,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-6">
-                <h2 class="titulo-seccion titulo">Mis proyectos de investigacion</h2>
+                <h2 class="titulo-seccion titulo">Mis proyectos de investigación</h2>
             </div>
             <div class="col-6">
                 <div class="row justify-content-end">
@@ -31,7 +31,7 @@
                                     class="form-control input-lg"
                                     onchange="this.form.submit()"
                             >
-                                <option value="-1" {{$bsq ==-1 ? 'selected':''}}>Selecione tipo de proyecto</option>
+                                <option value="-1" {{$bsq ==-1 ? 'selected':''}}>Seleccione tipo de proyecto</option>
                                 @foreach($tiposProyectos as $tipo)
                                     <option value="{{$tipo->pk_id_tipo_proyecto}}" {{$bsq ==$tipo->pk_id_tipo_proyecto ? 'selected':''}}>
                                         {{$tipo->rd_descripcion}}

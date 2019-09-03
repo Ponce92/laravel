@@ -7,7 +7,7 @@
 -->
 
 
-<label for="tipo_proyecto">Tipo de poryecto de investigacion</label>
+<label for="tipo_proyecto">Tipo de proyecto de investigación</label>
 <select name="tipo_proyecto"
         id="tipo_proyecto"
         class="form-control mb-3 edt {{$errors->has('tipo_proyecto') ? 'is-invalid':''}}"
