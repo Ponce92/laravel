@@ -11,7 +11,7 @@
 @section('menu-sup-02')
 
 <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-<li class="breadcrumb-item active">Busqueda de redes</li>
+<li class="breadcrumb-item active">Búsqueda de redes</li>
 
 
 @endsection
@@ -63,7 +63,7 @@
                             <h4 class="text-h4-card">
                                 {{$red->rt_nombre_red}}
                             </h4>
-                            <label for="#">Proyecto asociado :  </label>
+                            <label for="#">Proyecto asociado:  </label>
                             <br>
                             {{--{{$red->}}--}}
                             <br>

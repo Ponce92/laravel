@@ -74,7 +74,7 @@
                                                 @endforeach
                                             </a>
                                             <div class="media-body">
-                                                <h4><a class="media-heading" href="{{route('respuestas.shows', ['id' => $tema->pk_id_tema, 'idf' => $tema->fk_id_foro  ])}}">Titulo: {{$tema->titulo}}</a></h4>
+                                                <h4><a class="media-heading" href="{{route('respuestas.shows', ['id' => $tema->pk_id_tema, 'idf' => $tema->fk_id_foro  ])}}">Título: {{$tema->titulo}}</a></h4>
                                                 @foreach($perfiles as $p)
                                                     @if($p->pk_id_usuario == $tema->id_creador )
                                                         <p class="text-left text-info"  >By {{$p->rt_nombre_persona}}</p>
@@ -87,7 +87,7 @@
                                                     <li>|</li>
                                                     <span> {{$tema->re_count}} <i class="glyphicon glyphicon-comment"></i> Respuestas</span>
                                                     <li>|</li>
-                                                    <span><i class="glyphicon glyphicon-edit"></i><a href="{{route('respuestas.show',['id' => $tema->pk_id_tema ])}}">  Responder </a></span>
+                                                    <span><i class="glyphicon glyphicon-edit"></i><a href="{{route('respuestas.show',['id' => $tema->pk_id_tema ])}}"> Responder </a></span>
                                                     <li>|</li>
                                                     <span><i class="glyphicon glyphicon-trash"></i><a href="{{route('eliminar.tema',['id' => $tema->pk_id_tema ])}}"> Eliminar</a></span>
 

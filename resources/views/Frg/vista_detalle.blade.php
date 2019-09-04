@@ -27,7 +27,7 @@
                         <div class="col col-6">
                             <div class="row">
                                 <div class="col col-9">
-                                    <h4 class="">Detalles :</h4>
+                                    <h4 class="">Detalles:</h4>
 
                                 </div>
 
@@ -41,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="fechaInicio">Fecha de inicio probable :</label>
+                                                <label for="fechaInicio">Fecha de inicio probable:</label>
                                                 <div class="input-group">
 
                                                     <div class="input-group-prepend">
@@ -64,7 +64,7 @@
 
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="fechaFin">Fecha probable de finalización</label>
+                                                <label for="fechaFin">Fecha probable de finalización:</label>
                                                 <div class="input-group">
 
                                                     <div class="input-group-prepend">
@@ -79,14 +79,14 @@
                                                             {{$errors->any() ? '':'disabled'}}
                                                             value="{{$detalle->getFechaFin()}}"
                                                     >
-                                                    <div class="invalid-feedback">Debe especificar una fecha de finalización</div>
+                                                    <div class="invalid-feedback">Debe especificar una fecha de finalización.</div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col col-6">
                                             <div class="form-group">
-                                                <label for="monto">Monto apróximado del proyecto :</label>
+                                                <label for="monto">Monto apróximado del proyecto:</label>
                                                 <div class="input-group">
                                                     <label for="monto"></label>
                                                     <div class="input-group-prepend ">
@@ -112,7 +112,7 @@
                         <div class="col col-5" style="margin-left: 15px;">
                             <div class="row">
                                 <div class="col col-9">
-                                    <h4 class="">Personalización :</h4>
+                                    <h4 class="">Personalización:</h4>
                                 </div>
 
                                 <hr style="margin-top: 0px;">

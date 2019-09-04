@@ -108,10 +108,10 @@
                                         {{$obj['apellido']}}
                                     </td>
                                     <td colspan="1">
-                                        <strong>Sexo :</strong>{{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
+                                        <strong>Sexo:</strong>{{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
                                     </td>
                                     <td colspan="1">
-                                        <strong>Edad:</strong>&nbsp;{{$obj['edad']}}  Anios
+                                        <strong>Edad:</strong>&nbsp;{{$obj['edad']}}  Años
                                     </td>
 
                                     <td colspan="1" rowspan="3" align="center" class="align-middle">
@@ -134,7 +134,7 @@
                                 </tr>
                                 <tr scope="row">
                                     <td colspan="4">
-                                        <strong>Correo Electrónico :</strong>&nbsp;{{$obj['email']}}
+                                        <strong>Correo Electrónico:</strong>&nbsp;{{$obj['email']}}
                                     </td>
 
                                 </tr>
@@ -152,7 +152,7 @@
                         @else
                             <td colspan="12" align="center" class="align-middle">
                                 <span class="titulo">
-                                    No se encontraron registros . . .
+                                    No se encontraron registros.
                                 </span>
                             </td>
 

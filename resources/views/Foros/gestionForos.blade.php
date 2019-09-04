@@ -37,7 +37,7 @@
                                 </div>
                             </th>
                             <th scope="col">Red Asociada</th>
-                            <th scope="col">Tematicas</th>
+                            <th scope="col">Temáticas</th>
                             <th scope="col" align="center">
                                 <div class="row justify-content-center">
                                     Acciones

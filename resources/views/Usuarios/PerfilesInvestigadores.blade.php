@@ -104,7 +104,7 @@
                                     {{$obj['apellido']}}
                                 </td>
                                 <td colspan="1">
-                                    <strong>Sexo :</strong>{{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
+                                    <strong>Sexo:</strong> {{$obj['sexo'] ==1 ?  "Hombre":'Mujer'}}
                                 </td>
                                 <td colspan="1">
                                     <strong>Edad:</strong>
@@ -127,23 +127,23 @@
                             </tr>
                             <tr scope="row">
                                 <td colspan="4">
-                                    <strong>Correo Electrónico :</strong>{{$obj['email']}}
+                                    <strong>Correo Electrónico:</strong> {{$obj['email']}}
                                 </td>
 
                             </tr>
                             <tr scope="row">
 
                                 <td colspan="1">
-                                    <strong>Publicaciones:</strong>{{$obj['npu']}}
+                                    <strong>Publicaciones:</strong> {{$obj['npu']}}
                                 </td>
                                 <td colspan="1">
-                                    <strong>Proyectos realizados:</strong>{{$obj['npr']}}
+                                    <strong>Proyectos realizados:</strong> {{$obj['npr']}}
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
                         @endforeach
                     @else
-                        <p>Registros no encontrados </p>
+                        <p>Registros no encontrados. </p>
                     @endif
 
                     </tbody>

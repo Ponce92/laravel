@@ -417,7 +417,7 @@
           *| Seccion footer de la plantilla de administracion ..........................
         -->
 <footer class="app-footer">
-    <span><a href="#"> Universidad de El Salvador </a> © Secretaría de Investigación Científica de la Universidad de El Salvador </span>
+    <span><a href="#"> Universidad de El Salvador </a> © Secretaría de Investigaciones Científicas de la Universidad de El Salvador </span>
     <span class="ml-auto"></span>
 </footer>
 

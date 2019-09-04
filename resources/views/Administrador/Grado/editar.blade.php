@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-col-form-label" for="nombre">Grado académico :</label>
+                            <label class="form-col-form-label" for="nombre">Grado académico:</label>
                             <input class="form-control {{ $errors->has('nombre') ? ' is-invalid' : '' }}"
                                    id="nombre"
                                    name="nombre"
@@ -49,7 +49,7 @@
                             <div class="form-group col-md-6">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="est">Estado :</label>
+                                        <label for="est">Estado:</label>
                                     </div>
                                 </div>
                                 <div class="row justify-content-lg-end">

@@ -29,7 +29,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                             </i>Por favor corrija los campos que se marcan en rojo.
+                                             </i>Por favor, corrija los campos que se marcan en rojo.
                                         {{$errors->first()}}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -168,7 +168,7 @@
                                     <br>
                                     <div class="form-row">
                                         <div class="col-6">
-                                            <label for="pais">País de ejecución</label>
+                                            <label for="pais">País de ejecución:</label>
                                             <select name="pais"
                                                     id="pais"
                                                     class="form-control {{$errors->has('pais') ? 'is-invalid':''}}"
@@ -185,7 +185,7 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label for="estadoP">Estado del proyecto :</label>
+                                            <label for="estadoP">Estado del proyecto:</label>
                                             <select name="estadoP"
                                                     id="estadoP"
                                                     class="form-control mb-3 {{$errors->has('estadoP') ? 'is-invalid':''}}"
@@ -225,7 +225,7 @@
                                     </div>
 
                                     <div class="form-row">
-                                        <label for="desc">Descripción del proyecto <h5 class="srt">*</h5></label>
+                                        <label for="desc">Descripción del proyecto: <h5 class="srt">*</h5></label>
                                         <textarea name="desc" id="desc" cols="30" rows="4" class="form-control {{$errors->has('desc') ? 'is-invalid':''}}"></textarea>
                                         <div class="invalid-feedback">Este campo es obligatorio</div>
                                     </div>
@@ -238,7 +238,7 @@
                                     <hr style="margin-top: 0px;">
                                     <div class="form-row">
                                         <div class="col-6">
-                                            <label for="tipo">Fuente de financiamiento :</label>
+                                            <label for="tipo">Fuente de financiamiento:</label>
                                             <select name="tipoFuente"
                                             id="tipoFuente"
                                             class="form-control mb-3"
@@ -414,8 +414,8 @@
                                         <div class="col-11">
                                             <p>
                                               El icono servirá para identificar tanto el proyecto de investigación como a la red de investigadores.
-                                                <br>
-                                                Se aplicará un icono y tema por defecto, si no se hace especifica una configuración.
+                                            <br>
+                                              Se aplicará un icono y tema por defecto, si no se hace especifica una configuración.
                                             </p>
                                         </div>
                                     </div>

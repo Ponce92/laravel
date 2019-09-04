@@ -159,7 +159,7 @@
 
                                 <div class="row">
                                     <div class="col">
-                                        <label for="telefono">Correo electrónico</label>
+                                        <label for="telefono">Correo electrónico:</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -255,7 +255,7 @@
 
 
                             <div class="col col-4">
-                                <label for="horas">Horas dedicadas a investigación :</label>
+                                <label for="horas">Horas dedicadas a investigación:</label>
                                 <input class="form-control edt"
                                        id="horas"
                                        form="form"
@@ -289,7 +289,7 @@
                                            disabled
                                     >
                                     <div class="invalid-feedback">
-                                        Un nombre válido contiene entre 6 a 100 caracteres
+                                        Un nombre válido contiene entre 6 a 100 caracteres.
                                     </div>
                                 </div>
                             </div>

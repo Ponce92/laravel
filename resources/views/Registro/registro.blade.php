@@ -117,7 +117,7 @@
                                             <input id="correo"
                                                    autocomplete="off"
                                                    name="correo"
-                                                   placeholder="emplo@ues.com"
+                                                   placeholder="empleado@ues.edu.sv"
                                                    class="form-control {{$errors->has('correo') ? 'is-invalid':''}}"
                                                    type="email"
                                                    value="{{old('correo')}}"

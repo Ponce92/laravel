@@ -69,7 +69,7 @@
                             <td rowspan="3" colspan="3" class="align-middle" align="center">
                                 <i class="icon-rocket fa-4x" style="color: #3e4548;"></i>
                             </td>
-                            <td class="td" colspan="1">Título Proyecto</td>
+                            <td class="td" colspan="1">Título del Proyecto</td>
                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
                             <td class="td" colspan="1">Área de conocimiento:</td>
                             <td colspan="2">

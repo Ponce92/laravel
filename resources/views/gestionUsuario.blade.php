@@ -51,7 +51,7 @@
             <div class="row">
                 @if($errors->any())
                     <div class=" col alert alert-danger">
-                        <i class="fas fa-exclamation-triangle">  </i>&nbsp;&nbsp; Por favor corrija los campos indicados.
+                        <i class="fas fa-exclamation-triangle">  </i>&nbsp;&nbsp; Por favor, corrija los campos marcados en rojo.
                     </div>
                 @endif
                 @if(isset($estado))

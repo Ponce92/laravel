@@ -133,7 +133,7 @@
                                             </div>
                                         </form>
                                         <a href="#"  class="linkComent {{$res->getId()}}" onclick="mostrar('{{$res->getId()}}')">
-                                            <strong>Comentar . . .</strong>
+                                            <strong>Comentar ...</strong>
                                         </a>
 
                                     </div>
@@ -159,7 +159,7 @@
                         <div class="form-group">
 
                             <div class="col-md-12">
-                                <label for="descripcion">Descripcion :</label>
+                                <label for="descripcion">Descripción:</label>
                                 <textarea id="desc"
                                           class="form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}"
                                           name="desc"

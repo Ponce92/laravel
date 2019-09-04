@@ -6,7 +6,7 @@
  |  $idTipoProyecto: Representa el valor del id seleccionado(en caso de existir)
 -->
 
-<label for="tipo_proyecto">Objetivo socioeconomico del proyecto :</label>
+<label for="tipo_proyecto">Objetivo socioeconómico del proyecto:</label>
 <select name="objetivo_proyecto"
         id="objetivo_proyecto"
         class="form-control mb-3 edt {{$errors->has('objetivo_proyecto') ? 'is-invalid':''}}"

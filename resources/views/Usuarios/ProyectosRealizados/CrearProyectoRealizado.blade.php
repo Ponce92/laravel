@@ -33,7 +33,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                     &nbsp;&nbsp; </i>Por favor corrija los campos que se marcan en rojo.
+                                     &nbsp;&nbsp; </i>Por favor, corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombreProyecto">Título del Proyecto :</label>
+                                    <label for="nombreProyecto">Título del Proyecto:</label>
                                     <input type="text"
                                            form="frm-add"
                                            class="form-control @if($errors->has('nombre')) is-invalid @endif"
@@ -61,7 +61,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="fechaIncicio">Fecha Incicio :</label>
+                                <label for="fechaIncicio">Fecha Incicio:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -109,7 +109,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="area">Área de Conocimiento</label>
+                                <label for="area">Área de Conocimiento:</label>
                                 <select name="area"
                                         id="area"
                                         class="form-control  mb-3"
@@ -132,7 +132,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="areaP">Especifique el área de conocimiento :</label>
+                                <label for="areaP">Especifique el área de conocimiento:</label>
                                 <input type="text"
                                        name="area-c"
                                        id="area-c"

@@ -55,13 +55,13 @@
                                         {{$not->rt_tipo_notificacion =='RAP' ? 'Ha aceptado su invitación al proyecto':''}}
 
                                         @if($not->getTipo() =='SPP')
-                                            ,Ha solicitado participar en el proyecto
+                                            , Ha solicitado participar en el proyecto
                                             <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif
                                         @if($not->getTipo() =='RPP')
-                                            ,Ha aceptado su unión al proyecto <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
+                                            , Ha aceptado su unión al proyecto <a href="{{route('getProyecto',['id'=>$not->getProyecto()->getId()])}}">
                                                 {{$not->getProyecto()->getTitulo()}}
                                             </a>
                                         @endif

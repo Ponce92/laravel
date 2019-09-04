@@ -31,7 +31,7 @@
                                     class="form-control input-lg"
                                     onchange="this.form.submit()"
                             >
-                                <option value="-1" {{$bsq ==-1 ? 'selected':''}}>Seleccione tipo de proyecto</option>
+                                <option value="-1" {{$bsq ==-1 ? 'selected':''}}>Seleccione el tipo de proyecto</option>
                                 @foreach($tiposProyectos as $tipo)
                                     <option value="{{$tipo->pk_id_tipo_proyecto}}" {{$bsq ==$tipo->pk_id_tipo_proyecto ? 'selected':''}}>
                                         {{$tipo->rd_descripcion}}

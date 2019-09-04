@@ -46,7 +46,7 @@
                     </li>
                 </ul>
                 <div id="tabs-1">
-                    {{-- Pestania de edicion del proyecto de investigacion, es editable si pertenece a RI-UES --}}
+                    {{-- Pestaña de edición del proyecto de investigación, es editable si pertenece a RI-UES --}}
                     <div class="row">
                         <div class="col-12">
                             <br>
@@ -72,7 +72,7 @@
                                     <div class="col-9">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="titulo">Título proyecto :</label>
+                                                <label for="titulo">Título del proyecto:</label>
                                                 <input  type="text"
                                                         name="titulo"
                                                         id="titulo"
@@ -82,7 +82,7 @@
                                                 >
                                             </div>
                                             <div class="col-3">
-                                                <label for="titulo">Código proyecto :</label>
+                                                <label for="titulo">Código proyecto:</label>
                                                 <input  type="text"
                                                         name="codigo"
                                                         id="codigo"
@@ -92,7 +92,7 @@
                                                 >
                                             </div>
                                             <div class="col-3">
-                                                <label for="titulo">Acrónimo proyecto :</label>
+                                                <label for="titulo">Acrónimo proyecto:</label>
                                                 <input  type="text"
                                                         name="acronimo"
                                                         id="acronimo"
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <label for="titulo">Titular del proyecto :</label>
+                                                <label for="titulo">Titular del proyecto:</label>
                                                 <input  type="text"
                                                         name="titular"
                                                         id="titular"
@@ -114,7 +114,7 @@
                                                 >
                                             </div>
                                             <div class="col-4">
-                                                <label for="s">Estado del proyecto :</label>
+                                                <label for="s">Estado del proyecto:</label>
                                                 <select name="er" id="fde3t" class="form-control mb-3" disabled>
                                                     <option value="">
                                                         {{$proyecto->getEstado()->getEstado()}}
@@ -122,7 +122,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <label for="sd">Tipo de proyecto de investigación :</label>
+                                                <label for="sd">Tipo de proyecto de investigación:</label>
                                                 <select name="r" id="fde3twqer" disabled class="form-control mb-3">
                                                     <option value="">
                                                         {{$proyecto->getTipo()->getDescripcion()}}
@@ -172,7 +172,7 @@
 
                                             </div>
                                             <div class="col col-4">
-                                                <label for="as">Objetivo socioeconómico</label>
+                                                <label for="as">Objetivo socioeconómico:</label>
                                                 <select name="3d" id="fder" class="form-control mb-3" disabled>
                                                     <option value="daf">
                                                         {{$proyecto->getObjetivo()->getDescripcion()}}
@@ -184,7 +184,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <label for="descripcion">Descripción del Proyecto :</label>
+                                                <label for="descripcion">Descripción del Proyecto:</label>
                                                 <textarea   name="descripcion"
                                                             id="descripcion"
                                                             cols="50"
@@ -244,7 +244,7 @@
                         {{ csrf_field()  }}
                         <li class="list-group-item bttn-ver f-20" onclick="$('#part').submit()">
                             <i class="fas fa-users f-24 "></i>
-                            &nbsp;Solicitar Participacion
+                            &nbsp;Solicitar Participación
                             <input hidden type="text" name="idP" id="idP" value="{{$proyecto->getId()}}">
                         </li>
                     </form>

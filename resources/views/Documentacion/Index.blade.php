@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/comun.css')}}">
 @endsection
 
+
 @section('menuIzq')
     @include('AdminFragment.FrgMenIzq')
 @endsection
@@ -24,7 +25,7 @@
             <div class="col-4">
                 <div class="row justify-content-end">
                     <a href="#">
-                        <button id="uploadDoc" class="btn bttn-red btn-lg">&nbsp;&nbsp; Agregar &nbsp;&nbsp;</button>
+                        <button id="uploadDoc" onclick="OpenModal();" class="btn bttn-red btn-lg">&nbsp;&nbsp; Agregar &nbsp;&nbsp;</button>
                     </a>
                 </div>
             </div>
@@ -47,7 +48,7 @@
                                     <td class="td" align="center">Archivo</td>
                                     <td class="td" align="center">Nombre del documento</td>
                                     <td class="td" align="center">Tipo de archivo</td>
-                                    <td class="td">Acciones</td>
+                                    <td class="td" align="center">Acciones</td>
                                     </thead>
                                     @foreach ($documentos as $doc)
                                         <tr>
@@ -125,7 +126,7 @@
         </div>
     </div>
 
-
+<!--Formulario para cargar el archivo-->
     <div hidden>
         <div class="row" id="frm_upload">
             <div class="col-12 col">
@@ -147,17 +148,35 @@
                         <button class="btn bttn bttn-exit btn-lg" style="color: white" onclick="closeFM()">Cancelar</button>
                         &nbsp;&nbsp;
                         <button type="submit" class="btn bttn-red bttn ">Cargar archivo</button>
-
                     </div>
                 </form>
             </div>
-
-
-
         </div>
     </div>
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="/js/Documentos/index.js"> </script>
+    <script type="text/javascript">
+        function OpenModal(){
+            $('#frm_upload').dialog('open');
+        }
+
+        $('#frm_upload').dialog(
+            {
+                autoOpen:false,
+                width:500,
+                modal:true,
+            }
+        );
+
+        function closeFM(){
+            $('#frm_upload').dialog('close');
+        }
+
+        $('li.active >span').addClass('page-link');
+        $('li.disabled >span').addClass('page-link');
+
+
+
+    </script>
 @endsection

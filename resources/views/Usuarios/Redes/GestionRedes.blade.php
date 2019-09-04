@@ -40,7 +40,7 @@
                                 <h4 class="text-h4-card">
                                     {{$red->rt_nombre_red}}
                                 </h4>
-                                <label for="#">Proyecto asociado :  </label>
+                                <label for="#">Proyecto asociado: </label>
                                 <br>
                                 {{$red['nombreProyecto']}}
                                 <br>
@@ -61,7 +61,7 @@
                 @else
                     <div class="row">
                         <h4>
-                            No tienes ninguna red a mostrar.
+                            No tienes ninguna red para mostrar.
                         </h4>
                     </div>
                 @endif

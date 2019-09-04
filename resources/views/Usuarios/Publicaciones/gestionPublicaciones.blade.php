@@ -53,7 +53,7 @@
                     <td colspan="12" style="background-color: #aa0000">
                         <div class="row">
                             <div class="col-11" style="color: white;font-size: 16px;font-weight: bold">
-                                Notas Científicas y Artículos científicos
+                                Notas científicas y Artículos científicos
                             </div>
                             <div class="col-1" style="color: white;font-weight: bold">
                                 <div class="row justify-content-end">
@@ -169,10 +169,10 @@
                     <tr>
                         <td class="td" colspan="1">Área de conocimiento:</td>
                         <td colspan="3">{{$libro->getArea()->getNombre()}}</td>
-                        <td colspan="1" class="td" >Capítulo : </td>
+                        <td colspan="1" class="td" >Capítulos: </td>
                         <td colspan="1">{{$libro->rn_capitulo}}</td>
 
-                        <td colspan="1" class="td" style="width: 125px">Página:</td>
+                        <td colspan="1" class="td" style="width: 125px">Páginas:</td>
                         <td colspan="2">{{$libro->rn_pagina}}</td>
 
 

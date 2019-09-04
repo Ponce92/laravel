@@ -38,7 +38,7 @@
                     <input type="hidden" name="idf" value="{{$foro->getCodigo()}}">
                     <div class="form-group">
                         <div class="col-md-8">
-                            <label for="titulo">Titulo del Tema</label>
+                            <label for="titulo">Título del Tema:</label>
                             <input id="titulo"
                                    type="text"
                                    class="form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }} mb-3"

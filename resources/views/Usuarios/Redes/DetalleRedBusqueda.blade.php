@@ -11,7 +11,7 @@
 @section('menu-sup-02')
 
     <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item "><a href="{{route('redes.busqueda')}}">Busqueda de redes</a></li>
+    <li class="breadcrumb-item "><a href="{{route('redes.busqueda')}}">Búsqueda de redes</a></li>
     <li class="breadcrumb-item active">{{$red->rt_nombre_red}}</li>
 
 
@@ -56,7 +56,7 @@
                     <div class="row justify-content-end">
                         <i class="far fa-question-circle help-rc" style="font-size: 30px;color: #454545"></i>
                         <div class="webui-popover-content">
-                            Solo el titular del proyecto de investigacion tiene permisos para editar la red.
+                            Solo el titular del proyecto de investigación tiene permiso para editar la red.
                         </div>
                         <div class="col-2"></div>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="col-7">
                         <div class="row">
                             <div class="col-12">
-                                <label for="titulo">Nombre de la red de investigadores :</label>
+                                <label for="titulo">Nombre de la red de investigadores:</label>
                                 <input  type="text"
                                         class="form-control mb-3 disabled"
                                         id="titulo"
@@ -94,7 +94,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label for="diciplina">Tipo de red</label>
+                                <label for="diciplina">Tipo de red:</label>
                                     <div class="form-check">
                                         <input  type="radio"
                                                 class="form-check-input"
@@ -104,7 +104,7 @@
                                                 readonly
                                                 {{$red->rl_is_diciplinaria ? 'checked':''}}
                                         >
-                                        <label for="radio1">Diciplinaria</label>
+                                        <label for="radio1">Disciplinaria</label>
                                     </div>
                                     &nbsp;
                                     <div class="form-check">
@@ -116,7 +116,7 @@
                                                 readonly
                                                 {{$red->rl_is_diciplinaria ? '':'checked'}}
                                         >
-                                        <label for="radio2">Multiciplinaria</label>
+                                        <label for="radio2">Multidisciplinaria</label>
                                     </div>
                             </div>
                             <div class="col-12">
@@ -137,21 +137,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <label for="#"> Proyecto Relacionado :</label>
+                                <label for="#"> Proyecto Relacionado:</label>
                                 <hr style="margin-top: 0px">
                             </div>
                             <br>
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-8">
-                                        <Label>Nombre proyecto</Label>
+                                        <Label>Nombre de proyecto</Label>
                                         <input type="text" class="form-control mb-3"
                                                value="{{$proyecto->rt_titulo_proyecto}}"
                                                disabled
                                         >
                                     </div>
                                     <div class="col-4">
-                                        <label for="codigo">Codigo proyecto :</label>
+                                        <label for="codigo">Código del proyecto :</label>
                                         <input  type="text"
                                                 class="form-control"
                                                 value="{{$proyecto->pk_id_proyecto_investigacion}}"
@@ -164,7 +164,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label for="desc">Descripcion :</label>
+                                <label for="desc">Descripción:</label>
                                 <textarea class="form-control" rows="4" cols="50" disabled style="background-color: rgb(245,245,245)">{{$proyecto->rd_descripcion_proyecto}}</textarea>
                             </div>
                         </div>

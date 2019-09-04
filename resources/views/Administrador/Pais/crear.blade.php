@@ -41,7 +41,7 @@
                             <div class="form-group col-md-6">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="est">Estado :</label>
+                                        <label for="est">Estado:</label>
                                     </div>
                                 </div>
                                 <div class="row justify-content-lg-end">

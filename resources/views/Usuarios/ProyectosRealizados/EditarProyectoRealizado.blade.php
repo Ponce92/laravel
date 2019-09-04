@@ -47,7 +47,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                            &nbsp;&nbsp; </i>Por favor corrija los campos que se marcan en rojo.
+                                            &nbsp;&nbsp; </i>Por favor, corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -148,7 +148,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="pais">País de ejecución :</label>
+                                <label for="pais">País de ejecución:</label>
                                 <select name="pais" id="pais" class="form-control mb-3 edt" form="frm-add" {{$errors->any() ? '':'disabled'}}>
                                     @foreach($paises as $pais)
                                         <option value="{{$pais->pk_id_pais}}"

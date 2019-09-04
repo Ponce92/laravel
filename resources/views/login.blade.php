@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="clave">Contraseña :</label>
+                    <label for="clave">Contraseña:</label>
                     <input type="password"
                            class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                            name="password"
@@ -40,7 +40,7 @@
                            placeholder="****">
                     {!! $errors->first('password','<div class="invalid-feedback">:message</div>' )!!}
                 </div>
-                {!! $errors->first('ss','<br><div class="alert alert-danger" role="alert">Error en la autenticación del usuario</div>') !!}
+                {!! $errors->first('ss','<br><div class="alert alert-danger" role="alert">Error en la autenticación del usuario.</div>') !!}
                 <br>
                 <div class="form-group">
                     <div class="row justify-content-center">

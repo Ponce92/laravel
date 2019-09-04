@@ -16,7 +16,7 @@
     @else
         <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
         <li class="breadcrumb-item"><a href="{{route('getPerfilesInvestigadores')}}">Perfiles de investigadores</a></li>
-        <li class="breadcrumb-item active">Perfi</li>
+        <li class="breadcrumb-item active">Perfil</li>
 
     @endif
 
@@ -75,7 +75,7 @@
 
                             <div class="row">{{-- Fecha y sexo del investigador--}}
                                 <div class="col">
-                                    <label for="fechaNacimiento">Edad</label>
+                                    <label for="fechaNacimiento">Edad:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="col mb-3">
-                                    <label for="Sexo">Sexo :</label><br>
+                                    <label for="Sexo">Sexo:</label><br>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input"
                                                type="radio"
@@ -165,7 +165,7 @@
 
                     </div>
                     <br>
-                    <div class="row">{{--Area Conocimiento,grado academico,horas dedicadas a investigacion --}}
+                    <div class="row">{{--Área Conocimiento,grado académico,horas dedicadas a investigación --}}
                         <div class="col">
                             <label for="grado">Grado Académico:</label>
                             <select name="grado"
@@ -330,7 +330,7 @@
                                             <td rowspan="3" colspan="3" class="align-middle" align="center">
                                                 <i class="fab fa-codepen fa-4x "></i>
                                             </td>
-                                            <td class="td" colspan="1">TÍtulo Proyecto</td>
+                                            <td class="td" colspan="1">Título del Proyecto:</td>
                                             <td colspan="3">{{$proyecto->rt_titulo_proyecto}}</td>
                                             <td class="td" colspan="1">Área de conocimiento:</td>
                                             <td colspan="2">

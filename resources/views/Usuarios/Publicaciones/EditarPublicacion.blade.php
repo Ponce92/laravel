@@ -29,7 +29,7 @@
                                 <div class="col-12">
                                     <div class="alert alert-danger">
                                         <i class="fas fa-exclamation">
-                                            &nbsp </i>Por favor corrija los campos que se marcan en rojo.
+                                            &nbsp </i>Por favor, corrija los campos que se marcan en rojo.
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -72,7 +72,7 @@
                                         {{$publicacion->rt_tipo_publicacion =='ac' ? 'selected':''}}
                                 @endif
                                     >
-                                        Articulo Cientifico
+                                        Artículo Científico
                                     </option>
 
                                     <option value="nc"
@@ -82,7 +82,7 @@
                                         {{$publicacion->rt_tipo_publicacion =='nc' ? 'selected':''}}
                                             @endif
                                     >
-                                        Nota cientifica
+                                        Nota científica
                                     </option>
                                     <option disabled>Libro</option>
                                 </select>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col">
-                                <label for="issn"> ISSN:</label>
+                                <label for="issn">ISSN:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-book"></i></div>
@@ -225,7 +225,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label for="enlace"> Enlace de la Publicación:</label>
+                                    <label for="enlace">Enlace de la Publicación:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-link"></i></div>
