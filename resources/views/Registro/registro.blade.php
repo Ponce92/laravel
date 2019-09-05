@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col col-sm-11 col-md-8 col-lg-8">
-                <form class="login-riues" style="background-color: rgb(252,252,252)" method="POST" action="/registros" enctype="multipart/form-data">
+                <form class="login-riues" style="background-color: rgb(252,252,252)" method="POST" action="{{route('registros.store')}}" enctype="multipart/form-data">
                 {{ csrf_field()  }}
                     <div class="row">
                         <div class="col-12">

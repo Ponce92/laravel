@@ -50,7 +50,7 @@ class RegistrosController extends Controller
      *
      * RegistrosRequest
      */
-    public function store(Request $request)
+    public function store(RegistrosRequest $request)
     {
 
         $persona=new Persona();
@@ -153,11 +153,17 @@ class RegistrosController extends Controller
 
             DB::commit();
             $exito=true;
+            Storage::disk('local')->putFileAs(
+            'public/avatar/',
+            $file,
+            $url
+            );
 
         }catch(\Exception $e){
             $error = $e->getMessage();
             DB::rollback();
             $exito=false;
+            Storage::disk('local')->delete('public/avatar/'.$url);
 
         }
         if($exito){
@@ -165,7 +171,8 @@ class RegistrosController extends Controller
                 ->withsuccess('Se ha registrado con éxito, ahora puede ingresar al sistema con sus credenciales.');
         }
 
-        return redirect()->route('log')
+        return back()->withInput()
+            ->withErrors($error)
             ->withdanger($error);
 
     }
