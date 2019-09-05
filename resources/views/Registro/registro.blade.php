@@ -149,9 +149,9 @@
                                                 {{$errors->first('fecha')}}
                                             </div>
                                         </div>
-                                    </div>{{-- Fecha de nacimineto del investigador --}}
+                                    </div>{{-- Fecha de nacimiento del investigador --}}
                                     <div class="col">
-                                        <label class="" for="sexo">Sexo</label>
+                                        <label class="" for="sexo">Sexo:</label>
                                         <br>
                                         <label class="radio-inline" for="sexo-0">
                                             <input name="sexo" id="sexo-0" value="false"  checked="checked" type="radio">

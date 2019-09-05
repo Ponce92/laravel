@@ -134,23 +134,23 @@
                                             <input class="form-check-input"
                                                    type="radio"
                                                    name="sexo"
-                                                   id="hombre"
+                                                   id="mujer"
                                                    form="form"
                                                    value="true"
                                                    @if($persona->rl_sexo_persona == true) checked @endif
                                             >
-                                            <label class="form-check-label" for="inlineRadio1">Hombre</label>
+                                            <label class="form-check-label" for="inlineRadio1">Mujer</label>
                                         </div>
                                         <div class="form-check form-check-inline edt">
                                             <input class="form-check-input"
                                                    type="radio"
                                                    form="form"
                                                    name="sexo"
-                                                   id="mujer"
+                                                   id="hombre"
                                                    value="false"
                                                    @if($persona->rl_sexo_persona == false)checked @endif
                                             >
-                                            <label class="form-check-label" for="inlineRadio2">Mujer</label>
+                                            <label class="form-check-label" for="inlineRadio2">Hombre</label>
                                         </div>
                                     </div>
                                     <br>

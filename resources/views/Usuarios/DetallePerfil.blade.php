@@ -104,7 +104,7 @@
                                                @if($perfil->rl_sexo_persona == 1)checked @endif
                                                readonly
                                         >
-                                        <label class="form-check-label" for="inlineRadio1">Hombre</label>
+                                        <label class="form-check-label" for="inlineRadio1">Mujer</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input"
@@ -116,7 +116,7 @@
                                                @if($perfil->rl_sexo_persona == 0)checked @endif
                                                readonly
                                         >
-                                        <label class="form-check-label" for="inlineRadio2">Mujer</label>
+                                        <label class="form-check-label" for="inlineRadio2">Hombre</label>
                                     </div>
                                 </div>
                                 <br>
