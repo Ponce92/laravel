@@ -63,9 +63,9 @@
                             <h4 class="text-h4-card">
                                 {{$red->rt_nombre_red}}
                             </h4>
-                            <label for="#">Proyecto asociado:  </label>
+                            <label for="#">Proyecto asociado: </label>
                             <br>
-                            {{--{{$red->}}--}}
+                            {{$red->rt_titulo_proyecto}}
                             <br>
 
                         </div>
