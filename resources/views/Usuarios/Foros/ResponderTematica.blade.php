@@ -8,8 +8,8 @@
 @endsection
 
 @section('menu-sup-02')
-    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/foros">Foros</a></li>
+    <li class="breadcrumb-item"><a href="">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="">Foros</a></li>
     <li class="breadcrumb-item"><a href="">{{$tematica->getTitulo()}}</a></li>
     <li class="breadcrumb-item active">Responder</li>
 @endsection

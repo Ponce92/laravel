@@ -12,6 +12,8 @@
                             {{$ntf->rt_tipo_notificacion =='SRI' ? 'Ha solicitado registrarse en el sistema.':''}}
                             {{$ntf->rt_tipo_notificacion =='SRA' ? 'Ha solicitado reactivar su cuenta.':''}}
                             {{$ntf->rt_tipo_notificacion =='RSR' ? 'Ha aceptado tu solicitud':''}}
+                            {{$ntf->rt_tipo_notificacion =='NC' ? 'Ha Comentado tu respuesta en el Foro':''}}
+                            {{$ntf->rt_tipo_notificacion =='NC' ? 'Ha agregado una Respuesta a tu Temática':''}}
                         {{--
                         Solicitud de amistad
                         --}}

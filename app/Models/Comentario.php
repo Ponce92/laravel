@@ -37,8 +37,8 @@ class Comentario extends Model
     }
 
     public function setFecha(){
-        $carbon=new Carbon();
-        $this->fecha=$carbon->now();
+        //$carbon=new Carbon();
+        $this->fecha=Carbon::now();
     }
     public function getFecha(){
        return $this->fecha;

@@ -56,7 +56,7 @@ class ForosController extends Controller
         //
         $this->validate($request, [
             'titulo' => 'required|string|max:50|min:6',
-            'descripcion' => 'required',
+            'descripcion' => 'required|string|min:6',
         ]);
 
         $tema=new Tematica();

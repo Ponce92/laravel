@@ -63,7 +63,7 @@
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col col-1" style="width: 100px">
-                                        <img src="{{asset('avatar/'.$usuario->rt_foto_usuario)}}"
+                                        <img src="{{asset('storage/avatar/'.$usuario->rt_foto_usuario)}}"
                                              alt="vista no disponible"
                                              class="img-thumbnail"
                                              width="100px"

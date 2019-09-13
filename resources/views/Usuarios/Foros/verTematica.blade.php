@@ -6,8 +6,8 @@
 
 
 @section('menu-sup-02')
-    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/foros">Foros</a></li>
+    <li class="breadcrumb-item"><a href="">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="">Foros</a></li>
     <li class="breadcrumb-item active"></li>
 @endsection
 
@@ -16,27 +16,33 @@
 @endsection
 
 @section('default')
-    <div class="container-fluid area-trabajo" id="area-trabajo">
+    <div class="container-fluid area-trabajo " id="area-trabajo">
         <br>
         <div class="row cabeza-seccion">
-            <div class="col-8">
-                <h2 class="titulo-seccion titulo">{{$tematica->getTitulo()}} </h2>
+            <div class="col-6">
+                <h2 class="titulo-seccion titulo text-primary">{{$tematica->getTitulo()}} </h2>
+            </div>
+            <div class="col-6">
+                    <h2 class="titulo-seccion titulo text-primary">
+                        <strong> Número de Respuestas: {{count($tematica->getRespuestas())}}</strong>
+                    </h2>
             </div>
         </div>
+        <div class="row justify-content-center">
+                <div class="col-sm-12"> Descripción: {!!$tematica->getDesc()!!}
+                </div>
+            </div>
+
         <hr>
         <br>
         @include('Common.FlashMsj')
         <div class="cuerpo-seccion" style="min-height: 400px;">
+            
             <div class="row justify-content-center">
-                <div class="col-sm-12">
-                    {!!$tematica->getDesc()!!}
-                </div>
-            </div>
-            <div class="row justify-content-end">
                 {{-- <div class="col-md-3">
                     <div class="row align-content-center">
                         <div class="col-md-2">
-                            <img src="{{asset('/avatar/'.$tematica->getUser()->getFoto())}}"
+                            <img src="{{asset('storage/avatar/'.$tematica->getUser()->getFoto())}}"
                                  alt="Nombre de la persona"
                                  title="{{$tematica->getUser()->getCorreo()}}"
                                  class="rounded-circle"
@@ -54,20 +60,17 @@
                 </div> --}}
             </div>
             <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>
-                        <strong> {{count($tematica->getRespuestas())}} Respuestas</strong>
-                    </h3>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
+            
+            <div class="row align-content-center">
                 <div class="col-sm-12">
                     @foreach($tematica->getRespuestas() as $res)
-                        <div class="row">
-                            <div class="col-md-1">
-                                <i class="fas fa-info-circle fa-3x" style="color:rgb(110,110,110);"></i>
+<div class="card text-primary  rounded mb-3" style="background-color:rgb(60, 60, 60);">
+    <hr>
+                        <div class="row justify-content-end">
+                            <div class="col-md-1 text-center ">
+                                <i class="fas fa-info-circle fa-3x" style="color:rgb(255,255,255);"></i>
+                                <br>
+                                <label for="res" style="color:rgb(255,255,255);"> Respuesta </label>
                             </div>
                             <div class="col-md-11">
                                 <div class="row">
@@ -76,8 +79,8 @@
                                 <div class="row justify-content-end">
                                     <div class="col-md-3">
                                         <div class="row align-content-center">
-                                            <div class="col-md-2">
-                                                <img src="{{asset('/avatar/'.$res->getUser()->getFoto())}}"
+                                            <div class="col-md-3">
+                                                <img src="{{asset('storage/avatar/'.$res->getUser()->getFoto())}}"
                                                      alt="Nombre de la persona"
                                                      title="{{$res->getUser()->getCorreo()}}"
                                                      class="rounded-circle"
@@ -97,11 +100,13 @@
                                 <div class="row">
                                     <hr>
                                     <div class="col-md-12">
+                                         <label for="comm"> Comentarios</label>
                                         @foreach ($res->getComentarios() as $com)
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <p>
-                                                        {{$com->getValor()}} -&nbsp;
+                                                        {{$com->getValor()}} - &nbsp; &nbsp; &nbsp;
+                                                        <br>
                                                         <strong style="color:rgb(110,110,110);">{{$com->getUser()->getCorreo()}}</strong>
                                                         &nbsp;
                                                         <span style="color:rgb(200,200,200);">{{$com->getFecha()}}</span>
@@ -113,6 +118,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <form class="{{$res->getId()}} frm" action="{{route('tematica.comentar')}}" method="post">
+                                            <input type="hidden" name="idt" value="{{$tematica->getId()}}">
                                             {{ csrf_field()  }}
                                             <div class="form-row">
                                                 <input type="text" hidden name="tem" value="{{$tematica->getId()}}">
@@ -133,7 +139,7 @@
                                             </div>
                                         </form>
                                         <a href="#"  class="linkComent {{$res->getId()}}" onclick="mostrar('{{$res->getId()}}')">
-                                            <strong>Comentar ...</strong>
+                                            <strong> Comentar </strong>
                                         </a>
 
                                     </div>
@@ -142,13 +148,15 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+
+    <hr>
+</div>
                     @endforeach
                 </div>
             </div>
 
-            <div class="row">
-                <h2>Tu respuesta</h2>
+            <div class="row bg-dark p-4 text-white"  >
+                <h2>Responde a la Temática</h2>
                 <br>
                 <div class="col-md-12">
                     <form method="post" id="agregar" action="{{route('tematica.respuesta')}}" enctype="multipart/form-data">
@@ -161,7 +169,7 @@
                             <div class="col-md-12">
                                 <label for="descripcion">Descripción:</label>
                                 <textarea id="desc"
-                                          class="form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}"
+                                          class="form-control {{ $errors->has('desc') ? ' is-invalid' : '' }}"
                                           name="desc"
                                           cols="8"
                                           rows="10"
@@ -170,7 +178,7 @@
                                 </textarea>
                                 @if ($errors->has('desc'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('descripcion') }}</strong>
+                                        <strong>{{ $errors->first('desc') }}</strong>
                                     </span>
                                 @endif
 

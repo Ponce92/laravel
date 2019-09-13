@@ -43,6 +43,8 @@
                                         {{$not->rt_tipo_notificacion =='SRI' ? 'Ha solicitado registrarse en el sistema.':''}}
                                         {{$not->rt_tipo_notificacion =='SRA' ? 'Ha solicitado reactivar su cuenta.':''}}
                                         {{$not->rt_tipo_notificacion =='RSR' ? 'Ha aceptado su solicitud':''}}
+                                        {{$not->rt_tipo_notificacion =='NC' ? ', Ha comentado tu respuesta en el Foro':''}}
+                                        {{$not->rt_tipo_notificacion =='NR' ? ', Ha agregado una respuesta a tu Temática':''}}
                                         {{--
                                         Solicitud de de amistad
                                         --}}
@@ -111,6 +113,20 @@
                                                         Aceptar
                                                     </button>
                                                 </form>
+
+                                        @endif  
+                                        @if($not->getTipo() =='NC')
+                                                <a href="{{route('tematica.Index',['id'=>$not->rt_codigo_proyecto])}}" 
+                                                   onclick="leerNotificacion('{{$not->pk_id_notificacion}}')"
+                                                   >Ver Comentario</a>
+                                               
+
+                                        @endif
+                                        @if($not->getTipo() =='NR')
+                                                <a href="{{route('tematica.Index',['id'=>$not->rt_codigo_proyecto])}}" 
+                                                   onclick="leerNotificacion('{{$not->pk_id_notificacion}}')"
+                                                   >Ver Respuesta</a>
+                                                
 
                                         @endif
                                         @if($not->getTipo() =='SAI')

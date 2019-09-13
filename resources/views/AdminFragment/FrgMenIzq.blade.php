@@ -2,7 +2,7 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="{{ route('dashboard')}}">
                     <i class="fas fa-home">
                     </i>
                     Inicio

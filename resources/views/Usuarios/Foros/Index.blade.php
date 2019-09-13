@@ -62,7 +62,7 @@
                             <tr style="font-size: 14px;">
                                 <td colspan="1" align="center">
                                     <a href="{{route('getPerfilInvestigador',['id'=>$obj->getCreador()->getId()])}}">
-                                        <img src="{{asset('/avatar/'.$obj->getCreador()->getFoto())}}"
+                                        <img src="{{asset('storage/avatar/'.$obj->getCreador()->getFoto())}}"
                                              alt="Nombre de la persona"
                                              title="Nombre :"
                                              class="rounded-circle"

@@ -8,8 +8,8 @@
 @endsection
 
 @section('menu-sup-02')
-    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/foros">Foros</a></li>
+    <li class="breadcrumb-item"><a href="">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="">Foros</a></li>
     <li class="breadcrumb-item"><a href="{{route('tematicas.index',['id'=>$foro->getCodigo()])}}">{{$foro->getRed()->getNombre()}}</a></li>
     <li class="breadcrumb-item active">Agregar Temática</li>
 @endsection
@@ -59,7 +59,7 @@
                         <div class="col-md-12">
                             <label for="descripcion">Descripción:</label>
                             <textarea id="desc"
-                                      class="form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}"
+                                      class="form-control {{ $errors->has('desc') ? ' is-invalid' : '' }}"
                                       name="desc"
                                       cols="8"
                                       rows="10"
@@ -67,7 +67,7 @@
                             </textarea>
                             @if ($errors->has('desc'))
                                     <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('descripcion') }}</strong>
+                                    <strong>{{ $errors->first('desc') }}</strong>
                                 </span>
                                 @endif
 
@@ -84,7 +84,7 @@
         <div class="pie-seccion">
             <div class="row justify-content-end">
                 <div class="col-md-3 col-sm-6">
-                    <button type="reset" class="btn btn-lg bttn bttn-exit" style="color: #fff" >Cancelar</button>
+                    <button type="reset" class="btn btn-lg bttn bttn-exit" style="color: #fff" onclick="location.href = '{{ route('tematicas.index',['id'=>$foro->getCodigo()]) }}'">Cancelar</button>
                     &nbsp;
                     <button type="submit"
                             form="agregar"

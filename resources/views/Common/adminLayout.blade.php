@@ -126,6 +126,11 @@
 
                     </a>
                 </li>
+                <script type="text/javascript">
+    function loc(url) {
+        location.href=url;
+    }
+</script>
                 <li class="nav-item">
                 </li>
 

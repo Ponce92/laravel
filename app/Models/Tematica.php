@@ -65,7 +65,7 @@ class Tematica extends Model
     }
     public function getFecha(){
 
-       return  $this->fecha;
+       return  $this->created_at;
     }
 
     public function getEstado(){

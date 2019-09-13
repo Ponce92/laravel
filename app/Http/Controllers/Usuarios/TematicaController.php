@@ -8,6 +8,8 @@ use App\Models\Respuesta;
 use App\Models\Tematica;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Notificacion;
+use Carbon\Carbon;
 use Auth;
 
 
@@ -16,7 +18,7 @@ class TematicaController extends Controller
     public function index($id){
         $user=Auth::user();
         $foro=Foro::findOrFail($id);
-        $tematicas=Tematica::where('fk_id_foro','=',$id)->paginate(5);
+        $tematicas=Tematica::where('fk_id_foro','=',$id)->paginate(8);
 
         return view('Usuarios.Foros.Index')
             ->with('user',$user)
@@ -37,10 +39,16 @@ class TematicaController extends Controller
     }
 
     public function Crear(Request $request){
+        $this->validate($request, [
+            'titulo' => 'required|string|max:50|min:6',
+            'desc' => 'required|string|min:6',
+        ]);
         $user=Auth::user();
 
 
         $tema=new Tematica();
+        $foro=Foro::findOrFail($request->get('idf'));
+
 
         $tema->setId();
         $tema->setFecha();
@@ -52,6 +60,7 @@ class TematicaController extends Controller
 
 
         $tema->save();
+        
 
         return redirect()->route('tematicas.index',['id'=>$request->get('idf')])
             ->withsuccess('Se ha registrado el nuevo tema de discucion');
@@ -77,6 +86,9 @@ class TematicaController extends Controller
     }
 
     public function Responder(Request $request){
+        $this->validate($request, [
+            'desc' => 'required|string|min:6',
+            ]);
         $user=Auth::user();
 
         $resp=new Respuesta();
@@ -89,12 +101,28 @@ class TematicaController extends Controller
 
         $resp->save();
 
+        $ntf=new Notificacion;
+        $tema=Tematica::findOrFail($request->get('idt'));
+        $ntf->pk_id_notificacion=str_random(12);
+        $ntf->fk_id_usuario=$tema->id_creador;
+        $ntf->rl_vista=false;
+        $ntf->rt_tipo_notificacion='NR';
+        $fech=Carbon::now();
+        $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
+        $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
+        $ntf->rt_codigo_proyecto=$request->get('idt');
+        if( $ntf->fk_id_usuario != $ntf->fk_id_usuario_remitente ){
+         $ntf->save();   
+        }
+
         return redirect()->route('tematica.Index',['id'=>$request->get('idt')])
             ->withsuccess('Su respuesta se ha almacenado correctamente');
     }
 
     public function Comentar(Request $request)
     {
+        
+        
         $user=Auth::user();
 
         $com=new Comentario();
@@ -105,6 +133,21 @@ class TematicaController extends Controller
         $com ->setValor($request->get('comm'));
 
         $com->save();
+
+        $ntf=new Notificacion;
+        $respuesta=Respuesta::findOrFail($request->get('res'));
+        $ntf->pk_id_notificacion=str_random(12);
+        $ntf->fk_id_usuario=$respuesta->id_usuario;
+        $ntf->rl_vista=false;
+        $ntf->rt_tipo_notificacion='NC';
+        $fech=Carbon::now();
+        $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
+        $ntf->fk_id_usuario_remitente=$user->pk_id_usuario;
+        $ntf->rt_codigo_proyecto=$request->get('idt');
+        if( $ntf->fk_id_usuario != $ntf->fk_id_usuario_remitente ){
+         $ntf->save();   
+        }
+        
 
         return redirect()->route('tematica.Index',['id'=>$request->get('tem')])
             ->withsuccess('Su respuesta se ha almacenado correctamente');
