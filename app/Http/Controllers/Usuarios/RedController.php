@@ -113,6 +113,7 @@ class RedController extends Controller
 
         $idTipoProyecto=0;
 
+
         if($request->has('tipo_proyecto')){
             $idTipoProyecto=$request->get('tipo_proyecto');
         }
@@ -163,6 +164,7 @@ class RedController extends Controller
                 ->where('tbl_proyectos_investigacion.fk_id_tipo_proyecto','=',$idTipoProyecto)
                 ->where('tbl_usuarios_proyectos.fk_id_participante','<>',$user->getId())
                 ->paginate(8);
+             
         }else{
             $redes=DB::table('tbl_redes_investigadores')
                 ->join('tbl_usuarios_proyectos','tbl_usuarios_proyectos.fk_id_proyecto_investigacion','=','tbl_redes_investigadores.fk_id_proyecto_investigacion')
