@@ -238,6 +238,7 @@ class InvestigadorController extends Controller
 
             $Invs[$i]['npu']=$pub+$lib;
             $Invs[$i]['npr']=ProyectoRealizado::where('fk_id_usuario','=',$js->pk_id_usuario)->count();
+            $Invs[$i]['edad']=Carbon::parse($js->rf_fecha_nacimiento)->age;
 
             $i++;
         }
