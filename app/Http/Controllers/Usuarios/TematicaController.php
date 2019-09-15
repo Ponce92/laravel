@@ -11,8 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Notificacion;
 use Carbon\Carbon;
 use Auth;
-use DB;
-use App\User;
 
 
 class TematicaController extends Controller
@@ -42,7 +40,7 @@ class TematicaController extends Controller
 
     public function Crear(Request $request){
         $this->validate($request, [
-            'titulo' => 'required|string|max:50|min:6|unique:tbl_tematicas,titulo',
+            'titulo' => 'required|string|max:50|min:6',
             'desc' => 'required|string|min:6',
         ]);
         $user=Auth::user();
@@ -62,33 +60,10 @@ class TematicaController extends Controller
 
 
         $tema->save();
-
-        //obtenemos los participantes del foro
-        
-        
-        $colaboradores=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$foro->fk_id_proyecto)->get();
-        foreach ($colaboradores as $col){
-            
-            $ntf=new Notificacion;
-        
-            $ntf->pk_id_notificacion=str_random(12);
-            $ntf->fk_id_usuario=$col->fk_id_participante;
-            $ntf->rl_vista=false;
-            $ntf->rt_tipo_notificacion='NT';
-            $fech=Carbon::now();
-            $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
-            $ntf->fk_id_usuario_remitente=$tema->id_creador;
-            $ntf->rt_codigo_proyecto=$tema->pk_id_tema;
-
-            if( $ntf->fk_id_usuario != $ntf->fk_id_usuario_remitente ){
-             $ntf->save();   
-            }
-            
-        }
         
 
         return redirect()->route('tematicas.index',['id'=>$request->get('idf')])
-            ->withsuccess('Se ha registrado el nuevo tema de discucion');
+            ->withsuccess('Se ha registrado el nuevo tema de discusión.');
     }
 
     public function Show($id){
@@ -141,7 +116,7 @@ class TematicaController extends Controller
         }
 
         return redirect()->route('tematica.Index',['id'=>$request->get('idt')])
-            ->withsuccess('Su respuesta se ha almacenado correctamente');
+            ->withsuccess('Su respuesta se ha enviado correctamente.');
     }
 
     public function Comentar(Request $request)
@@ -175,6 +150,6 @@ class TematicaController extends Controller
         
 
         return redirect()->route('tematica.Index',['id'=>$request->get('tem')])
-            ->withsuccess('Su respuesta se ha almacenado correctamente');
+            ->withsuccess('Su respuesta se ha enviado correctamente.');
     }
 }

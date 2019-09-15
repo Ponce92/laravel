@@ -107,7 +107,7 @@
                                     <strong>Sexo:</strong> {{$obj['sexo'] ==1 ?  "Mujer":'Hombre'}}
                                 </td>
                                 <td colspan="1">
-                                    <strong>Edad:</strong>
+                                    <strong>Edad:</strong> {{$obj['edad']}}
                                 </td>
 
                                 <td colspan="1" rowspan="3" align="center" class="align-middle">
