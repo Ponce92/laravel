@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Notificacion;
 use Carbon\Carbon;
 use Auth;
+use DB;
+use App\User;
 
 
 class TematicaController extends Controller
@@ -40,7 +42,7 @@ class TematicaController extends Controller
 
     public function Crear(Request $request){
         $this->validate($request, [
-            'titulo' => 'required|string|max:50|min:6',
+            'titulo' => 'required|string|max:50|min:6|unique:tbl_tematicas,titulo',
             'desc' => 'required|string|min:6',
         ]);
         $user=Auth::user();
@@ -173,5 +175,6 @@ class TematicaController extends Controller
         
 
         return redirect()->route('tematica.Index',['id'=>$request->get('tem')])
+            ->withsuccess('Su respuesta se ha almacenado correctamente');
     }
 }
