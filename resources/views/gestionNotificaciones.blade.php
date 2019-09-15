@@ -45,6 +45,7 @@
                                         {{$not->rt_tipo_notificacion =='RSR' ? 'Ha aceptado su solicitud':''}}
                                         {{$not->rt_tipo_notificacion =='NC' ? ', Ha comentado tu respuesta en el Foro':''}}
                                         {{$not->rt_tipo_notificacion =='NR' ? ', Ha agregado una respuesta a tu Temática':''}}
+                                        {{$not->rt_tipo_notificacion =='NT' ? ', Ha agregado una nueva temática al Foro':''}}
                                         {{--
                                         Solicitud de de amistad
                                         --}}
@@ -126,6 +127,13 @@
                                                 <a href="{{route('tematica.Index',['id'=>$not->rt_codigo_proyecto])}}" 
                                                    onclick="leerNotificacion('{{$not->pk_id_notificacion}}')"
                                                    >Ver Respuesta</a>
+                                                
+
+                                        @endif
+                                        @if($not->getTipo() =='NT')
+                                                <a href="{{route('tematica.Index',['id'=>$not->rt_codigo_proyecto])}}" 
+                                                   onclick="leerNotificacion('{{$not->pk_id_notificacion}}')"
+                                                   >Ver Temática</a>
                                                 
 
                                         @endif

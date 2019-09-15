@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Notificacion;
 use Carbon\Carbon;
 use Auth;
+use DB;
+use App\User;
 
 
 class TematicaController extends Controller
@@ -40,7 +42,7 @@ class TematicaController extends Controller
 
     public function Crear(Request $request){
         $this->validate($request, [
-            'titulo' => 'required|string|max:50|min:6',
+            'titulo' => 'required|string|max:50|min:6|unique:tbl_tematicas,titulo',
             'desc' => 'required|string|min:6',
         ]);
         $user=Auth::user();
@@ -60,6 +62,29 @@ class TematicaController extends Controller
 
 
         $tema->save();
+
+        //obtenemos los participantes del foro
+        
+        
+        $colaboradores=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$foro->fk_id_proyecto)->get();
+        foreach ($colaboradores as $col){
+            
+            $ntf=new Notificacion;
+        
+            $ntf->pk_id_notificacion=str_random(12);
+            $ntf->fk_id_usuario=$col->fk_id_participante;
+            $ntf->rl_vista=false;
+            $ntf->rt_tipo_notificacion='NT';
+            $fech=Carbon::now();
+            $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
+            $ntf->fk_id_usuario_remitente=$tema->id_creador;
+            $ntf->rt_codigo_proyecto=$tema->pk_id_tema;
+
+            if( $ntf->fk_id_usuario != $ntf->fk_id_usuario_remitente ){
+             $ntf->save();   
+            }
+            
+        }
         
 
         return redirect()->route('tematicas.index',['id'=>$request->get('idf')])

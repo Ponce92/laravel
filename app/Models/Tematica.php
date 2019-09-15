@@ -46,6 +46,12 @@ class Tematica extends Model
         $user=User::find($this->id_creador);
         return $user;
     }
+    public function getPersona(){
+        $user=User::find($this->id_creador);
+        $per=Persona::find($user->fk_id_persona);
+        $nombre=$per->rt_nombre_persona.' '.$per->rt_apellido_persona;
+        return $nombre;
+    }
 
     public function getRespuestas(){
         $resp=Respuesta::where('fk_id_tema','=',$this->pk_id_tema)->get();

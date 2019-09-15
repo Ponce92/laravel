@@ -8,6 +8,7 @@
 @section('menu-sup-02')
     <li class="breadcrumb-item"><a href="">Inicio</a></li>
     <li class="breadcrumb-item"><a href="">Foros</a></li>
+    <li class="breadcrumb-item"><a href="{{route('tematicas.index',['id'=>$tematica->getId()])}}">{{ $tematica->getTitulo()}}</a></li>
     <li class="breadcrumb-item active"></li>
 @endsection
 
@@ -18,18 +19,24 @@
 @section('default')
     <div class="container-fluid area-trabajo " id="area-trabajo">
         <br>
-        <div class="row cabeza-seccion">
-            <div class="col-6">
-                <h2 class="titulo-seccion titulo text-primary">{{$tematica->getTitulo()}} </h2>
+        <div class="row cabeza-seccion ">
+            <div class="col-sm-7">
+                <h4 class="text-primary"><strong> Tema: {{$tematica->getTitulo()}} </strong> </h4>
             </div>
-            <div class="col-6">
-                    <h2 class="titulo-seccion titulo text-primary">
-                        <strong> Número de Respuestas: {{count($tematica->getRespuestas())}}</strong>
-                    </h2>
+            <div class="col-sm-5">
+                    <h4 class="text-primary" >
+                        <strong> Respuestas: {{count($tematica->getRespuestas())}}</strong>
+                    </h4>
+            </div>
+            <div class="col-sm-4">
+                    <h4 class="text-primary">
+                        <strong> Creador: {{$tematica->getPersona()}}</strong>
+                    </h4>
             </div>
         </div>
         <div class="row justify-content-center">
-                <div class="col-sm-12"> Descripción: {!!$tematica->getDesc()!!}
+                <div class="col-sm-12">
+                 Descripción: {!!$tematica->getDesc()!!} 
                 </div>
             </div>
 
