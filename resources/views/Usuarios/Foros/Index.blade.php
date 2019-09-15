@@ -6,8 +6,8 @@
 
 
 @section('menu-sup-02')
-    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/foros">Foros</a></li>
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{{route('foros')}}">Foros</a></li>
     <li class="breadcrumb-item active">{{$foro->getRed()->getNombre()}}</li>
 @endsection
 
@@ -54,7 +54,7 @@
                             <th scope="col">Estado</th>
                             <th scope="col">Respuestas</th>
                             <th scope="col">Fecha de Creación</th>
-                            <th scope="col"></th>
+                            <th scope="col">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -79,6 +79,9 @@
                                 <td colspan="1" align="center" style="vertical-align: middle">
                                     <a href="{{route('tematica.Index',['id'=>$obj->getId()])}}">
                                         <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
+                                    </a>
+                                    <a href="{{route('eliminar.tema',['id'=>$obj->getId()])}}">
+                                        <i class="fas fa-trash-alt fa-2x bttn bttn-del"></i>
                                     </a>
                                 </td>
 

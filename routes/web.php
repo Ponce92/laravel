@@ -204,7 +204,7 @@ Route::post('/foros/tematica/respuesta/comentar','Usuarios\TematicaController@Co
 
 Route::get('/foros/show/{id}','Usuarios\ForosController@showForo')->name('foros.shows');
 Route::get('/respuestas/show/{id}/{idf}','RespuestasController@showRespuestas')->name('respuestas.shows');
-Route::get('/foros/eliminar/{id}','ForosController@eliminarTema')->name('eliminar.tema');
+Route::get('/foros/eliminar/{id}','Usuarios\ForosController@eliminarTema')->name('eliminar.tema');
 Route::get('/respuesta/eliminar/{id}/{idt}','RespuestasController@eliminarRespuesta')->name('eliminar.respuesta');
 
 Route::resource('/respuestas','RespuestasController');

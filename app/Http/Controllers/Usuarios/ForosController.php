@@ -168,12 +168,12 @@ class ForosController extends Controller
 
 
 
-            return redirect()->route('foros.shows', ['id' => $idf])->withsuccess('La temática se ha eliminado correctamente');
+            return back()->withsuccess('La temática se ha eliminado correctamente');
         }else{
 
 
 
-            return redirect()->route('foros.shows', ['id' => $idf])->withinfo('No eres el creador de la temática');
+            return back()->withinfo('No eres el creador de la temática');
 
         }
         //return $id;

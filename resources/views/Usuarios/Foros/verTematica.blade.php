@@ -6,9 +6,9 @@
 
 
 @section('menu-sup-02')
-    <li class="breadcrumb-item"><a href="">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="">Foros</a></li>
-    <li class="breadcrumb-item"><a href="{{route('tematicas.index',['id'=>$tematica->getId()])}}">{{ $tematica->getTitulo()}}</a></li>
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{{route('foros')}}">Foros</a></li>
+    <li class="breadcrumb-item"><a href="{{route('tematicas.index',['id'=>$tematica->getForo()->getCodigo()])}}"> Temáticas </a></li>
     <li class="breadcrumb-item active"></li>
 @endsection
 

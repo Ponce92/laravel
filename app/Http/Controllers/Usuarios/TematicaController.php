@@ -62,9 +62,9 @@ class TematicaController extends Controller
 
 
         $tema->save();
-
-        //obtenemos los participantes del foro
-        
+        $creador=$tema->id_creador;
+        $idtema=$tema->pk_id_tema;
+        //obtenemos los participantes del foro para enviarles la notificacion
         
         $colaboradores=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$foro->fk_id_proyecto)->get();
         foreach ($colaboradores as $col){
@@ -77,8 +77,8 @@ class TematicaController extends Controller
             $ntf->rt_tipo_notificacion='NT';
             $fech=Carbon::now();
             $ntf->rf_fecha_creacion=$fech->format('Y-m-d');
-            $ntf->fk_id_usuario_remitente=$tema->id_creador;
-            $ntf->rt_codigo_proyecto=$tema->pk_id_tema;
+            $ntf->fk_id_usuario_remitente=$creador;
+            $ntf->rt_codigo_proyecto=$idtema;
 
             if( $ntf->fk_id_usuario != $ntf->fk_id_usuario_remitente ){
              $ntf->save();   
