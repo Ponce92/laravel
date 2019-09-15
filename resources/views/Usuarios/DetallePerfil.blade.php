@@ -10,7 +10,7 @@
 
 @section('menu-sup-02')
     @if($user->fk_id_rol==0)
-        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
         <li class="breadcrumb-item"><a href="{{route('gestionRegistrosInv')}}">Registros de investigadores</a></li>
         <li class="breadcrumb-item active">Perfil</li>
     @else

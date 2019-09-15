@@ -10,7 +10,7 @@
 
 @section('menu-sup-02')
 
-    <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Inicio</a></li>
     <li class="breadcrumb-item "><a href="{{route('redes.busqueda')}}">Búsqueda de redes</a></li>
     <li class="breadcrumb-item active">{{$red->rt_nombre_red}}</li>
 
