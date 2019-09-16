@@ -80,7 +80,7 @@
                                     <a href="{{route('tematica.Index',['id'=>$obj->getId()])}}">
                                         <i class="fas fa-eye fa-2x bttn bttn-ver"></i>
                                     </a>
-                                    <a href="{{route('eliminar.tema',['id'=>$obj->getId()])}}">
+                                    <a href="{{route('eliminar.tema',['id'=>$obj->getId()])}}" onclick="return confirm('¿Deseas Eliminar la Temática?')">
                                         <i class="fas fa-trash-alt fa-2x bttn bttn-del"></i>
                                     </a>
                                 </td>

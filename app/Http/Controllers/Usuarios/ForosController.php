@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Usuarios;
 
 use DB;
 use App\Models\Foro;
+use App\Models\Notificacion;
 use App\Models\Icono;
 use App\Models\Color;
 use App\Models\Tematica;
@@ -160,12 +161,14 @@ class ForosController extends Controller
         $count=Tematica::where('id_creador',$idu)->count();
 
             $tema=Tematica::find($id);
-        $idf=$tema->fk_id_foro;
             if($tema->id_creador == $idu){
+            //Borramos las notificaciones si exiten, para la tematica eliminada
+            DB::delete('delete from app.tbl_notificaciones where rt_codigo_proyecto= ?', [$id]);
 
 
             $tema->delete();
-
+            
+            
 
 
             return back()->withsuccess('La temática se ha eliminado correctamente');
