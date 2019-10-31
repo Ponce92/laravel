@@ -17,6 +17,7 @@ use App\Models\ProyectosInvestigacion;
 use App\Models\RedInvestigadores;
 use App\Models\TiposProyectosInvestigacion;
 use App\Models\Foro;
+use App\Models\FuentesFinanciamiento;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
@@ -67,17 +68,19 @@ class ProyectosInvestigacionController extends Controller
     {
         $user=Auth::user();
         $areas=AreasConocimiento::where('pk_id_area','<',100)->get();
+        $fuentes=FuentesFinanciamiento::where('pk_id_fuente','<',20)->get();
 
 
         return view('Usuarios.ProyectosInvestigacion.RegistrarProyectoInvestigacion')
             ->with('user',$user)
             ->with('paises',Pais::where('rl_estado','=',true)->get())
             ->with('colores',Color::all())
-            ->with('objetivosS',ObjetivoSocioeconomico::all())
+            ->with('objetivosS',ObjetivoSocioeconomico::where('rl_estado','=',true)->get())
             ->with('tiposProyectos',TiposProyectosInvestigacion::all())
             ->with('areas',$areas)
+            ->with('fuentes',$fuentes)
             ->with('iconos',Icono::all())
-            ->with('estados',EstadoProyectoInvestigacion::all());
+            ->with('estados',EstadoProyectoInvestigacion::where('rl_estado','=',true)->get());
     }
 
     public function registrar(CrearRequest $request)
@@ -167,6 +170,16 @@ class ProyectosInvestigacionController extends Controller
                 $dt->fk_codigo_color=1;
             }else{
                 $dt->fk_codigo_color=$request->get('colorIcon');
+            }
+
+            //Guardando la fuente de financiamiento
+            if ($request->get('tipoFuente') < 13 ) {
+                $dt->fk_id_fuente=$request->get('tipoFuente');
+            }else{
+                $fufi=new FuentesFinanciamiento;
+                $fufi->rt_nombre_fuente=$request->get('fuente-f');
+                $fufi->save();
+                $dt->fk_id_fuente=$fufi->pk_id_fuente;
             }
 
             $dt->save();
@@ -290,6 +303,7 @@ class ProyectosInvestigacionController extends Controller
         $area=$proyecto->getArea();
         $estadoProyecto=$proyecto->getEstado();
         $titular=$proyecto->getTitular();
+        $fuentes=FuentesFinanciamiento::all();
 
 
         $colaboradores=DB::table('tbl_usuarios_proyectos')->where('fk_id_proyecto_investigacion','=',$id)
@@ -312,6 +326,7 @@ class ProyectosInvestigacionController extends Controller
             ->with('titular',$titular)
             ->with('valorIcono',$valorIcono)
             ->with('valorColor',$valorColor)
+            ->with('fuentes',$fuentes)
             ->with('areas',$areas)
             ->with('area',$area)
             ->with('estadoProyecto',$estadoProyecto)
@@ -368,6 +383,19 @@ class ProyectosInvestigacionController extends Controller
         }
 
         $idP=$detalle->fk_id_proyecto;
+                    //Guardando la fuente de financiamiento
+            if ($request->get('tipoFuente') !==  13) {
+                $detalle->fk_id_fuente=$request->get('tipoFuente');
+            }
+
+            if ($request->get('tipoFuente') ==  13) {
+        
+                $fufi=new FuentesFinanciamiento;
+                $fufi->rt_nombre_fuente=$request->get('fuente-f');
+                $fufi->save();
+                $detalle->fk_id_fuente=$fufi->pk_id_fuente;
+            }
+            
 
         $detalle->save();
 

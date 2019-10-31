@@ -246,6 +246,30 @@ Route::get('admin/ajustes/grado/editar/{id}/','Administrador\GradoController@get
 Route::post('admin/ajustes/grado/editar/','Administrador\GradoController@editar')->name('grado.editar.post');
 
 /*---------------------------------------------------------------------------------------------
+ *  |    Objetivos socieconomicos                                                       -------
+ *---------------------------------------------------------------------------------------------
+ */
+
+Route::get('admin/ajustes/objetivo/','Administrador\ObjetivoController@index')->name('objetivos');
+Route::get('admin/ajustes/objetivo/crear/','Administrador\ObjetivoController@getCrear')->name('objetivo.crear');
+Route::post('admin/ajustes/objetivo/crear/post/','Administrador\ObjetivoController@crear')->name('objetivo.crear.post');
+
+Route::get('admin/ajustes/objetivo/editar/{id}/','Administrador\ObjetivoController@getEditar')->name('objetivo.editar');
+Route::post('admin/ajustes/objetivo/editar/','Administrador\ObjetivoController@editar')->name('objetivo.editar.post');
+
+/*---------------------------------------------------------------------------------------------
+ *  |    Estados de Proyectos                                                           -------
+ *---------------------------------------------------------------------------------------------
+ */
+
+Route::get('admin/ajustes/estados/','Administrador\EstadoProyectoController@index')->name('estados');
+Route::get('admin/ajustes/estados/crear/','Administrador\EstadoProyectoController@getCrear')->name('estado.crear');
+Route::post('admin/ajustes/estados/crear/post/','Administrador\EstadoProyectoController@crear')->name('estado.crear.post');
+
+Route::get('admin/ajustes/estados/editar/{id}/','Administrador\EstadoProyectoController@getEditar')->name('estado.editar');
+Route::post('admin/ajustes/estados/editar/','Administrador\EstadoProyectoController@editar')->name('estado.editar.post');
+
+/*---------------------------------------------------------------------------------------------
  *  |    Modulo de chat en linea  de RIUES                                               -------
  *---------------------------------------------------------------------------------------------
  */

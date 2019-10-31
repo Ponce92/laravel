@@ -13,6 +13,7 @@ use App\Models\AreasConocimiento;
 use App\Models\GradosAcademicos;
 use App\Models\Notificacion;
 use DB;
+use Mail;
 
 class RegistrosController extends Controller
 {
@@ -167,6 +168,16 @@ class RegistrosController extends Controller
 
         }
         if($exito){
+            $data = array(
+                'name' => $persona->rt_nombre_persona ,
+                 'correo' => $usuario->email ,
+                 'apellido' => $persona->rt_apellido_persona, );
+
+            Mail::send('emails.nuevoRegistro', $data, function($message){
+                $message->from('sic@ues.edu.sv', 'Nueva Registro de Investigador');
+                $message->to('sic@ues.edu.sv')->subject('Ver el nuevo registro');
+            });
+
             return redirect()->route('log')
                 ->withsuccess('Se ha registrado con éxito, ahora puede ingresar al sistema con sus credenciales.');
         }

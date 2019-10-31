@@ -46,8 +46,9 @@
 
 
 
-
+        @if($user->fk_id_estado == 1  )
         @include('AdminFragment.FrDefault')
+        @endif
 
             <br>
             @if($user->fk_id_estado == 0  )

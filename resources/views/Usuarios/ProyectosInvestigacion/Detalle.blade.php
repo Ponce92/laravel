@@ -71,15 +71,15 @@
                                     </div>
                                     <div class="col-9">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-12">
                                                 <label for="titulo">Título del proyecto:</label>
-                                                <input  type="text"
+                                                <textarea
                                                         name="titulo"
                                                         id="titulo"
-                                                        class="form-control mb-3"
-                                                        value="{{$proyecto->getTitulo()}}"
-                                                        readonly
-                                                >
+                                                        class="form-control edt mb-3"
+                                                        cols="50"
+                                                        rows="3"
+                                                        readonly> {{$proyecto->getTitulo()}}</textarea>
                                             </div>
                                             <div class="col-3">
                                                 <label for="titulo">Código proyecto:</label>
@@ -187,14 +187,13 @@
                                                 <label for="descripcion">Descripción del Proyecto:</label>
                                                 <textarea   name="descripcion"
                                                             id="descripcion"
+                                                            class="form-control edt mb-3"
                                                             cols="50"
-                                                            rows="3"
-                                                            {{$errors->any() ? '':'disabled'}}
-                                                            class="form-control edt  mb-3
-                                                        {{$errors->has('descripcion') ? 'is-invalid':''}}"
-                                                            rows="10">@if($errors->any()){{old('descripcion')}}@else{{$proyecto->getDescripcion()}}@endif</textarea>
+                                                            rows="9"
+                                                >{{$proyecto->getDescripcion()}} </textarea>
                                             </div>
-
+                                                  <div class="invalid-feedback">{{$errors->first('titulo')}}</div>
+                                                  
                                         </div>
                                     </div>
                                 </div>

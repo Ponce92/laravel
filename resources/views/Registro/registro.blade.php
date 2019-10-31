@@ -140,8 +140,8 @@
                                             <input type="text"
                                                    style="background-color: white"
                                                    name="fecha"
+                                                   placeholder="DD-MM-AAAA"
                                                    id="fecha"
-                                                   readonly
                                                    class="form-control{{$errors->has('fecha') ? 'is-invalid':''}}"
                                                    value="{{old('fecha')}}"
                                             >

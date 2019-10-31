@@ -12,6 +12,19 @@ function verificarSelcArea(campo){
     }
 }
 
+$("#tipoFuente").change();
+
+function verificarSelcFF(campo){
+    var c=($('select[name="tipoFuente"] option:selected').text());
+
+
+    if (c.trim()=='13'){
+        $('#fuente-f').prop('disabled',false);
+    }else {
+        $('#fuente-f').prop('disabled', true);
+    }
+}
+
 $(function () {
    $('#ff').datepicker({
         dateFormat:"dd-mm-yy",

@@ -39,7 +39,7 @@
     
                     @if(count($prjs) > 0)
                         @foreach($prjs as $prj)
-                            <div class="card mb-3" style="width: 18rem;margin-left: 15px">
+                            <div class="card mb-3" style="width: 15rem;margin-left: 15px;">
                                 <div class="card-header">
                                     <div class="row justify-content-center">
 
@@ -47,9 +47,10 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="cb-tit-prj">
-                                        {{$prj->rt_titulo_proyecto}}
-                                    </h4>
+                                     <label for="#">Titulo  </label>
+                                    <br class="text-h4-card">
+                                        {{ substr($prj->rt_titulo_proyecto, 0, 100) }}...
+                                    </br>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row justify-content-center">

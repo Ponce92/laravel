@@ -24,9 +24,9 @@ class CrearRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|min:8|max:150|string',
+            'nombre'=>'required|min:8|max:1500|string',
             'codigo'=>'max:45|min:5|nullable',
-            'acronimo'=>'string|max:25|min:5',
+            'acronimo'=>'string|max:25|min:3',
             'tipoP'=>'required',
             'area'=>'required',
             'area-c'=>'string|required_if:area,"Otra Área de conocimiento"',
@@ -36,7 +36,7 @@ class CrearRequest extends FormRequest
             'monto'=>'numeric|required',
             'fi'=>'required',
             'ff'=>'required',
-            'red'=>'string|min:6|max:100',
+            'red'=>'string|min:3|max:100',
             'tipoRed'=>'required',
             'Obj'=>'required'
         ];

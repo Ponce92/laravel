@@ -19,7 +19,7 @@
         <br>
         <div class="row cabeza-seccion">
             <div class="col-6">
-                <h2 class="titulo-seccion titulo">Mis proyectos de investigación</h2>
+                <h2 class="titulo-seccion titulo">Proyectos de investigación</h2>
             </div>
             <div class="col-6">
                 <div class="row justify-content-end">
@@ -65,9 +65,10 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="cb-tit-prj">
-                                        {{$prj->rt_titulo_proyecto}}
-                                    </h4>
+                                    <label for="#">Titulo  </label>
+                                    <br class="cb-tit-prj">
+                                        {{ substr($prj->rt_titulo_proyecto, 0, 100) }}...
+                                    </br>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row justify-content-end">

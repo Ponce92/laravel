@@ -34,16 +34,18 @@
                 </div>
                 <div class="col-9">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <label for="titulo">Título del proyecto:</label>
-                            <input  type="text"
+                            <textarea 
                                     name="titulo"
                                     id="titulo"
-                                    class="form-control {{$errors->has('titulo') ? 'is-invalid':''}} edt mb-3"
-                                    value="@if($errors->any()){{$errors->has('titulo') ? old('titulo'):''}}@else{{$proyecto->rt_titulo_proyecto}}@endif"
-                                    {{$errors->any() ? '':'disabled'}}
-                            >
+                                    cols="50"
+                                    rows="3"
+                                    class="form-control {{$errors->has('titulo') ? 'is-invalid':''}} edt mb-3" >{{$proyecto->rt_titulo_proyecto}}
+                                    
+                            </textarea>
                             <div class="invalid-feedback">{{$errors->first('titulo')}}</div>
+                            
                         </div>
                         <div class="col-3">
                             <label for="titulo">Código del proyecto :</label>
@@ -107,21 +109,19 @@
                                 @include('Frg.select_objetivo_socioeconomico')
 
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="descripcion">Descripción del Proyecto:</label>
                             <textarea   name="descripcion"
                                         id="descripcion"
+                                        class="form-control {{$errors->has('descripcion') ? 'is-invalid':''}} edt mb-3"
                                         cols="50"
-                                        rows="3"
-                                        {{$errors->any() ? '':'disabled'}}
-                                        class="form-control edt  mb-3
-                                                        {{$errors->has('descripcion') ? 'is-invalid':''}}"
-                                        rows="10">@if($errors->any()){{old('descripcion')}}@else{{$proyecto->getDescripcion()}}@endif</textarea>
+                                        rows="8"
+                                        >{{$proyecto->getDescripcion()}}</textarea>
                         </div>
-
+                           <div class="invalid-feedback">{{$errors->first('descripcion')}}</div>
+                           
                     </div>
                 </div>
             </div>

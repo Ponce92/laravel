@@ -24,14 +24,14 @@ class ActualizarDatosGeneralesRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo'=>'string|min:4|max:100',
+            'titulo'=>'string|min:4|max:1500',
             'codigo'=>'string',
             'acronimo'=>'string|max:50',
             'estado_proyecto'=>'required',
             'tipo_proyecto'=>'required',
             'area'=>'required',
             'area-c'=>'string|required_if:area,"Otra Área del conocimiento"',
-            'descripcion'=>'string|min:4|max:250'
+            'descripcion'=>'string|min:4|max:2500'
 
         ];
     }
@@ -46,6 +46,7 @@ class ActualizarDatosGeneralesRequest extends FormRequest
             'acronimo.string'=>'Debes especificar un acrónimo del proyecto',
             'area-c.required'=>'Especifíca un valor para el Área del conocimiento',
             'descripcion.string'=>'Especifíca una descripción del proyecto',
+            'descripcion.min'=>'La descripcion debe tener más de 4 caracteres',
             'descripcion.max'=>'Longitud de la descripción excede el máximo de caracteres'
         ];
     }

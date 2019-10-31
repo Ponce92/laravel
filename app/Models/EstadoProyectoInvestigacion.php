@@ -20,4 +20,20 @@ class EstadoProyectoInvestigacion extends Model
         return $this->rt_nombre_estado;
     }
 
+    public function getNombre(){
+        return $this->rt_nombre_estado;
+    }
+    public function setNombre($nom){
+        $this->rt_nombre_estado=$nom;
+    }
+
+    public function getEstadoo(){
+        return $this->rl_estado;
+    }
+
+    public function setEstadoo($est){
+        $this->rl_estado=$est;
+    }
+
+
 }

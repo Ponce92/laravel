@@ -126,7 +126,7 @@
                 </li>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link nav-dropdown-toggle" href="#">
-                        <i class="icon-settings"></i>Ajustes
+                        <i class="icon-settings"></i>Catálogos
                     </a>
                     <ul class="nav-dropdown-items">
 
@@ -140,6 +140,18 @@
                             <a class="nav-link" href="{{ route('grados') }}">
 
                                 <i class="nav icon icon-list"></i> Grados académicos
+                            </a>
+                        </li>
+                        <li class="nav-item"   >
+                            <a class="nav-link" href="{{ route('objetivos') }}">
+
+                                <i class="nav icon icon-list"></i>Obj. socioeconómico
+                            </a>
+                        </li>
+                        <li class="nav-item"   >
+                            <a class="nav-link" href="{{ route('estados') }}">
+
+                                <i class="nav icon icon-list"></i> Estados de proyectos
                             </a>
                         </li>
                     </ul>

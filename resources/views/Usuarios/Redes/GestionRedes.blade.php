@@ -42,7 +42,7 @@
                                 </h4>
                                 <label for="#">Proyecto asociado: </label>
                                 <br>
-                                {{$red['nombreProyecto']}}
+                                {{ substr($red['nombreProyecto'], 0, 100) }}...
                                 <br>
 
                             </div>

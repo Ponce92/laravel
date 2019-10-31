@@ -65,7 +65,7 @@
                             </h4>
                             <label for="#">Proyecto asociado: </label>
                             <br>
-                            {{$red->rt_titulo_proyecto}}
+                            {{substr($red->rt_titulo_proyecto, 0, 100)}}...
                             <br>
 
                         </div>

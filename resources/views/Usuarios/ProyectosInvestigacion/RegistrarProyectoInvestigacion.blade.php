@@ -226,7 +226,7 @@
 
                                     <div class="form-row">
                                         <label for="desc">Descripción del proyecto: <h5 class="srt">*</h5></label>
-                                        <textarea name="desc" id="desc" cols="30" rows="4" class="form-control {{$errors->has('desc') ? 'is-invalid':''}}"></textarea>
+                                        <textarea name="desc" id="desc" cols="30" rows="15" class="form-control {{$errors->has('desc') ? 'is-invalid':''}}"></textarea>
                                         <div class="invalid-feedback">Este campo es obligatorio</div>
                                     </div>
                                 </div> {{-- ++++++++++++++++++++++++++++++Fin datos generales del proyecto++++++++++++++++++++++++++++  --}}
@@ -240,12 +240,28 @@
                                         <div class="col-6">
                                             <label for="tipo">Fuente de financiamiento:</label>
                                             <select name="tipoFuente"
-                                            id="tipoFuente"
-                                            class="form-control mb-3"
-                                            disabled>
-                                                <option value="4">Mixto</option>
-                                                <option value="3" selected>Externa</option>
+                                                    id="tipoFuente"
+                                                    class="form-control mb-3"
+                                                    onchange="if(this.value=='13') document.getElementById('fuente-f').disabled = false"
+                                            >
+                                                <option value="" selected>No especificada</option>
+                                                @foreach($fuentes as $area)
+                                                    <option value="{{$area->pk_id_fuente}}" {{old('tipoFuente') ==$area->pk_id_fuente ? 'selected':''}} >
+                                                        {{$area->rt_nombre_fuente}}
+                                                    </option>
+                                                @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="area-f">Especifique Fuente:</label>
+                                            <input type="text"
+                                                   name="fuente-f"
+                                                   id="fuente-f"
+                                                   class="form-control {{$errors->has('fuente-f') ? 'is-invalid':''}}"
+                                                   value="{{$errors->any() ? old('fuente-f'):'' }}"
+                                                   disabled
+                                            >
+                                                                                    
                                         </div>
                                         <div class="col-6">
                                             <label for="monto">Monto de la inversión <h5 class="srt">*</h5></label>
@@ -331,8 +347,8 @@
                                                     class="form-control {{$errors->has('tipoRed') ? 'is-invalid':''}}"
                                             >
                                                 <option value="">No especificado</option>
-                                                 <option value="1">Disciplinaria</option>
-                                                <option value="2">Multidisciplinaria</option>
+                                                 <option value="2">Disciplinaria</option>
+                                                <option value="1">Multidisciplinaria</option>
                                             </select>
                                             <div class="invalid-feedback">Especifique el tipo de red de investigadores.</div>
                                         </div>

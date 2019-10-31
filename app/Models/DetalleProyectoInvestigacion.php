@@ -62,4 +62,7 @@ class DetalleProyectoInvestigacion extends Model
     public function getMonto(){
         return $this->rn_monto;
     }
+    public function getFF(){
+        return $this->fk_id_fuente;
+    }
 }

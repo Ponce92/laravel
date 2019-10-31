@@ -103,7 +103,32 @@
                                                     <div class="invalid-feedback">Debe ser mayor a cero</div>
                                                 </div>
                                             </div>
-
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="tipo">Fuente de financiamiento:</label>
+                                            <select name="tipoFuente"
+                                                    id="tipoFuente"
+                                                    class="form-control edt"
+                                                    onchange="if(this.value=='13') document.getElementById('fuente-f').disabled = false"
+                                                    disabled 
+                                            >
+                                                @foreach($fuentes as $area)
+                                                    <option value="{{$area->pk_id_fuente}}" {{$detalle->getFF() == $area->pk_id_fuente ? 'selected':''}} >
+                                                        {{$area->rt_nombre_fuente}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                            <div class="col-6">
+                                            <label for="area-f">Especifique Fuente:</label>
+                                            <input type="text"
+                                                   name="fuente-f"
+                                                   id="fuente-f"
+                                                   class="form-control {{$errors->has('fuente-f') ? 'is-invalid':''}}"
+                                                   value="{{$errors->any() ? old('fuente-f'):'' }}"
+                                                   disabled
+                                            >
+                                                                                    
                                         </div>
                                     </div>
                                 </div>
